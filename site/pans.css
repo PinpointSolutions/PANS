@@ -1,12 +1,59 @@
-body {margin:0px; padding:0px; font-family:Calibri}
-p {margin-left:5%}
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: Calibri
+}
 
-h1 {color:white; font-family:Arial; margin-left:300px; line-height:40px; font-size:25px; word-spacing:4px; text-shadow:0px 0px 2px #FFF}
-#logo {position:absolute; left:5%; top:-15px; display:inline}
-#header {background-color:#C02424; height:40px; width:100%}
+p {
+  margin-left: 5%
+}
 
-#form {margin-left:5%; padding-top:2px}
-#hl {background-color:#DDD; width:95%; padding:5px}
-#a {width:95%; padding:5px}
-#ai {width:20%; padding:2px}
-#hli {background-color:#DDD; width:15%; padding:2px}
+h1 {
+  color: white; 
+  font-family: Arial; 
+  margin-left: 300px; 
+  line-height: 40px; 
+  font-size: 25px; 
+  word-spacing: 4px; 
+  text-shadow: 0px 0px 2px #FFF
+}
+
+#logo {
+  position: absolute;
+  left: 5%; 
+  top: -15px; 
+  display: inline
+}
+
+#header {
+  background-color: #C02424; 
+  height: 40px;
+  width: 100%
+}
+
+#form {
+  margin-left: 5%; 
+  padding-top: 2px
+}
+
+#hl {
+  background-color: #DDD; 
+  width: 95%;
+  padding: 5px
+}
+
+#a {
+  width: 95%;
+  padding: 5px
+}
+
+#ai {
+  width: 20%;
+  padding: 2px
+}
+
+#hli {
+  background-color:  #DDD; 
+  width: 15%; 
+  padding: 2px
+}
