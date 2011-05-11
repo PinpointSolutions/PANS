@@ -7,8 +7,8 @@
 
 <body>
 	<div id="header">
-      <h1>3001ICT - Login</h1>
-      <img id="logo" src="GriffithLogo.png">
+      <h1>3001ICT - Project Nomination Form</h1>
+      <img id="logo" src="griffith_logo.png">
    </div>
    <br />
    <br />
