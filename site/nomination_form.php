@@ -70,6 +70,8 @@
 		<div id="ai"><input type="checkbox" name="concentration_area" value="Database Administration" />Database Administration</div>
 		<div id="hli"><input type="checkbox" name="concentration_area" value="Interactive and Entertainment" />Interactive and Entertainment</div>
 		
+		<div id="a">Indicate students you <u>would</u> like to work with:</div>
+
 		<div id="hl">1st group member preference: <input type="text" name="y_stu_pref_1" /></div>
 		
 		<div id="a">2nd group member preference: <input type="text" name="y_stu_pref_2" /></div>
@@ -79,6 +81,18 @@
 		<div id="a">4th group member preference: <input type="text" name="y_stu_pref_4" /></div>
 		
 		<div id="hl">5th group member preference: <input type="text" name="y_stu_pref_5" /></div>
+		
+		<div id="a">Indicate students you <u>would not</u> like to work with:</div>
+		
+		<div id="hl">1st student: <input type="text" name="y_stu_pref_1" /></div>
+		
+		<div id="a">2nd student: <input type="text" name="y_stu_pref_2" /></div>
+		
+		<div id="hl">3rd student: <input type="text" name="y_stu_pref_3" /></div>
+		
+		<div id="a">4th student: <input type="text" name="y_stu_pref_4" /></div>
+		
+		<div id="hl">5th student: <input type="text" name="y_stu_pref_5" /></div>
 
 		</form>
 </body>
