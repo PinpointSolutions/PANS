@@ -36,24 +36,24 @@ h1 {
   padding-top: 2px
 }
 
-#hl {
+#hl { /* highlight */
   background-color: #DDD; 
   width: 95%;
   padding: 5px
 }
 
-#a {
+#a { /* alternate */
   width: 95%;
   padding: 5px
 }
 
-#ai {
-  width: 20%;
+#hli { /* highlight short background */
+  background-color:  #DDD; 
+  width: 15%; 
   padding: 2px
 }
 
-#hli {
-  background-color:  #DDD; 
-  width: 15%; 
+#ai { /* alternate short background */
+  width: 20%;
   padding: 2px
 }
