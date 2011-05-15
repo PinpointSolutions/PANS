@@ -2,6 +2,6 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=localhost;dbname=pans'
+      dsn: 'mysql:host=localhost;dbname=pinpoint_db'
       username: root
-      password: timemachine
+      password: 3001ictrules
