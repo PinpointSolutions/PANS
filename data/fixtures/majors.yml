@@ -1,0 +1,10 @@
+Majors:
+  informationTechnology:
+    major: Information Technology
+    is_visible: true
+  multimedia:
+    major: Multimedia
+    is_visible: true
+  softwareEngineering:
+    major: Software Engineering
+    is_visible: true

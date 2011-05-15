@@ -124,3 +124,662 @@ May 15 10:36:48 symfony [info] {sfWebDebugLogger} Factories 157.43 ms (1)
 May 15 10:36:48 symfony [info] {sfWebDebugLogger} Action "default/index" 0.09 ms (1)
 May 15 10:36:48 symfony [info] {sfWebDebugLogger} View "Success" for "default/index" 11.68 ms (1)
 May 15 10:36:48 symfony [info] {sfWebResponse} Send content (31156 o)
+May 15 11:22:52 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+May 15 11:22:52 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 11:22:52 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 11:22:52 symfony [info] {defaultActions} Call "defaultActions->executeIndex()"
+May 15 11:22:52 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib/controller/default/templates/indexSuccess.php"
+May 15 11:22:52 symfony [info] {sfPHPView} Decorate content with "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 11:22:52 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 11:22:52 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 11:22:52 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 11:22:52 symfony [info] {sfWebDebugLogger} Configuration 16.34 ms (9)
+May 15 11:22:52 symfony [info] {sfWebDebugLogger} Factories 304.07 ms (1)
+May 15 11:22:52 symfony [info] {sfWebDebugLogger} Action "default/index" 0.17 ms (1)
+May 15 11:22:52 symfony [info] {sfWebDebugLogger} View "Success" for "default/index" 71.88 ms (1)
+May 15 11:22:52 symfony [info] {sfWebResponse} Send content (30910 o)
+May 15 13:54:06 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+May 15 13:54:06 symfony [info] {myUser} Automatic user logout due to timeout
+May 15 13:54:06 symfony [info] {myUser} User is not authenticated
+May 15 13:54:06 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:54:06 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:54:06 symfony [info] {defaultActions} Call "defaultActions->executeIndex()"
+May 15 13:54:06 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib/controller/default/templates/indexSuccess.php"
+May 15 13:54:06 symfony [info] {sfPHPView} Decorate content with "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 13:54:06 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 13:54:06 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:54:06 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:54:06 symfony [info] {sfWebDebugLogger} Configuration 8.12 ms (9)
+May 15 13:54:06 symfony [info] {sfWebDebugLogger} Factories 34.92 ms (1)
+May 15 13:54:06 symfony [info] {sfWebDebugLogger} Action "default/index" 0.09 ms (1)
+May 15 13:54:06 symfony [info] {sfWebDebugLogger} View "Success" for "default/index" 11.51 ms (1)
+May 15 13:54:06 symfony [info] {sfWebResponse} Send content (31897 o)
+May 15 13:54:47 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+May 15 13:54:47 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:54:47 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:54:47 symfony [info] {defaultActions} Call "defaultActions->executeIndex()"
+May 15 13:54:47 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib/controller/default/templates/indexSuccess.php"
+May 15 13:54:47 symfony [info] {sfPHPView} Decorate content with "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 13:54:47 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 13:54:47 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:54:47 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:54:47 symfony [info] {sfWebDebugLogger} Configuration 9.53 ms (9)
+May 15 13:54:47 symfony [info] {sfWebDebugLogger} Factories 26.08 ms (1)
+May 15 13:54:47 symfony [info] {sfWebDebugLogger} Action "default/index" 0.09 ms (1)
+May 15 13:54:47 symfony [info] {sfWebDebugLogger} View "Success" for "default/index" 10.05 ms (1)
+May 15 13:54:47 symfony [info] {sfWebResponse} Send content (31188 o)
+May 15 13:54:48 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+May 15 13:54:48 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:54:48 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:54:48 symfony [info] {defaultActions} Call "defaultActions->executeIndex()"
+May 15 13:54:48 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib/controller/default/templates/indexSuccess.php"
+May 15 13:54:48 symfony [info] {sfPHPView} Decorate content with "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 13:54:48 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 13:54:48 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:54:48 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:54:48 symfony [info] {sfWebDebugLogger} Configuration 9.45 ms (9)
+May 15 13:54:48 symfony [info] {sfWebDebugLogger} Factories 28.95 ms (1)
+May 15 13:54:48 symfony [info] {sfWebDebugLogger} Action "default/index" 0.09 ms (1)
+May 15 13:54:48 symfony [info] {sfWebDebugLogger} View "Success" for "default/index" 11.84 ms (1)
+May 15 13:54:48 symfony [info] {sfWebResponse} Send content (31188 o)
+May 15 13:55:16 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+May 15 13:55:16 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:55:16 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:55:16 symfony [info] {defaultActions} Call "defaultActions->executeIndex()"
+May 15 13:55:16 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib/controller/default/templates/indexSuccess.php"
+May 15 13:55:16 symfony [info] {sfPHPView} Decorate content with "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 13:55:16 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 13:55:16 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:55:16 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:55:16 symfony [info] {sfWebDebugLogger} Configuration 9.91 ms (9)
+May 15 13:55:16 symfony [info] {sfWebDebugLogger} Factories 29.75 ms (1)
+May 15 13:55:16 symfony [info] {sfWebDebugLogger} Action "default/index" 0.09 ms (1)
+May 15 13:55:16 symfony [info] {sfWebDebugLogger} View "Success" for "default/index" 12.41 ms (1)
+May 15 13:55:16 symfony [info] {sfWebResponse} Send content (31264 o)
+May 15 13:55:17 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 13:55:17 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:55:17 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:55:17 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 13:55:17 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 13:55:17 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 13:55:17 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 13:55:17 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:17 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:17 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:55:17 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:55:17 symfony [info] {sfWebDebugLogger} Configuration 25.96 ms (10)
+May 15 13:55:17 symfony [info] {sfWebDebugLogger} Factories 29.31 ms (1)
+May 15 13:55:17 symfony [info] {sfWebDebugLogger} Action "job/index" 48.49 ms (1)
+May 15 13:55:17 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 13:55:17 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 19.96 ms (1)
+May 15 13:55:17 symfony [info] {sfWebResponse} Send content (32571 o)
+May 15 13:55:20 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /job/show/username/admin with parameters array (  'module' => 'job',  'action' => 'show',  'username' => 'admin',)
+May 15 13:55:20 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:55:20 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:55:20 symfony [info] {jobActions} Call "jobActions->executeShow()"
+May 15 13:55:20 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 13:55:20 symfony [info] {Doctrine_Connection_Statement} execute : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a WHERE (a.username = ?) LIMIT 1 - (admin)
+May 15 13:55:20 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/showSuccess.php"
+May 15 13:55:20 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:20 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:20 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:55:20 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:55:20 symfony [info] {sfWebDebugLogger} Configuration 7.37 ms (9)
+May 15 13:55:20 symfony [info] {sfWebDebugLogger} Factories 28.55 ms (1)
+May 15 13:55:20 symfony [info] {sfWebDebugLogger} Action "job/show" 62.97 ms (1)
+May 15 13:55:20 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 13:55:20 symfony [info] {sfWebDebugLogger} View "Success" for "job/show" 10.64 ms (1)
+May 15 13:55:20 symfony [info] {sfWebResponse} Send content (32966 o)
+May 15 13:55:21 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 13:55:21 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:55:21 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:55:21 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 13:55:21 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 13:55:21 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 13:55:21 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 13:55:21 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:21 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:21 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:55:21 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:55:21 symfony [info] {sfWebDebugLogger} Configuration 8.80 ms (9)
+May 15 13:55:21 symfony [info] {sfWebDebugLogger} Factories 37.80 ms (1)
+May 15 13:55:21 symfony [info] {sfWebDebugLogger} Action "job/index" 22.98 ms (1)
+May 15 13:55:21 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 13:55:21 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 10.27 ms (1)
+May 15 13:55:21 symfony [info] {sfWebResponse} Send content (32567 o)
+May 15 13:55:22 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /job/show/username/ta with parameters array (  'module' => 'job',  'action' => 'show',  'username' => 'ta',)
+May 15 13:55:22 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:55:22 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:55:22 symfony [info] {jobActions} Call "jobActions->executeShow()"
+May 15 13:55:22 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 13:55:22 symfony [info] {Doctrine_Connection_Statement} execute : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a WHERE (a.username = ?) LIMIT 1 - (ta)
+May 15 13:55:22 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/showSuccess.php"
+May 15 13:55:22 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:22 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:22 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:55:22 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:55:22 symfony [info] {sfWebDebugLogger} Configuration 7.89 ms (9)
+May 15 13:55:22 symfony [info] {sfWebDebugLogger} Factories 28.84 ms (1)
+May 15 13:55:22 symfony [info] {sfWebDebugLogger} Action "job/show" 26.95 ms (1)
+May 15 13:55:22 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 13:55:22 symfony [info] {sfWebDebugLogger} View "Success" for "job/show" 10.21 ms (1)
+May 15 13:55:22 symfony [info] {sfWebResponse} Send content (32933 o)
+May 15 13:55:23 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 13:55:23 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:55:23 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:55:23 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 13:55:23 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 13:55:23 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 13:55:23 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 13:55:23 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:23 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:23 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:55:23 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:55:23 symfony [info] {sfWebDebugLogger} Configuration 6.71 ms (9)
+May 15 13:55:23 symfony [info] {sfWebDebugLogger} Factories 29.44 ms (1)
+May 15 13:55:23 symfony [info] {sfWebDebugLogger} Action "job/index" 22.59 ms (1)
+May 15 13:55:23 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 13:55:23 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 10.48 ms (1)
+May 15 13:55:23 symfony [info] {sfWebResponse} Send content (32568 o)
+May 15 13:55:25 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+May 15 13:55:25 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:55:25 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:55:25 symfony [info] {defaultActions} Call "defaultActions->executeIndex()"
+May 15 13:55:25 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib/controller/default/templates/indexSuccess.php"
+May 15 13:55:25 symfony [info] {sfPHPView} Decorate content with "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 13:55:25 symfony [info] {sfPHPView} Render "D:\Github\symfony\lib\controller\default\templates/defaultLayout.php"
+May 15 13:55:25 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:55:25 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:55:25 symfony [info] {sfWebDebugLogger} Configuration 7.32 ms (9)
+May 15 13:55:25 symfony [info] {sfWebDebugLogger} Factories 28.40 ms (1)
+May 15 13:55:25 symfony [info] {sfWebDebugLogger} Action "default/index" 0.09 ms (1)
+May 15 13:55:25 symfony [info] {sfWebDebugLogger} View "Success" for "default/index" 9.12 ms (1)
+May 15 13:55:25 symfony [info] {sfWebResponse} Send content (31154 o)
+May 15 13:55:46 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 13:55:46 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:55:46 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:55:46 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 13:55:46 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 13:55:46 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 13:55:46 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 13:55:46 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:46 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:46 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:55:46 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:55:46 symfony [info] {sfWebDebugLogger} Configuration 8.31 ms (9)
+May 15 13:55:46 symfony [info] {sfWebDebugLogger} Factories 25.75 ms (1)
+May 15 13:55:46 symfony [info] {sfWebDebugLogger} Action "job/index" 23.05 ms (1)
+May 15 13:55:46 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 13:55:46 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 12.69 ms (1)
+May 15 13:55:46 symfony [info] {sfWebResponse} Send content (32568 o)
+May 15 13:55:48 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /job/show/username/ta with parameters array (  'module' => 'job',  'action' => 'show',  'username' => 'ta',)
+May 15 13:55:48 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:55:48 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:55:48 symfony [info] {jobActions} Call "jobActions->executeShow()"
+May 15 13:55:48 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 13:55:48 symfony [info] {Doctrine_Connection_Statement} execute : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a WHERE (a.username = ?) LIMIT 1 - (ta)
+May 15 13:55:48 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/showSuccess.php"
+May 15 13:55:48 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:48 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:48 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:55:48 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:55:48 symfony [info] {sfWebDebugLogger} Configuration 9.28 ms (9)
+May 15 13:55:48 symfony [info] {sfWebDebugLogger} Factories 29.77 ms (1)
+May 15 13:55:48 symfony [info] {sfWebDebugLogger} Action "job/show" 27.37 ms (1)
+May 15 13:55:48 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 13:55:48 symfony [info] {sfWebDebugLogger} View "Success" for "job/show" 12.02 ms (1)
+May 15 13:55:48 symfony [info] {sfWebResponse} Send content (32934 o)
+May 15 13:55:49 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /job/edit/username/ta with parameters array (  'module' => 'job',  'action' => 'edit',  'username' => 'ta',)
+May 15 13:55:49 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:55:49 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:55:49 symfony [info] {jobActions} Call "jobActions->executeEdit()"
+May 15 13:55:49 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 13:55:49 symfony [info] {Doctrine_Connection_Statement} execute : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a WHERE (a.username = ?) LIMIT 1 - (ta)
+May 15 13:55:49 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/editSuccess.php"
+May 15 13:55:49 symfony [info] {sfPartialView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/_form.php"
+May 15 13:55:49 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:49 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:49 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:55:49 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:55:49 symfony [info] {sfWebDebugLogger} Configuration 9.85 ms (9)
+May 15 13:55:49 symfony [info] {sfWebDebugLogger} Factories 26.04 ms (1)
+May 15 13:55:49 symfony [info] {sfWebDebugLogger} Action "job/edit" 35.40 ms (1)
+May 15 13:55:49 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 13:55:49 symfony [info] {sfWebDebugLogger} View "Success" for "job/edit" 45.22 ms (1)
+May 15 13:55:49 symfony [info] {sfWebDebugLogger} Partial "job/_form" 15.02 ms (1)
+May 15 13:55:49 symfony [info] {sfWebResponse} Send content (36993 o)
+May 15 13:55:51 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 13:55:51 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 13:55:51 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 13:55:51 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 13:55:51 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 13:55:51 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 13:55:51 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 13:55:51 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:51 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 13:55:51 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 13:55:51 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 13:55:51 symfony [info] {sfWebDebugLogger} Configuration 10.80 ms (9)
+May 15 13:55:51 symfony [info] {sfWebDebugLogger} Factories 28.28 ms (1)
+May 15 13:55:51 symfony [info] {sfWebDebugLogger} Action "job/index" 24.82 ms (1)
+May 15 13:55:51 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 13:55:51 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 13.77 ms (1)
+May 15 13:55:51 symfony [info] {sfWebResponse} Send content (32651 o)
+May 15 14:21:36 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /job/show/username/admin with parameters array (  'module' => 'job',  'action' => 'show',  'username' => 'admin',)
+May 15 14:21:36 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:21:36 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:21:36 symfony [info] {jobActions} Call "jobActions->executeShow()"
+May 15 14:21:36 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 14:21:36 symfony [info] {Doctrine_Connection_Statement} execute : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a WHERE (a.username = ?) LIMIT 1 - (admin)
+May 15 14:21:36 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/showSuccess.php"
+May 15 14:21:36 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:21:36 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:21:36 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:21:36 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:21:36 symfony [info] {sfWebDebugLogger} Configuration 5.81 ms (9)
+May 15 14:21:36 symfony [info] {sfWebDebugLogger} Factories 28.77 ms (1)
+May 15 14:21:36 symfony [info] {sfWebDebugLogger} Action "job/show" 27.75 ms (1)
+May 15 14:21:36 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 14:21:36 symfony [info] {sfWebDebugLogger} View "Success" for "job/show" 13.10 ms (1)
+May 15 14:21:36 symfony [info] {sfWebResponse} Send content (32967 o)
+May 15 14:21:39 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /job/edit/username/admin with parameters array (  'module' => 'job',  'action' => 'edit',  'username' => 'admin',)
+May 15 14:21:39 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:21:39 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:21:39 symfony [info] {jobActions} Call "jobActions->executeEdit()"
+May 15 14:21:39 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 14:21:39 symfony [info] {Doctrine_Connection_Statement} execute : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a WHERE (a.username = ?) LIMIT 1 - (admin)
+May 15 14:21:40 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/editSuccess.php"
+May 15 14:21:40 symfony [info] {sfPartialView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/_form.php"
+May 15 14:21:40 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:21:40 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:21:40 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:21:40 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:21:40 symfony [info] {sfWebDebugLogger} Configuration 5.35 ms (9)
+May 15 14:21:40 symfony [info] {sfWebDebugLogger} Factories 28.20 ms (1)
+May 15 14:21:40 symfony [info] {sfWebDebugLogger} Action "job/edit" 35.09 ms (1)
+May 15 14:21:40 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 14:21:40 symfony [info] {sfWebDebugLogger} View "Success" for "job/edit" 15.77 ms (1)
+May 15 14:21:40 symfony [info] {sfWebDebugLogger} Partial "job/_form" 4.28 ms (1)
+May 15 14:21:40 symfony [info] {sfWebResponse} Send content (37031 o)
+May 15 14:21:41 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 14:21:41 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:21:41 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:21:41 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 14:21:41 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 14:21:41 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 14:21:41 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 14:21:41 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:21:41 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:21:41 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:21:41 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:21:41 symfony [info] {sfWebDebugLogger} Configuration 5.17 ms (9)
+May 15 14:21:41 symfony [info] {sfWebDebugLogger} Factories 28.18 ms (1)
+May 15 14:21:41 symfony [info] {sfWebDebugLogger} Action "job/index" 22.57 ms (1)
+May 15 14:21:41 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 14:21:41 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 13.72 ms (1)
+May 15 14:21:41 symfony [info] {sfWebResponse} Send content (32653 o)
+May 15 14:21:43 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /job/new with parameters array (  'module' => 'job',  'action' => 'new',)
+May 15 14:21:43 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:21:43 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:21:43 symfony [info] {jobActions} Call "jobActions->executeNew()"
+May 15 14:21:43 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/newSuccess.php"
+May 15 14:21:43 symfony [info] {sfPartialView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/_form.php"
+May 15 14:21:43 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:21:43 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:21:43 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:21:43 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:21:43 symfony [info] {sfWebDebugLogger} Configuration 5.41 ms (9)
+May 15 14:21:43 symfony [info] {sfWebDebugLogger} Factories 28.60 ms (1)
+May 15 14:21:43 symfony [info] {sfWebDebugLogger} Action "job/new" 15.78 ms (1)
+May 15 14:21:43 symfony [info] {sfWebDebugLogger} View "Success" for "job/new" 14.71 ms (1)
+May 15 14:21:43 symfony [info] {sfWebDebugLogger} Partial "job/_form" 3.20 ms (1)
+May 15 14:21:43 symfony [info] {sfWebResponse} Send content (33282 o)
+May 15 14:21:44 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 14:21:44 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:21:44 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:21:44 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 14:21:44 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 14:21:44 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 14:21:44 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 14:21:44 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:21:44 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:21:44 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:21:44 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:21:44 symfony [info] {sfWebDebugLogger} Configuration 5.60 ms (9)
+May 15 14:21:44 symfony [info] {sfWebDebugLogger} Factories 28.71 ms (1)
+May 15 14:21:44 symfony [info] {sfWebDebugLogger} Action "job/index" 23.21 ms (1)
+May 15 14:21:44 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 14:21:44 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 13.35 ms (1)
+May 15 14:21:44 symfony [info] {sfWebResponse} Send content (32637 o)
+May 15 14:23:58 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 14:23:58 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:23:58 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:23:58 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 14:23:58 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 14:23:58 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 14:23:58 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 14:23:58 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:23:58 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:23:58 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:23:58 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:23:58 symfony [info] {sfWebDebugLogger} Configuration 6.57 ms (9)
+May 15 14:23:58 symfony [info] {sfWebDebugLogger} Factories 28.60 ms (1)
+May 15 14:23:58 symfony [info] {sfWebDebugLogger} Action "job/index" 25.81 ms (1)
+May 15 14:23:58 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 14:23:58 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 10.92 ms (1)
+May 15 14:23:58 symfony [info] {sfWebResponse} Send content (32418 o)
+May 15 14:23:59 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 14:23:59 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:23:59 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:23:59 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 14:23:59 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 14:23:59 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 14:23:59 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 14:23:59 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:23:59 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:23:59 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:23:59 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:23:59 symfony [info] {sfWebDebugLogger} Configuration 10.44 ms (9)
+May 15 14:23:59 symfony [info] {sfWebDebugLogger} Factories 25.67 ms (1)
+May 15 14:23:59 symfony [info] {sfWebDebugLogger} Action "job/index" 22.96 ms (1)
+May 15 14:23:59 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 14:23:59 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 12.69 ms (1)
+May 15 14:23:59 symfony [info] {sfWebResponse} Send content (32670 o)
+May 15 14:23:59 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 14:23:59 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:23:59 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:23:59 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 14:23:59 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 14:23:59 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 14:23:59 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 14:23:59 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:23:59 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:23:59 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:23:59 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:23:59 symfony [info] {sfWebDebugLogger} Configuration 10.10 ms (9)
+May 15 14:23:59 symfony [info] {sfWebDebugLogger} Factories 25.51 ms (1)
+May 15 14:23:59 symfony [info] {sfWebDebugLogger} Action "job/index" 22.52 ms (1)
+May 15 14:23:59 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 14:23:59 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 12.57 ms (1)
+May 15 14:23:59 symfony [info] {sfWebResponse} Send content (32670 o)
+May 15 14:24:00 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 14:24:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:24:00 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:24:00 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 14:24:00 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 14:24:00 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 14:24:00 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 14:24:00 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:24:00 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:24:00 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:24:00 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Configuration 9.05 ms (9)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Factories 29.09 ms (1)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Action "job/index" 22.80 ms (1)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 14.50 ms (1)
+May 15 14:24:00 symfony [info] {sfWebResponse} Send content (32669 o)
+May 15 14:24:00 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 14:24:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:24:00 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:24:00 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 14:24:00 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 14:24:00 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 14:24:00 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 14:24:00 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:24:00 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:24:00 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:24:00 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Configuration 6.59 ms (9)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Factories 27.96 ms (1)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Action "job/index" 22.53 ms (1)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 10.95 ms (1)
+May 15 14:24:00 symfony [info] {sfWebResponse} Send content (32669 o)
+May 15 14:24:00 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 14:24:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:24:00 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:24:00 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 14:24:00 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 14:24:00 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 14:24:00 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 14:24:00 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:24:00 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:24:00 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:24:00 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Configuration 7.61 ms (9)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Factories 25.65 ms (1)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Action "job/index" 22.39 ms (1)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 14:24:00 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 11.30 ms (1)
+May 15 14:24:00 symfony [info] {sfWebResponse} Send content (32668 o)
+May 15 14:24:02 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 14:24:02 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 14:24:02 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 14:24:02 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 14:24:02 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 14:24:02 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 14:24:02 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 14:24:02 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:24:02 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 14:24:02 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 14:24:02 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 14:24:02 symfony [info] {sfWebDebugLogger} Configuration 7.70 ms (9)
+May 15 14:24:02 symfony [info] {sfWebDebugLogger} Factories 27.83 ms (1)
+May 15 14:24:02 symfony [info] {sfWebDebugLogger} Action "job/index" 22.54 ms (1)
+May 15 14:24:02 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 14:24:02 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 10.27 ms (1)
+May 15 14:24:02 symfony [info] {sfWebResponse} Send content (32691 o)
+May 15 15:32:50 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 15 15:32:50 symfony [info] {myUser} Automatic user logout due to timeout
+May 15 15:32:50 symfony [info] {myUser} User is not authenticated
+May 15 15:32:50 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:32:50 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:32:50 symfony [info] {jobActions} Call "jobActions->executeIndex()"
+May 15 15:32:50 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:32:50 symfony [info] {Doctrine_Connection_Mysql} query : SELECT a.username AS a__username, a.p_word AS a__p_word FROM admin_users a - ()
+May 15 15:32:50 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/job/templates/indexSuccess.php"
+May 15 15:32:50 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:32:50 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:32:50 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:32:50 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:32:50 symfony [info] {sfWebDebugLogger} Configuration 6.69 ms (9)
+May 15 15:32:50 symfony [info] {sfWebDebugLogger} Factories 29.84 ms (1)
+May 15 15:32:50 symfony [info] {sfWebDebugLogger} Action "job/index" 23.13 ms (1)
+May 15 15:32:50 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 15:32:50 symfony [info] {sfWebDebugLogger} View "Success" for "job/index" 13.54 ms (1)
+May 15 15:32:50 symfony [info] {sfWebResponse} Send content (33402 o)
+May 15 15:32:52 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /m with parameters array (  'module' => 'm',  'action' => 'index',)
+May 15 15:32:52 symfony [info] {sfFrontWebController} Action "m/index" does not exist
+May 15 15:32:52 symfony [err] {sfError404Exception} Action "m/index" does not exist.
+May 15 15:32:52 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+May 15 15:32:52 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:32:52 symfony [info] {sfWebDebugLogger} Configuration 4.61 ms (5)
+May 15 15:32:52 symfony [info] {sfWebDebugLogger} Factories 26.05 ms (1)
+May 15 15:32:53 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /major with parameters array (  'module' => 'major',  'action' => 'index',)
+May 15 15:32:53 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:32:53 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:32:53 symfony [info] {majorActions} Call "majorActions->executeIndex()"
+May 15 15:32:53 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:32:53 symfony [info] {Doctrine_Connection_Mysql} query : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m - ()
+May 15 15:32:53 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/major/templates/indexSuccess.php"
+May 15 15:32:53 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:32:53 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:32:53 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:32:53 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:32:53 symfony [info] {sfWebDebugLogger} Configuration 25.66 ms (10)
+May 15 15:32:53 symfony [info] {sfWebDebugLogger} Factories 25.67 ms (1)
+May 15 15:32:53 symfony [info] {sfWebDebugLogger} Action "major/index" 22.20 ms (1)
+May 15 15:32:53 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 15:32:53 symfony [info] {sfWebDebugLogger} View "Success" for "major/index" 14.96 ms (1)
+May 15 15:32:53 symfony [info] {sfWebResponse} Send content (32903 o)
+May 15 15:32:58 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /major/show/id/1 with parameters array (  'module' => 'major',  'action' => 'show',  'id' => '1',)
+May 15 15:32:58 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:32:58 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:32:58 symfony [info] {majorActions} Call "majorActions->executeShow()"
+May 15 15:32:58 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:32:58 symfony [info] {Doctrine_Connection_Statement} execute : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m WHERE (m.id = ?) LIMIT 1 - (1)
+May 15 15:32:58 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/major/templates/showSuccess.php"
+May 15 15:32:58 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:32:58 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:32:58 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:32:58 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:32:58 symfony [info] {sfWebDebugLogger} Configuration 7.38 ms (9)
+May 15 15:32:58 symfony [info] {sfWebDebugLogger} Factories 28.63 ms (1)
+May 15 15:32:58 symfony [info] {sfWebDebugLogger} Action "major/show" 44.74 ms (1)
+May 15 15:32:58 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 15:32:58 symfony [info] {sfWebDebugLogger} View "Success" for "major/show" 10.24 ms (1)
+May 15 15:32:58 symfony [info] {sfWebResponse} Send content (33081 o)
+May 15 15:32:59 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /major with parameters array (  'module' => 'major',  'action' => 'index',)
+May 15 15:32:59 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:32:59 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:32:59 symfony [info] {majorActions} Call "majorActions->executeIndex()"
+May 15 15:32:59 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:32:59 symfony [info] {Doctrine_Connection_Mysql} query : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m - ()
+May 15 15:32:59 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/major/templates/indexSuccess.php"
+May 15 15:32:59 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:32:59 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:32:59 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:32:59 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:32:59 symfony [info] {sfWebDebugLogger} Configuration 6.45 ms (9)
+May 15 15:32:59 symfony [info] {sfWebDebugLogger} Factories 28.15 ms (1)
+May 15 15:32:59 symfony [info] {sfWebDebugLogger} Action "major/index" 22.76 ms (1)
+May 15 15:32:59 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 15:32:59 symfony [info] {sfWebDebugLogger} View "Success" for "major/index" 10.81 ms (1)
+May 15 15:32:59 symfony [info] {sfWebResponse} Send content (32900 o)
+May 15 15:35:03 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /major with parameters array (  'module' => 'major',  'action' => 'index',)
+May 15 15:35:03 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:35:03 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:35:03 symfony [info] {majorActions} Call "majorActions->executeIndex()"
+May 15 15:35:03 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:35:03 symfony [info] {Doctrine_Connection_Mysql} query : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m - ()
+May 15 15:35:03 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/major/templates/indexSuccess.php"
+May 15 15:35:03 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:03 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:03 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:35:03 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:35:03 symfony [info] {sfWebDebugLogger} Configuration 7.83 ms (9)
+May 15 15:35:03 symfony [info] {sfWebDebugLogger} Factories 31.75 ms (1)
+May 15 15:35:03 symfony [info] {sfWebDebugLogger} Action "major/index" 23.07 ms (1)
+May 15 15:35:03 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 15:35:03 symfony [info] {sfWebDebugLogger} View "Success" for "major/index" 13.75 ms (1)
+May 15 15:35:03 symfony [info] {sfWebResponse} Send content (32932 o)
+May 15 15:35:03 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /major with parameters array (  'module' => 'major',  'action' => 'index',)
+May 15 15:35:03 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:35:03 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:35:03 symfony [info] {majorActions} Call "majorActions->executeIndex()"
+May 15 15:35:03 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:35:03 symfony [info] {Doctrine_Connection_Mysql} query : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m - ()
+May 15 15:35:03 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/major/templates/indexSuccess.php"
+May 15 15:35:03 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:03 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:03 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:35:03 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:35:03 symfony [info] {sfWebDebugLogger} Configuration 7.13 ms (9)
+May 15 15:35:03 symfony [info] {sfWebDebugLogger} Factories 27.92 ms (1)
+May 15 15:35:03 symfony [info] {sfWebDebugLogger} Action "major/index" 22.81 ms (1)
+May 15 15:35:03 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 15:35:03 symfony [info] {sfWebDebugLogger} View "Success" for "major/index" 11.47 ms (1)
+May 15 15:35:03 symfony [info] {sfWebResponse} Send content (32932 o)
+May 15 15:35:05 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /major/show/id/1 with parameters array (  'module' => 'major',  'action' => 'show',  'id' => '1',)
+May 15 15:35:05 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:35:05 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:35:05 symfony [info] {majorActions} Call "majorActions->executeShow()"
+May 15 15:35:05 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:35:05 symfony [info] {Doctrine_Connection_Statement} execute : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m WHERE (m.id = ?) LIMIT 1 - (1)
+May 15 15:35:05 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/major/templates/showSuccess.php"
+May 15 15:35:05 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:05 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:05 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:35:05 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:35:05 symfony [info] {sfWebDebugLogger} Configuration 11.45 ms (9)
+May 15 15:35:05 symfony [info] {sfWebDebugLogger} Factories 45.38 ms (1)
+May 15 15:35:05 symfony [info] {sfWebDebugLogger} Action "major/show" 53.60 ms (1)
+May 15 15:35:05 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 15:35:05 symfony [info] {sfWebDebugLogger} View "Success" for "major/show" 10.89 ms (1)
+May 15 15:35:05 symfony [info] {sfWebResponse} Send content (33081 o)
+May 15 15:35:06 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /major with parameters array (  'module' => 'major',  'action' => 'index',)
+May 15 15:35:06 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:35:06 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:35:06 symfony [info] {majorActions} Call "majorActions->executeIndex()"
+May 15 15:35:06 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:35:06 symfony [info] {Doctrine_Connection_Mysql} query : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m - ()
+May 15 15:35:06 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/major/templates/indexSuccess.php"
+May 15 15:35:06 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:06 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:06 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:35:06 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:35:06 symfony [info] {sfWebDebugLogger} Configuration 8.63 ms (9)
+May 15 15:35:06 symfony [info] {sfWebDebugLogger} Factories 24.99 ms (1)
+May 15 15:35:06 symfony [info] {sfWebDebugLogger} Action "major/index" 22.70 ms (1)
+May 15 15:35:06 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 15:35:06 symfony [info] {sfWebDebugLogger} View "Success" for "major/index" 11.74 ms (1)
+May 15 15:35:06 symfony [info] {sfWebResponse} Send content (32900 o)
+May 15 15:35:18 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /major with parameters array (  'module' => 'major',  'action' => 'index',)
+May 15 15:35:18 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:35:18 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:35:18 symfony [info] {majorActions} Call "majorActions->executeIndex()"
+May 15 15:35:18 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:35:18 symfony [info] {Doctrine_Connection_Mysql} query : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m - ()
+May 15 15:35:18 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/major/templates/indexSuccess.php"
+May 15 15:35:18 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:18 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:18 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:35:18 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:35:18 symfony [info] {sfWebDebugLogger} Configuration 8.49 ms (9)
+May 15 15:35:18 symfony [info] {sfWebDebugLogger} Factories 25.41 ms (1)
+May 15 15:35:18 symfony [info] {sfWebDebugLogger} Action "major/index" 22.97 ms (1)
+May 15 15:35:18 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 15:35:18 symfony [info] {sfWebDebugLogger} View "Success" for "major/index" 11.79 ms (1)
+May 15 15:35:18 symfony [info] {sfWebResponse} Send content (32930 o)
+May 15 15:35:23 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /major with parameters array (  'module' => 'major',  'action' => 'index',)
+May 15 15:35:23 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:35:23 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:35:23 symfony [info] {majorActions} Call "majorActions->executeIndex()"
+May 15 15:35:23 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:35:23 symfony [info] {Doctrine_Connection_Mysql} query : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m - ()
+May 15 15:35:23 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/major/templates/indexSuccess.php"
+May 15 15:35:23 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:23 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:23 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:35:23 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:35:23 symfony [info] {sfWebDebugLogger} Configuration 5.09 ms (9)
+May 15 15:35:23 symfony [info] {sfWebDebugLogger} Factories 25.64 ms (1)
+May 15 15:35:23 symfony [info] {sfWebDebugLogger} Action "major/index" 22.62 ms (1)
+May 15 15:35:23 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 15:35:23 symfony [info] {sfWebDebugLogger} View "Success" for "major/index" 13.57 ms (1)
+May 15 15:35:23 symfony [info] {sfWebResponse} Send content (32930 o)
+May 15 15:35:25 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /major/show/id/1 with parameters array (  'module' => 'major',  'action' => 'show',  'id' => '1',)
+May 15 15:35:25 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:35:25 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:35:25 symfony [info] {majorActions} Call "majorActions->executeShow()"
+May 15 15:35:25 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:35:25 symfony [info] {Doctrine_Connection_Statement} execute : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m WHERE (m.id = ?) LIMIT 1 - (1)
+May 15 15:35:25 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/major/templates/showSuccess.php"
+May 15 15:35:25 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:25 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:25 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:35:25 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:35:25 symfony [info] {sfWebDebugLogger} Configuration 9.96 ms (9)
+May 15 15:35:25 symfony [info] {sfWebDebugLogger} Factories 28.72 ms (1)
+May 15 15:35:25 symfony [info] {sfWebDebugLogger} Action "major/show" 27.25 ms (1)
+May 15 15:35:25 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.01 ms (2)
+May 15 15:35:25 symfony [info] {sfWebDebugLogger} View "Success" for "major/show" 14.15 ms (1)
+May 15 15:35:25 symfony [info] {sfWebResponse} Send content (33081 o)
+May 15 15:35:26 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /major with parameters array (  'module' => 'major',  'action' => 'index',)
+May 15 15:35:26 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 15 15:35:26 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 15 15:35:26 symfony [info] {majorActions} Call "majorActions->executeIndex()"
+May 15 15:35:26 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 15 15:35:26 symfony [info] {Doctrine_Connection_Mysql} query : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m - ()
+May 15 15:35:26 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/major/templates/indexSuccess.php"
+May 15 15:35:26 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:26 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 15 15:35:26 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 15 15:35:26 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 15 15:35:26 symfony [info] {sfWebDebugLogger} Configuration 9.34 ms (9)
+May 15 15:35:26 symfony [info] {sfWebDebugLogger} Factories 29.82 ms (1)
+May 15 15:35:26 symfony [info] {sfWebDebugLogger} Action "major/index" 22.84 ms (1)
+May 15 15:35:26 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 15 15:35:26 symfony [info] {sfWebDebugLogger} View "Success" for "major/index" 14.82 ms (1)
+May 15 15:35:26 symfony [info] {sfWebResponse} Send content (32898 o)

@@ -1,0 +1,8 @@
+AdminUsers:
+  courseConvenor:
+    username: admin
+    p_word: changeme
+  teachingAssistant:
+    username: ta
+    p_word: changeme
+    
