@@ -2,38 +2,14 @@ AdminUsers:
   connection: doctrine
   tableName: admin_users
   columns:
-    id:
-      type: integer(4)
+    username:
+      type: string(64)
       fixed: false
       unsigned: false
       primary: true
-      autoincrement: false
-    username:
-      type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
       autoincrement: false
     p_word:
-      type: string(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-ConcentrationAreas:
-  connection: doctrine
-  tableName: concentration_areas
-  columns:
-    id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    area:
-      type: string(25)
+      type: string(64)
       fixed: false
       unsigned: false
       primary: false
@@ -48,118 +24,406 @@ Majors:
       fixed: false
       unsigned: false
       primary: true
-      autoincrement: false
+      autoincrement: true
     major:
-      type: string(20)
+      type: string(32)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-Project:
-  connection: doctrine
-  tableName: project
-  columns:
-    id:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    title:
-      type: string(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    description:
-      type: string(1500)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    has_additional_info:
+    is_visible:
       type: integer(1)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-    majors:
-      type: string(20)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    concentration_area:
-      type: string(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    organisation:
-      type: string(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-ProjectAllocation:
+ProjectAllocations:
   connection: doctrine
-  tableName: project_allocation
+  tableName: project_allocations
   columns:
     project_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      autoincrement: false
+      autoincrement: true
     snum1:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
     snum2:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
     snum3:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
     snum4:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
     snum5:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
-      notnull: true
+      notnull: false
       autoincrement: false
     snum6:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    StudentUsers:
+      local: snum6
+      foreign: snum
+      type: one
+    Projects:
+      local: project_id
+      foreign: id
+      type: one
+    StudentUsers_3:
+      class: StudentUsers
+      local: snum1
+      foreign: snum
+      type: one
+    StudentUsers_4:
+      class: StudentUsers
+      local: snum2
+      foreign: snum
+      type: one
+    StudentUsers_5:
+      class: StudentUsers
+      local: snum3
+      foreign: snum
+      type: one
+    StudentUsers_6:
+      class: StudentUsers
+      local: snum4
+      foreign: snum
+      type: one
+    StudentUsers_7:
+      class: StudentUsers
+      local: snum5
+      foreign: snum
+      type: one
+Projects:
+  connection: doctrine
+  tableName: projects
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    title:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    organisation:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    description:
+      type: string(2048)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    has_additional_info:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    major_ids:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    skill_set_ids:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    year:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
       notnull: true
       autoincrement: false
+    proj_num:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+  relations:
+    ProjectAllocations:
+      local: id
+      foreign: project_id
+      type: many
+SkillSets:
+  connection: doctrine
+  tableName: skill_sets
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    area:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    is_visible:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+StudentPrefs:
+  connection: doctrine
+  tableName: student_prefs
+  columns:
+    snum:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: false
+    year:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    first_name:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    last_name:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    pass_fail_pm:
+      type: integer(1)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    major_ids:
+      type: string(32)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    gpa:
+      type: float()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    proj_pref_1:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    proj_pref_2:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    proj_pref_3:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    proj_pref_4:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    proj_pref_5:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    skill_set_ids:
+      type: string(32)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    y_stu_pref_1:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    y_stu_pref_2:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    y_stu_pref_3:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    y_stu_pref_4:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    y_stu_pref_5:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    n_stu_pref_1:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    n_stu_pref_2:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    n_stu_pref_3:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    n_stu_pref_4:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    n_stu_pref_5:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    proj_just_1:
+      type: string(2048)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    proj_just_2:
+      type: string(2048)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    proj_just_3:
+      type: string(2048)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    proj_just_4:
+      type: string(2048)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    proj_just_5:
+      type: string(2048)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+  relations:
+    StudentUsers:
+      local: snum
+      foreign: snum
+      type: one
 StudentUsers:
   connection: doctrine
   tableName: student_users
@@ -171,191 +435,43 @@ StudentUsers:
       primary: true
       autoincrement: false
     p_word:
-      type: string(12)
+      type: string(64)
       fixed: false
       unsigned: false
       primary: false
       notnull: true
       autoincrement: false
-    first_name:
-      type: string(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    last_name:
-      type: string(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    pass/fail_pm:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    major:
-      type: string(25)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    gpa:
-      type: float()
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    prj_pref_1:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    prj_pref_2:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    prj_pref_3:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    prj_pref_4:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    prj_pref_5:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    concentration_area:
-      type: string(50)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    y_stu_pref_1:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    y_stu_pref_2:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    y_stu_pref_3:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    y_stu_pref_4:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    y_stu_pref_5:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    n_stu_pref_1:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    n_stu_pref_2:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    n_stu_pref_3:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    n_stu_pref_4:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    n_stu_pref_5:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    prj_just_1:
-      type: string(1500)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    prj_just_2:
-      type: string(1500)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    prj_just_3:
-      type: string(1500)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    prj_just_4:
-      type: string(1500)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    prj_just_5:
-      type: string(1500)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
+  relations:
+    ProjectAllocations:
+      local: snum
+      foreign: snum6
+      type: many
+    ProjectAllocations_3:
+      class: ProjectAllocations
+      local: snum
+      foreign: snum1
+      type: many
+    ProjectAllocations_4:
+      class: ProjectAllocations
+      local: snum
+      foreign: snum2
+      type: many
+    ProjectAllocations_5:
+      class: ProjectAllocations
+      local: snum
+      foreign: snum3
+      type: many
+    ProjectAllocations_6:
+      class: ProjectAllocations
+      local: snum
+      foreign: snum4
+      type: many
+    ProjectAllocations_7:
+      class: ProjectAllocations
+      local: snum
+      foreign: snum5
+      type: many
+    StudentPrefs:
+      local: snum
+      foreign: snum
+      type: many
