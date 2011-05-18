@@ -15,12 +15,11 @@ Doctrine_Manager::getInstance()->bindComponent('ProjectAllocations', 'doctrine')
  * @property integer $snum5
  * @property integer $snum6
  * @property StudentUsers $StudentUsers
- * @property Projects $Projects
+ * @property StudentUsers $StudentUsers_2
  * @property StudentUsers $StudentUsers_3
  * @property StudentUsers $StudentUsers_4
  * @property StudentUsers $StudentUsers_5
  * @property StudentUsers $StudentUsers_6
- * @property StudentUsers $StudentUsers_7
  * 
  * @method integer            getProjectId()      Returns the current record's "project_id" value
  * @method integer            getSnum1()          Returns the current record's "snum1" value
@@ -30,12 +29,11 @@ Doctrine_Manager::getInstance()->bindComponent('ProjectAllocations', 'doctrine')
  * @method integer            getSnum5()          Returns the current record's "snum5" value
  * @method integer            getSnum6()          Returns the current record's "snum6" value
  * @method StudentUsers       getStudentUsers()   Returns the current record's "StudentUsers" value
- * @method Projects           getProjects()       Returns the current record's "Projects" value
+ * @method StudentUsers       getStudentUsers2()  Returns the current record's "StudentUsers_2" value
  * @method StudentUsers       getStudentUsers3()  Returns the current record's "StudentUsers_3" value
  * @method StudentUsers       getStudentUsers4()  Returns the current record's "StudentUsers_4" value
  * @method StudentUsers       getStudentUsers5()  Returns the current record's "StudentUsers_5" value
  * @method StudentUsers       getStudentUsers6()  Returns the current record's "StudentUsers_6" value
- * @method StudentUsers       getStudentUsers7()  Returns the current record's "StudentUsers_7" value
  * @method ProjectAllocations setProjectId()      Sets the current record's "project_id" value
  * @method ProjectAllocations setSnum1()          Sets the current record's "snum1" value
  * @method ProjectAllocations setSnum2()          Sets the current record's "snum2" value
@@ -44,12 +42,11 @@ Doctrine_Manager::getInstance()->bindComponent('ProjectAllocations', 'doctrine')
  * @method ProjectAllocations setSnum5()          Sets the current record's "snum5" value
  * @method ProjectAllocations setSnum6()          Sets the current record's "snum6" value
  * @method ProjectAllocations setStudentUsers()   Sets the current record's "StudentUsers" value
- * @method ProjectAllocations setProjects()       Sets the current record's "Projects" value
+ * @method ProjectAllocations setStudentUsers2()  Sets the current record's "StudentUsers_2" value
  * @method ProjectAllocations setStudentUsers3()  Sets the current record's "StudentUsers_3" value
  * @method ProjectAllocations setStudentUsers4()  Sets the current record's "StudentUsers_4" value
  * @method ProjectAllocations setStudentUsers5()  Sets the current record's "StudentUsers_5" value
  * @method ProjectAllocations setStudentUsers6()  Sets the current record's "StudentUsers_6" value
- * @method ProjectAllocations setStudentUsers7()  Sets the current record's "StudentUsers_7" value
  * 
  * @package    PANS
  * @subpackage model
@@ -129,31 +126,27 @@ abstract class BaseProjectAllocations extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasOne('StudentUsers', array(
-             'local' => 'snum6',
-             'foreign' => 'snum'));
-
-        $this->hasOne('Projects', array(
-             'local' => 'project_id',
-             'foreign' => 'id'));
-
-        $this->hasOne('StudentUsers as StudentUsers_3', array(
              'local' => 'snum1',
              'foreign' => 'snum'));
 
-        $this->hasOne('StudentUsers as StudentUsers_4', array(
+        $this->hasOne('StudentUsers as StudentUsers_2', array(
              'local' => 'snum2',
              'foreign' => 'snum'));
 
-        $this->hasOne('StudentUsers as StudentUsers_5', array(
+        $this->hasOne('StudentUsers as StudentUsers_3', array(
              'local' => 'snum3',
              'foreign' => 'snum'));
 
-        $this->hasOne('StudentUsers as StudentUsers_6', array(
+        $this->hasOne('StudentUsers as StudentUsers_4', array(
              'local' => 'snum4',
              'foreign' => 'snum'));
 
-        $this->hasOne('StudentUsers as StudentUsers_7', array(
+        $this->hasOne('StudentUsers as StudentUsers_5', array(
              'local' => 'snum5',
+             'foreign' => 'snum'));
+
+        $this->hasOne('StudentUsers as StudentUsers_6', array(
+             'local' => 'snum6',
              'foreign' => 'snum'));
     }
 }

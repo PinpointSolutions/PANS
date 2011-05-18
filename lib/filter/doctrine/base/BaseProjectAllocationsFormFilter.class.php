@@ -13,21 +13,21 @@ abstract class BaseProjectAllocationsFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'snum1'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers_3'), 'add_empty' => true)),
-      'snum2'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers_4'), 'add_empty' => true)),
-      'snum3'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers_5'), 'add_empty' => true)),
-      'snum4'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers_6'), 'add_empty' => true)),
-      'snum5'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers_7'), 'add_empty' => true)),
-      'snum6'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers'), 'add_empty' => true)),
+      'snum1'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers'), 'add_empty' => true)),
+      'snum2'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers_2'), 'add_empty' => true)),
+      'snum3'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers_3'), 'add_empty' => true)),
+      'snum4'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers_4'), 'add_empty' => true)),
+      'snum5'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers_5'), 'add_empty' => true)),
+      'snum6'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUsers_6'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
-      'snum1'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers_3'), 'column' => 'snum')),
-      'snum2'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers_4'), 'column' => 'snum')),
-      'snum3'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers_5'), 'column' => 'snum')),
-      'snum4'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers_6'), 'column' => 'snum')),
-      'snum5'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers_7'), 'column' => 'snum')),
-      'snum6'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers'), 'column' => 'snum')),
+      'snum1'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers'), 'column' => 'snum')),
+      'snum2'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers_2'), 'column' => 'snum')),
+      'snum3'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers_3'), 'column' => 'snum')),
+      'snum4'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers_4'), 'column' => 'snum')),
+      'snum5'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers_5'), 'column' => 'snum')),
+      'snum6'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('StudentUsers_6'), 'column' => 'snum')),
     ));
 
     $this->widgetSchema->setNameFormat('project_allocations_filters[%s]');

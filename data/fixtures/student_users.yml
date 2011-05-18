@@ -1,4 +1,4 @@
-student_users:
+StudentUsers:
   user_1:
     snum: 1111111
     p_word: pass
@@ -8,4 +8,3 @@ student_users:
   user_3:
     snum: 3333333
     p_word: asdfghjkkl
-	

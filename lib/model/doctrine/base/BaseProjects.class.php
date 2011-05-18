@@ -14,30 +14,27 @@ Doctrine_Manager::getInstance()->bindComponent('Projects', 'doctrine');
  * @property integer $has_additional_info
  * @property string $major_ids
  * @property string $skill_set_ids
- * @property integer $year
+ * @property string $nomination_round
  * @property integer $proj_num
- * @property Doctrine_Collection $ProjectAllocations
  * 
- * @method integer             getId()                  Returns the current record's "id" value
- * @method string              getTitle()               Returns the current record's "title" value
- * @method string              getOrganisation()        Returns the current record's "organisation" value
- * @method string              getDescription()         Returns the current record's "description" value
- * @method integer             getHasAdditionalInfo()   Returns the current record's "has_additional_info" value
- * @method string              getMajorIds()            Returns the current record's "major_ids" value
- * @method string              getSkillSetIds()         Returns the current record's "skill_set_ids" value
- * @method integer             getYear()                Returns the current record's "year" value
- * @method integer             getProjNum()             Returns the current record's "proj_num" value
- * @method Doctrine_Collection getProjectAllocations()  Returns the current record's "ProjectAllocations" collection
- * @method Projects            setId()                  Sets the current record's "id" value
- * @method Projects            setTitle()               Sets the current record's "title" value
- * @method Projects            setOrganisation()        Sets the current record's "organisation" value
- * @method Projects            setDescription()         Sets the current record's "description" value
- * @method Projects            setHasAdditionalInfo()   Sets the current record's "has_additional_info" value
- * @method Projects            setMajorIds()            Sets the current record's "major_ids" value
- * @method Projects            setSkillSetIds()         Sets the current record's "skill_set_ids" value
- * @method Projects            setYear()                Sets the current record's "year" value
- * @method Projects            setProjNum()             Sets the current record's "proj_num" value
- * @method Projects            setProjectAllocations()  Sets the current record's "ProjectAllocations" collection
+ * @method integer  getId()                  Returns the current record's "id" value
+ * @method string   getTitle()               Returns the current record's "title" value
+ * @method string   getOrganisation()        Returns the current record's "organisation" value
+ * @method string   getDescription()         Returns the current record's "description" value
+ * @method integer  getHasAdditionalInfo()   Returns the current record's "has_additional_info" value
+ * @method string   getMajorIds()            Returns the current record's "major_ids" value
+ * @method string   getSkillSetIds()         Returns the current record's "skill_set_ids" value
+ * @method string   getNominationRound()     Returns the current record's "nomination_round" value
+ * @method integer  getProjNum()             Returns the current record's "proj_num" value
+ * @method Projects setId()                  Sets the current record's "id" value
+ * @method Projects setTitle()               Sets the current record's "title" value
+ * @method Projects setOrganisation()        Sets the current record's "organisation" value
+ * @method Projects setDescription()         Sets the current record's "description" value
+ * @method Projects setHasAdditionalInfo()   Sets the current record's "has_additional_info" value
+ * @method Projects setMajorIds()            Sets the current record's "major_ids" value
+ * @method Projects setSkillSetIds()         Sets the current record's "skill_set_ids" value
+ * @method Projects setNominationRound()     Sets the current record's "nomination_round" value
+ * @method Projects setProjNum()             Sets the current record's "proj_num" value
  * 
  * @package    PANS
  * @subpackage model
@@ -75,14 +72,14 @@ abstract class BaseProjects extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 64,
              ));
-        $this->hasColumn('description', 'string', 2048, array(
+        $this->hasColumn('description', 'string', null, array(
              'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
              'autoincrement' => false,
-             'length' => 2048,
+             'length' => '',
              ));
         $this->hasColumn('has_additional_info', 'integer', 1, array(
              'type' => 'integer',
@@ -111,14 +108,14 @@ abstract class BaseProjects extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 64,
              ));
-        $this->hasColumn('year', 'integer', 4, array(
-             'type' => 'integer',
+        $this->hasColumn('nomination_round', 'string', 64, array(
+             'type' => 'string',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
              'notnull' => true,
              'autoincrement' => false,
-             'length' => 4,
+             'length' => 64,
              ));
         $this->hasColumn('proj_num', 'integer', 4, array(
              'type' => 'integer',
@@ -134,8 +131,6 @@ abstract class BaseProjects extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('ProjectAllocations', array(
-             'local' => 'id',
-             'foreign' => 'project_id'));
+        
     }
 }

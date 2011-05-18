@@ -22,7 +22,7 @@ abstract class BaseProjectsForm extends BaseFormDoctrine
       'has_additional_info' => new sfWidgetFormInputText(),
       'major_ids'           => new sfWidgetFormInputText(),
       'skill_set_ids'       => new sfWidgetFormInputText(),
-      'year'                => new sfWidgetFormInputText(),
+      'nomination_round'    => new sfWidgetFormInputText(),
       'proj_num'            => new sfWidgetFormInputText(),
     ));
 
@@ -30,11 +30,11 @@ abstract class BaseProjectsForm extends BaseFormDoctrine
       'id'                  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'title'               => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'organisation'        => new sfValidatorString(array('max_length' => 64, 'required' => false)),
-      'description'         => new sfValidatorString(array('max_length' => 2048, 'required' => false)),
+      'description'         => new sfValidatorString(array('required' => false)),
       'has_additional_info' => new sfValidatorInteger(array('required' => false)),
       'major_ids'           => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'skill_set_ids'       => new sfValidatorString(array('max_length' => 64, 'required' => false)),
-      'year'                => new sfValidatorInteger(),
+      'nomination_round'    => new sfValidatorString(array('max_length' => 64)),
       'proj_num'            => new sfValidatorInteger(),
     ));
 

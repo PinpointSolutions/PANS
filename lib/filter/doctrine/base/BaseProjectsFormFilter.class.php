@@ -19,7 +19,7 @@ abstract class BaseProjectsFormFilter extends BaseFormFilterDoctrine
       'has_additional_info' => new sfWidgetFormFilterInput(),
       'major_ids'           => new sfWidgetFormFilterInput(),
       'skill_set_ids'       => new sfWidgetFormFilterInput(),
-      'year'                => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'nomination_round'    => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'proj_num'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
@@ -30,7 +30,7 @@ abstract class BaseProjectsFormFilter extends BaseFormFilterDoctrine
       'has_additional_info' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'major_ids'           => new sfValidatorPass(array('required' => false)),
       'skill_set_ids'       => new sfValidatorPass(array('required' => false)),
-      'year'                => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'nomination_round'    => new sfValidatorPass(array('required' => false)),
       'proj_num'            => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
@@ -58,7 +58,7 @@ abstract class BaseProjectsFormFilter extends BaseFormFilterDoctrine
       'has_additional_info' => 'Number',
       'major_ids'           => 'Text',
       'skill_set_ids'       => 'Text',
-      'year'                => 'Number',
+      'nomination_round'    => 'Text',
       'proj_num'            => 'Number',
     );
   }

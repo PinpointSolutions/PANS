@@ -1,4 +1,4 @@
-skill_sets:
+SkillSets:
   programming:
     area: Programming
     is_visible: true
@@ -17,4 +17,3 @@ skill_sets:
   gamesDev:
     area: Games Development
     is_visible: true
-	
