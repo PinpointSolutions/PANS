@@ -9,6 +9,8 @@ Doctrine_Manager::getInstance()->bindComponent('StudentUsers', 'doctrine');
  * 
  * @property integer $snum
  * @property string $p_word
+ * @property string $first_name
+ * @property string $last_name
  * @property Doctrine_Collection $ProjectAllocations
  * @property Doctrine_Collection $ProjectAllocations_3
  * @property Doctrine_Collection $ProjectAllocations_4
@@ -19,6 +21,8 @@ Doctrine_Manager::getInstance()->bindComponent('StudentUsers', 'doctrine');
  * 
  * @method integer             getSnum()                 Returns the current record's "snum" value
  * @method string              getPWord()                Returns the current record's "p_word" value
+ * @method string              getFirstName()            Returns the current record's "first_name" value
+ * @method string              getLastName()             Returns the current record's "last_name" value
  * @method Doctrine_Collection getProjectAllocations()   Returns the current record's "ProjectAllocations" collection
  * @method Doctrine_Collection getProjectAllocations3()  Returns the current record's "ProjectAllocations_3" collection
  * @method Doctrine_Collection getProjectAllocations4()  Returns the current record's "ProjectAllocations_4" collection
@@ -28,6 +32,8 @@ Doctrine_Manager::getInstance()->bindComponent('StudentUsers', 'doctrine');
  * @method Doctrine_Collection getStudentPrefs()         Returns the current record's "StudentPrefs" collection
  * @method StudentUsers        setSnum()                 Sets the current record's "snum" value
  * @method StudentUsers        setPWord()                Sets the current record's "p_word" value
+ * @method StudentUsers        setFirstName()            Sets the current record's "first_name" value
+ * @method StudentUsers        setLastName()             Sets the current record's "last_name" value
  * @method StudentUsers        setProjectAllocations()   Sets the current record's "ProjectAllocations" collection
  * @method StudentUsers        setProjectAllocations3()  Sets the current record's "ProjectAllocations_3" collection
  * @method StudentUsers        setProjectAllocations4()  Sets the current record's "ProjectAllocations_4" collection
@@ -60,6 +66,24 @@ abstract class BaseStudentUsers extends sfDoctrineRecord
              'unsigned' => false,
              'primary' => false,
              'notnull' => true,
+             'autoincrement' => false,
+             'length' => 64,
+             ));
+        $this->hasColumn('first_name', 'string', 64, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             'length' => 64,
+             ));
+        $this->hasColumn('last_name', 'string', 64, array(
+             'type' => 'string',
+             'fixed' => 0,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
              'autoincrement' => false,
              'length' => 64,
              ));

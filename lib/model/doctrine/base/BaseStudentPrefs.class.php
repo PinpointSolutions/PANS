@@ -9,8 +9,6 @@ Doctrine_Manager::getInstance()->bindComponent('StudentPrefs', 'doctrine');
  * 
  * @property integer $snum
  * @property integer $year
- * @property string $first_name
- * @property string $last_name
  * @property integer $pass_fail_pm
  * @property string $major_ids
  * @property float $gpa
@@ -39,8 +37,6 @@ Doctrine_Manager::getInstance()->bindComponent('StudentPrefs', 'doctrine');
  * 
  * @method integer      getSnum()          Returns the current record's "snum" value
  * @method integer      getYear()          Returns the current record's "year" value
- * @method string       getFirstName()     Returns the current record's "first_name" value
- * @method string       getLastName()      Returns the current record's "last_name" value
  * @method integer      getPassFailPm()    Returns the current record's "pass_fail_pm" value
  * @method string       getMajorIds()      Returns the current record's "major_ids" value
  * @method float        getGpa()           Returns the current record's "gpa" value
@@ -68,8 +64,6 @@ Doctrine_Manager::getInstance()->bindComponent('StudentPrefs', 'doctrine');
  * @method StudentUsers getStudentUsers()  Returns the current record's "StudentUsers" value
  * @method StudentPrefs setSnum()          Sets the current record's "snum" value
  * @method StudentPrefs setYear()          Sets the current record's "year" value
- * @method StudentPrefs setFirstName()     Sets the current record's "first_name" value
- * @method StudentPrefs setLastName()      Sets the current record's "last_name" value
  * @method StudentPrefs setPassFailPm()    Sets the current record's "pass_fail_pm" value
  * @method StudentPrefs setMajorIds()      Sets the current record's "major_ids" value
  * @method StudentPrefs setGpa()           Sets the current record's "gpa" value
@@ -122,24 +116,6 @@ abstract class BaseStudentPrefs extends sfDoctrineRecord
              'notnull' => true,
              'autoincrement' => false,
              'length' => 4,
-             ));
-        $this->hasColumn('first_name', 'string', 64, array(
-             'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => 64,
-             ));
-        $this->hasColumn('last_name', 'string', 64, array(
-             'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
-             'notnull' => false,
-             'autoincrement' => false,
-             'length' => 64,
              ));
         $this->hasColumn('pass_fail_pm', 'integer', 1, array(
              'type' => 'integer',

@@ -17,8 +17,6 @@ abstract class BaseStudentPrefsForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'snum'          => new sfWidgetFormInputHidden(),
       'year'          => new sfWidgetFormInputText(),
-      'first_name'    => new sfWidgetFormInputText(),
-      'last_name'     => new sfWidgetFormInputText(),
       'pass_fail_pm'  => new sfWidgetFormInputText(),
       'major_ids'     => new sfWidgetFormInputText(),
       'gpa'           => new sfWidgetFormInputText(),
@@ -48,8 +46,6 @@ abstract class BaseStudentPrefsForm extends BaseFormDoctrine
     $this->setValidators(array(
       'snum'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('snum')), 'empty_value' => $this->getObject()->get('snum'), 'required' => false)),
       'year'          => new sfValidatorInteger(),
-      'first_name'    => new sfValidatorString(array('max_length' => 64, 'required' => false)),
-      'last_name'     => new sfValidatorString(array('max_length' => 64, 'required' => false)),
       'pass_fail_pm'  => new sfValidatorInteger(array('required' => false)),
       'major_ids'     => new sfValidatorString(array('max_length' => 32, 'required' => false)),
       'gpa'           => new sfValidatorNumber(array('required' => false)),

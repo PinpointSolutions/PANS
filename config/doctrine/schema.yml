@@ -237,20 +237,6 @@ StudentPrefs:
       primary: false
       notnull: true
       autoincrement: false
-    first_name:
-      type: string(64)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    last_name:
-      type: string(64)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
     pass_fail_pm:
       type: integer(1)
       fixed: false
@@ -440,6 +426,20 @@ StudentUsers:
       unsigned: false
       primary: false
       notnull: true
+      autoincrement: false
+    first_name:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    last_name:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
       autoincrement: false
   relations:
     ProjectAllocations:

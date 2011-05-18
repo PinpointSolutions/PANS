@@ -13,11 +13,15 @@ abstract class BaseStudentUsersFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'p_word' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'p_word'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'first_name' => new sfWidgetFormFilterInput(),
+      'last_name'  => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'p_word' => new sfValidatorPass(array('required' => false)),
+      'p_word'     => new sfValidatorPass(array('required' => false)),
+      'first_name' => new sfValidatorPass(array('required' => false)),
+      'last_name'  => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('student_users_filters[%s]');
@@ -37,8 +41,10 @@ abstract class BaseStudentUsersFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'snum'   => 'Number',
-      'p_word' => 'Text',
+      'snum'       => 'Number',
+      'p_word'     => 'Text',
+      'first_name' => 'Text',
+      'last_name'  => 'Text',
     );
   }
 }

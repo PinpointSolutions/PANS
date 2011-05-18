@@ -14,8 +14,6 @@ abstract class BaseStudentPrefsFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'year'          => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'first_name'    => new sfWidgetFormFilterInput(),
-      'last_name'     => new sfWidgetFormFilterInput(),
       'pass_fail_pm'  => new sfWidgetFormFilterInput(),
       'major_ids'     => new sfWidgetFormFilterInput(),
       'gpa'           => new sfWidgetFormFilterInput(),
@@ -44,8 +42,6 @@ abstract class BaseStudentPrefsFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'year'          => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'first_name'    => new sfValidatorPass(array('required' => false)),
-      'last_name'     => new sfValidatorPass(array('required' => false)),
       'pass_fail_pm'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'major_ids'     => new sfValidatorPass(array('required' => false)),
       'gpa'           => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
@@ -91,8 +87,6 @@ abstract class BaseStudentPrefsFormFilter extends BaseFormFilterDoctrine
     return array(
       'snum'          => 'Number',
       'year'          => 'Number',
-      'first_name'    => 'Text',
-      'last_name'     => 'Text',
       'pass_fail_pm'  => 'Number',
       'major_ids'     => 'Text',
       'gpa'           => 'Number',

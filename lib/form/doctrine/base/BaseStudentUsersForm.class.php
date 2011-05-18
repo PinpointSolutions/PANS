@@ -15,13 +15,17 @@ abstract class BaseStudentUsersForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'snum'   => new sfWidgetFormInputHidden(),
-      'p_word' => new sfWidgetFormInputText(),
+      'snum'       => new sfWidgetFormInputHidden(),
+      'p_word'     => new sfWidgetFormInputText(),
+      'first_name' => new sfWidgetFormInputText(),
+      'last_name'  => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
-      'snum'   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('snum')), 'empty_value' => $this->getObject()->get('snum'), 'required' => false)),
-      'p_word' => new sfValidatorString(array('max_length' => 64)),
+      'snum'       => new sfValidatorChoice(array('choices' => array($this->getObject()->get('snum')), 'empty_value' => $this->getObject()->get('snum'), 'required' => false)),
+      'p_word'     => new sfValidatorString(array('max_length' => 64)),
+      'first_name' => new sfValidatorString(array('max_length' => 64, 'required' => false)),
+      'last_name'  => new sfValidatorString(array('max_length' => 64, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('student_users[%s]');
