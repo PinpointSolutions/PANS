@@ -219,3 +219,57 @@ May 18 09:31:34 symfony [info] {sfWebDebugLogger} Action "majors/index" 103.06 m
 May 18 09:31:34 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.02 ms (2)
 May 18 09:31:34 symfony [info] {sfWebDebugLogger} View "Success" for "majors/index" 124.16 ms (1)
 May 18 09:31:34 symfony [info] {sfWebResponse} Send content (32225 o)
+May 18 12:15:34 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 18 12:15:34 symfony [info] {myUser} Automatic user logout due to timeout
+May 18 12:15:34 symfony [info] {myUser} User is not authenticated
+May 18 12:15:34 symfony [info] {sfFrontWebController} Action "job/index" does not exist
+May 18 12:15:34 symfony [err] {sfError404Exception} Action "job/index" does not exist.
+May 18 12:15:34 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+May 18 12:15:34 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 18 12:15:34 symfony [info] {sfWebDebugLogger} Configuration 3.77 ms (5)
+May 18 12:15:34 symfony [info] {sfWebDebugLogger} Factories 27.10 ms (1)
+May 18 12:15:38 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /major with parameters array (  'module' => 'major',  'action' => 'index',)
+May 18 12:15:38 symfony [info] {sfFrontWebController} Action "major/index" does not exist
+May 18 12:15:38 symfony [err] {sfError404Exception} Action "major/index" does not exist.
+May 18 12:15:38 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+May 18 12:15:38 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 18 12:15:38 symfony [info] {sfWebDebugLogger} Configuration 5.14 ms (5)
+May 18 12:15:38 symfony [info] {sfWebDebugLogger} Factories 26.53 ms (1)
+May 18 12:15:39 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /majors with parameters array (  'module' => 'majors',  'action' => 'index',)
+May 18 12:15:39 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+May 18 12:15:39 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 18 12:15:39 symfony [info] {majorsActions} Call "majorsActions->executeIndex()"
+May 18 12:15:39 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 18 12:15:39 symfony [info] {Doctrine_Connection_Mysql} query : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m - ()
+May 18 12:15:39 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\modules/majors/templates/indexSuccess.php"
+May 18 12:15:39 symfony [info] {sfPHPView} Decorate content with "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 18 12:15:39 symfony [info] {sfPHPView} Render "D:\Github\PANS\apps\frontend\templates/layout.php"
+May 18 12:15:39 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+May 18 12:15:39 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 18 12:15:39 symfony [info] {sfWebDebugLogger} Configuration 9.17 ms (9)
+May 18 12:15:39 symfony [info] {sfWebDebugLogger} Factories 25.43 ms (1)
+May 18 12:15:39 symfony [info] {sfWebDebugLogger} Action "majors/index" 23.56 ms (1)
+May 18 12:15:39 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.00 ms (2)
+May 18 12:15:39 symfony [info] {sfWebDebugLogger} View "Success" for "majors/index" 13.12 ms (1)
+May 18 12:15:39 symfony [info] {sfWebResponse} Send content (36412 o)
+May 18 12:15:39 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/griffith_logo.png" (/).
+May 18 12:15:39 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+May 18 12:15:39 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 18 12:15:39 symfony [info] {sfWebDebugLogger} Configuration 4.82 ms (5)
+May 18 12:15:39 symfony [info] {sfWebDebugLogger} Factories 25.55 ms (1)
+May 18 13:33:50 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 18 13:33:50 symfony [info] {myUser} Automatic user logout due to timeout
+May 18 13:33:50 symfony [info] {myUser} User is not authenticated
+May 18 13:33:50 symfony [info] {sfFrontWebController} Action "job/index" does not exist
+May 18 13:33:50 symfony [err] {sfError404Exception} Action "job/index" does not exist.
+May 18 13:33:50 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+May 18 13:33:50 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 18 13:33:50 symfony [info] {sfWebDebugLogger} Configuration 3.88 ms (5)
+May 18 13:33:50 symfony [info] {sfWebDebugLogger} Factories 27.90 ms (1)
+May 18 13:52:49 symfony [info] {sfPatternRouting} Match route "default_index" (/:module) for /job with parameters array (  'module' => 'job',  'action' => 'index',)
+May 18 13:52:49 symfony [info] {sfFrontWebController} Action "job/index" does not exist
+May 18 13:52:49 symfony [err] {sfError404Exception} Action "job/index" does not exist.
+May 18 13:52:49 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+May 18 13:52:49 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+May 18 13:52:49 symfony [info] {sfWebDebugLogger} Configuration 3.69 ms (5)
+May 18 13:52:49 symfony [info] {sfWebDebugLogger} Factories 29.77 ms (1)
