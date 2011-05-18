@@ -11,19 +11,19 @@
   <body>
     <?php echo $sf_content ?>
 <div id="header">
-<h1>3001ICT - Project Nomination Form</h1>
-<img id="logo" src="griffith_logo.png">
+ <h1>3001ICT - Project Nomination Form</h1>
+ <img id="logo" src="griffith_logo.png">
 </div>
 <br />
 <br />
 <p>Welcome, s7777777.</p>
 <p>The form below must be completed in order to be eligible to receive a project.</p>
 <form id="form">
-<div id="hl">First name: <input type="text" name="firstName" /></div>
-<div id="a">Last name: <input type="text" name="lastName" /></div>
-<div id="hl">Have you passed Project Management (2001ICT): <input type="radio" name="projectManagement" value="Yes" /> Yes
-<input type="radio" name="projectManagement" value="No" /> No</div>
-<div id="a">What major are you studying:</div>
+ <div id="hl">First name: <input type="text" name="firstName" /></div>
+ <div id="a">Last name: <input type="text" name="lastName" /></div>
+ <div id="hl">Have you passed Project Management (2001ICT): <input type="radio" name="projectManagement" value="Yes" /> Yes
+ <input type="radio" name="projectManagement" value="No" /> No</div>
+ <div id="a">What major are you studying:</div>
 <div id="hli"><input type="checkbox" name="major" value="Information Technology" /> Information Technolgoy</div>
 <div id="ai"><input type="checkbox" name="major" value="Multimedia" /> Multimedia</div>
 <div id="hli"><input type="checkbox" name="major" value="Software Engineering" /> Software Engineering</div>
