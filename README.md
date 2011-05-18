@@ -4,6 +4,8 @@ Project Allocation and Nomination System
 
 [Griffith]:   http://griffith.edu.au/
 
+Temporary test: `git stuff`
+
 Team Members
 ------------
 Daniel Brose, Xavier Ho, Matthew Russell, Justin Evans, Peter Deagon, Scott Mabey 
