@@ -1,0 +1,20 @@
+skill_sets:
+  programming:
+    area: Programming
+    is_visible: true
+  graphicDesign:
+    area: Graphic Design
+    is_visible: true
+  softDesign:
+    area: Software Design
+    is_visible: true
+  marketing:
+    area: Marketing
+    is_visible: true
+  webDev:
+    area: Web Development
+    is_visible: true
+  gamesDev:
+    area: Games Development
+    is_visible: true
+	

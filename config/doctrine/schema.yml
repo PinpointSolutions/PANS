@@ -93,36 +93,32 @@ ProjectAllocations:
       autoincrement: false
   relations:
     StudentUsers:
-      local: snum6
-      foreign: snum
-      type: one
-    Projects:
-      local: project_id
-      foreign: id
-      type: one
-    StudentUsers_3:
-      class: StudentUsers
       local: snum1
       foreign: snum
       type: one
-    StudentUsers_4:
+    StudentUsers_2:
       class: StudentUsers
       local: snum2
       foreign: snum
       type: one
-    StudentUsers_5:
+    StudentUsers_3:
       class: StudentUsers
       local: snum3
       foreign: snum
       type: one
-    StudentUsers_6:
+    StudentUsers_4:
       class: StudentUsers
       local: snum4
       foreign: snum
       type: one
-    StudentUsers_7:
+    StudentUsers_5:
       class: StudentUsers
       local: snum5
+      foreign: snum
+      type: one
+    StudentUsers_6:
+      class: StudentUsers
+      local: snum6
       foreign: snum
       type: one
 Projects:
@@ -150,7 +146,7 @@ Projects:
       notnull: false
       autoincrement: false
     description:
-      type: string(2048)
+      type: string()
       fixed: false
       unsigned: false
       primary: false
@@ -177,8 +173,8 @@ Projects:
       primary: false
       notnull: false
       autoincrement: false
-    year:
-      type: integer(4)
+    nomination_round:
+      type: string(64)
       fixed: false
       unsigned: false
       primary: false
@@ -191,11 +187,6 @@ Projects:
       primary: false
       notnull: true
       autoincrement: false
-  relations:
-    ProjectAllocations:
-      local: id
-      foreign: project_id
-      type: many
 SkillSets:
   connection: doctrine
   tableName: skill_sets
@@ -230,12 +221,11 @@ StudentPrefs:
       unsigned: false
       primary: true
       autoincrement: false
-    year:
-      type: integer(4)
+    nomination_round:
+      type: string(64)
       fixed: false
       unsigned: false
-      primary: false
-      notnull: true
+      primary: true
       autoincrement: false
     pass_fail_pm:
       type: integer(1)
@@ -252,7 +242,7 @@ StudentPrefs:
       notnull: false
       autoincrement: false
     gpa:
-      type: float()
+      type: float(18)
       fixed: false
       unsigned: false
       primary: false
@@ -371,45 +361,40 @@ StudentPrefs:
       notnull: false
       autoincrement: false
     proj_just_1:
-      type: string(2048)
+      type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     proj_just_2:
-      type: string(2048)
+      type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     proj_just_3:
-      type: string(2048)
+      type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     proj_just_4:
-      type: string(2048)
+      type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     proj_just_5:
-      type: string(2048)
+      type: string()
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-  relations:
-    StudentUsers:
-      local: snum
-      foreign: snum
-      type: one
 StudentUsers:
   connection: doctrine
   tableName: student_users
@@ -444,34 +429,30 @@ StudentUsers:
   relations:
     ProjectAllocations:
       local: snum
-      foreign: snum6
-      type: many
-    ProjectAllocations_3:
-      class: ProjectAllocations
-      local: snum
       foreign: snum1
       type: many
-    ProjectAllocations_4:
+    ProjectAllocations_2:
       class: ProjectAllocations
       local: snum
       foreign: snum2
       type: many
-    ProjectAllocations_5:
+    ProjectAllocations_3:
       class: ProjectAllocations
       local: snum
       foreign: snum3
       type: many
-    ProjectAllocations_6:
+    ProjectAllocations_4:
       class: ProjectAllocations
       local: snum
       foreign: snum4
       type: many
-    ProjectAllocations_7:
+    ProjectAllocations_5:
       class: ProjectAllocations
       local: snum
       foreign: snum5
       type: many
-    StudentPrefs:
+    ProjectAllocations_6:
+      class: ProjectAllocations
       local: snum
-      foreign: snum
+      foreign: snum6
       type: many
