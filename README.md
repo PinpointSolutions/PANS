@@ -4,14 +4,6 @@ Project Allocation and Nomination System
 
 [Griffith]:   http://griffith.edu.au/
 
-    organisation:
-      type: string(64)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-
 Team Members
 ------------
 Daniel Brose, Xavier Ho, Matthew Russell, Justin Evans, Peter Deagon, Scott Mabey 
