@@ -4,7 +4,13 @@ Project Allocation and Nomination System
 
 [Griffith]:   http://griffith.edu.au/
 
-Temporary test: `git stuff`
+    organisation:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
 
 Team Members
 ------------
