@@ -1,6 +1,8 @@
 Project Allocation and Nomination System
 ========================================
-3001ICT Third Year Project, Griffith University, Nathan Campus
+3001ICT Third Year Project, [Griffith] University, Nathan Campus
+
+[Griffith]:   http://griffith.edu.au/
 
 Team Members
 ------------
