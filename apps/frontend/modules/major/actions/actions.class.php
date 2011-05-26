@@ -5,14 +5,14 @@
  *
  * @package    PANS
  * @subpackage major
- * @author     Your name here
+ * @author     Daniel Brose
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class majorActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->majors = Doctrine_Core::getTable('Majors')
+    $this->majorss = Doctrine_Core::getTable('Majors')
       ->createQuery('a')
       ->execute();
   }

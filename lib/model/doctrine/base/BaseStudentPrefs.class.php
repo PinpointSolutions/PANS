@@ -119,10 +119,7 @@ abstract class BaseStudentPrefs extends sfDoctrineRecord
         $this->hasColumn('pass_fail_pm', 'boolean', null, array(
              'type' => 'boolean',
              'fixed' => 0,
-             'unsigned' => false,
-             'primary' => false,
              'notnull' => true,
-             'autoincrement' => false,
              ));
         $this->hasColumn('major_ids', 'string', 32, array(
              'type' => 'string',

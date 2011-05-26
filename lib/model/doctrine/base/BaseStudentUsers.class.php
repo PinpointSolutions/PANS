@@ -12,32 +12,17 @@ Doctrine_Manager::getInstance()->bindComponent('StudentUsers', 'doctrine');
  * @property string $first_name
  * @property string $last_name
  * @property Doctrine_Collection $ProjectAllocations
- * @property Doctrine_Collection $ProjectAllocations_2
- * @property Doctrine_Collection $ProjectAllocations_3
- * @property Doctrine_Collection $ProjectAllocations_4
- * @property Doctrine_Collection $ProjectAllocations_5
- * @property Doctrine_Collection $ProjectAllocations_6
  * 
- * @method integer             getSnum()                 Returns the current record's "snum" value
- * @method string              getPWord()                Returns the current record's "p_word" value
- * @method string              getFirstName()            Returns the current record's "first_name" value
- * @method string              getLastName()             Returns the current record's "last_name" value
- * @method Doctrine_Collection getProjectAllocations()   Returns the current record's "ProjectAllocations" collection
- * @method Doctrine_Collection getProjectAllocations2()  Returns the current record's "ProjectAllocations_2" collection
- * @method Doctrine_Collection getProjectAllocations3()  Returns the current record's "ProjectAllocations_3" collection
- * @method Doctrine_Collection getProjectAllocations4()  Returns the current record's "ProjectAllocations_4" collection
- * @method Doctrine_Collection getProjectAllocations5()  Returns the current record's "ProjectAllocations_5" collection
- * @method Doctrine_Collection getProjectAllocations6()  Returns the current record's "ProjectAllocations_6" collection
- * @method StudentUsers        setSnum()                 Sets the current record's "snum" value
- * @method StudentUsers        setPWord()                Sets the current record's "p_word" value
- * @method StudentUsers        setFirstName()            Sets the current record's "first_name" value
- * @method StudentUsers        setLastName()             Sets the current record's "last_name" value
- * @method StudentUsers        setProjectAllocations()   Sets the current record's "ProjectAllocations" collection
- * @method StudentUsers        setProjectAllocations2()  Sets the current record's "ProjectAllocations_2" collection
- * @method StudentUsers        setProjectAllocations3()  Sets the current record's "ProjectAllocations_3" collection
- * @method StudentUsers        setProjectAllocations4()  Sets the current record's "ProjectAllocations_4" collection
- * @method StudentUsers        setProjectAllocations5()  Sets the current record's "ProjectAllocations_5" collection
- * @method StudentUsers        setProjectAllocations6()  Sets the current record's "ProjectAllocations_6" collection
+ * @method integer             getSnum()               Returns the current record's "snum" value
+ * @method string              getPWord()              Returns the current record's "p_word" value
+ * @method string              getFirstName()          Returns the current record's "first_name" value
+ * @method string              getLastName()           Returns the current record's "last_name" value
+ * @method Doctrine_Collection getProjectAllocations() Returns the current record's "ProjectAllocations" collection
+ * @method StudentUsers        setSnum()               Sets the current record's "snum" value
+ * @method StudentUsers        setPWord()              Sets the current record's "p_word" value
+ * @method StudentUsers        setFirstName()          Sets the current record's "first_name" value
+ * @method StudentUsers        setLastName()           Sets the current record's "last_name" value
+ * @method StudentUsers        setProjectAllocations() Sets the current record's "ProjectAllocations" collection
  * 
  * @package    PANS
  * @subpackage model
@@ -92,25 +77,5 @@ abstract class BaseStudentUsers extends sfDoctrineRecord
         $this->hasMany('ProjectAllocations', array(
              'local' => 'snum',
              'foreign' => 'snum1'));
-
-        $this->hasMany('ProjectAllocations as ProjectAllocations_2', array(
-             'local' => 'snum',
-             'foreign' => 'snum2'));
-
-        $this->hasMany('ProjectAllocations as ProjectAllocations_3', array(
-             'local' => 'snum',
-             'foreign' => 'snum3'));
-
-        $this->hasMany('ProjectAllocations as ProjectAllocations_4', array(
-             'local' => 'snum',
-             'foreign' => 'snum4'));
-
-        $this->hasMany('ProjectAllocations as ProjectAllocations_5', array(
-             'local' => 'snum',
-             'foreign' => 'snum5'));
-
-        $this->hasMany('ProjectAllocations as ProjectAllocations_6', array(
-             'local' => 'snum',
-             'foreign' => 'snum6'));
     }
 }

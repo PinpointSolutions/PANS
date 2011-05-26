@@ -3,7 +3,8 @@
   <head>
     <?php include_http_metas() ?>
     <?php include_metas() ?>
-    <?php include_title() ?>
+    
+	<title><?php include_slot('title') ?></title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
@@ -13,6 +14,7 @@
      <h1>3001ICT - Project Nomination Form</h1>
 	 <div id="logo"></div>
      <!--<img id="logo" src="images/griffith_logo.png">-->
+	 <span><?php ?></span>
   </div>
 
     <?php echo $sf_content ?>

@@ -14,6 +14,7 @@ Doctrine_Manager::getInstance()->bindComponent('ProjectAllocations', 'doctrine')
  * @property integer $snum4
  * @property integer $snum5
  * @property integer $snum6
+ * @property Projects $Projects
  * @property StudentUsers $StudentUsers
  * @property StudentUsers $StudentUsers_2
  * @property StudentUsers $StudentUsers_3
@@ -28,6 +29,7 @@ Doctrine_Manager::getInstance()->bindComponent('ProjectAllocations', 'doctrine')
  * @method integer            getSnum4()          Returns the current record's "snum4" value
  * @method integer            getSnum5()          Returns the current record's "snum5" value
  * @method integer            getSnum6()          Returns the current record's "snum6" value
+ * @method Projects           getProjects()       Returns the current record's "Projects" value
  * @method StudentUsers       getStudentUsers()   Returns the current record's "StudentUsers" value
  * @method StudentUsers       getStudentUsers2()  Returns the current record's "StudentUsers_2" value
  * @method StudentUsers       getStudentUsers3()  Returns the current record's "StudentUsers_3" value
@@ -41,6 +43,7 @@ Doctrine_Manager::getInstance()->bindComponent('ProjectAllocations', 'doctrine')
  * @method ProjectAllocations setSnum4()          Sets the current record's "snum4" value
  * @method ProjectAllocations setSnum5()          Sets the current record's "snum5" value
  * @method ProjectAllocations setSnum6()          Sets the current record's "snum6" value
+ * @method ProjectAllocations setProjects()       Sets the current record's "Projects" value
  * @method ProjectAllocations setStudentUsers()   Sets the current record's "StudentUsers" value
  * @method ProjectAllocations setStudentUsers2()  Sets the current record's "StudentUsers_2" value
  * @method ProjectAllocations setStudentUsers3()  Sets the current record's "StudentUsers_3" value
@@ -63,7 +66,7 @@ abstract class BaseProjectAllocations extends sfDoctrineRecord
              'fixed' => 0,
              'unsigned' => false,
              'primary' => true,
-             'autoincrement' => true,
+             'autoincrement' => false,
              'length' => 4,
              ));
         $this->hasColumn('snum1', 'integer', 4, array(
@@ -125,6 +128,10 @@ abstract class BaseProjectAllocations extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('Projects', array(
+             'local' => 'project_id',
+             'foreign' => 'id'));
+
         $this->hasOne('StudentUsers', array(
              'local' => 'snum1',
              'foreign' => 'snum'));

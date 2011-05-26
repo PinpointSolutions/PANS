@@ -1,4 +1,4 @@
-<h1>Majors List</h1>
+<h1>Student prefss List</h1>
 
 <table>
   <thead>
@@ -32,7 +32,7 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($majors as $student_prefs): ?>
+    <?php foreach ($student_prefss as $student_prefs): ?>
     <tr>
       <td><a href="<?php echo url_for('prefs/show?snum='.$student_prefs->getSnum().'&nomination_round='.$student_prefs->getNominationRound()) ?>"><?php echo $student_prefs->getSnum() ?></a></td>
       <td><a href="<?php echo url_for('prefs/show?snum='.$student_prefs->getSnum().'&nomination_round='.$student_prefs->getNominationRound()) ?>"><?php echo $student_prefs->getNominationRound() ?></a></td>

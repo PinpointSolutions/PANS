@@ -1,4 +1,4 @@
-<h1>Majors List</h1>
+<h1>Projectss List</h1>
 
 <table>
   <thead>
@@ -15,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($majors as $projects): ?>
+    <?php foreach ($projectss as $projects): ?>
     <tr>
       <td><a href="<?php echo url_for('project/show?id='.$projects->getId()) ?>"><?php echo $projects->getId() ?></a></td>
       <td><?php echo $projects->getTitle() ?></td>

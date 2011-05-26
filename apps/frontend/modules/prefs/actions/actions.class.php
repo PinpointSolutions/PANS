@@ -12,7 +12,7 @@ class prefsActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->majors = Doctrine_Core::getTable('StudentPrefs')
+    $this->student_prefss = Doctrine_Core::getTable('StudentPrefs')
       ->createQuery('a')
       ->execute();
   }

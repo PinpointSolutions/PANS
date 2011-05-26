@@ -1,4 +1,4 @@
-<h1>Majors List</h1>
+<h1>Majorss List</h1>
 
 <table>
   <thead>
@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($majors as $majors): ?>
+    <?php foreach ($majorss as $majors): ?>
     <tr>
       <td><a href="<?php echo url_for('major/show?id='.$majors->getId()) ?>"><?php echo $majors->getId() ?></a></td>
       <td><?php echo $majors->getMajor() ?></td>

@@ -46,12 +46,12 @@ ProjectAllocations:
   connection: doctrine
   tableName: project_allocations
   columns:
-    project_id:
+    project_id:  #_C_         autoincrement not needed, since this is in fact an id from the projects table, which already auto-increments
       type: integer(4)
       fixed: false
       unsigned: false
       primary: true
-      autoincrement: true
+      autoincrement: false 
     snum1:
       type: integer(4)
       fixed: false
@@ -94,7 +94,11 @@ ProjectAllocations:
       primary: false
       notnull: false
       autoincrement: false
-  relations:
+  relations: #_C_ added relationship for project_id
+    Projects: 
+      local: project_id
+      foreign: id
+      type: one
     StudentUsers:
       local: snum1
       foreign: snum
@@ -158,13 +162,9 @@ Projects:
       primary: false
       notnull: false
       autoincrement: false
-    has_additional_info:
-      type: integer(1)
-      fixed: false
-      unsigned: false
-      primary: false
+    has_additional_info: #_C_
+      type: boolean
       notnull: false
-      autoincrement: false
     major_ids:
       type: string(64)
       fixed: false
@@ -442,33 +442,33 @@ StudentUsers:
       primary: false
       notnull: false
       autoincrement: false
-  relations:
-    ProjectAllocations:
-      local: snum
-      foreign: snum1
-      type: many
-    ProjectAllocations_2:
-      class: ProjectAllocations
-      local: snum
-      foreign: snum2
-      type: many
-    ProjectAllocations_3:
-      class: ProjectAllocations
-      local: snum
-      foreign: snum3
-      type: many
-    ProjectAllocations_4:
-      class: ProjectAllocations
-      local: snum
-      foreign: snum4
-      type: many
-    ProjectAllocations_5:
-      class: ProjectAllocations
-      local: snum
-      foreign: snum5
-      type: many
-    ProjectAllocations_6:
-      class: ProjectAllocations
-      local: snum
-      foreign: snum6
-      type: many
+  # relations:
+    # ProjectAllocations:
+      # local: snum
+      # foreign: snum1
+      # type: many
+    # ProjectAllocations_2:
+      # class: ProjectAllocations
+      # local: snum
+      # foreign: snum2
+      # type: many
+    # ProjectAllocations_3:
+      # class: ProjectAllocations
+      # local: snum
+      # foreign: snum3
+      # type: many
+    # ProjectAllocations_4:
+      # class: ProjectAllocations
+      # local: snum
+      # foreign: snum4
+      # type: many
+    # ProjectAllocations_5:
+      # class: ProjectAllocations
+      # local: snum
+      # foreign: snum5
+      # type: many
+    # ProjectAllocations_6:
+      # class: ProjectAllocations
+      # local: snum
+      # foreign: snum6
+      # type: many
