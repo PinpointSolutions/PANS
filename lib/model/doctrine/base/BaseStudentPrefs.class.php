@@ -9,7 +9,7 @@ Doctrine_Manager::getInstance()->bindComponent('StudentPrefs', 'doctrine');
  * 
  * @property integer $snum
  * @property string $nomination_round
- * @property integer $pass_fail_pm
+ * @property boolean $pass_fail_pm
  * @property string $major_ids
  * @property float $gpa
  * @property integer $proj_pref_1
@@ -33,10 +33,11 @@ Doctrine_Manager::getInstance()->bindComponent('StudentPrefs', 'doctrine');
  * @property string $proj_just_3
  * @property string $proj_just_4
  * @property string $proj_just_5
+ * @property Projects $Projects
  * 
  * @method integer      getSnum()             Returns the current record's "snum" value
  * @method string       getNominationRound()  Returns the current record's "nomination_round" value
- * @method integer      getPassFailPm()       Returns the current record's "pass_fail_pm" value
+ * @method boolean      getPassFailPm()       Returns the current record's "pass_fail_pm" value
  * @method string       getMajorIds()         Returns the current record's "major_ids" value
  * @method float        getGpa()              Returns the current record's "gpa" value
  * @method integer      getProjPref1()        Returns the current record's "proj_pref_1" value
@@ -60,6 +61,7 @@ Doctrine_Manager::getInstance()->bindComponent('StudentPrefs', 'doctrine');
  * @method string       getProjJust3()        Returns the current record's "proj_just_3" value
  * @method string       getProjJust4()        Returns the current record's "proj_just_4" value
  * @method string       getProjJust5()        Returns the current record's "proj_just_5" value
+ * @method Projects     getProjects()         Returns the current record's "Projects" value
  * @method StudentPrefs setSnum()             Sets the current record's "snum" value
  * @method StudentPrefs setNominationRound()  Sets the current record's "nomination_round" value
  * @method StudentPrefs setPassFailPm()       Sets the current record's "pass_fail_pm" value
@@ -86,10 +88,11 @@ Doctrine_Manager::getInstance()->bindComponent('StudentPrefs', 'doctrine');
  * @method StudentPrefs setProjJust3()        Sets the current record's "proj_just_3" value
  * @method StudentPrefs setProjJust4()        Sets the current record's "proj_just_4" value
  * @method StudentPrefs setProjJust5()        Sets the current record's "proj_just_5" value
+ * @method StudentPrefs setProjects()         Sets the current record's "Projects" value
  * 
  * @package    PANS
  * @subpackage model
- * @author     Your name here
+ * @author     Daniel Brose
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseStudentPrefs extends sfDoctrineRecord
@@ -113,14 +116,13 @@ abstract class BaseStudentPrefs extends sfDoctrineRecord
              'autoincrement' => false,
              'length' => 64,
              ));
-        $this->hasColumn('pass_fail_pm', 'integer', 1, array(
-             'type' => 'integer',
+        $this->hasColumn('pass_fail_pm', 'boolean', null, array(
+             'type' => 'boolean',
              'fixed' => 0,
              'unsigned' => false,
              'primary' => false,
-             'notnull' => false,
+             'notnull' => true,
              'autoincrement' => false,
-             'length' => 1,
              ));
         $this->hasColumn('major_ids', 'string', 32, array(
              'type' => 'string',
@@ -134,6 +136,7 @@ abstract class BaseStudentPrefs extends sfDoctrineRecord
         $this->hasColumn('gpa', 'float', 18, array(
              'type' => 'float',
              'fixed' => 0,
+             'default' => '5.0',
              'unsigned' => false,
              'primary' => false,
              'notnull' => false,
@@ -334,6 +337,9 @@ abstract class BaseStudentPrefs extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasOne('Projects', array(
+             'local' => 'proj_pref_2',
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
     }
 }

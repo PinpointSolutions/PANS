@@ -1,0 +1,63 @@
+body {
+  margin: -17px 0px 0px 0px;
+  padding: 0px;
+  font-family: Calibri
+}
+
+p {
+  margin-left: 5%
+}
+
+h1 {
+  color: white; 
+  font-family: Arial; 
+  margin-left: 300px; 
+  line-height: 40px; 
+  font-size: 25px; 
+  word-spacing: 4px; 
+  text-shadow: 0px 0px 2px #FFF
+}
+
+#logo {
+  position: absolute;
+  left: 5%; 
+  top: -15px; 
+  display: inline;
+  width:176px;
+  height:80px;
+  background: url("../images/griffith_logo.png") no-repeat top left;
+}
+
+#header {
+  background-color: #C02424; 
+  height: 50px;
+  width: 100%;
+  margin-top:0px;
+}
+
+#form {
+  margin-left: 5%; 
+  padding-top: 2px
+}
+
+#hl { /* highlight */
+  background-color: #DDD; 
+  width: 95%;
+  padding: 5px
+}
+
+#a { /* alternate */
+  width: 95%;
+  padding: 5px
+}
+
+#hli { /* highlight short background */
+  background-color:  #DDD; 
+  width: 15%; 
+  padding: 2px
+}
+
+#ai { /* alternate short background */
+  width: 20%;
+  padding: 2px
+}

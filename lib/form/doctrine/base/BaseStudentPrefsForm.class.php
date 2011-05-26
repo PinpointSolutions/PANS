@@ -7,7 +7,7 @@
  *
  * @package    PANS
  * @subpackage form
- * @author     Your name here
+ * @author     Daniel Brose
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
 abstract class BaseStudentPrefsForm extends BaseFormDoctrine
@@ -17,11 +17,11 @@ abstract class BaseStudentPrefsForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'snum'             => new sfWidgetFormInputHidden(),
       'nomination_round' => new sfWidgetFormInputHidden(),
-      'pass_fail_pm'     => new sfWidgetFormInputText(),
+      'pass_fail_pm'     => new sfWidgetFormInputCheckbox(),
       'major_ids'        => new sfWidgetFormInputText(),
       'gpa'              => new sfWidgetFormInputText(),
       'proj_pref_1'      => new sfWidgetFormInputText(),
-      'proj_pref_2'      => new sfWidgetFormInputText(),
+      'proj_pref_2'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Projects'), 'add_empty' => true)),
       'proj_pref_3'      => new sfWidgetFormInputText(),
       'proj_pref_4'      => new sfWidgetFormInputText(),
       'proj_pref_5'      => new sfWidgetFormInputText(),
@@ -46,11 +46,11 @@ abstract class BaseStudentPrefsForm extends BaseFormDoctrine
     $this->setValidators(array(
       'snum'             => new sfValidatorChoice(array('choices' => array($this->getObject()->get('snum')), 'empty_value' => $this->getObject()->get('snum'), 'required' => false)),
       'nomination_round' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('nomination_round')), 'empty_value' => $this->getObject()->get('nomination_round'), 'required' => false)),
-      'pass_fail_pm'     => new sfValidatorInteger(array('required' => false)),
+      'pass_fail_pm'     => new sfValidatorBoolean(),
       'major_ids'        => new sfValidatorString(array('max_length' => 32, 'required' => false)),
       'gpa'              => new sfValidatorNumber(array('required' => false)),
       'proj_pref_1'      => new sfValidatorInteger(array('required' => false)),
-      'proj_pref_2'      => new sfValidatorInteger(array('required' => false)),
+      'proj_pref_2'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Projects'), 'required' => false)),
       'proj_pref_3'      => new sfValidatorInteger(array('required' => false)),
       'proj_pref_4'      => new sfValidatorInteger(array('required' => false)),
       'proj_pref_5'      => new sfValidatorInteger(array('required' => false)),

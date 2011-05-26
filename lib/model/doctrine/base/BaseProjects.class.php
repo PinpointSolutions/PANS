@@ -16,29 +16,32 @@ Doctrine_Manager::getInstance()->bindComponent('Projects', 'doctrine');
  * @property string $skill_set_ids
  * @property string $nomination_round
  * @property integer $proj_num
+ * @property Doctrine_Collection $Project2
  * 
- * @method integer  getId()                  Returns the current record's "id" value
- * @method string   getTitle()               Returns the current record's "title" value
- * @method string   getOrganisation()        Returns the current record's "organisation" value
- * @method string   getDescription()         Returns the current record's "description" value
- * @method integer  getHasAdditionalInfo()   Returns the current record's "has_additional_info" value
- * @method string   getMajorIds()            Returns the current record's "major_ids" value
- * @method string   getSkillSetIds()         Returns the current record's "skill_set_ids" value
- * @method string   getNominationRound()     Returns the current record's "nomination_round" value
- * @method integer  getProjNum()             Returns the current record's "proj_num" value
- * @method Projects setId()                  Sets the current record's "id" value
- * @method Projects setTitle()               Sets the current record's "title" value
- * @method Projects setOrganisation()        Sets the current record's "organisation" value
- * @method Projects setDescription()         Sets the current record's "description" value
- * @method Projects setHasAdditionalInfo()   Sets the current record's "has_additional_info" value
- * @method Projects setMajorIds()            Sets the current record's "major_ids" value
- * @method Projects setSkillSetIds()         Sets the current record's "skill_set_ids" value
- * @method Projects setNominationRound()     Sets the current record's "nomination_round" value
- * @method Projects setProjNum()             Sets the current record's "proj_num" value
+ * @method integer             getId()                  Returns the current record's "id" value
+ * @method string              getTitle()               Returns the current record's "title" value
+ * @method string              getOrganisation()        Returns the current record's "organisation" value
+ * @method string              getDescription()         Returns the current record's "description" value
+ * @method integer             getHasAdditionalInfo()   Returns the current record's "has_additional_info" value
+ * @method string              getMajorIds()            Returns the current record's "major_ids" value
+ * @method string              getSkillSetIds()         Returns the current record's "skill_set_ids" value
+ * @method string              getNominationRound()     Returns the current record's "nomination_round" value
+ * @method integer             getProjNum()             Returns the current record's "proj_num" value
+ * @method Doctrine_Collection getProject2()            Returns the current record's "Project2" collection
+ * @method Projects            setId()                  Sets the current record's "id" value
+ * @method Projects            setTitle()               Sets the current record's "title" value
+ * @method Projects            setOrganisation()        Sets the current record's "organisation" value
+ * @method Projects            setDescription()         Sets the current record's "description" value
+ * @method Projects            setHasAdditionalInfo()   Sets the current record's "has_additional_info" value
+ * @method Projects            setMajorIds()            Sets the current record's "major_ids" value
+ * @method Projects            setSkillSetIds()         Sets the current record's "skill_set_ids" value
+ * @method Projects            setNominationRound()     Sets the current record's "nomination_round" value
+ * @method Projects            setProjNum()             Sets the current record's "proj_num" value
+ * @method Projects            setProject2()            Sets the current record's "Project2" collection
  * 
  * @package    PANS
  * @subpackage model
- * @author     Your name here
+ * @author     Daniel Brose
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseProjects extends sfDoctrineRecord
@@ -131,6 +134,8 @@ abstract class BaseProjects extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasMany('StudentPrefs as Project2', array(
+             'local' => 'id',
+             'foreign' => 'proj_pref_2'));
     }
 }

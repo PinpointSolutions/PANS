@@ -5,7 +5,7 @@
  *
  * @package    PANS
  * @subpackage filter
- * @author     Your name here
+ * @author     Daniel Brose
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
 abstract class BaseStudentPrefsFormFilter extends BaseFormFilterDoctrine
@@ -13,11 +13,11 @@ abstract class BaseStudentPrefsFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'pass_fail_pm'     => new sfWidgetFormFilterInput(),
+      'pass_fail_pm'     => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'major_ids'        => new sfWidgetFormFilterInput(),
       'gpa'              => new sfWidgetFormFilterInput(),
       'proj_pref_1'      => new sfWidgetFormFilterInput(),
-      'proj_pref_2'      => new sfWidgetFormFilterInput(),
+      'proj_pref_2'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Projects'), 'add_empty' => true)),
       'proj_pref_3'      => new sfWidgetFormFilterInput(),
       'proj_pref_4'      => new sfWidgetFormFilterInput(),
       'proj_pref_5'      => new sfWidgetFormFilterInput(),
@@ -40,11 +40,11 @@ abstract class BaseStudentPrefsFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'pass_fail_pm'     => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'pass_fail_pm'     => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'major_ids'        => new sfValidatorPass(array('required' => false)),
       'gpa'              => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'proj_pref_1'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'proj_pref_2'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'proj_pref_2'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Projects'), 'column' => 'id')),
       'proj_pref_3'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'proj_pref_4'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'proj_pref_5'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -85,11 +85,11 @@ abstract class BaseStudentPrefsFormFilter extends BaseFormFilterDoctrine
     return array(
       'snum'             => 'Number',
       'nomination_round' => 'Text',
-      'pass_fail_pm'     => 'Number',
+      'pass_fail_pm'     => 'Boolean',
       'major_ids'        => 'Text',
       'gpa'              => 'Number',
       'proj_pref_1'      => 'Number',
-      'proj_pref_2'      => 'Number',
+      'proj_pref_2'      => 'ForeignKey',
       'proj_pref_3'      => 'Number',
       'proj_pref_4'      => 'Number',
       'proj_pref_5'      => 'Number',

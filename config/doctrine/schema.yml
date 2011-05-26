@@ -15,6 +15,7 @@ AdminUsers:
       primary: false
       notnull: true
       autoincrement: false
+
 Majors:
   connection: doctrine
   tableName: majors
@@ -39,6 +40,8 @@ Majors:
       primary: false
       notnull: true
       autoincrement: false
+
+
 ProjectAllocations:
   connection: doctrine
   tableName: project_allocations
@@ -121,6 +124,9 @@ ProjectAllocations:
       local: snum6
       foreign: snum
       type: one
+  
+  
+  
 Projects:
   connection: doctrine
   tableName: projects
@@ -187,6 +193,9 @@ Projects:
       primary: false
       notnull: true
       autoincrement: false
+
+
+  
 SkillSets:
   connection: doctrine
   tableName: skill_sets
@@ -211,6 +220,9 @@ SkillSets:
       primary: false
       notnull: true
       autoincrement: false
+  
+  
+  
 StudentPrefs:
   connection: doctrine
   tableName: student_prefs
@@ -227,13 +239,10 @@ StudentPrefs:
       unsigned: false
       primary: true
       autoincrement: false
-    pass_fail_pm:
-      type: integer(1)
+    pass_fail_pm:                        #_C_
+      type: boolean
       fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+      notnull: true
     major_ids:
       type: string(32)
       fixed: false
@@ -241,9 +250,10 @@ StudentPrefs:
       primary: false
       notnull: false
       autoincrement: false
-    gpa:
+    gpa:                        #_C_
       type: float(18)
       fixed: false
+      default: "5.0" 
       unsigned: false
       primary: false
       notnull: false
@@ -395,6 +405,12 @@ StudentPrefs:
       primary: false
       notnull: false
       autoincrement: false
+  relations:  #_C_                    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! CHANGED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
+    Projects: { onDelete: CASCADE, local: proj_pref_1, foreign: id, foreignAlias: Project1 }  
+    Projects: { onDelete: CASCADE, local: proj_pref_2, foreign: id, foreignAlias: Project2 }     
+    
+  
+  
 StudentUsers:
   connection: doctrine
   tableName: student_users

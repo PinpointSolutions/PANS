@@ -1,0 +1,38 @@
+May 25 13:42:37 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+May 25 13:42:38 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /major/index with parameters array (  'module' => 'major',  'action' => 'index',)
+May 25 13:42:38 symfony [info] {sfFilterChain} Executing filter "sfFakeRenderingFilter"
+May 25 13:42:38 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 25 13:42:38 symfony [info] {majorActions} Call "majorActions->executeIndex()"
+May 25 13:42:41 symfony [err] {Doctrine_Connection_Exception} PDO Connection Error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+May 25 13:42:42 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+May 25 13:42:42 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /project/index with parameters array (  'module' => 'project',  'action' => 'index',)
+May 25 13:42:42 symfony [info] {sfFilterChain} Executing filter "sfFakeRenderingFilter"
+May 25 13:42:42 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 25 13:42:42 symfony [info] {projectActions} Call "projectActions->executeIndex()"
+May 25 13:42:44 symfony [err] {Doctrine_Connection_Exception} PDO Connection Error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+May 25 13:44:17 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+May 25 13:44:17 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /major/index with parameters array (  'module' => 'major',  'action' => 'index',)
+May 25 13:44:17 symfony [info] {sfFilterChain} Executing filter "sfFakeRenderingFilter"
+May 25 13:44:17 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 25 13:44:17 symfony [info] {majorActions} Call "majorActions->executeIndex()"
+May 25 13:44:17 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 25 13:44:17 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 25 13:44:17 symfony [info] {Doctrine_Connection_Mysql} query : SELECT m.id AS m__id, m.major AS m__major, m.is_visible AS m__is_visible FROM majors m - ()
+May 25 13:44:17 symfony [info] {sfPHPView} Render "C:\development\sfprojects\PANS\apps\frontend\modules/major/templates/indexSuccess.php"
+May 25 13:44:17 symfony [info] {sfPHPView} Decorate content with "C:\development\sfprojects\PANS\apps\frontend\templates/layout.php"
+May 25 13:44:17 symfony [info] {sfPHPView} Render "C:\development\sfprojects\PANS\apps\frontend\templates/layout.php"
+May 25 13:44:17 symfony [info] {sfWebResponse} Send content (1083 o)
+May 25 13:44:18 symfony [info] {sfPatternRouting} Match route "homepage" (/) for / with parameters array (  'module' => 'default',  'action' => 'index',)
+May 25 13:44:18 symfony [info] {sfPatternRouting} Match route "default" (/:module/:action/*) for /project/index with parameters array (  'module' => 'project',  'action' => 'index',)
+May 25 13:44:18 symfony [info] {sfFilterChain} Executing filter "sfFakeRenderingFilter"
+May 25 13:44:18 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+May 25 13:44:18 symfony [info] {projectActions} Call "projectActions->executeIndex()"
+May 25 13:44:18 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 25 13:44:18 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+May 25 13:44:18 symfony [info] {Doctrine_Connection_Mysql} query : SELECT p.id AS p__id, p.title AS p__title, p.organisation AS p__organisation, p.description AS p__description, p.has_additional_info AS p__has_additional_info, p.major_ids AS p__major_ids, p.skill_set_ids AS p__skill_set_ids, p.nomination_round AS p__nomination_round, p.proj_num AS p__proj_num FROM projects p - ()
+May 25 13:44:18 symfony [info] {sfPHPView} Render "C:\development\sfprojects\PANS\apps\frontend\modules/project/templates/indexSuccess.php"
+May 25 13:44:19 symfony [info] {sfPHPView} Decorate content with "C:\development\sfprojects\PANS\apps\frontend\templates/layout.php"
+May 25 13:44:19 symfony [info] {sfPHPView} Render "C:\development\sfprojects\PANS\apps\frontend\templates/layout.php"
+May 25 13:44:19 symfony [info] {sfWebResponse} Send content (1523 o)

@@ -5,7 +5,7 @@
  *
  * @package    PANS
  * @subpackage filter
- * @author     Your name here
+ * @author     Daniel Brose
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
 abstract class BaseProjectAllocationsFormFilter extends BaseFormFilterDoctrine

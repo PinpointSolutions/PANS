@@ -50,7 +50,7 @@ Doctrine_Manager::getInstance()->bindComponent('ProjectAllocations', 'doctrine')
  * 
  * @package    PANS
  * @subpackage model
- * @author     Your name here
+ * @author     Daniel Brose
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseProjectAllocations extends sfDoctrineRecord
