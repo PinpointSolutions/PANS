@@ -1,48 +1,70 @@
+/**************************************************************/
 /* Top-level CSS rules: primitive HTML tags */
-
 body {
-  font-family: Georgia, serif;
+  font-family: Arial, serif;
   font-size: 16px;
-  background: white;
   color: black;
+  background: url("../images/background_top_horizontal_red.png") repeat-x;
 }
 
-p {
-
+#wrapper {
+  margin: 0 auto;
+  width: 930px;
 }
 
-h1 {
-  color: white; 
-  font-family: Arial; 
-  margin-left: 300px; 
-  line-height: 40px; 
-  font-size: 25px; 
-  word-spacing: 4px; 
-  text-shadow: 0px 0px 2px #FFF
+a {
+  color: #C02424;
+  text-decoration: none;
 }
 
-/* Layout CSS rules: high-level div tags and other containers */
+/**************************************************************/
+/* Header division */
+#header {
+  height: 80px;
+  /* background-color: #C02424; */
+}
 
 #logo {
-  position: absolute;
-  left: 5%; 
-  top: -15px; 
-  display: inline;
-  width:176px;
-  height:80px;
+  position: relative;
+  float: left;
+  width: 176px;
+  height: 80px;
   background: url("../images/griffith_logo.png") no-repeat top left;
 }
 
-#header {
-  background-color: #C02424; 
-  height: 50px;
-  width: 100%;
-  margin-top:0px;
+#title {
+  position: relative;
+  float: left;
+  left: 100px;
+  top: 35px;
+  color: white;
+  font-family: Arial; 
+  font-size: 26px; 
+  word-spacing: 4px; 
+  text-shadow: 0px 0px 2px white;
+  display: inline;
 }
 
-#form {
-  margin-left: 5%; 
-  padding-top: 2px
+/**************************************************************/
+/* Content division */
+#content {
+  padding-top: 25px;
+  text-align: left;
+}
+
+/* Generated content title */
+h1 {
+  font-size: 24px;
+  padding-bottom: 15px;
+}
+
+table {
+  background-color: #CCCCCC;
+}
+
+th, td {
+  padding: 5px 5px;
+  min-width: 160px;
 }
 
 #hl { /* highlight */
@@ -65,4 +87,13 @@ h1 {
 #ai { /* alternate short background */
   width: 20%;
   padding: 2px
+}
+
+
+/**************************************************************/
+/* Footer division */
+#footer {
+  font-size: 12px;
+  color: grey;
+  padding: 25px 0;
 }

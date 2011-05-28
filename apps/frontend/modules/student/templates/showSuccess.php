@@ -112,6 +112,14 @@
       <th>Proj just5:</th>
       <td><?php echo $student_user->getProjJust5() ?></td>
     </tr>
+    <tr>
+      <th>Form completed:</th>
+      <td><?php echo $student_user->getFormCompleted() ?></td>
+    </tr>
+    <tr>
+      <th>Modified time:</th>
+      <td><?php echo $student_user->getModifiedTime() ?></td>
+    </tr>
   </tbody>
 </table>
 

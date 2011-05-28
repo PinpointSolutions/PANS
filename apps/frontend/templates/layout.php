@@ -10,19 +10,19 @@
   </head>
   
   <body> <!-- Three row style, with fixed-width content body -->
-    
-    <div id="header">
-      <h1>3001ICT - Project Nomination Form</h1>
-      <div id="logo"></div>
-    </div>
-    
-    <div id="content">
-      <?php echo $sf_content ?>
-    </div>
-    
-    <div id="footer">
-      Developed by Pinpoint Solutions
-    </div>
+    <div id="wrapper">
+      <div id="header">
+        <div id="logo"></div>
+        <div id="title">3001ICT - Project Nomination Form</div>
+      </div>
       
+      <div id="content">
+        <?php echo $sf_content ?>
+      </div>
+      
+      <div id="footer">
+        Developed by Pinpoint Solutions
+      </div>
+    </div>
   </body>
 </html>

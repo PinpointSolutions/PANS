@@ -2,6 +2,8 @@ StudentUser:
   user_1:
     snum: 1111111
     p_word: pass
+    first_name: Cave
+    last_name: Johnson
   user_2:
     snum: 2222222
     p_word: qwerty

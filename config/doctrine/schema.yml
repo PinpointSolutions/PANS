@@ -33,7 +33,7 @@ Major:
       notnull: true
       autoincrement: false
     is_visible:
-      type: integer(1)
+      type: boolean
       fixed: false
       unsigned: false
       primary: false
@@ -123,7 +123,7 @@ Project:
       notnull: false
       autoincrement: false
     has_additional_info:
-      type: integer(1)
+      type: boolean
       fixed: false
       unsigned: false
       primary: false
@@ -175,7 +175,7 @@ SkillSet:
       notnull: true
       autoincrement: false
     is_visible:
-      type: integer(1)
+      type: boolean
       fixed: false
       unsigned: false
       primary: false
@@ -184,6 +184,12 @@ SkillSet:
 StudentUser:
   connection: doctrine
   tableName: student_users
+  actAs:
+    Timestampable:
+      created:
+        name: modified_time
+      updated:
+        disabled: true
   columns:
     snum:
       type: integer(4)
@@ -213,7 +219,7 @@ StudentUser:
       notnull: false
       autoincrement: false
     pass_fail_pm:
-      type: integer(1)
+      type: boolean
       fixed: false
       unsigned: false
       primary: false
@@ -380,3 +386,15 @@ StudentUser:
       primary: false
       notnull: false
       autoincrement: false
+    form_completed:
+      type: boolean
+      notnull: true
+      default: false
+      autoincrement: false
+      fixed: false
+      unsigned: false
+      primary: false
+    modified_time:
+      type: timestamp
+      notnull: false
+      
