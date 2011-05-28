@@ -75,4 +75,4 @@
   </tbody>
 </table>
 
-  <a href="<?php echo url_for('student/new') ?>">New</a>
+<div id="actions"><a href="<?php echo url_for('student/new') ?>">Add Student</a></div>

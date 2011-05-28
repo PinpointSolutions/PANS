@@ -7,6 +7,10 @@ StudentUser:
   user_2:
     snum: 2222222
     p_word: qwerty
+    first_name: Caroline
+    last_name: Unknown
   user_3:
     snum: 3333333
     p_word: asdfghjkkl
+    first_name: Rat
+    last_name: Man

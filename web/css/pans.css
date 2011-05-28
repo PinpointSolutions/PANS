@@ -59,7 +59,7 @@ h1 {
 }
 
 table {
-  background-color: #CCCCCC;
+
 }
 
 th, td {
@@ -87,6 +87,17 @@ th, td {
 #ai { /* alternate short background */
   width: 20%;
   padding: 2px
+}
+
+#actions {
+  padding: 20px 15px;
+}
+
+#actions a {
+  padding: 5px 10px;
+  border: 1px grey solid;
+  background-color: #EEEEEE;
+  border-radius: 10px;
 }
 
 
