@@ -1,0 +1,72 @@
+<h1>Student users List</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Snum</th>
+      <th>P word</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Pass fail pm</th>
+      <th>Major ids</th>
+      <th>Gpa</th>
+      <th>Proj pref1</th>
+      <th>Proj pref2</th>
+      <th>Proj pref3</th>
+      <th>Proj pref4</th>
+      <th>Proj pref5</th>
+      <th>Skill set ids</th>
+      <th>Y stu pref1</th>
+      <th>Y stu pref2</th>
+      <th>Y stu pref3</th>
+      <th>Y stu pref4</th>
+      <th>Y stu pref5</th>
+      <th>N stu pref1</th>
+      <th>N stu pref2</th>
+      <th>N stu pref3</th>
+      <th>N stu pref4</th>
+      <th>N stu pref5</th>
+      <th>Proj just1</th>
+      <th>Proj just2</th>
+      <th>Proj just3</th>
+      <th>Proj just4</th>
+      <th>Proj just5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($student_users as $student_user): ?>
+    <tr>
+      <td><a href="<?php echo url_for('student/show?snum='.$student_user->getSnum()) ?>"><?php echo $student_user->getSnum() ?></a></td>
+      <td><?php echo $student_user->getPWord() ?></td>
+      <td><?php echo $student_user->getFirstName() ?></td>
+      <td><?php echo $student_user->getLastName() ?></td>
+      <td><?php echo $student_user->getPassFailPm() ?></td>
+      <td><?php echo $student_user->getMajorIds() ?></td>
+      <td><?php echo $student_user->getGpa() ?></td>
+      <td><?php echo $student_user->getProjPref1() ?></td>
+      <td><?php echo $student_user->getProjPref2() ?></td>
+      <td><?php echo $student_user->getProjPref3() ?></td>
+      <td><?php echo $student_user->getProjPref4() ?></td>
+      <td><?php echo $student_user->getProjPref5() ?></td>
+      <td><?php echo $student_user->getSkillSetIds() ?></td>
+      <td><?php echo $student_user->getYStuPref1() ?></td>
+      <td><?php echo $student_user->getYStuPref2() ?></td>
+      <td><?php echo $student_user->getYStuPref3() ?></td>
+      <td><?php echo $student_user->getYStuPref4() ?></td>
+      <td><?php echo $student_user->getYStuPref5() ?></td>
+      <td><?php echo $student_user->getNStuPref1() ?></td>
+      <td><?php echo $student_user->getNStuPref2() ?></td>
+      <td><?php echo $student_user->getNStuPref3() ?></td>
+      <td><?php echo $student_user->getNStuPref4() ?></td>
+      <td><?php echo $student_user->getNStuPref5() ?></td>
+      <td><?php echo $student_user->getProjJust1() ?></td>
+      <td><?php echo $student_user->getProjJust2() ?></td>
+      <td><?php echo $student_user->getProjJust3() ?></td>
+      <td><?php echo $student_user->getProjJust4() ?></td>
+      <td><?php echo $student_user->getProjJust5() ?></td>
+    </tr>
+    <?php endforeach; ?>
+  </tbody>
+</table>
+
+  <a href="<?php echo url_for('student/new') ?>">New</a>
