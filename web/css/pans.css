@@ -1,11 +1,14 @@
+/* Top-level CSS rules: primitive HTML tags */
+
 body {
-  margin: -17px 0px 0px 0px;
-  padding: 0px;
-  font-family: Calibri
+  font-family: Georgia, serif;
+  font-size: 16px;
+  background: white;
+  color: black;
 }
 
 p {
-  margin-left: 5%
+
 }
 
 h1 {
@@ -17,6 +20,8 @@ h1 {
   word-spacing: 4px; 
   text-shadow: 0px 0px 2px #FFF
 }
+
+/* Layout CSS rules: high-level div tags and other containers */
 
 #logo {
   position: absolute;

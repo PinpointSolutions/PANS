@@ -6,13 +6,13 @@ default:
     content-type: text/html
 
   metas:
-    #title:        symfony project
-    #description:  symfony project
-    #keywords:     symfony, project
+    #title:        Project Allocation and Nomination System
+    #description:  Online form for 3001ICT students to select projects
+    #keywords:     student projects allocation nomination
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css,pans.css]
+  stylesheets:    [reset.css, main.css, pans.css]
 
   javascripts:    []
 
