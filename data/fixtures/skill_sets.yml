@@ -1,4 +1,4 @@
-SkillSets:
+SkillSet:
   programming:
     area: Programming
     is_visible: true

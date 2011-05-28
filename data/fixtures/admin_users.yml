@@ -1,4 +1,4 @@
-AdminUsers:
+AdminUser:
   courseConvenor:
     username: admin
     p_word: changeme

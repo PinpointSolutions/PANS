@@ -1,4 +1,4 @@
-Projects:
+Project:
   proj_1:
     title: Bring Your Daughter To Work Day
     organisation: Aperture Science
@@ -10,7 +10,6 @@ Projects:
     has_additional_info: false
     major_ids: 1 2 3
     skill_set_ids: 1 2 3
-    nomination_round:
     proj_num: 1
   proj_2:
     title: Build a Portal Gun
@@ -21,5 +20,4 @@ Projects:
     has_additional_info: true
     major_ids: 1 2
     skill_set_ids: 4 5
-    nomination_round:
     proj_num: 2
