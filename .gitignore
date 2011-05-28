@@ -1,0 +1,4 @@
+# This file will tell git to ignore the following files.
+# Please _do not delete or modify this file unless you know what you're doing!_
+cache/*
+log/*
