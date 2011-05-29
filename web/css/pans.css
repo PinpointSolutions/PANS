@@ -67,10 +67,8 @@ th, td {
   min-width: 160px;
 }
 
-#hl { /* highlight */
+tr:hover { /* highlight */
   background-color: #DDD; 
-  width: 95%;
-  padding: 5px
 }
 
 #a { /* alternate */
