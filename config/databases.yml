@@ -4,4 +4,4 @@ all:
     param:
       dsn: 'mysql:host=localhost;dbname=pinpoint_db'
       username: root
-      password: 3001ictrules
+      password: 
