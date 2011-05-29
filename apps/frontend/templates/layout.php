@@ -12,7 +12,7 @@
   <body> <!-- Three row style, with fixed-width content body -->
     <div id="wrapper">
       <div id="header">
-        <div id="logo"></div>
+        <a href="<?php echo url_for('homepage') ?>"><div id="logo"></div></a>
         <div id="title">3001ICT - Project Nomination Form</div>
       </div>
       

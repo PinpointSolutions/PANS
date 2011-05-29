@@ -1,4 +1,4 @@
-<h1>Student users List</h1>
+<h1>Student users list</h1>
 
 <table>
   <thead>
