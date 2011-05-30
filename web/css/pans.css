@@ -123,10 +123,14 @@ tr:hover { /* highlight */
   margin-left: 25px;
 }
 
+.alignleft {
+  position: relative;
+  float: left;
+}
+
 .alignright {
-  position: absolute;
-  right: 0px;
-  top: 10px;
+  position: relative;
+  float: right;
 }
 
 /**************************************************************/

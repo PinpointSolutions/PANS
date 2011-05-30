@@ -17,10 +17,16 @@
       </div>
       
       <div id="navbar">
-      <?php if ($sf_user->isAuthenticated()): ?>
-        Welcome, <?php echo $sf_user ?>.
-        <a href="<?php echo url_for('sf_guard_signout') ?>">Logout</a>
-      <?php endif; ?>
+        <?php if ($sf_user->isAuthenticated()): ?>
+          <div class="alignleft">
+            Navigation: 
+            <?php echo link_to('Student List', 'student/index') ?>
+          </div>
+          <div class="alignright">
+            Welcome, <?php echo $sf_user ?>.
+            | <?php echo link_to('Logout', '@sf_guard_signout') ?>
+          </div>
+        <?php endif; ?>
       </div>
       
       <div id="content">
