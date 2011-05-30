@@ -5,3 +5,4 @@
 all:
   sf_guard_plugin:
     routes_register: true
+    allow_login_with_email: false
