@@ -1,4 +1,4 @@
-<h1>Student users list</h1>
+<h1>Student List</h1>
 
 <table>
   <thead>
@@ -16,11 +16,11 @@
       <th>Proj pref4</th>
       <th>Proj pref5</th>
       <th>Skill set ids</th>
-      <th>Y stu pref1</th>
-      <th>Y stu pref2</th>
-      <th>Y stu pref3</th>
-      <th>Y stu pref4</th>
-      <th>Y stu pref5</th>
+      <th>Preferred Student 1</th>
+      <th>Preferred Student 2</th>
+      <th>Preferred Student 3</th>
+      <th>Preferred Student 4</th>
+      <th>Preferred Student 5</th>
       <th>N stu pref1</th>
       <th>N stu pref2</th>
       <th>N stu pref3</th>
