@@ -119,6 +119,6 @@
   </tbody>
 </table>
 
-<div class="action"><a href="<?php echo url_for('student/edit?snum='.$student_user->getSnum()) ?>">Edit This</a></div>
+<div class="action"><a href="<?php echo url_for('student/edit?snum='.$student_user->getSnum()) ?>">Edit This Student</a></div>
 
-<div class="action"><a href="<?php echo url_for('student/index') ?>">Back to List</a></div>
+<div class="action"><a href="<?php echo url_for('student/index') ?>">Back to Student List</a></div>

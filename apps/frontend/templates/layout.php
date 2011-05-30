@@ -16,6 +16,13 @@
         <div id="title">Project Allocation and Nomination System</div>
       </div>
       
+      <div id="navbar">
+      <?php if ($sf_user->isAuthenticated()): ?>
+        Welcome, <?php echo $sf_user ?>.
+        <a href="<?php echo url_for('sf_guard_signout') ?>">Logout</a>
+      <?php endif; ?>
+      </div>
+      
       <div id="content">
         <?php echo $sf_content ?>
       </div>

@@ -1,7 +1,5 @@
 <h1>Student List</h1>
 
-<div class="action alignright"><a href="<?php echo url_for('sf_guard_signout') ?>">Logout</a></div>
-
 <table>
   <thead>
     <tr>
@@ -77,4 +75,5 @@
   </tbody>
 </table>
 
-<div class="action"><a href="<?php echo url_for('student/new') ?>">Add Student</a></div>
+<div class="action"><a href="<?php echo url_for('student/new') ?>">Add New Student</a></div>
+<div class="action"><a href="<?php echo "#" ?>">Import Students from File</a></div>

@@ -47,6 +47,18 @@ a {
 }
 
 /**************************************************************/
+/* Navigation Bar division */
+#navbar {
+  position: relative;
+  float: left;
+  width: 930px;
+  text-align: right;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+
+/**************************************************************/
 /* Content division */
 #content {
   position: relative;

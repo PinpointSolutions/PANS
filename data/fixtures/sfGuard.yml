@@ -1,8 +1,8 @@
 sfGuardUser:
   User_admin:
-    first_name:     Leign-Ellen
-    last_name:      Potter
-    email_address:  L.Potter@griffith.edu.au
+    first_name:     Test
+    last_name:      User
+    email_address:  adminuser@pans.dev
     username:       admin
     password:       admin
     is_super_admin: true
