@@ -19,8 +19,9 @@
       <div id="navbar">
         <?php if ($sf_user->isAuthenticated()): ?>
           <div class="alignleft">
-            Navigation: 
-            <?php echo link_to('Student List', 'student/index') ?>
+            Admin View: 
+              <?php echo link_to('Students', 'student/index') ?>
+            | <?php echo link_to('Projects', 'project/index') ?>
           </div>
           <div class="alignright">
             Welcome, <?php echo $sf_user ?>.

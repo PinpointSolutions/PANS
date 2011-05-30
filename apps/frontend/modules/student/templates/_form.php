@@ -10,7 +10,7 @@
       <?php echo $form ?>
     </tbody>
   </table>
-  <div class="action"><a href="<?php echo url_for('student/index') ?>">Back to list</a></div>
+  <div class="action"><a href="<?php echo url_for('student/index') ?>">Back to Students</a></div>
   <?php if (!$form->getObject()->isNew()): ?>
     <div class="action"><?php echo link_to('Delete', 'student/delete?snum='.$form->getObject()->getSnum(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></div>
   <?php endif; ?>
