@@ -1,5 +1,7 @@
 <h1>Student List</h1>
 
+<div class="action alignright"><a href="<?php echo url_for('sf_guard_signout') ?>">Logout</a></div>
+
 <table>
   <thead>
     <tr>
