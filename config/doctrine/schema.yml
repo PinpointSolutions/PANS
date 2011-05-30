@@ -1,20 +1,3 @@
-AdminUser:
-  connection: doctrine
-  tableName: admin_users
-  columns:
-    username:
-      type: string(64)
-      fixed: false
-      unsigned: false
-      primary: true
-      autoincrement: false
-    p_word:
-      type: string(64)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
 Major:
   connection: doctrine
   tableName: majors
@@ -196,13 +179,6 @@ StudentUser:
       fixed: false
       unsigned: false
       primary: true
-      autoincrement: false
-    p_word:
-      type: string(64)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
       autoincrement: false
     first_name:
       type: string(64)
