@@ -21,6 +21,7 @@ a {
 /* Header division */
 #header {
   height: 80px;
+  width: 930px;
   /* background-color: #C02424; */
 }
 
@@ -50,6 +51,7 @@ a {
 #content {
   padding-top: 25px;
   text-align: left;
+  width: 930px;
 }
 
 /* Generated content title */
@@ -87,17 +89,25 @@ tr:hover { /* highlight */
   padding: 2px
 }
 
-#actions {
+.action {
   padding: 20px 15px;
+  display: inline;
+  position: relative;
+  float: left;
 }
 
-#actions a {
+.action a {
   padding: 5px 10px;
   border: 1px grey solid;
   background-color: #EEEEEE;
   border-radius: 10px;
 }
 
+.actionButton {
+  font-size: 16px;
+  margin-top: 15px;
+  margin-left: 25px;
+}
 
 /**************************************************************/
 /* Footer division */
@@ -105,4 +115,7 @@ tr:hover { /* highlight */
   font-size: 12px;
   color: grey;
   padding: 25px 0;
+  width: 930px;
+  position: relative;
+  float: left;
 }

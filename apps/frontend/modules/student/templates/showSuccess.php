@@ -1,51 +1,47 @@
 <table>
   <tbody>
     <tr>
-      <th>Snum:</th>
+      <th>Student Number:</th>
       <td><?php echo $student_user->getSnum() ?></td>
     </tr>
     <tr>
-      <th>P word:</th>
-      <td><?php echo $student_user->getPWord() ?></td>
-    </tr>
-    <tr>
-      <th>First name:</th>
+      <th>First Name:</th>
       <td><?php echo $student_user->getFirstName() ?></td>
     </tr>
     <tr>
-      <th>Last name:</th>
+      <th>Last Name:</th>
       <td><?php echo $student_user->getLastName() ?></td>
     </tr>
     <tr>
-      <th>Pass fail pm:</th>
+      <th>Passed Project Management:</th>
       <td><?php echo $student_user->getPassFailPm() ?></td>
     </tr>
     <tr>
-      <th>Major ids:</th>
+      <th>Majors:</th>
       <td><?php echo $student_user->getMajorIds() ?></td>
     </tr>
     <tr>
-      <th>Gpa:</th>
+      <th>GPA:</th>
       <td><?php echo $student_user->getGpa() ?></td>
     </tr>
     <tr>
-      <th>Proj pref1:</th>
+      <th>First Preference:</th>
       <td><?php echo $student_user->getProjPref1() ?></td>
     </tr>
     <tr>
-      <th>Proj pref2:</th>
+      <th>First Preference:</th>
       <td><?php echo $student_user->getProjPref2() ?></td>
     </tr>
     <tr>
-      <th>Proj pref3:</th>
+      <th>First Preference:</th>
       <td><?php echo $student_user->getProjPref3() ?></td>
     </tr>
     <tr>
-      <th>Proj pref4:</th>
+      <th>First Preference:</th>
       <td><?php echo $student_user->getProjPref4() ?></td>
     </tr>
     <tr>
-      <th>Proj pref5:</th>
+      <th>First Preference:</th>
       <td><?php echo $student_user->getProjPref5() ?></td>
     </tr>
     <tr>
@@ -123,8 +119,6 @@
   </tbody>
 </table>
 
-<hr />
+<div class="action"><a href="<?php echo url_for('student/edit?snum='.$student_user->getSnum()) ?>">Edit</a></div>
 
-<a href="<?php echo url_for('student/edit?snum='.$student_user->getSnum()) ?>">Edit</a>
-&nbsp;
-<a href="<?php echo url_for('student/index') ?>">List</a>
+<div class="action"><a href="<?php echo url_for('student/index') ?>">List</a></div>

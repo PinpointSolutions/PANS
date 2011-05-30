@@ -1,8 +1,8 @@
 sfGuardUser:
   User_admin:
-    first_name:     John
-    last_name:      Doe
-    email_address:  john.doe@gmail.com
+    first_name:     Leign-Ellen
+    last_name:      Potter
+    email_address:  L.Potter@griffith.edu.au
     username:       admin
     password:       admin
     is_super_admin: true
@@ -11,10 +11,10 @@ sfGuardUser:
 sfGuardGroup:
   Group_admin:
     name:           admin
-    description:    Administrator group
+    description:    Admin Users
     Permissions:    [Permission_admin]
 
 sfGuardPermission:
   Permission_admin:
     name:           admin
-    description:    Administrator permission
+    description:    Admin Users Permission

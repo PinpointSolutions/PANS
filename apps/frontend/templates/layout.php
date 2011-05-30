@@ -13,7 +13,7 @@
     <div id="wrapper">
       <div id="header">
         <a href="<?php echo url_for('homepage') ?>"><div id="logo"></div></a>
-        <div id="title">3001ICT - Project Nomination Form</div>
+        <div id="title">Project Allocation and Nomination System</div>
       </div>
       
       <div id="content">
