@@ -142,13 +142,9 @@ tr:hover { /* highlight */
   margin-bottom: 6px;
 }
 
-.projectOrganisation, .projectMajors, .projectDescription, .projectNotes {
+.projectOrganisation, .projectMajors, .projectDescription {
   font-size: 14px;
   margin-bottom: 4px;
-}
-
-.projectNotes {
-  font-style: italic;
 }
 
 /**************************************************************/
