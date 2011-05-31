@@ -7,7 +7,8 @@ Project:
       Bring your daughter.
       No cats.
       Have fun.
-    has_additional_info: false
+    has_additional_info: true
+    has_gpa_cutoff: true
     major_ids: 1 2 3
     skill_set_ids: 1 2 3
     proj_num: 1
@@ -17,7 +18,8 @@ Project:
     description: |
       Pew pew pew!
       If you go through the blue portal, you come out from the orange one.
-    has_additional_info: true
+    has_additional_info: false
+    has_gpa_cutoff: false
     major_ids: 1 2
     skill_set_ids: 4 5
     proj_num: 2

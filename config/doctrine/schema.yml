@@ -112,6 +112,13 @@ Project:
       primary: false
       notnull: false
       autoincrement: false
+    has_gpa_cutoff:
+      type: boolean
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     major_ids:
       type: string(64)
       fixed: false
