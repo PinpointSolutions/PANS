@@ -13,11 +13,11 @@
       <td><?php echo $student_user->getLastName() ?></td>
     </tr>
     <tr>
-      <th>Passed Project Management:</th>
+      <th>Have you passed Project Management?</th>
       <td><?php echo $student_user->getPassFailPm() ?></td>
     </tr>
     <tr>
-      <th>Majors:</th>
+      <th>Degree(s):</th>
       <td><?php echo $student_user->getMajorIds() ?></td>
     </tr>
     <tr>
@@ -65,11 +65,11 @@
       <td><?php echo $student_user->getProjJust5() ?></td>
     </tr>
     <tr>
-      <th>Skills:</th>
+      <th>Skills (Please check at least one):</th>
       <td><?php echo $student_user->getSkillSetIds() ?></td>
     </tr>
     <tr>
-      <th>Students preferred to work with:</th>
+      <th>Students you prefer to work with:</th>
       <td><?php echo $student_user->getYStuPref1() ?></td>
     </tr>
     <tr>
@@ -89,7 +89,7 @@
       <td><?php echo $student_user->getYStuPref5() ?></td>
     </tr>
     <tr>
-      <th>Students undesired to work with:</th>
+      <th>Students you don't want to work with:</th>
       <td><?php echo $student_user->getNStuPref1() ?></td>
     </tr>
     <tr>
@@ -108,6 +108,7 @@
       <th></th>
       <td><?php echo $student_user->getNStuPref5() ?></td>
     </tr>
+    <?php /*
     <tr>
       <th>Form completed:</th>
       <td><?php echo $student_user->getFormCompleted() ?></td>
@@ -116,9 +117,13 @@
       <th>Last modified:</th>
       <td><?php echo $student_user->getModifiedTime() ?></td>
     </tr>
+    */ ?>
   </tbody>
 </table>
 
-<div class="action"><a href="<?php echo url_for('student/edit?snum='.$student_user->getSnum()) ?>">Edit This Student</a></div>
+<!-- TODO: Add a check to see if the date has passed so editing is disabled -->
+<div class="action"><a href="<?php echo url_for('student/edit?snum='.$student_user->getSnum()) ?>">Edit Your Nomination</a></div>
 
+<?php /* For admin view only
 <div class="action"><a href="<?php echo url_for('student/index') ?>">Back to Student List</a></div>
+*/ ?>
