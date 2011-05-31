@@ -380,4 +380,19 @@ StudentUser:
     modified_time:
       type: timestamp
       notnull: false
+  relations:
+    Project:
+      onDelete: CASCADE
+      local: proj_pref1
+      type: one
+      foreignType: many
+      foreign: id
+      foreignAlias: projPrefs
+    #Project:
+    #  onDelete: CASCADE
+    #  local: proj_pref2
+    #  type: one
+    #  foreignType: many
+    #  foreign: id
+    #  foreignAlias: projPref2
       
