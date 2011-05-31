@@ -1,23 +1,52 @@
 Project:
   proj_1:
-    title: Bring Your Daughter To Work Day
-    organisation: Aperture Science
+    title: Web Presence Design and Development
+    organisation: Laketrend Pty Ltd (Paul Flynn Properties)
     description: |
-      Bring a potato.
-      Bring your daughter.
-      No cats.
-      Have fun.
+      Our current web page has not been used for quite a long time.  We are looking to expand our company in the next few years & wish to obtain a higher profile using our web page.  To this end, we require a new, fully functional web-site which can be updated by our staff.
     has_additional_info: false
-    major_ids: 1 2 3
-    skill_set_ids: 1 2 3
+    major_ids: 1 2 
+    skill_set_ids: 1 2 5
     proj_num: 1
   proj_2:
-    title: Build a Portal Gun
-    organisation: Portal Fans
+    title: Systems Integration Project
+    organisation: Business Advisor Network Ltd
     description: |
-      Pew pew pew!
-      If you go through the blue portal, you come out from the orange one.
+      We currently operate an array of systems including online CRM, offline accounting, manual data entry, web
+      based data collection and service delivery.  We are experiencing problems with the integration of these systems. This project involves the redevelopment of our current systems with the goal of streamlining our processes.
     has_additional_info: true
-    major_ids: 1 2
+    major_ids: 1
     skill_set_ids: 4 5
     proj_num: 2
+  proj_3:
+    title:Recruitment System and integrated web site
+    organisation:Connect Recruitment
+    description: |
+      Connect Recruitment currently utilizes a commercial backoffice recruitment system and website developed and hosted by a UK company (eBoss) as well as integrated and hosted email. The system has many bugs and limited documentation or training. Connect has been in business for over 12 months and is now looking to improve its back office system and website. The existing system would form the basis of the requirements along with some enhancements to the current system, such as iPad integration
+    major_ids: 1 2
+    proj_num: 3
+    has_additional_info: false
+  proj_4:
+    title:Narrative Tabulator
+    organisation:Brisbane School of Distance Education
+    description: |
+      What is it?  A storyline builder-presenter that…..
+      •Imports files of still images/animaton/avi clips/wmv clips etc. Maybe drag and drop.
+      •Allows own drawing to be inserted into slides/frames (plugin eg. Inkscape)
+      •Allows text annotation and import of text into frames. (plugin eg. Opensource text editors)
+      •Allows embedded hot links to files or URLs. Allows the triggering of applications internally or externally.
+      •Imports audio files as background or cursor triggered/allows own recording (plugin eg. Audacity)
+      •Allows MS Office or OpenOfficeORG files to open inside exported file (embedded)
+      •Exports as native .NTP (narrative-tabulator-pad) and avi/wmv movie and sequenced jpg/bmp/gif/targa as slideshow and HTML. All possibly as zipped packs.
+    has_additional_info: false
+    major_ids: 2 3
+    proj_num: 4
+  proj_5:
+    title:AusAID database project
+    organisation:International Business Development, Griffith International
+    description: |
+      We are requiring a data-base to be constructed to track our AusAID project students.  We have a 7 year AusAID project where we have brought over nursing students from Kiribati. They are here for approx 4.5 years and undertake English, Diploma of Nursing through TAFE and then the B.Nursing at Logan. We currently have 80 students on campus. It is getting increasingly hard to track where they are staying, what they are enrolled in, progress, completion etc. Also we need to track various 'extra curricula' components as well such as health cover, pregnancies, who has their family here on-shore.  This information is currently stored in a range of spreadsheets and documents.  It would streamline our business to have this information stored in a central database.
+    has_additional_info: true
+    major_ids: 1 3
+    proj_num: 7
+ 
