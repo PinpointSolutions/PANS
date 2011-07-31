@@ -1,4 +1,3 @@
-CREATE TABLE admin_users (username VARCHAR(64), p_word VARCHAR(64) NOT NULL, PRIMARY KEY(username)) ENGINE = INNODB;
 CREATE TABLE majors (id INT AUTO_INCREMENT, major VARCHAR(32) NOT NULL, is_visible TINYINT(1) NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE projects (id INT AUTO_INCREMENT, title VARCHAR(64), organisation VARCHAR(64), description TEXT, has_additional_info TINYINT(1), has_gpa_cutoff TINYINT(1), major_ids VARCHAR(64), skill_set_ids VARCHAR(64), year INT NOT NULL, proj_num INT NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE project_allocations (project_id INT, snum1 INT, snum2 INT, snum3 INT, snum4 INT, snum5 INT, snum6 INT, PRIMARY KEY(project_id)) ENGINE = INNODB;
