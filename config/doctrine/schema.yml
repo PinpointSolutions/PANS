@@ -176,10 +176,10 @@ StudentUser:
   tableName: student_users
   actAs:
     Timestampable:
-      created:
-        name: modified_time
-      updated:
+      create:
         disabled: true
+      updated:
+        disabled: false
   columns:
     snum:
       type: integer(4)
@@ -377,9 +377,6 @@ StudentUser:
       fixed: false
       unsigned: false
       primary: false
-    modified_time:
-      type: timestamp
-      notnull: false
   relations:
     Project:
       onDelete: CASCADE

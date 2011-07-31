@@ -69,7 +69,7 @@
       <td><?php echo $student_user->getProjJust5() ?></td>
       */ ?>
       <td><?php echo $student_user->getFormCompleted() ?></td>
-      <td><?php echo $student_user->getModifiedTime() ?></td>
+      <td><?php echo $student_user->getUpdatedAt() ?></td>
     </tr>
     <?php endforeach; ?>
   </tbody>
