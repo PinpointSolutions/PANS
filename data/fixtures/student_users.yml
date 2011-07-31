@@ -1,6 +1,6 @@
 StudentUser:
   user_1:
-    snum: 1111111
+    snum: 11111
     first_name: Cave
     last_name: Johnson
   user_2:
