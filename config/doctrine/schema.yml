@@ -220,7 +220,7 @@ StudentUser:
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      notnull: true
       autoincrement: false
     proj_pref1:
       type: integer(4)

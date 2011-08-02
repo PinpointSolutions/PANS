@@ -34,7 +34,7 @@
 <option value="proj2">proj2</option>
 <option value="proj3" >proj3</option>
 </select></div>
-<div id="a">2nd Project Nomination Preference:
+<div id="a" style="color:red">2nd Project Nomination Preference:
 <select name="prj_pref_2">
 <option value="proj1" selected="selected">proj1</option>
 <option value="proj2">proj2</option>
