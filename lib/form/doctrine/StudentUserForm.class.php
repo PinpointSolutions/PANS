@@ -17,7 +17,8 @@ class StudentUserForm extends BaseStudentUserForm
       $this['updated_at'],
       $this['form_completed']
     );
-
+	
+	
 	$snum_widget = new sfWidgetFormInputText();
 	$snum_widget->setLabel('Student Number');
 	
@@ -126,8 +127,9 @@ class StudentUserForm extends BaseStudentUserForm
 		'proj_just2' => $proj_just2_widget,
 		'proj_just3' => $proj_just3_widget,
 		'proj_just4' => $proj_just4_widget,
-		'proj_just5' => $proj_just5_widget
+		'proj_just5' => $proj_just5_widget,
 		));
+		
 		
   }  
 }
