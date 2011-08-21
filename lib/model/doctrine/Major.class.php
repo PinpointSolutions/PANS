@@ -12,5 +12,16 @@
  */
 class Major extends BaseMajor
 {
-
+  /* 
+   * Override the default guesses and displays the full major name
+   */
+  public function __toString()
+  {
+    try
+    {
+      return (string) $this->get('major');
+    } catch (Exception $e) {}
+    
+    return sprintf('Error, see Major.class.php for "%s"', $this->getTable()->getComponentName());
+  }
 }

@@ -33,7 +33,15 @@ class StudentUserForm extends BaseStudentUserForm
     $pass_fail_widget = new sfWidgetFormInputCheckbox();
     $pass_fail_widget->setLabel('Please check this box if you passed Project Management: ');
     
-    $majors_widget = new sfWidgetFormInputText();
+    // TODO: Fix saving majors
+    // Also, Skill Sets
+    // Possible solution:
+    // http://www.mail-archive.com/symfony-users@googlegroups.com/msg11237.html
+    $majors_widget = new sfWidgetFormDoctrineChoice(
+      array(
+        'multiple' => true,
+        'expanded' => true,
+        'model' => $this->getRelatedModelName('Major')));
     $majors_widget->setLabel('Indicate your Major/s');	
     
     $gpa_widget = new sfWidgetFormInputText();
@@ -54,37 +62,43 @@ class StudentUserForm extends BaseStudentUserForm
     $proj5_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
     $proj5_widget->setLabel('Input your fifth project preference');	
     
-    $skills_widget = new sfWidgetFormInputText();
+    $skills_widget = new sfWidgetFormDoctrineChoice(
+      array(
+        'multiple' => true,
+        'expanded' => true,
+        'model' => $this->getRelatedModelName('SkillSet')));
     $skills_widget->setLabel('Indicate your skill set');	
     
-    $ystupref1_widget = new sfWidgetFormInputText();
+    // TODO: Make sure students can't pick themselves.
+    // Possible solution is to do the checking in PHP upon save.
+    $ystupref1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $ystupref1_widget->setLabel('Indicate the first student you would like to work with');	
     
-    $ystupref2_widget = new sfWidgetFormInputText();
+    $ystupref2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $ystupref2_widget->setLabel('Indicate the second student you would like to work with');	
     
-    $ystupref3_widget = new sfWidgetFormInputText();
+    $ystupref3_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $ystupref3_widget->setLabel('Indicate the third student you would like to work with');	
     
-    $ystupref4_widget = new sfWidgetFormInputText();
+    $ystupref4_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $ystupref4_widget->setLabel('Indicate the fourth student you would like to work with');	
     
-    $ystupref5_widget = new sfWidgetFormInputText();
+    $ystupref5_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $ystupref5_widget->setLabel('Indicate the fifth student you would like to work with');	
     
-    $nstupref1_widget = new sfWidgetFormInputText();
+    $nstupref1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $nstupref1_widget->setLabel('Indicate the first student you would NOT like to work with');	
     
-    $nstupref2_widget = new sfWidgetFormInputText();
+    $nstupref2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $nstupref2_widget->setLabel('Indicate the second student you would NOT like to work with');
     
-    $nstupref3_widget = new sfWidgetFormInputText();
+    $nstupref3_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $nstupref3_widget->setLabel('Indicate the third student you would NOT like to work with');
     
-    $nstupref4_widget = new sfWidgetFormInputText();
+    $nstupref4_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $nstupref4_widget->setLabel('Indicate the fourth student you would NOT like to work with');
     
-    $nstupref5_widget = new sfWidgetFormInputText();
+    $nstupref5_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $nstupref5_widget->setLabel('Indicate the fifth student you would NOT like to work with');
     
     $proj_just1_widget = new sfWidgetFormTextarea();
@@ -110,10 +124,15 @@ class StudentUserForm extends BaseStudentUserForm
       'major_ids' => $majors_widget,
       'gpa' => $gpa_widget,
       'proj_pref1' => $proj1_widget,
+      'proj_just1' => $proj_just1_widget,
       'proj_pref2' => $proj2_widget,
+      'proj_just2' => $proj_just2_widget,
       'proj_pref3' => $proj3_widget,
+      'proj_just3' => $proj_just3_widget,
       'proj_pref4' => $proj4_widget,
+      'proj_just4' => $proj_just4_widget,
       'proj_pref5' => $proj5_widget,
+      'proj_just5' => $proj_just5_widget,
       'skill_set_ids' => $skills_widget,
       'y_stu_pref1' => $ystupref1_widget,
       'y_stu_pref2' => $ystupref2_widget,
@@ -125,11 +144,6 @@ class StudentUserForm extends BaseStudentUserForm
       'n_stu_pref3' => $nstupref3_widget,
       'n_stu_pref4' => $nstupref4_widget,
       'n_stu_pref5' => $nstupref5_widget,
-      'proj_just1' => $proj_just1_widget,
-      'proj_just2' => $proj_just2_widget,
-      'proj_just3' => $proj_just3_widget,
-      'proj_just4' => $proj_just4_widget,
-      'proj_just5' => $proj_just5_widget,
     ));
     
     $this->widgetSchema->setNameFormat('student_user[%s]');

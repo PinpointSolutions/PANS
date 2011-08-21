@@ -16,4 +16,18 @@ class StudentUser extends BaseStudentUser
   {
     return parent::save($conn);
   }
+  
+  /* 
+   * Override the default guesses and displays the student name by first 
+   * and last name.
+   */
+  public function __toString()
+  {
+    try
+    {
+      return (string) $this->get('first_name') . ' ' . (string) $this->get('last_name');
+    } catch (Exception $e) {}
+    
+    return sprintf('Error, see StudentUser.class.php for "%s"', $this->getTable()->getComponentName());
+  }
 }
