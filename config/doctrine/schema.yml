@@ -384,12 +384,21 @@ StudentUser:
       type: one
       foreignType: many
       foreign: id
-      foreignAlias: projPrefs
-    #Project:
-    #  onDelete: CASCADE
-    #  local: proj_pref2
-    #  type: one
-    #  foreignType: many
-    #  foreign: id
-    #  foreignAlias: projPref2
-      
+    StudentUser:
+      onDelete: CASCADE
+      local: y_stu_pref1
+      type: one
+      foreignType: many
+      foreign: snum
+    Major:
+      onDelete: CASCADE
+      local: major_ids
+      type: many
+      foreignType: many
+      foreign: id
+    SkillSet:
+      onDelete: CASCADE
+      local: skill_set_ids
+      type: many
+      foreignType: many
+      foreign: id

@@ -12,5 +12,16 @@
  */
 class SkillSet extends BaseSkillSet
 {
-
+  /* 
+   * Override the default guesses and displays the full skillset name
+   */
+  public function __toString()
+  {
+    try
+    {
+      return (string) $this->get('area');
+    } catch (Exception $e) {}
+    
+    return sprintf('Error, see Major.class.php for "%s"', $this->getTable()->getComponentName());
+  }
 }
