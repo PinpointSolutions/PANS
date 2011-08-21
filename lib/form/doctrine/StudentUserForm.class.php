@@ -12,13 +12,16 @@ class StudentUserForm extends BaseStudentUserForm
 {
   public function configure()
   {	
+    parent::configure();
+  
+    // Prevent user from updating the timestamp fields
     unset(
       $this['created_at'],
       $this['updated_at'],
       $this['form_completed']
     );
   
-    $snum_widget = new sfWidgetFormInputHidden();
+    $snum_widget = new sfWidgetFormInputText();
     $snum_widget->setLabel('Student Number');
     
     $first_name_widget = new sfWidgetFormInputText();
@@ -129,10 +132,8 @@ class StudentUserForm extends BaseStudentUserForm
       'proj_just5' => $proj_just5_widget,
     ));
     
-    
     $this->widgetSchema->setNameFormat('student_user[%s]');
-
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
+    $this->setupInheritance();
   }  
 }
