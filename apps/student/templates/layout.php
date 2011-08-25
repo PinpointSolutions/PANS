@@ -21,7 +21,7 @@
           <div class="alignleft">
             Student View: 
               <?php echo link_to('Available Projects', 'project/index') ?>
-            | <?php echo link_to('Your Nomination Form', 'project/index') ?>
+            | <?php echo link_to('Your Nomination Form', 'student/new') ?>
           </div>
           <div class="alignright">
             Welcome, <?php echo $sf_user ?>.

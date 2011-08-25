@@ -10,15 +10,23 @@
  */
 class projectActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
+  /**
+    * Displays the projects in a list view
+    */
   public function executeIndex(sfWebRequest $request)
   {
+    $this->stuff = "stuff";
     $this->projects = Doctrine_Core::getTable('Project')
       ->createQuery('a')
       ->execute();
+  }
+  
+  /**
+   * Displays one project
+   */
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->project = Doctrine_Core::getTable('Project')->find(array($request->getParameter('id')));
+    $this->forward404Unless($this->project); 
   }
 }
