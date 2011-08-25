@@ -13,4 +13,4 @@
   </div>
 <?php endforeach; ?>
 
-<div class="action"><a href="<?php echo "/student" ?>">Nomination Form</a></div>
+<div class="action"><?php echo link_to('Nomination Form', 'student/index') ?></div>

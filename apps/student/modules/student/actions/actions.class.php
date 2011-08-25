@@ -12,9 +12,15 @@ class studentActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->student_users = Doctrine_Core::getTable('StudentUser')
+    /* $this->student_users = Doctrine_Core::getTable('StudentUser')
       ->createQuery('a')
       ->execute();
+      */
+    $this->student_users = Doctrine_Core::getTable('StudentUser')
+                           ->createQuery('student_users')
+                           ->where('student_users.snum = ?', '11111')
+                           ->execute();
+    $this->forward404Unless($this->student_users);
   }
 
   public function executeShow(sfWebRequest $request)
