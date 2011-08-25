@@ -1,0 +1,1 @@
+<h1><?php echo $project->getTitle() ?></h1>

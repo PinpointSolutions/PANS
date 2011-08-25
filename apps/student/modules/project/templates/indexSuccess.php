@@ -1,4 +1,4 @@
-<h1>Available Projects</h1>
+<h1>Available Projects <?php echo $stuff ?></h1>
 
 <?php foreach ($projects as $project): ?>
   <div class="project">
