@@ -26,7 +26,7 @@ class projectActions extends sfActions
    */
   public function executeShow(sfWebRequest $request)
   {
-    /*$this->project = Doctrine_Core::getTable('Project')->find(array($request->getParameter('snum')));
-    $this->forward404Unless($this->student_user); */
+    $this->project = Doctrine_Core::getTable('Project')->find(array($request->getParameter('id')));
+    $this->forward404Unless($this->project); 
   }
 }
