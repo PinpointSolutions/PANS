@@ -39,7 +39,11 @@
   <tbody>
     <?php foreach ($student_users as $student_user): ?>
     <tr>
-      <td><a href="<?php echo url_for('student/show') ?>"><?php echo $student_user->getSnum() ?></a></td>
+      <?php if ($admin == true) { ?>
+        <td><a href="<?php echo url_for('student/show?snum=') . $student_user->getSnum() ?>"><?php echo $student_user->getSnum() ?></a></td>
+      <?php } else { ?>
+        <td><a href="<?php echo url_for('student/show') ?>"><?php echo $student_user->getSnum() ?></a></td>
+      <?php } ?>
       <td><?php echo $student_user->getFirstName() ?></td>
       <td><?php echo $student_user->getLastName() ?></td>
       <?php /*
@@ -75,5 +79,5 @@
   </tbody>
 </table>
 
-<div class="action"><a href="<?php echo url_for('student/edit') ?>">Add New Student</a></div>
+<div class="action"><a href="<?php echo url_for('student/new') ?>">Add New Student</a></div>
 <div class="action"><a href="<?php echo "#" ?>">Import Students from File</a></div>

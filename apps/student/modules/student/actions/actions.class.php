@@ -35,7 +35,8 @@ class studentActions extends sfActions
   {
     $this->admin = $this->getUser()->isSuperAdmin();
     if ($this->admin == true) {
-      $this->executeIndex($request);
+      $this->student_user = Doctrine_Core::getTable('StudentUser')
+                            ->find(array($request->getParameter('snum')));
     } else {    
       $this->username = $this->getUser()->getUsername();
       $this->student_user = Doctrine_Core::getTable('StudentUser')
@@ -104,7 +105,7 @@ class studentActions extends sfActions
     {
       $student_user = $form->save();
 
-      $this->redirect('student/edit?snum='.$student_user->getSnum());
+      $this->redirect('student/show');
     }
   }
 }
