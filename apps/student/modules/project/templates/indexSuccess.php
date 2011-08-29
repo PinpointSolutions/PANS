@@ -13,4 +13,4 @@
   </div>
 <?php endforeach; ?>
 
-<div class="action"><?php echo link_to('Nomination Form', 'student/index') ?></div>
+<div class="action"><?php echo link_to('Nomination Form', 'student/new') ?></div>
