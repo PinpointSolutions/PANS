@@ -3,7 +3,7 @@
 <?php foreach ($projects as $project): ?>
   <div class="project">
     <div class="projectTitle">
-    <a href="<?php echo url_for('project/show?id=' . $project->getId()) ?>" target="_blank">
+    <a href="<?php echo url_for('project/show?id=' . $project->getId()) ?>" <?php /* target="_blank" */ ?> >
     <?php echo $project->getProjNum() ?>. <?php echo $project->getTitle() ?></a>
     </div>
     <div class="projectOrganisation"><?php echo $project->getOrganisation() ?></div>
