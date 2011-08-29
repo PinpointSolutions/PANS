@@ -22,11 +22,14 @@ class studentActions extends sfActions
       ->createQuery('a')
       ->execute();
     } else {    
+      $this->redirect('student/show');
+      /* 
       $this->username = $this->getUser()->getUsername();
       $this->student_users = Doctrine_Core::getTable('StudentUser')
                              ->createQuery('student_users')
                              ->where('student_users.snum = ?', $this->username)
                              ->execute();
+      */
     }
     $this->forward404Unless($this->student_users);
   }
