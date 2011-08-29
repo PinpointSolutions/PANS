@@ -12,7 +12,7 @@
   <body> <!-- Three row style, with fixed-width content body -->
     <div id="wrapper">
       <div id="header">
-        <a href="<?php echo url_for('homepage') ?>"><div id="logo"></div></a>
+        <a href="<?php echo url_for('@homepage') ?>"><div id="logo"></div></a>
         <div id="title">Project Allocation and Nomination System</div>
       </div>
       

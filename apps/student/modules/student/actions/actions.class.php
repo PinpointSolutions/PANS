@@ -62,16 +62,18 @@ class studentActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
+    $this->student_user = null;
     $this->admin = $this->getUser()->isSuperAdmin();
     if ($this->admin == true) {
       $this->student_user = Doctrine_Core::getTable('StudentUser')
-                            ->find(array($request->getGetParameters('snum')));
+                            ->find(array($request->getParameter('snum')));
     } else {
-    
+      $this->username = $this->getUser()->getUsername();
+      $this->student_user = Doctrine_Core::getTable('StudentUser')
+                            ->find(array($this->username));
     }
-    
-    $this->forward404Unless($student_user = Doctrine_Core::getTable('StudentUser')->find(array($request->getParameter('snum'))), sprintf('Object student_user does not exist (%s).', $request->getParameter('snum')));
-    $this->form = new StudentUserForm($student_user);
+    $this->form = new StudentUserForm($this->student_user);
+    $this->forward404Unless($this->student_user);
   }
 
   public function executeUpdate(sfWebRequest $request)
