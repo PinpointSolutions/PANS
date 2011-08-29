@@ -15,7 +15,6 @@ class projectActions extends sfActions
     */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->stuff = "stuff";
     $this->projects = Doctrine_Core::getTable('Project')
       ->createQuery('a')
       ->execute();
