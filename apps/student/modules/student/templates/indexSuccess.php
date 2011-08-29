@@ -39,7 +39,7 @@
   <tbody>
     <?php foreach ($student_users as $student_user): ?>
     <tr>
-      <td><a href="<?php echo url_for('student/show?snum='.$student_user->getSnum()) ?>"><?php echo $student_user->getSnum() ?></a></td>
+      <td><a href="<?php echo url_for('student/show') ?>"><?php echo $student_user->getSnum() ?></a></td>
       <td><?php echo $student_user->getFirstName() ?></td>
       <td><?php echo $student_user->getLastName() ?></td>
       <?php /*

@@ -33,8 +33,9 @@ class studentActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
+    $this->username = $this->getUser()->getUsername();
     $this->student_user = Doctrine_Core::getTable('StudentUser')
-                          ->find(array($request->getParameter('snum')));
+                          ->find(array($this->username));
     $this->forward404Unless($this->student_user);
   }
 
