@@ -22,20 +22,29 @@ class studentActions extends sfActions
       ->createQuery('a')
       ->execute();
     } else {    
+      $this->redirect('student/show');
+      /* 
       $this->username = $this->getUser()->getUsername();
       $this->student_users = Doctrine_Core::getTable('StudentUser')
                              ->createQuery('student_users')
                              ->where('student_users.snum = ?', $this->username)
                              ->execute();
+      */
     }
     $this->forward404Unless($this->student_users);
   }
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->username = $this->getUser()->getUsername();
-    $this->student_user = Doctrine_Core::getTable('StudentUser')
-                          ->find(array($this->username));
+    $this->admin = $this->getUser()->isSuperAdmin();
+    if ($this->admin == true) {
+      $this->student_user = Doctrine_Core::getTable('StudentUser')
+                            ->find(array($request->getParameter('snum')));
+    } else {    
+      $this->username = $this->getUser()->getUsername();
+      $this->student_user = Doctrine_Core::getTable('StudentUser')
+                            ->find(array($this->username));
+    }
     $this->forward404Unless($this->student_user);
   }
 
@@ -57,8 +66,18 @@ class studentActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->forward404Unless($student_user = Doctrine_Core::getTable('StudentUser')->find(array($request->getParameter('snum'))), sprintf('Object student_user does not exist (%s).', $request->getParameter('snum')));
-    $this->form = new StudentUserForm($student_user);
+    $this->student_user = null;
+    $this->admin = $this->getUser()->isSuperAdmin();
+    if ($this->admin == true) {
+      $this->student_user = Doctrine_Core::getTable('StudentUser')
+                            ->find(array($request->getParameter('snum')));
+    } else {
+      $this->username = $this->getUser()->getUsername();
+      $this->student_user = Doctrine_Core::getTable('StudentUser')
+                            ->find(array($this->username));
+    }
+    $this->form = new StudentUserForm($this->student_user);
+    $this->forward404Unless($this->student_user);
   }
 
   public function executeUpdate(sfWebRequest $request)
@@ -89,7 +108,7 @@ class studentActions extends sfActions
     {
       $student_user = $form->save();
 
-      $this->redirect('student/edit?snum='.$student_user->getSnum());
+      $this->redirect('student/show');
     }
   }
 }

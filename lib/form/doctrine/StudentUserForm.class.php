@@ -16,11 +16,12 @@ class StudentUserForm extends BaseStudentUserForm
     unset(
       $this['created_at'],
       $this['updated_at'],
-      $this['form_completed']
+      $this['form_completed'],
+      $this['snum']
     );
   
-    $snum_widget = new sfWidgetFormInputHidden();
-    $snum_widget->setLabel('Student Number');
+    /* $snum_widget = new sfWidgetFormInputHidden();
+    $snum_widget->setLabel('Student Number'); */
 	
     $first_name_widget = new sfWidgetFormInputText();
     $first_name_widget->setLabel('First Name');
@@ -115,7 +116,7 @@ class StudentUserForm extends BaseStudentUserForm
     $proj_just5_widget->setLabel('Provide a justification for your fifth project preference');
     
     $this->setWidgets(array(
-      'snum' => $snum_widget,
+      /* 'snum' => $snum_widget, */
       'first_name' => $first_name_widget,
       'last_name' => $last_name_widget,
       'pass_fail_pm' => $pass_fail_widget,
