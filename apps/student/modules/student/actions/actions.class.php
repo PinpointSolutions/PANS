@@ -12,20 +12,29 @@ class studentActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    /* $this->student_users = Doctrine_Core::getTable('StudentUser')
+    /* TODO: refactor this code to its own admin module */
+    /* Check if the user is an admin user. If it's an admin user, the system 
+       shows every student in one page. Otherwise, only show one student. 
+       TODO: Show the nomination form status to the student user. */
+    $this->admin = $this->getUser()->isSuperAdmin();
+    if ($this->admin == true) {
+      $this->student_users = Doctrine_Core::getTable('StudentUser')
       ->createQuery('a')
       ->execute();
-      */
-    $this->student_users = Doctrine_Core::getTable('StudentUser')
-                           ->createQuery('student_users')
-                           ->where('student_users.snum = ?', '11111')
-                           ->execute();
+    } else {    
+      $this->username = $this->getUser()->getUsername();
+      $this->student_users = Doctrine_Core::getTable('StudentUser')
+                             ->createQuery('student_users')
+                             ->where('student_users.snum = ?', $this->username)
+                             ->execute();
+    }
     $this->forward404Unless($this->student_users);
   }
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->student_user = Doctrine_Core::getTable('StudentUser')->find(array($request->getParameter('snum')));
+    $this->student_user = Doctrine_Core::getTable('StudentUser')
+                          ->find(array($request->getParameter('snum')));
     $this->forward404Unless($this->student_user);
   }
 
