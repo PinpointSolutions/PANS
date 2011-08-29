@@ -12,11 +12,6 @@ class StudentUserForm extends BaseStudentUserForm
 {
   public function configure()
   {	
-    // TODO: Maue sure the user can only update their own form.
-    // Possible solution:
-    // http://forum.symfony-project.org/viewtopic.php?f=3&t=7187
-    parent::configure();
-  
     // Prevent user from updating the timestamp fields
     unset(
       $this['created_at'],
