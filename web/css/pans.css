@@ -25,6 +25,12 @@ a {
   /* background-color: #C02424; */
 }
 
+#adminHeader {
+	height: 80px;
+	width: 930px;
+	/* background-color: #CO2424; */
+}
+
 #logo {
   position: relative;
   float: left;
