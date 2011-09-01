@@ -5,12 +5,12 @@
     <?php include_http_metas() ?>
     <?php include_metas() ?>
     <link rel="shortcut icon" href="/favicon.ico" />
-	<?php use_stylesheet('pans.css') ?>
+	<?php use_stylesheet('admin.css') ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
   </head>
   
-  <body> <!-- Three row style, with fixed-width content body -->
+  <body> <!-- This layout.php is for the Admin View. -->
     <div id="wrapper">
       <div id="header">
         <a href="<?php echo url_for('@homepage') ?>"><div id="logo"></div></a>
@@ -24,8 +24,7 @@
             | <?php echo link_to('Your Nomination Form', 'student/new') ?>
           </div>
           <div class="alignright">
-            Welcome, tits.
-            | 
+            Welcome, Test.
           </div>
       </div>
       
