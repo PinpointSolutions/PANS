@@ -22,12 +22,12 @@ project:
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: project, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules
 default_index:
-  url:   /:module
+  url:   /:project
   param: { action: index }
 
 default:

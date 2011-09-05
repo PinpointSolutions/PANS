@@ -19,12 +19,13 @@
       
       <div id="navbar">
           <div class="alignleft">
-            Student View: 
-              <?php echo link_to('Available Projects', 'project/index') ?>
-            | <?php echo link_to('Your Nomination Form', 'student/new') ?>
+            Admin View: 
+              <?php echo link_to('View Projects', 'project/index') ?> |
+              <?php echo link_to('View Students', 'project/index') ?>
+              (links currently do not work!)
           </div>
           <div class="alignright">
-            Welcome, Test.
+            Welcome, Admin User.
           </div>
       </div>
       

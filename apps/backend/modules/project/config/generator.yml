@@ -12,9 +12,11 @@ generator:
     actions_base_class:    sfActions
 
     config:
+      fields:  ~            
       actions: ~
-      fields:  ~
-      list:    ~
+      list:
+        title:   Project List
+        display: [title, organisation]
       filter:  ~
       form:    ~
       edit:    ~
