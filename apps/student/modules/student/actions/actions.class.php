@@ -53,6 +53,21 @@ class studentActions extends sfActions
     $this->form = new StudentUserForm();
   }
 
+  /* TODO: TESTING for coding */
+  public function executeTest(sfWebRequest $request)
+  {
+    $conn = Doctrine_Manager::getInstance();
+    $student_user = Doctrine_Core::getTable('StudentUser');
+    $this->collection = new Doctrine_Collection('StudentUser');
+    $user = new StudentUser();
+    $user->first_name = 'Mrraa';
+    $user->snum = 9876543;
+    $this->collection->add($user);
+    $this->collection->save();
+    $this->msg = $user;
+    // $msg = $conn->insert()
+  }
+  
   public function executeCreate(sfWebRequest $request)
   {
     $this->forward404Unless($request->isMethod(sfRequest::POST));
