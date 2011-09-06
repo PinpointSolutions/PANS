@@ -14,7 +14,9 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:    ~
+      list:
+        title:   Student List
+        display: [snum, first_name, last_name, form_completed]
       filter:  ~
       form:    ~
       edit:    ~
