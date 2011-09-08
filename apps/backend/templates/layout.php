@@ -21,8 +21,7 @@
           <div class="alignleft">
             Admin View: 
               <?php echo link_to('View Projects', 'project/index') ?> |
-              <?php echo link_to('View Students', 'project/index') ?>
-              (links currently do not work!)
+              <?php echo link_to('View Students', 'student/index') ?>
           </div>
           <div class="alignright">
             Welcome, Admin User.
