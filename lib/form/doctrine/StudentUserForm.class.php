@@ -36,6 +36,13 @@ class StudentUserForm extends BaseStudentUserForm
     // Also, Skill Sets
     // Possible solution:
     // http://www.mail-archive.com/symfony-users@googlegroups.com/msg11237.html
+    $degrees_widget = new sfWidgetFormDoctrineChoice(
+      array(
+        'multiple' => false,
+        'expanded' => true,
+        'model' => $this->getRelatedModelName('Degree')));
+    $degrees_widget->setLabel('Indicate your Degree/s');	
+    
     $majors_widget = new sfWidgetFormDoctrineChoice(
       array(
         'multiple' => true,
@@ -86,7 +93,7 @@ class StudentUserForm extends BaseStudentUserForm
     $ystupref5_widget->setLabel(' ');	
     
     $nstupref1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
-    $nstupref1_widget->setLabel('Indicate five students that would NOT like to work with');	
+    $nstupref1_widget->setLabel('Indicate five students that you would NOT like to work with');	
     
     $nstupref2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $nstupref2_widget->setLabel(' ');
@@ -120,6 +127,7 @@ class StudentUserForm extends BaseStudentUserForm
       'first_name' => $first_name_widget,
       'last_name' => $last_name_widget,
       'pass_fail_pm' => $pass_fail_widget,
+      'degree_ids' => $degrees_widget,
       'major_ids' => $majors_widget,
       'gpa' => $gpa_widget,
       'proj_pref1' => $proj1_widget,

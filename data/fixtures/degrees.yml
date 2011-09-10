@@ -1,0 +1,10 @@
+Degree:
+  informationTechnology:
+    degree: Information Technology
+    is_visible: true
+  multimedia:
+    degree: Multimedia
+    is_visible: true
+  softwareEngineering:
+    degree: Software Engineering
+    is_visible: true
