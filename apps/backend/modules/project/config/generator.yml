@@ -14,10 +14,13 @@ generator:
     config:
       fields:  ~            
       actions: ~
+      # List of 
       list:
         title:   Project List
-        display: [title, organisation]
-      filter:  ~
+        display: [=title, organisation]
+      # Stops Symfony from displaying the filter in the admin view
+      filter:
+        class: false
       form:    ~
       edit:    ~
       new:     ~

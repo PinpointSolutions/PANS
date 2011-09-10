@@ -1,5 +1,5 @@
 <!DOCTYPE html> <!-- Leave it as this so it is HTML5 compatible. -->
-<html lang="en">
+<html>
   <head>
     <?php include_http_metas() ?>
     <?php include_metas() ?>
