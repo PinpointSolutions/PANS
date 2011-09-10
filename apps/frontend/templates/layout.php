@@ -24,7 +24,7 @@
 
           <?php if (!$sf_user->isSuperAdmin()): ?>
             <div class="alignleft action">
-               <?php echo link_to('Project Nomination Form', 'student/index') ?>
+               <?php echo link_to('Project Nomination Form', 'student/edit') ?>
             </div>
           <?php endif; ?>
           

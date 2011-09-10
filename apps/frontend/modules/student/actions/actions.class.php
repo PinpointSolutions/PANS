@@ -80,17 +80,6 @@ class studentActions extends sfActions
     $this->collection->save();
     $this->msg = $this->collection;
   }
-  
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-    $this->form = new StudentUserForm();
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
-  }
 
   public function executeEdit(sfWebRequest $request)
   {
