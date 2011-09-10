@@ -17,7 +17,12 @@ generator:
       list:
         title:   Student List
         display: [snum, first_name, last_name, form_completed]
-      filter:  ~
+        actions:
+          addStudentsFromFile:
+            label: Add Students From File
+      # Stops Symfony from displaying the filter in the admin view
+      filter:
+        class: false
       form:    ~
       edit:    ~
       new:     ~
