@@ -12,5 +12,4 @@
  */
 class sfGuardRememberKey extends PluginsfGuardRememberKey
 {
-
 }

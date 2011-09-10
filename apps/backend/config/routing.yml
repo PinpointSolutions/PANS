@@ -33,7 +33,7 @@ default_index:
 default:
   url:   /:module/:action/*
 
-  sf_guard_signin:
+sf_guard_signin:
   url:   /login
   param: { module: sfGuardAuth, action: signin }
  

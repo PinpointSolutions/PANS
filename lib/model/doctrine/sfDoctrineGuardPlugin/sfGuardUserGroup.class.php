@@ -12,5 +12,4 @@
  */
 class sfGuardUserGroup extends PluginsfGuardUserGroup
 {
-
 }

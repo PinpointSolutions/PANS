@@ -12,5 +12,4 @@
  */
 class sfGuardForgotPassword extends PluginsfGuardForgotPassword
 {
-
 }

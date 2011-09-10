@@ -9,5 +9,9 @@ data/sql
 lib/filter/doctrine/base/Base*
 lib/form/doctrine/base/Base*
 lib/model/doctrine/base/Base*
+lib/filter/doctrine/sfDoctrineGuardPlugin/base/*
+lib/form/doctrine/sfDoctrineGuardPlugin/base/*
+lib/model/doctrine/sfDoctrineGuardPlugin/base/*
 lib/model/om/*
 lib/model/map/*
+*.swp

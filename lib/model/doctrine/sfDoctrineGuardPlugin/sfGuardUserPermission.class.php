@@ -12,5 +12,4 @@
  */
 class sfGuardUserPermission extends PluginsfGuardUserPermission
 {
-
 }
