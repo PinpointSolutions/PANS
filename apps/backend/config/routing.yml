@@ -1,7 +1,7 @@
-studentuser:
+student_user:
   class: sfDoctrineRouteCollection
   options:
-    model:                studentuser
+    model:                StudentUser
     module:               student
     prefix_path:          /student
     column:               snum
@@ -10,7 +10,7 @@ studentuser:
 project:
   class: sfDoctrineRouteCollection
   options:
-    model:                project
+    model:                Project
     module:               project
     prefix_path:          /project
     column:               id
@@ -22,7 +22,7 @@ project:
 # default rules
 homepage:
   url:   /
-  param: { module: project, action: index }
+  param: { module: student, action: index }
 
 # generic rules
 # please, remove them by adding more specific rules

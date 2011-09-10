@@ -7,7 +7,7 @@ generator:
     with_show:             false
     singular:              ~
     plural:                ~
-    route_prefix:          studentuser
+    route_prefix:          student_user
     with_doctrine_route:   true
     actions_base_class:    sfActions
 
@@ -18,8 +18,9 @@ generator:
         title:   Student List
         display: [snum, first_name, last_name, form_completed]
         actions:
-          addStudentsFromFile:
+          studentsFromFile:
             label: Add Students From File
+          _new: ~
       # Stops Symfony from displaying the filter in the admin view
       filter:
         class: false
