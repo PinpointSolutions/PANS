@@ -17,7 +17,8 @@ generator:
       list:
         title:   Project List
         display: [title, organisation]
-      filter:  ~
+      filter:
+        class: false
       form:    ~
       edit:    ~
       new:     ~
