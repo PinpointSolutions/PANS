@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <title>Project Allocation Admin Interface</title>
     <?php include_http_metas() ?>
     <?php include_metas() ?>
+    <title>[Admin] Project Allocation and Nomination System</title>
     <link rel="shortcut icon" href="/favicon.ico" />
-	<?php use_stylesheet('admin.css') ?>
     <?php include_stylesheets() ?>
     <?php include_javascripts() ?>
   </head>
@@ -18,6 +17,7 @@
       </div>
       
       <div id="navbar">
+        <?php if ($sf_user->isAuthenticated()): ?>
           <div class="alignleft">
             Admin View: 
               <?php echo link_to('View Projects', 'project/index') ?> |
@@ -28,6 +28,7 @@
             <li><?php echo link_to('Groups', '@sf_guard_group') ?></li>
             <li><?php echo link_to('Permissions', '@sf_guard_permission') ?></li>
           </div>
+        <?php endif; ?>
       </div>
       
       <div id="content">

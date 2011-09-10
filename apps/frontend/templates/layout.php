@@ -1,4 +1,4 @@
-<!DOCTYPE html> <!-- Leave it as this so it is HTML5 compatible. -->
+<!DOCTYPE html>
 <html>
   <head>
     <?php include_http_metas() ?>
