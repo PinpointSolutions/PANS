@@ -78,6 +78,3 @@
     <?php endforeach; ?>
   </tbody>
 </table>
-
-<div class="action"><a href="<?php echo url_for('student/new') ?>">Add New Student</a></div>
-<div class="action"><a href="<?php echo "#" ?>">Import Students from File</a></div>

@@ -12,5 +12,3 @@
     <div class="projectDescription"><?php echo $project->getDescription() ?></div>
   </div>
 <?php endforeach; ?>
-
-<div class="action"><?php echo link_to('Nomination Form', 'student/new') ?></div>

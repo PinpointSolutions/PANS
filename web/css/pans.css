@@ -100,17 +100,14 @@ tr:hover { /* highlight */
 }
 
 .action {
-  padding: 20px 15px;
+  padding: 0px 50px 20px 0px;
   display: inline;
   position: relative;
   float: left;
 }
 
-.action a {
-  padding: 5px 10px;
-  border: 1px grey solid;
-  background-color: #EEEEEE;
-  border-radius: 10px;
+.firstLeft {
+  margin-left: 200px;
 }
 
 .actionButton {
