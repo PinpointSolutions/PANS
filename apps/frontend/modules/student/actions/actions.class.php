@@ -83,13 +83,7 @@ class studentActions extends sfActions
   
   public function executeCreate(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
-
-    $this->form = new StudentUserForm();
-
-    $this->processForm($request, $this->form);
-
-    $this->setTemplate('new');
+    throw new sfError404Exception();
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -121,12 +115,7 @@ class studentActions extends sfActions
 
   public function executeDelete(sfWebRequest $request)
   {
-    $request->checkCSRFProtection();
-
-    $this->forward404Unless($student_user = Doctrine_Core::getTable('StudentUser')->find(array($request->getParameter('snum'))), sprintf('Object student_user does not exist (%s).', $request->getParameter('snum')));
-    $student_user->delete();
-
-    $this->redirect('student/index');
+    throw new sfError404Exception();
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

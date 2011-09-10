@@ -18,14 +18,21 @@
       
       <div id="navbar">
         <?php if ($sf_user->isAuthenticated()): ?>
-          <div class="alignleft">
-            Student View: 
+          <div class="alignleft action firstLeft">
               <?php echo link_to('Available Projects', 'project/index') ?>
-            | <?php echo link_to('Your Nomination Form', 'student/new') ?>
+          </div>
+
+          <?php if (!$sf_user->isSuperAdmin()): ?>
+            <div class="alignleft action">
+               <?php echo link_to('Project Nomination Form', 'student/edit') ?>
+            </div>
+          <?php endif; ?>
+          
+          <div class="alignleft action">
+            <?php echo link_to('Logout', '@sf_guard_signout') ?>
           </div>
           <div class="alignright">
-            Welcome, <?php echo $sf_user ?>.
-            | <?php echo link_to('Logout', '@sf_guard_signout') ?>
+            <?php echo $sf_user->getName() ?>
           </div>
         <?php endif; ?>
       </div>
