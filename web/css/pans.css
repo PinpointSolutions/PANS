@@ -78,11 +78,7 @@ th, td {
   padding: 5px 5px;
   min-width: 160px;
 }
-/*
-tr:hover { /* highlight */
-  background-color: #DDD; 
-}
-*/
+
 #a { /* alternate */
   width: 95%;
   padding: 5px
@@ -133,6 +129,14 @@ tr:hover { /* highlight */
 
 .form {
   font-size: 14px;
+}
+
+.flash_notice {
+  padding: 10px 50px;
+  width: 820px;
+  margin: 0 auto 20px auto;
+  background: #FFEEAA;
+  border: 1px solid #DDCC99;
 }
 
 /**************************************************************/
