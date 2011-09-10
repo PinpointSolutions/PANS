@@ -19,7 +19,7 @@ generator:
         display: [snum, first_name, last_name, form_completed]
         actions:
           studentsFromFile:
-            label: Add Students From File
+            label: Add students from file
           _new: ~
       # Stops Symfony from displaying the filter in the admin view
       filter:

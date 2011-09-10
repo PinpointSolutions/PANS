@@ -22,6 +22,30 @@ Major:
       primary: false
       notnull: true
       autoincrement: false
+Degree:
+  connection: doctrine
+  tableName: degrees
+  columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      primary: true
+      autoincrement: true
+    degree:
+      type: string(32)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
+    is_visible:
+      type: boolean
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: true
+      autoincrement: false
 ProjectAllocation:
   connection: doctrine
   tableName: project_allocations
@@ -215,6 +239,13 @@ StudentUser:
       primary: false
       notnull: false
       autoincrement: false
+    degree_ids:
+      type: string(32)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     gpa:
       type: float(18)
       fixed: false
@@ -390,6 +421,12 @@ StudentUser:
       type: one
       foreignType: many
       foreign: snum
+    Degree:
+      onDelete: CASCADE
+      local: degree_ids
+      type: many
+      foreignType: many
+      foreign: id
     Major:
       onDelete: CASCADE
       local: major_ids
