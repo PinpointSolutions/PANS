@@ -13,11 +13,14 @@ generator:
 
     config:
       fields:  ~            
-      actions: ~
       # List of 
       list:
         title:   Project List
         display: [=title, organisation]
+        actions:
+          studentsToProjects:
+            label: Sort students into projects
+          _new: ~
       # Stops Symfony from displaying the filter in the admin view
       filter:
         class: false

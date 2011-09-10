@@ -13,4 +13,9 @@ require_once dirname(__FILE__).'/../lib/projectGeneratorHelper.class.php';
  */
 class projectActions extends autoProjectActions
 {
+  public function executeListStudentsToProjects(sfWebRequest $request)
+  {
+    $this->getUser()->setFlash('notice', 'Students have been sorted.');
+    $this->redirect('project/index');
+  }
 }
