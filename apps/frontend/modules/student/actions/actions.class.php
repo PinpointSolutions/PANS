@@ -91,8 +91,17 @@ class studentActions extends sfActions
     $this->username = $this->getUser()->getUsername();
     $this->student_user = Doctrine_Core::getTable('StudentUser')
                             ->find(array($this->username));
-    $this->form = new StudentUserForm($this->student_user);
+    $this->form = new StudentUserForm($this->student_user,
+       array('url' => $this->getController()->genUrl('article/ajax')));
     $this->forward404Unless($this->student_user);
+  }
+
+  /* For Autocompletion, we retrieve a list of names as JSON. */
+  public function executeAjax(sfWebRequest $request)
+  {
+    $this->getResponse()->setContentType('application/json');
+    $students = StudentUser::retrieveForSelect($request->getParameter('q'), $request->getParameter('limit'));
+    return $this->renderText(json_encode($students));
   }
 
   public function executeUpdate(sfWebRequest $request)

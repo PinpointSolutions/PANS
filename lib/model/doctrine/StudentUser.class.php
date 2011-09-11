@@ -16,6 +16,17 @@ class StudentUser extends BaseStudentUser
   {
     return parent::save($conn);
   }
+
+  /* Autocompletion selector.
+   * $q is the query, partially entered name.
+   * $limit is the maximum number of results we return.
+   */
+  static public function retrieveForSelect($q, $limit)
+  {
+    $criteria = new Criteria();
+    // $criteria = add(StudentUser)
+    return array(2222222 => 'Test Subject', 11111 => 'Mrraa');
+  }
   
   /* 
    * Override the default guesses and displays the student name by first 

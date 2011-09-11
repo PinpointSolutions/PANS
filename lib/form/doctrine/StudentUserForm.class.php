@@ -77,7 +77,13 @@ class StudentUserForm extends BaseStudentUserForm
     
     // TODO: Make sure students can't pick themselves.
     // Possible solution is to do the checking in PHP upon save.
-    $ystupref1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
+    $ystupref1_widget = new sfWidgetFormChoice(array(
+      'choices'           => array(),
+      'renderer_class'    => 'sfWidgetFormJQueryAutocompleter',
+      'renderer_options'  => array('url' => $this->getOption('url')),
+      'model'             => $this->getRelatedModelName('StudentUser')
+      ));
+    
     $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with');	
     
     $ystupref2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
