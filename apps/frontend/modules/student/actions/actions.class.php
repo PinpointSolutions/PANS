@@ -83,34 +83,35 @@ class studentActions extends sfActions
   
   public function executeCreate(sfWebRequest $request)
   {
-    throw new sfError404Exception();
+    $this->forward404();
   }
 
   public function executeEdit(sfWebRequest $request)
   {
-    $this->student_user = null;
-    $this->admin = $this->getUser()->isSuperAdmin();
-    if ($this->admin == true) {
-      $this->student_user = Doctrine_Core::getTable('StudentUser')
-                            ->find(array($request->getParameter('snum')));
-    } else {
-      $this->username = $this->getUser()->getUsername();
-      $this->student_user = Doctrine_Core::getTable('StudentUser')
+    $this->username = $this->getUser()->getUsername();
+    $this->student_user = Doctrine_Core::getTable('StudentUser')
                             ->find(array($this->username));
-    }
     $this->form = new StudentUserForm($this->student_user);
     $this->forward404Unless($this->student_user);
   }
 
   public function executeUpdate(sfWebRequest $request)
   {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($student_user = Doctrine_Core::getTable('StudentUser')->find(array($request->getParameter('snum'))), sprintf('Object student_user does not exist (%s).', $request->getParameter('snum')));
+    $this->username = $this->getUser()->getUsername();
+    
+    /* Check if the user is the correct one we're updating */
+    if ($request->getParameter('snum') != $this->username) {
+      $this->forward404('Oops. Your username doesn\'t match with your login.');
+    }
+    
+    $this->forward404Unless($request->isMethod(sfRequest::POST) 
+                         || $request->isMethod(sfRequest::PUT));
+    $student_user = Doctrine_Core::getTable('StudentUser')
+                                     ->find(array($this->username));
     $this->form = new StudentUserForm($student_user);
-
     $this->processForm($request, $this->form);
-
     $this->setTemplate('edit');
+    $this->redirect('student/edit');
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -124,8 +125,8 @@ class studentActions extends sfActions
     if ($form->isValid())
     {
       $student_user = $form->save();
-
-      $this->redirect('student/show');
+      $this->getUser()->setFlash('notice', 'Thanks!');
+      $this->redirect('student/edit');
     }
   }
 }
