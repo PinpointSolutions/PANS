@@ -79,6 +79,14 @@ th, td {
   min-width: 160px;
 }
 
+form table {
+  line-height: 18px;
+}
+
+form th {
+  vertical-align: top;
+}
+
 #a { /* alternate */
   width: 95%;
   padding: 5px

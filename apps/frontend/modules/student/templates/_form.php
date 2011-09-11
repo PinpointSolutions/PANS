@@ -7,6 +7,10 @@
 <?php endif; ?>
   <table>
     <tbody>
+      <tr>
+        <th>Student Number</th>
+        <td><?php echo $sf_user->getUsername(); ?></td>
+      </tr>
       <?php echo $form ?>
     </tbody>
   </table>
