@@ -139,6 +139,11 @@ form th {
   font-size: 14px;
 }
 
+.form textarea {
+  width: 450px;
+  height: 200px;
+}
+
 .flash_notice {
   padding: 10px 50px;
   width: 820px;

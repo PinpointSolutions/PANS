@@ -12,5 +12,8 @@
  */
 class Project extends BaseProject
 {
-
+  public function __toString()
+  {
+    return sprintf('%d. %s', $this->getProjNum(), $this->getTitle());
+  }
 }

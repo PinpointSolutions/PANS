@@ -77,7 +77,16 @@ class StudentUserForm extends BaseStudentUserForm
     
     // TODO: Make sure students can't pick themselves.
     // Possible solution is to do the checking in PHP upon save.
-    $ystupref1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
+    $ystupref1_widget = new sfWidgetFormChoice(array(
+      'choices'           => array(),
+      'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
+      'renderer_options'  => array('url'   => $this->getOption('url'),
+                                   'model' => $this->getRelatedModelName('StudentUser'))
+      ));
+
+    $js = $ystupref1_widget->getJavascripts();
+    $css = $ystupref1_widget->getStylesheets();
+    
     $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with');	
     
     $ystupref2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
@@ -111,16 +120,16 @@ class StudentUserForm extends BaseStudentUserForm
     $proj_just1_widget->setLabel('Please provide a justification.<br> Why should you be selected for this project?<br>You must provide one for your first preference.');
 
     $proj_just2_widget = new sfWidgetFormTextarea();
-    $proj_just2_widget->setLabel('Provide a justification for your second project preference');
+    $proj_just2_widget->setLabel('Please provide a justification.');
     
     $proj_just3_widget = new sfWidgetFormTextarea();
-    $proj_just3_widget->setLabel('Provide a justification for your third project preference');
+    $proj_just3_widget->setLabel('Please provide a justification.');
     
     $proj_just4_widget = new sfWidgetFormTextarea();
-    $proj_just4_widget->setLabel('Provide a justification for your fourth project preference');
+    $proj_just4_widget->setLabel('Please provide a justification.');
     
     $proj_just5_widget = new sfWidgetFormTextarea();
-    $proj_just5_widget->setLabel('Provide a justification for your fifth project preference');
+    $proj_just5_widget->setLabel('Please provide a justification.');
     
     $this->setWidgets(array(
       /* 'snum' => $snum_widget, */
@@ -129,6 +138,7 @@ class StudentUserForm extends BaseStudentUserForm
       'pass_fail_pm' => $pass_fail_widget,
       'degree_ids' => $degrees_widget,
       'major_ids' => $majors_widget,
+      'skill_set_ids' => $skills_widget,
       'gpa' => $gpa_widget,
       'proj_pref1' => $proj1_widget,
       'proj_just1' => $proj_just1_widget,
@@ -140,7 +150,6 @@ class StudentUserForm extends BaseStudentUserForm
       'proj_just4' => $proj_just4_widget,
       'proj_pref5' => $proj5_widget,
       'proj_just5' => $proj_just5_widget,
-      'skill_set_ids' => $skills_widget,
       'y_stu_pref1' => $ystupref1_widget,
       'y_stu_pref2' => $ystupref2_widget,
       'y_stu_pref3' => $ystupref3_widget,

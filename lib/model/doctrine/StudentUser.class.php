@@ -16,6 +16,25 @@ class StudentUser extends BaseStudentUser
   {
     return parent::save($conn);
   }
+
+  /* Autocompletion selector.
+   * $q is the query, partially entered name.
+   * $limit is the maximum number of results we return.
+   */
+  static public function retrieveForSelect($q, $limit)
+  {
+    $q = Doctrine_Query::create()
+          ->from('StudentUser')
+          ->andWhere('first_name like ?', '%'.$q.'%')
+          ->addOrderBy('first_name')
+          ->limit($limit);
+
+    $students = array();
+    foreach ($q->execute() as $student) {
+      $students[$student->getSnum()] = (string) $student;
+    }
+    return $students;
+  } 
   
   /* 
    * Override the default guesses and displays the student name by first 
