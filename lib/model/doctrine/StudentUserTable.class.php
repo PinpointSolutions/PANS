@@ -16,4 +16,13 @@ class StudentUserTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('StudentUser');
     }
+
+    /*
+     * Dummy function for JQuery Autucompletion to work
+     * Because everyone assumes the field to be ID. Bleh.
+     */
+    public static function findOneById($id)
+    {
+        return Doctrine_Core::getTable('StudentUser')->find(array($id));
+    }
 }
