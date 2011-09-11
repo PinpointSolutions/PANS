@@ -92,7 +92,7 @@ class studentActions extends sfActions
     $this->student_user = Doctrine_Core::getTable('StudentUser')
                             ->find(array($this->username));
     $this->form = new StudentUserForm($this->student_user,
-       array('url' => $this->getController()->genUrl('article/ajax')));
+       array('url' => $this->getController()->genUrl('student/ajax')));
     $this->forward404Unless($this->student_user);
   }
 

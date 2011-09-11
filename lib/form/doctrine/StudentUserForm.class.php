@@ -79,10 +79,13 @@ class StudentUserForm extends BaseStudentUserForm
     // Possible solution is to do the checking in PHP upon save.
     $ystupref1_widget = new sfWidgetFormChoice(array(
       'choices'           => array(),
-      'renderer_class'    => 'sfWidgetFormJQueryAutocompleter',
-      'renderer_options'  => array('url' => $this->getOption('url')),
-      'model'             => $this->getRelatedModelName('StudentUser')
+      'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
+      'renderer_options'  => array('url'   => $this->getOption('url'),
+                                   'model' => $this->getRelatedModelName('StudentUser'))
       ));
+
+    $js = $ystupref1_widget->getJavascripts();
+    $css = $ystupref1_widget->getStylesheets();
     
     $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with');	
     

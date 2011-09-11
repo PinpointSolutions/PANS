@@ -23,10 +23,18 @@ class StudentUser extends BaseStudentUser
    */
   static public function retrieveForSelect($q, $limit)
   {
-    $criteria = new Criteria();
-    // $criteria = add(StudentUser)
-    return array(2222222 => 'Test Subject', 11111 => 'Mrraa');
-  }
+    $q = Doctrine_Query::create()
+          ->from('StudentUser')
+          ->andWhere('first_name like ?', '%'.$q.'%')
+          ->addOrderBy('first_name')
+          ->limit($limit);
+
+    $students = array();
+    foreach ($q->execute() as $student) {
+      $students[$student->getSnum()] = (string) $student;
+    }
+    return $students;
+  } 
   
   /* 
    * Override the default guesses and displays the student name by first 
