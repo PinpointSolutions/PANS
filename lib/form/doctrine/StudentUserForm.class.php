@@ -38,47 +38,47 @@ class StudentUserForm extends BaseStudentUserForm
     // http://www.mail-archive.com/symfony-users@googlegroups.com/msg11237.html
     $degrees_widget = new sfWidgetFormDoctrineChoice(
       array(
-        'multiple' => false,
+        'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Degree')));
-    $degrees_widget->setLabel('Indicate your Degree/s');	
+    $degrees_widget->setLabel('Please indicate your Degree(s)');	
     
     $majors_widget = new sfWidgetFormDoctrineChoice(
       array(
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Major')));
-    $majors_widget->setLabel('Indicate your Major/s');	
+    $majors_widget->setLabel('Please indicate your Major(s), if applicable');	
     
     $gpa_widget = new sfWidgetFormInputText();
-    $gpa_widget->setLabel('Indicate your current GPA');	
+    $gpa_widget->setLabel('Please indicate your current GPA');	
     
     $proj1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
-    $proj1_widget->setLabel('Input your first project preference');	
+    $proj1_widget->setLabel('Nominate your first project preference');	
     
     $proj2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
-    $proj2_widget->setLabel('Input your second project preference');	
+    $proj2_widget->setLabel('Nominate your second project preference');	
     
     $proj3_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
-    $proj3_widget->setLabel('Input your third project preference');	
+    $proj3_widget->setLabel('Nominate your third project preference');	
     
     $proj4_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
-    $proj4_widget->setLabel('Input your fourth project preference');	
+    $proj4_widget->setLabel('Nominate your fourth project preference');	
     
     $proj5_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
-    $proj5_widget->setLabel('Input your fifth project preference');	
+    $proj5_widget->setLabel('Nominate your fifth project preference');	
     
     $skills_widget = new sfWidgetFormDoctrineChoice(
       array(
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('SkillSet')));
-    $skills_widget->setLabel('Indicate your skill set');	
+    $skills_widget->setLabel('What are your strengths?');	
     
     // TODO: Make sure students can't pick themselves.
     // Possible solution is to do the checking in PHP upon save.
     $ystupref1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
-    $ystupref1_widget->setLabel('Indicate five students you would like to work with');	
+    $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with');	
     
     $ystupref2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $ystupref2_widget->setLabel(' ');	
@@ -93,7 +93,7 @@ class StudentUserForm extends BaseStudentUserForm
     $ystupref5_widget->setLabel(' ');	
     
     $nstupref1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
-    $nstupref1_widget->setLabel('Indicate five students that you would NOT like to work with');	
+    $nstupref1_widget->setLabel('Please nominate five students that you would NOT like to work with');	
     
     $nstupref2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
     $nstupref2_widget->setLabel(' ');
@@ -108,7 +108,7 @@ class StudentUserForm extends BaseStudentUserForm
     $nstupref5_widget->setLabel(' ');
     
     $proj_just1_widget = new sfWidgetFormTextarea();
-    $proj_just1_widget->setLabel('Provide a justification for your first project preference');
+    $proj_just1_widget->setLabel('Please provide a justification.<br> Why should you be selected for this project?<br>You must provide one for your first preference.');
 
     $proj_just2_widget = new sfWidgetFormTextarea();
     $proj_just2_widget->setLabel('Provide a justification for your second project preference');
