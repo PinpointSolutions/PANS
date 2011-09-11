@@ -79,11 +79,22 @@ class studentActions extends sfActions
 
   public function executeEdit(sfWebRequest $request)
   {
+    // Only display the record of the student logged in
     $this->username = $this->getUser()->getUsername();
     $this->student_user = Doctrine_Core::getTable('StudentUser')
                             ->find(array($this->username));
+
+    // Pre-POST-processing the data for multiple-choice checkboxes
+    
+    // Convert the degree_ids back into an array.
+    $this->student_user->setDegreeIds(
+                      explode(' ', $this->student_user->getDegreeIds()));    
+
+    // Create the form, and point the autocompletion to the ajax helper
     $this->form = new StudentUserForm($this->student_user,
        array('url' => $this->getController()->genUrl('student/ajax')));
+    
+    // If the student number is invalid, redirect 404
     $this->forward404Unless($this->student_user);
   }
 
@@ -117,11 +128,7 @@ class studentActions extends sfActions
     
     // Convert the degrees into a string before saving.
     // The degree ids are separated by whitespaces.
-    $tmp = '';
-    foreach ($params['degree_ids'] as $degree) {
-      $tmp .= $degree . ' ';
-    }
-    $params['degree_ids'] = $tmp;
+    $params['degree_ids'] = implode(' ', $params['degree_ids']);
     
     // Copy the modified data back in
     $request->setParameter($this->form->getName(), $params);
