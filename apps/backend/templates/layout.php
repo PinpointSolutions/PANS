@@ -24,7 +24,9 @@
               <?php echo link_to('View Students', 'student/index') ?>
           </div>
           <div class="alignright">
-            Welcome, Admin User.
+            <li><?php echo link_to('Users', '@sf_guard_user') ?></li>
+            <li><?php echo link_to('Groups', '@sf_guard_group') ?></li>
+            <li><?php echo link_to('Permissions', '@sf_guard_permission') ?></li>
           </div>
       </div>
       

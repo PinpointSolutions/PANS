@@ -9,7 +9,7 @@
     <?php include_javascripts() ?>
   </head>
   
-  <body> <!-- Three row style, with fixed-width content body -->
+  <body> <!-- This is the layout.php for the student view -->
     <div id="wrapper">
       <div id="header">
         <a href="<?php echo url_for('@homepage') ?>"><div id="logo"></div></a>

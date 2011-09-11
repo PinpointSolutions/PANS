@@ -12,8 +12,8 @@ generator:
     actions_base_class:    sfActions
 
     config:
+      actions: ~
       fields:  ~            
-      # List of 
       list:
         title:   Project List
         display: [=title, organisation]
