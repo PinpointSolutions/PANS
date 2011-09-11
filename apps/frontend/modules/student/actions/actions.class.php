@@ -22,7 +22,7 @@ class studentActions extends sfActions
       ->createQuery('a')
       ->execute();
     } else {    
-      $this->redirect('student/show');
+      $this->redirect('student/edit');
       /* 
       $this->username = $this->getUser()->getUsername();
       $this->student_users = Doctrine_Core::getTable('StudentUser')
@@ -36,21 +36,12 @@ class studentActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->admin = $this->getUser()->isSuperAdmin();
-    if ($this->admin == true) {
-      $this->student_user = Doctrine_Core::getTable('StudentUser')
-                            ->find(array($request->getParameter('snum')));
-    } else {    
-      $this->username = $this->getUser()->getUsername();
-      $this->student_user = Doctrine_Core::getTable('StudentUser')
-                            ->find(array($this->username));
-    }
-    $this->forward404Unless($this->student_user);
+    $this->forward404();
   }
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new StudentUserForm();
+    $this->forward404();
   }
 
   /* TODO: Refactor into Admin backend */
@@ -106,18 +97,36 @@ class studentActions extends sfActions
 
   public function executeUpdate(sfWebRequest $request)
   {
-    $this->username = $this->getUser()->getUsername();
-    
     /* Check if the user is the correct one we're updating */
+    $this->username = $this->getUser()->getUsername();
     if ($request->getParameter('snum') != $this->username) {
       $this->forward404('Oops. Your username doesn\'t match with your login.');
     }
-    
+   
+    // Redirect to 404 if the request came from strange places. 
     $this->forward404Unless($request->isMethod(sfRequest::POST) 
                          || $request->isMethod(sfRequest::PUT));
+
+    // Create the form object for processing
     $student_user = Doctrine_Core::getTable('StudentUser')
                                      ->find(array($this->username));
     $this->form = new StudentUserForm($student_user);
+
+    // Grab a copy of the requests and do some post-POST-processing
+    $params = $request->getParameter($this->form->getName());
+    
+    // Convert the degrees into a string before saving.
+    // The degree ids are separated by whitespaces.
+    $tmp = '';
+    foreach ($params['degree_ids'] as $degree) {
+      $tmp .= $degree . ' ';
+    }
+    $params['degree_ids'] = $tmp;
+    
+    // Copy the modified data back in
+    $request->setParameter($this->form->getName(), $params);
+   
+    // Process the form, and redirect back to the edit page. 
     $this->processForm($request, $this->form);
     $this->setTemplate('edit');
     $this->redirect('student/edit');
