@@ -123,7 +123,7 @@ class StudentUserForm extends BaseStudentUserForm
       'renderer_options'  => array('url'   => $this->getOption('url'),
                                    'model' => $this->getRelatedModelName('StudentUser'))
       )); 
-    $nstupref1_widget->setLabel('Please nominate five students that you would NOT like to work with');	
+    $nstupref1_widget->setLabel('Please nominate five students that you would NOT like to work with.');	
     
     $nstupref2_widget = new sfWidgetFormChoice(array(
       'choices'           => array(),

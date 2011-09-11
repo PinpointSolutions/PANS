@@ -1,10 +1,10 @@
 Major:
-  informationTechnology:
-    major: Information Technology
+  computingAndIntelligentSystems:
+    major: Computing and Intelligent Systems
     is_visible: true
-  multimedia:
-    major: Multimedia
+  gamesProgramming:
+    major: Games Programming
     is_visible: true
-  softwareEngineering:
-    major: Software Engineering
+  informatics:
+    major: Informatics
     is_visible: true
