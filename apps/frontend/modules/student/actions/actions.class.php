@@ -23,13 +23,6 @@ class studentActions extends sfActions
       ->execute();
     } else {    
       $this->redirect('student/edit');
-      /* 
-      $this->username = $this->getUser()->getUsername();
-      $this->student_users = Doctrine_Core::getTable('StudentUser')
-                             ->createQuery('student_users')
-                             ->where('student_users.snum = ?', $this->username)
-                             ->execute();
-      */
     }
     $this->forward404Unless($this->student_users);
   }
@@ -85,7 +78,6 @@ class studentActions extends sfActions
                             ->find(array($this->username));
 
     // Pre-POST-processing the data for multiple-choice checkboxes
-    
     // Convert the degree_ids back into an array.
     $this->student_user->setDegreeIds(
                       explode(' ', $this->student_user->getDegreeIds()));    
@@ -102,7 +94,8 @@ class studentActions extends sfActions
   public function executeAjax(sfWebRequest $request)
   {
     $this->getResponse()->setContentType('application/json');
-    $students = StudentUser::retrieveForSelect($request->getParameter('q'), $request->getParameter('limit'));
+    $students = StudentUser::retrieveForSelect($request->getParameter('q'),
+                                               $request->getParameter('limit'));
     return $this->renderText(json_encode($students));
   }
 
@@ -122,17 +115,33 @@ class studentActions extends sfActions
     $student_user = Doctrine_Core::getTable('StudentUser')
                                      ->find(array($this->username));
     $this->form = new StudentUserForm($student_user);
-
-    // Grab a copy of the requests and do some post-POST-processing
+    
+    // BEGIN SQL DATABASE HACK. DRAGONS ABOUND AND MONSTERS LEAP FROM THE DARK.
+    //
+    // SQL Databases are not built for schema changing.  Here we are giving
+    // the admin user the ability to add and remove degrees and majors.  This
+    // means each student needs to related to one or more degrees or majors,
+    // and the number of degrees or majors may change at any given time.  Even
+    // better, the major might even just disappear.
+    //
+    // The point is, even if we created a relation with a table, we still have
+    // to deal with the fields (columns) disappearing if the admin user decided
+    // to screw with the system.
+    //
+    // The easy way out is to store such a 1-N relation as a string, delimited
+    // by whitespaces.  On save we implode the array into such a string.  On
+    // load we simply explode it back into an array, and Symfony can deal with
+    // it.
+      
+    // Grab a copy of the requests and do some post-POST-processing, and then
+    // Copy it back in before the form is saved.
     $params = $request->getParameter($this->form->getName());
-    
-    // Convert the degrees into a string before saving.
-    // The degree ids are separated by whitespaces.
     $params['degree_ids'] = implode(' ', $params['degree_ids']);
-    
-    // Copy the modified data back in
+    $params['major_ids'] = implode(' ', $params['major_ids']);
+    $params['skill_set_ids'] = implode(' ', $params['skill_set_ids']);
     $request->setParameter($this->form->getName(), $params);
-   
+    // END SQL DATABASE HACK.  CONGRATULATIONS.  YOU LIVE.  FOR NOW.
+    
     // Process the form, and redirect back to the edit page. 
     $this->processForm($request, $this->form);
     $this->setTemplate('edit');
