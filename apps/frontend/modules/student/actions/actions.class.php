@@ -77,11 +77,16 @@ class studentActions extends sfActions
     $this->student_user = Doctrine_Core::getTable('StudentUser')
                             ->find(array($this->username));
 
-    // Pre-POST-processing the data for multiple-choice checkboxes
-    // Convert the degree_ids back into an array.
+    // If you modify the following code, the system won't break.  It might
+    // not display the form properly, though.
     $this->student_user->setDegreeIds(
-                      explode(' ', $this->student_user->getDegreeIds()));    
-
+                      explode(' ', $this->student_user->getDegreeIds()));
+    $this->student_user->setMajorIds(
+                      explode(' ', $this->student_user->getMajorIds()));
+    $this->student_user->setSkillSetIds(
+                      explode(' ', $this->student_user->getSkillSetIds()));
+    // From here on, you're out of the Danger Zone(TM).
+    
     // Create the form, and point the autocompletion to the ajax helper
     $this->form = new StudentUserForm($this->student_user,
        array('url' => $this->getController()->genUrl('student/ajax')));
