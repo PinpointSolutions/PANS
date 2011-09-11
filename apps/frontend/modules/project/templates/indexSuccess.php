@@ -3,7 +3,7 @@
 <?php foreach ($projects as $project): ?>
   <div class="project">
     <div class="projectTitle">
-      <?php echo $project->getProjNum() ?>. <?php echo $project->getTitle() ?>
+      <?php echo $project; ?>
     </div>
     <table>
       <tr>
