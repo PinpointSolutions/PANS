@@ -82,38 +82,79 @@ class StudentUserForm extends BaseStudentUserForm
       'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
       'renderer_options'  => array('url'   => $this->getOption('url'),
                                    'model' => $this->getRelatedModelName('StudentUser'))
-      ));
-
-    $js = $ystupref1_widget->getJavascripts();
-    $css = $ystupref1_widget->getStylesheets();
+      )); 
+    $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with.');	
     
-    $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with');	
+    $ystupref2_widget = new sfWidgetFormChoice(array(
+      'choices'           => array(),
+      'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
+      'renderer_options'  => array('url'   => $this->getOption('url'),
+                                   'model' => $this->getRelatedModelName('StudentUser'))
+      )); 
+    $ystupref2_widget->setLabel(' ');
     
-    $ystupref2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
-    $ystupref2_widget->setLabel(' ');	
-    
-    $ystupref3_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
+    $ystupref3_widget = new sfWidgetFormChoice(array(
+      'choices'           => array(),
+      'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
+      'renderer_options'  => array('url'   => $this->getOption('url'),
+                                   'model' => $this->getRelatedModelName('StudentUser'))
+      )); 
     $ystupref3_widget->setLabel(' ');	
     
-    $ystupref4_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
+    $ystupref4_widget = new sfWidgetFormChoice(array(
+      'choices'           => array(),
+      'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
+      'renderer_options'  => array('url'   => $this->getOption('url'),
+                                   'model' => $this->getRelatedModelName('StudentUser'))
+      )); 
     $ystupref4_widget->setLabel(' ');	
     
-    $ystupref5_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
+    $ystupref5_widget = new sfWidgetFormChoice(array(
+      'choices'           => array(),
+      'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
+      'renderer_options'  => array('url'   => $this->getOption('url'),
+                                   'model' => $this->getRelatedModelName('StudentUser'))
+      )); 
     $ystupref5_widget->setLabel(' ');	
     
-    $nstupref1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
+    $nstupref1_widget = new sfWidgetFormChoice(array(
+      'choices'           => array(),
+      'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
+      'renderer_options'  => array('url'   => $this->getOption('url'),
+                                   'model' => $this->getRelatedModelName('StudentUser'))
+      )); 
     $nstupref1_widget->setLabel('Please nominate five students that you would NOT like to work with');	
     
-    $nstupref2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
+    $nstupref2_widget = new sfWidgetFormChoice(array(
+      'choices'           => array(),
+      'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
+      'renderer_options'  => array('url'   => $this->getOption('url'),
+                                   'model' => $this->getRelatedModelName('StudentUser'))
+      )); 
     $nstupref2_widget->setLabel(' ');
     
-    $nstupref3_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
+    $nstupref3_widget = new sfWidgetFormChoice(array(
+      'choices'           => array(),
+      'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
+      'renderer_options'  => array('url'   => $this->getOption('url'),
+                                   'model' => $this->getRelatedModelName('StudentUser'))
+      )); 
     $nstupref3_widget->setLabel(' ');
     
-    $nstupref4_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
+    $nstupref4_widget = new sfWidgetFormChoice(array(
+      'choices'           => array(),
+      'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
+      'renderer_options'  => array('url'   => $this->getOption('url'),
+                                   'model' => $this->getRelatedModelName('StudentUser'))
+      )); 
     $nstupref4_widget->setLabel(' ');
     
-    $nstupref5_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('StudentUser'), 'add_empty' => true));
+    $nstupref5_widget = new sfWidgetFormChoice(array(
+      'choices'           => array(),
+      'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
+      'renderer_options'  => array('url'   => $this->getOption('url'),
+                                   'model' => $this->getRelatedModelName('StudentUser'))
+      )); 
     $nstupref5_widget->setLabel(' ');
     
     $proj_just1_widget = new sfWidgetFormTextarea();
