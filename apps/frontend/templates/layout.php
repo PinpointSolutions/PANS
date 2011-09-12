@@ -33,6 +33,7 @@
           </div>
           <div class="alignright">
             <?php echo $sf_user->getName() ?>
+            
           </div>
         <?php endif; ?>
       </div>
