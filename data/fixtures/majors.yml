@@ -8,3 +8,49 @@ Major:
   informatics:
     major: Informatics
     is_visible: true
+  infoSystems:
+    major: Information Systems
+    is_visible: true
+  managementAndMarketing:
+    major: IT Management and Marketing
+    is_visible: true
+  multimedia:
+    major: Multimedia
+    is_visible: true
+  networkingAndSecurity:
+    major: Networking and Security
+    is_visible: true
+  systemsDevAndItServices:
+    major: Systems Development and IT Services
+    is_visible: true
+  digitalVideo:
+    major: Digital Video
+    is_visible: true
+  filmAndTvProduction:
+    major: Film and TV Production
+    is_visible: true
+  interactiveEntertainmentAndGames:
+    major: Interactive Entertainment and Games
+    is_visible: true
+  internetComputing:
+    major: Internet Computing
+    is_visible: true
+  internetMarketing:
+    major: Internet Marketing
+    is_visible: true
+  management:
+    major: Management
+    is_visible: true
+  musicProgrammingAndProduction:
+    major: Music Programming and Production
+    is_visible: true
+  soundProduction:
+    major: Sound Production
+    is_visible: true
+  visualCommunicationDesign:
+    major: Visual Communication Design
+    is_visible: true
+  visualMediaDesign:
+    major: Visual Media Design
+    is_visible: true
+
