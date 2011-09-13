@@ -18,15 +18,19 @@
       
       <div id="navbar">
         <?php if ($sf_user->isAuthenticated()): ?>
-          <div class="alignleft">
-            Admin View: 
-              <?php echo link_to('View Projects', 'project/index') ?> |
-              <?php echo link_to('View Students', 'student/index') ?>
+          <div class="alignleft action firstLeft">
+              <?php echo link_to('View Projects', 'project/index') ?>
+          </div>
+
+            <div class="alignleft action">
+               <?php echo link_to('View Students', 'student/index') ?>
+            </div>          
+          <div class="alignleft action">
+            <?php echo link_to('Logout', '@sf_guard_signout') ?>
           </div>
           <div class="alignright">
-            <li><?php echo link_to('Users', '@sf_guard_user') ?></li>
-            <li><?php echo link_to('Groups', '@sf_guard_group') ?></li>
-            <li><?php echo link_to('Permissions', '@sf_guard_permission') ?></li>
+            <?php echo $sf_user->getName() ?>
+            
           </div>
         <?php endif; ?>
       </div>
