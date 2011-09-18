@@ -36,34 +36,6 @@ class studentActions extends sfActions
   {
     $this->forward404();
   }
-
-  /* TODO: Refactor into Admin backend */
-  public function executeTest(sfWebRequest $request)
-  {
-    /* Get database connection */
-    $conn = Doctrine_Manager::getInstance();
-    $student_user = Doctrine_Core::getTable('StudentUser');
-    $this->collection = new Doctrine_Collection('StudentUser');
-    
-    $students = array(
-      array('snum' => 987653,
-            'first_name' => 'Candy',
-            'last_name' => 'Man'),
-      array('snum' => 4328675,
-            'first_name' => 'Chocolate',
-            'last_name' => 'Bar')
-    );
-    
-    foreach ($students as $student) {
-      $user = new StudentUser();
-      $user->snum = $student['snum'];
-      $user->first_name = $student['first_name'];
-      $user->last_name = $student['last_name'];
-      $this->collection->add($user);
-    }
-    $this->collection->save();
-    $this->msg = $this->collection;
-  }
   
   public function executeCreate(sfWebRequest $request)
   {

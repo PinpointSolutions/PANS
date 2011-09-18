@@ -24,13 +24,49 @@ class studentActions extends autoStudentActions
   {
     // Ensure the file is uploaded okay
     if ($_FILES['studentFile']['error'] !== UPLOAD_ERR_OK) {
-      $this->getUser()->setFlash('error', $this->file_upload_error_message($_FILES['studentFile']['error']));
+      $this->getUser()->setFlash('error', 
+            $this->file_upload_error_message($_FILES['studentFile']['error']));
       $this->redirect('student/index');
     }
     
     // Reads the entire content
-    $data = file_get_contents($_FILES['studentFile']['tmp_name']);
-    $this->getUser()->setFlash('notice', $data);
+    $raw_data = file_get_contents($_FILES['studentFile']['tmp_name']);
+    $raw_data = explode("\n", $raw_data); 
+    // Delete the header
+    unset($raw_data[0]);
+    
+    // Assume index 2 is ID, and index 3 is name. Store them as such.
+    $students = array();
+    $i = 0;
+    foreach ($raw_data as $line) {
+      $items = str_getcsv($line);
+      $id = $items[2];
+      $name = explode(",", $items[3]);
+      $firstName = $name[1];
+      $lastName = $name[0];
+      $students[$i] = array('snum' => $id, 
+                            'first_name' => $firstName, 
+                            'last_name' => $lastName);
+      $i++;
+    }
+    
+    // Get database connection
+    $conn = Doctrine_Manager::getInstance();
+    $student_user = Doctrine_Core::getTable('StudentUser');
+    $this->collection = new Doctrine_Collection('StudentUser');
+    
+    // Add students
+    foreach ($students as $student) {
+      $user = new StudentUser();
+      $user->snum = $student['snum'];
+      $user->first_name = $student['first_name'];
+      $user->last_name = $student['last_name'];
+      $this->collection->add($user);
+    }
+    $this->collection->save();
+    $this->msg = $this->collection;
+
+    $this->getUser()->setFlash('notice', 'Students imported successfully.');
     $this->redirect('student/index');
   }
   
