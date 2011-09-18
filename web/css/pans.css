@@ -95,6 +95,10 @@ form th {
   vertical-align: top;
 }
 
+p {
+  line-height: 18px;
+}
+
 #a { /* alternate */
   width: 95%;
   padding: 5px
@@ -119,7 +123,7 @@ form th {
 }
 
 .firstLeft {
-  margin-left: 200px;
+  margin-left: 80px;
 }
 
 .actionButton {

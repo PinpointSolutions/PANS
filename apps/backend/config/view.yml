@@ -14,7 +14,7 @@ default:
 
   stylesheets:    [reset.css, pans.css]
 
-  javascripts:    []
+  javascripts:    [scripts.js]
 
   has_layout:     true
   layout:         layout

@@ -19,21 +19,38 @@
       <div id="navbar">
         <?php if ($sf_user->isAuthenticated()): ?>
         
+          <div class="alignleft">
+            <?php echo $sf_user->getName() ?> (<?php echo link_to('Logout', '@sf_guard_signout') ?>)
+          </div>
+        
           <div class="alignleft action firstLeft">
            <?php echo link_to('Students', 'student/index') ?>
           </div>   
+
+          <div class="alignleft action">
+            <?php echo link_to('Degrees', 'project/index') ?>
+          </div>
+          
+          <div class="alignleft action">
+            <?php echo link_to('Majors', 'project/index') ?>
+          </div>
+          
+          <div class="alignleft action">
+            <?php echo link_to('Skills', 'project/index') ?>
+          </div>
           
           <div class="alignleft action">
             <?php echo link_to('Projects', 'project/index') ?>
           </div>
+          
+          <div class="alignleft action">
+            <?php echo link_to('Groups', 'project/index') ?>
+          </div>
 
           <div class="alignleft action">
-            <?php echo link_to('Logout', '@sf_guard_signout') ?>
+            <?php echo link_to('Tools', 'project/tool') ?>
           </div>
-          <div class="alignright">
-            <?php echo $sf_user->getName() ?> (<?php echo $sf_user->getUsername() ?>)
-            
-          </div>
+
         <?php endif; ?>
       </div>
       
