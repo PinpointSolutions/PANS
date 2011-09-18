@@ -19,7 +19,7 @@ class SkillSet extends BaseSkillSet
   {
     try
     {
-      return (string) $this->get('area');
+      return (string) $this->get('skill');
     } catch (Exception $e) {}
     
     return sprintf('Error, see Major.class.php for "%s"', $this->getTable()->getComponentName());
