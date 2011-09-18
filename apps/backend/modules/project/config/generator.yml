@@ -18,9 +18,6 @@ generator:
         title:   Project List
         display: [=title, organisation]
         batch_actions: {}
-        actions:
-          studentsToProjects:
-            label: Stuff
       # Stops Symfony from displaying the filter in the admin view
       filter:
         class: false

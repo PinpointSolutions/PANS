@@ -194,6 +194,18 @@ p {
   width: 25px;
 }
 
+#sf_fieldset_none label {
+  min-width: 200px;
+}
+
+#sf_fieldset_none input, #sf_fieldset_none textarea {
+  min-width: 400px;
+}
+
+#sf_fieldset_none textarea {
+  min-height: 200px;
+}
+
 /**************************************************************/
 /* Footer division */
 #footer {
