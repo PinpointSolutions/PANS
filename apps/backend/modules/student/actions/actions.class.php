@@ -13,13 +13,7 @@ require_once dirname(__FILE__).'/../lib/studentGeneratorHelper.class.php';
  */
 class studentActions extends autoStudentActions
 {
-  public function executeListStudentsFromFile(sfWebRequest $request)
-  {
-    $this->getUser()->setFlash('notice', 'Students have been added.');
-    $this->redirect('student/index');
-  }
-  
-  public function executeNewStudent(sfWebRequest $request)
+  public function executeListImportStudentsFromExcel(sfWebRequest $request)
   {
     $this->getUser()->setFlash('notice', 'Students have been added.');
     $this->redirect('student/index');

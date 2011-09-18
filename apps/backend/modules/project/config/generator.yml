@@ -17,10 +17,8 @@ generator:
       list:
         title:   Project List
         display: [=title, organisation]
-        actions:
-          studentsToProjects:
-            label: Sort students into projects
-          _new: ~
+        batch_actions: {}
+        actions: {}
       # Stops Symfony from displaying the filter in the admin view
       filter:
         class: false

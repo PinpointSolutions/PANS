@@ -48,13 +48,20 @@ a {
 
 /**************************************************************/
 /* Navigation Bar division */
-#navbar {
+#navbar, #options {
   position: relative;
   float: left;
   width: 930px;
-  text-align: right;
+  text-align: left;
   margin-top: 10px;
   font-size: 14px;
+}
+
+#options .option {
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: #CCCCCC;
 }
 
 
