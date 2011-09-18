@@ -22,12 +22,38 @@ class studentActions extends autoStudentActions
   // Manually handling the file upload and parsing
   public function executeImportStudents(sfWebRequest $request)
   {
-    if (!is_uploaded_file($_FILES['studentFile']['tmp_name'])) {
-      $this->getUser()->setFlash('error', 'File failed to upload. Please try again.');
+    // Ensure the file is uploaded okay
+    if ($_FILES['studentFile']['error'] !== UPLOAD_ERR_OK) {
+      $this->getUser()->setFlash('error', $this->file_upload_error_message($_FILES['studentFile']['error']));
       $this->redirect('student/index');
     }
     
-    $this->getUser()->setFlash('notice', 'Students successfully imported.');
+    // Reads the entire content
+    $data = file_get_contents($_FILES['studentFile']['tmp_name']);
+    $this->getUser()->setFlash('notice', $data);
     $this->redirect('student/index');
   }
+  
+  // File error handling from
+  // http://www.php.net/manual/en/features.file-upload.errors.php
+  protected function file_upload_error_message($error_code) {
+    switch ($error_code) { 
+      case UPLOAD_ERR_INI_SIZE: 
+        return 'The uploaded file exceeds the upload_max_filesize directive in php.ini'; 
+      case UPLOAD_ERR_FORM_SIZE: 
+        return 'The uploaded file exceeds the maximum file size (MAX_FILE_SIZE).'; 
+      case UPLOAD_ERR_PARTIAL: 
+        return 'The uploaded file was only partially uploaded'; 
+      case UPLOAD_ERR_NO_FILE: 
+        return 'No file was uploaded'; 
+      case UPLOAD_ERR_NO_TMP_DIR: 
+        return 'Missing a temporary folder'; 
+      case UPLOAD_ERR_CANT_WRITE: 
+        return 'Failed to write file to disk'; 
+      case UPLOAD_ERR_EXTENSION: 
+        return 'File upload stopped by extension'; 
+      default: 
+        return 'Unknown upload error'; 
+    } 
+  } 
 }
