@@ -7,7 +7,6 @@ Project:
     has_additional_info: false
     major_ids: 1 2 
     skill_set_ids: 1 2 5
-    proj_num: 1
   proj_2:
     title: Systems Integration Project
     organisation: Business Advisor Network Ltd
@@ -17,14 +16,12 @@ Project:
     has_additional_info: true
     major_ids: 1
     skill_set_ids: 4 5
-    proj_num: 2
   proj_3:
     title: Recruitment System and integrated web site
     organisation: Connect Recruitment
     description: |
       Connect Recruitment currently utilizes a commercial backoffice recruitment system and website developed and hosted by a UK company (eBoss) as well as integrated and hosted email. The system has many bugs and limited documentation or training. Connect has been in business for over 12 months and is now looking to improve its back office system and website. The existing system would form the basis of the requirements along with some enhancements to the current system, such as iPad integration
     major_ids: 1 2
-    proj_num: 3
     has_additional_info: false
   proj_4:
     title: Narrative Tabulator
@@ -40,7 +37,6 @@ Project:
       Exports as native .NTP (narrative-tabulator-pad) and avi/wmv movie and sequenced jpg/bmp/gif/targa as slideshow and HTML. All possibly as zipped packs.
     has_additional_info: false
     major_ids: 2 3
-    proj_num: 4
   proj_5:
     title: AusAID database project
     organisation: International Business Development, Griffith International
@@ -48,5 +44,4 @@ Project:
       We are requiring a data-base to be constructed to track our AusAID project students.  We have a 7 year AusAID project where we have brought over nursing students from Kiribati. They are here for approx 4.5 years and undertake English, Diploma of Nursing through TAFE and then the B.Nursing at Logan. We currently have 80 students on campus. It is getting increasingly hard to track where they are staying, what they are enrolled in, progress, completion etc. Also we need to track various 'extra curricula' components as well such as health cover, pregnancies, who has their family here on-shore.  This information is currently stored in a range of spreadsheets and documents.  It would streamline our business to have this information stored in a central database.
     has_additional_info: true
     major_ids: 1 3
-    proj_num: 7
  

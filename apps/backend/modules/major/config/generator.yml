@@ -1,0 +1,26 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Major
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          major
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:   
+        title:   Major List
+        display: [=major]
+        batch_actions: {}
+      # Stops Symfony from displaying the filter in the admin view
+      filter:
+        class: false
+      form:    ~
+      edit:    ~
+      new:     ~

@@ -1,3 +1,39 @@
+project_allocation:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                ProjectAllocation
+    module:               group
+    prefix_path:          /group
+    column:               project_id
+    with_wildcard_routes: true
+
+skill_set:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                SkillSet
+    module:               skill
+    prefix_path:          /skill
+    column:               id
+    with_wildcard_routes: true
+
+major:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Major
+    module:               major
+    prefix_path:          /major
+    column:               id
+    with_wildcard_routes: true
+
+degree:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Degree
+    module:               degree
+    prefix_path:          /degree
+    column:               id
+    with_wildcard_routes: true
+
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 

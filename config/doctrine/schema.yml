@@ -9,14 +9,7 @@ Major:
       primary: true
       autoincrement: true
     major:
-      type: string(32)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    is_visible:
-      type: boolean
+      type: string(256)
       fixed: false
       unsigned: false
       primary: false
@@ -30,17 +23,11 @@ Degree:
       type: integer(4)
       fixed: false
       unsigned: false
+      unsigned: false
       primary: true
       autoincrement: true
     degree:
-      type: string(32)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    is_visible:
-      type: boolean
+      type: string(256)
       fixed: false
       unsigned: false
       primary: false
@@ -54,7 +41,7 @@ ProjectAllocation:
       type: integer(4)
       fixed: false
       unsigned: false
-      primary: true
+      primary: false
       autoincrement: false
     snum1:
       type: integer(4)
@@ -109,14 +96,14 @@ Project:
       primary: true
       autoincrement: true
     title:
-      type: string(64)
+      type: string(256)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     organisation:
-      type: string(64)
+      type: string(256)
       fixed: false
       unsigned: false
       primary: false
@@ -157,20 +144,6 @@ Project:
       primary: false
       notnull: false
       autoincrement: false
-    year:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    proj_num:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
 SkillSet:
   connection: doctrine
   tableName: skill_sets
@@ -181,15 +154,8 @@ SkillSet:
       unsigned: false
       primary: true
       autoincrement: true
-    area:
-      type: string(64)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: true
-      autoincrement: false
-    is_visible:
-      type: boolean
+    skill:
+      type: string(256)
       fixed: false
       unsigned: false
       primary: false

@@ -1,19 +1,13 @@
 SkillSet:
   programming:
-    area: Programming
-    is_visible: true
+    skill: Programming
   graphicDesign:
-    area: Graphic Design
-    is_visible: true
+    skill: Graphic Design
   softDesign:
-    area: Software Design
-    is_visible: true
+    skill: Software Design
   marketing:
-    area: Marketing
-    is_visible: true
+    skill: Marketing
   webDev:
-    area: Web Development
-    is_visible: true
+    skill: Web Development
   gamesDev:
-    area: Games Development
-    is_visible: true
+    skill: Games Development

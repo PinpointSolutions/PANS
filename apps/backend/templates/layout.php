@@ -28,15 +28,15 @@
           </div>   
 
           <div class="alignleft action">
-            <?php echo link_to('Degrees', 'project/index') ?>
+            <?php echo link_to('Degrees', 'degree/index') ?>
           </div>
           
           <div class="alignleft action">
-            <?php echo link_to('Majors', 'project/index') ?>
+            <?php echo link_to('Majors', 'major/index') ?>
           </div>
           
           <div class="alignleft action">
-            <?php echo link_to('Skills', 'project/index') ?>
+            <?php echo link_to('Skills', 'skill/index') ?>
           </div>
           
           <div class="alignleft action">
@@ -44,7 +44,7 @@
           </div>
           
           <div class="alignleft action">
-            <?php echo link_to('Groups', 'project/index') ?>
+            <?php echo link_to('Groups', 'group/index') ?>
           </div>
 
           <div class="alignleft action">
