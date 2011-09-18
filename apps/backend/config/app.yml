@@ -6,3 +6,5 @@ all:
   sf_guard_plugin:
     routes_register: true
     allow_login_with_email: false
+    success_signin_url:   student/index
+    success_signout_url:   /backend.php

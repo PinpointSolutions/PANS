@@ -29,7 +29,7 @@
             <?php echo link_to('Logout', '@sf_guard_signout') ?>
           </div>
           <div class="alignright">
-            <?php echo $sf_user->getName() ?>
+            <?php echo $sf_user->getName() ?> (<?php echo $sf_user->getUsername() ?>)
             
           </div>
         <?php endif; ?>
