@@ -8,7 +8,8 @@ student_user:
     module:               student
     prefix_path:          /student
     column:               snum
-    with_wildcard_routes: true
+# sfAdminGenerator hack
+#    with_wildcard_routes: true
 
 project:
   class: sfDoctrineRouteCollection
@@ -41,6 +42,15 @@ sf_guard_signout:
 sf_guard_password:
   url:   /request_password
   param: { module: sfGuardAuth, action: password }
+  
+###################################################
+# Custom Actions
+
+importStudents:
+  url:   /student/importStudents
+  param: { module: student, action: importStudents }
+
+###################################################
   
 default:
   url:   /:module/:action/*

@@ -13,9 +13,21 @@ require_once dirname(__FILE__).'/../lib/studentGeneratorHelper.class.php';
  */
 class studentActions extends autoStudentActions
 {
-  public function executeListImportStudentsFromExcel(sfWebRequest $request)
+  // Import Student From File in disguise
+  // Do not rename, remove, or modify this method
+  public function executeShow(sfWebRequest $request)
   {
-    $this->getUser()->setFlash('notice', 'Students have been added.');
+  }
+  
+  // Manually handling the file upload and parsing
+  public function executeImportStudents(sfWebRequest $request)
+  {
+    if (!is_uploaded_file($_FILES['studentFile']['tmp_name'])) {
+      $this->getUser()->setFlash('error', 'File failed to upload. Please try again.');
+      $this->redirect('student/index');
+    }
+    
+    $this->getUser()->setFlash('notice', 'Students successfully imported.');
     $this->redirect('student/index');
   }
 }
