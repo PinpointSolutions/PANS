@@ -18,6 +18,10 @@
       
       <div id="navbar">
         <?php if ($sf_user->isAuthenticated()): ?>
+          <div class="alignleft">
+            <?php echo $sf_user->getName() ?> (<?php echo $sf_user->getUsername() ?>)
+          </div>
+        
           <div class="alignleft action firstLeft">
               <?php echo link_to('Available Projects', 'project/index') ?>
           </div>
@@ -31,10 +35,8 @@
           <div class="alignleft action">
             <?php echo link_to('Logout', '@sf_guard_signout') ?>
           </div>
-          <div class="alignright">
-            <?php echo $sf_user->getName() ?> (<?php echo $sf_user->getUsername() ?>)
-            
-          </div>
+          
+
         <?php endif; ?>
       </div>
       
