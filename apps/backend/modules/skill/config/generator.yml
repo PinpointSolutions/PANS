@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:   
-        title:   Skill List
+        title:   Skills
         display: [=skill]
         batch_actions: {}
       # Stops Symfony from displaying the filter in the admin view
