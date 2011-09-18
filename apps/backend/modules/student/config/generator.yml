@@ -17,13 +17,9 @@ generator:
       list:
         title:   Student List
         display: [snum, first_name, last_name, form_completed]
-        actions:
-          studentsFromFile:
-            label: Add students from file
-          _new: ~
-          newStudent:
-            label: New Student
-            action: newStudent
+        batch_actions: {}
+        actions: {}
+        max_per_page: 99999
       # Stops Symfony from displaying the filter in the admin view
       filter:
         class: false
