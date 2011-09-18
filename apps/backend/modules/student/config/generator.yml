@@ -1,7 +1,7 @@
 generator:
   class: sfDoctrineGenerator
   param:
-    model_class:           studentuser
+    model_class:           StudentUser
     theme:                 admin
     non_verbose_templates: true
     with_show:             false
@@ -21,6 +21,9 @@ generator:
           studentsFromFile:
             label: Add students from file
           _new: ~
+          newStudent:
+            label: New Student
+            action: newStudent
       # Stops Symfony from displaying the filter in the admin view
       filter:
         class: false

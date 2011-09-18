@@ -15,7 +15,13 @@ class studentActions extends autoStudentActions
 {
   public function executeListStudentsFromFile(sfWebRequest $request)
   {
-    $this->getUser()->setFlash('notice', 'Students have been sorted.');
-    $this->redirect('project/index');
+    $this->getUser()->setFlash('notice', 'Students have been added.');
+    $this->redirect('student/index');
+  }
+  
+  public function executeNewStudent(sfWebRequest $request)
+  {
+    $this->getUser()->setFlash('notice', 'Students have been added.');
+    $this->redirect('student/index');
   }
 }

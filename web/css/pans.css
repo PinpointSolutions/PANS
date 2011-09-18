@@ -76,7 +76,8 @@ h1 {
 
 th, td {
   padding: 5px 5px;
-  min-width: 160px;
+  min-width: 130px;
+  
 }
 
 form table {
@@ -174,6 +175,12 @@ form th {
 
 .projectNotes {
   font-style: italic;
+}
+
+/**************************************************************/
+/* Admin view specific */
+#sf_admin_list_batch_actions {
+  width: 25px;
 }
 
 /**************************************************************/

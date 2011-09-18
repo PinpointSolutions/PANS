@@ -18,13 +18,15 @@
       
       <div id="navbar">
         <?php if ($sf_user->isAuthenticated()): ?>
+        
           <div class="alignleft action firstLeft">
-              <?php echo link_to('View Projects', 'project/index') ?>
+           <?php echo link_to('Students', 'student/index') ?>
+          </div>   
+          
+          <div class="alignleft action">
+            <?php echo link_to('Projects', 'project/index') ?>
           </div>
 
-            <div class="alignleft action">
-               <?php echo link_to('View Students', 'student/index') ?>
-            </div>          
           <div class="alignleft action">
             <?php echo link_to('Logout', '@sf_guard_signout') ?>
           </div>
