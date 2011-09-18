@@ -33,13 +33,15 @@ class studentActions extends autoStudentActions
     $raw_data = file_get_contents($_FILES['studentFile']['tmp_name']);
     $raw_data = explode("\n", $raw_data); 
     // Delete the header
-    unset($raw_data[0]);
+    $raw_data = array_slice($raw_data, 1);
     
     // Assume index 2 is ID, and index 3 is name. Store them as such.
     $students = array();
     $i = 0;
     foreach ($raw_data as $line) {
       $items = str_getcsv($line);
+      if (count($items) < 2)
+        continue;
       $id = $items[2];
       $name = explode(",", $items[3]);
       $firstName = $name[1];
@@ -63,8 +65,12 @@ class studentActions extends autoStudentActions
       $user->last_name = $student['last_name'];
       $this->collection->add($user);
     }
-    $this->collection->save();
-    $this->msg = $this->collection;
+    try {
+      $this->collection->save();
+    } catch (Doctrine_Connection_Mysql_Exception $e) {
+      $this->getUser()->setFlash('error', 'Failed to import students: ' . $e->getMessage());
+      $this->redirect('student/index');
+    }
 
     $this->getUser()->setFlash('notice', 'Students imported successfully.');
     $this->redirect('student/index');

@@ -19,7 +19,7 @@ generator:
         display: [snum, first_name, last_name, form_completed]
         batch_actions: {}
         actions: 
-          importStudentsFromExcel:
+          importStudentsFromFile:
             label: Import Students From File
         max_per_page: 99999
       # Stops Symfony from displaying the filter in the admin view
