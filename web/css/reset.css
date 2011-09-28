@@ -41,6 +41,7 @@ blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';
 	content: none;
+  background: url("../images/stripe.png") top left;
 }
 table {
 	border-collapse: collapse;

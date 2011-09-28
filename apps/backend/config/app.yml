@@ -7,4 +7,4 @@ all:
     routes_register: true
     allow_login_with_email: false
     success_signin_url:   student/index
-    success_signout_url:   /backend.php
+    success_signout_url:   /backend_dev.php

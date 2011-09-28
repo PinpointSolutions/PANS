@@ -1,7 +1,7 @@
 sfGuardUser:
   User_admin:
-    first_name:     Test
-    last_name:      User
+    first_name:     Leigh-Ellen
+    last_name:      Potter
     email_address:  adminuser@pans.dev
     username:       admin
     password:       admin
