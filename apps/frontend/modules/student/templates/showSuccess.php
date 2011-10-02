@@ -3,7 +3,7 @@
 <table>
   <tbody>
     <tr>
-      <th>Student Number:</th>
+      <th>test???Student Number:</th>
       <td><?php echo $student_user->getSnum() ?></td>
     </tr>
     <tr>

@@ -24,13 +24,13 @@ class StudentUserForm extends BaseStudentUserForm
     $snum_widget->setLabel('Student Number'); */
 	
     $first_name_widget = new sfWidgetFormInputText();
-    $first_name_widget->setLabel('First Name');
+    $first_name_widget->setLabel('First Name (Required)');
     
     $last_name_widget = new sfWidgetFormInputText();
-    $last_name_widget->setLabel('Last Name');
+    $last_name_widget->setLabel('Last Name (Required)');
     
     $pass_fail_widget = new sfWidgetFormInputCheckbox();
-    $pass_fail_widget->setLabel('Please check this box if you passed Project Management: ');
+    $pass_fail_widget->setLabel('Please check this box if you passed Project Management: (Required)');
     
     // TODO: Fix saving majors
     // Also, Skill Sets
@@ -41,20 +41,20 @@ class StudentUserForm extends BaseStudentUserForm
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Degree')));
-    $degrees_widget->setLabel('Please indicate your Degree(s)');	
+    $degrees_widget->setLabel('Please indicate your Degree(s) (Required)');	
     
     $majors_widget = new sfWidgetFormDoctrineChoice(
       array(
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Major')));
-    $majors_widget->setLabel('Please indicate your Major(s), if applicable');	
+    $majors_widget->setLabel('Please indicate your Major(s) (Required)');	
     
     $gpa_widget = new sfWidgetFormInputText();
-    $gpa_widget->setLabel('Please indicate your current GPA');	
+    $gpa_widget->setLabel('Please indicate your current GPA (Required)');	
     
     $proj1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
-    $proj1_widget->setLabel('Nominate your first project preference');	
+    $proj1_widget->setLabel('Nominate your first project preference (Required)');	
     
     $proj2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
     $proj2_widget->setLabel('Nominate your second project preference');	
@@ -73,7 +73,7 @@ class StudentUserForm extends BaseStudentUserForm
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('SkillSet')));
-    $skills_widget->setLabel('What are your strengths?');	
+    $skills_widget->setLabel('What are your strengths? (Required)');	
     
     // TODO: Make sure students can't pick themselves.
     // Possible solution is to do the checking in PHP upon save.
@@ -83,7 +83,7 @@ class StudentUserForm extends BaseStudentUserForm
       'renderer_options'  => array('url'   => $this->getOption('url'),
                                    'model' => $this->getRelatedModelName('StudentUser'))
       )); 
-    $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with.');	
+    $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with. (Required)');	
     
     $ystupref2_widget = new sfWidgetFormChoice(array(
       'choices'           => array(),
@@ -158,7 +158,7 @@ class StudentUserForm extends BaseStudentUserForm
     $nstupref5_widget->setLabel(' ');
     
     $proj_just1_widget = new sfWidgetFormTextarea();
-    $proj_just1_widget->setLabel('Please provide a justification.<br> Why should you be selected for this project?<br>You must provide one for your first preference.');
+    $proj_just1_widget->setLabel('Please provide a justification. (Required)<br> Why should you be selected for this project?<br>You must provide one for your first preference.');
 
     $proj_just2_widget = new sfWidgetFormTextarea();
     $proj_just2_widget->setLabel('Please provide a justification.');
