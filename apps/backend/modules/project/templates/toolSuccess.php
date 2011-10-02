@@ -12,9 +12,19 @@
 </form>
 
 <h2>Reset and Email All Students Passwords</h2>
-<form enctype="multipart/form-data" action="<?php echo url_for('@importStudents') ?>" method="POST" class="tool-form">
-  This will reset every students' passwords.  Emails will be sent out with their new ones.<br>
-  <input
+<form enctype="multipart/form-data" action="<?php echo url_for('@emailAllPasswords') ?>" method="POST" class="tool-form">
+  This will reset every students' passwords.  Emails will be sent out with their new ones.<br><br>
+  <table>
+    <tr>
+      <td>Sender</td><td><input type="text" name="subject" value="<?php echo $email; ?>" /></td>
+    </tr>
+    <tr>
+      <td>Recipient Email domain</td><td><input type="text" name="subject" value="@griffithuni.edu.au" /></td>
+    </tr>
+    <tr>
+      <td>Subject</td><td><input type="text" name="subject" value="3001ICT - Your Password" /></td>
+    </tr>
+  </table>
   <input type="submit" value="Submit" />
 </form>
 

@@ -85,6 +85,10 @@ sf_guard_password:
 importStudents:
   url:   /student/importStudents
   param: { module: student, action: importStudents }
+  
+emailAllPasswords:
+  url:   /student/emailAllPasswords
+  param: { module: student, action: emailAllPasswords }
 
 ###################################################
   

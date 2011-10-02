@@ -17,6 +17,7 @@ class projectActions extends autoProjectActions
   // Do not modify or remove this function
   public function executeTool(sfWebRequest $request)
   {
+    $this->email = $this->getUser()->getGuardUser()->getEmailAddress();
   }
   
   public function executeClearAllStudents(sfWebRequest $request)

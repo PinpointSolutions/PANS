@@ -14,6 +14,16 @@
   margin-bottom: 20px;
 }
 
+
+.tool-form td input {
+  width: 300px;
+}
+
+.tool-form td textarea {
+  width: 400px;
+  height: 200px;
+}
+
 /* Admin view specific */
 #sf_admin_list_batch_actions {
   width: 25px;

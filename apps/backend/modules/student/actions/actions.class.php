@@ -5,6 +5,7 @@ require_once dirname(__FILE__).'/../lib/studentGeneratorHelper.class.php';
 
 /**
  * student actions.
+ * This file also contains actions for the Tools page
  *
  * @package    PANS
  * @subpackage student
@@ -96,6 +97,13 @@ class studentActions extends autoStudentActions
 
     // "The task is done, m'lord."
     $this->getUser()->setFlash('notice', 'Students imported successfully.  Please email their passwords.');
+    $this->redirect('project/tool');
+  }
+  
+  // Mass email every student their resetted passwords
+  public function executeEmailAllPasswords()
+  {
+    $this->getUser()->setFlash('notice', 'All Passwords have been reset and emailed.');
     $this->redirect('project/tool');
   }
   
