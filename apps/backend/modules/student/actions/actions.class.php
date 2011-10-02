@@ -103,10 +103,33 @@ class studentActions extends autoStudentActions
   // Mass email every student their resetted passwords
   public function executeEmailAllPasswords()
   {
+    
+  
     $this->getUser()->setFlash('notice', 'All Passwords have been reset and emailed.');
     $this->redirect('project/tool');
   }
   
+  // Delete all students and their login details in the database
+  public function executeClearAllStudents(sfWebRequest $request)
+  {
+    $conn = Doctrine_Manager::getInstance();
+    $students = Doctrine_Core::getTable('StudentUser')->findAll();
+    $students->delete();
+    
+    $this->getUser()->setFlash('notice', 'Students deleted.');
+    $this->redirect('project/tool');
+  }
+  
+  // Delete all projects in the database
+  public function executeClearAllProjects(sfWebRequest $request)
+  {
+    $conn = Doctrine_Manager::getInstance();
+    $projects = Doctrine_Core::getTable('Project')->findAll();
+    $projects->delete();
+    
+    $this->getUser()->setFlash('notice', 'Projects deleted.');
+    $this->redirect('project/tool');
+  }
   
   // File error handling from
   // http://www.php.net/manual/en/features.file-upload.errors.php

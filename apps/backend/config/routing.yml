@@ -79,18 +79,6 @@ sf_guard_password:
   url:   /request_password
   param: { module: sfGuardAuth, action: password }
   
-###################################################
-# Custom Actions
-
-importStudents:
-  url:   /student/importStudents
-  param: { module: student, action: importStudents }
-  
-emailAllPasswords:
-  url:   /student/emailAllPasswords
-  param: { module: student, action: emailAllPasswords }
-
-###################################################
   
 default:
   url:   /:module/:action/*

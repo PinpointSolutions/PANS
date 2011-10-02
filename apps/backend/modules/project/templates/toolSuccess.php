@@ -5,14 +5,14 @@
 <div class="flash_notice">Actions here cannot be undone. Proceed with caution.</div>
 
 <h2>Import Students From File</h2>
-<form enctype="multipart/form-data" action="<?php echo url_for('@importStudents') ?>" method="POST" class="tool-form">
+<form enctype="multipart/form-data" action="<?php echo url_for('student/importStudents') ?>" method="POST" class="tool-form">
   <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
   Select a CSV File.  (max. file size: 1MB) <br><br><input name="studentFile" type="file" /><br><br>
   <input type="submit" value="Import" />
 </form>
 
 <h2>Reset and Email All Students Passwords</h2>
-<form enctype="multipart/form-data" action="<?php echo url_for('@emailAllPasswords') ?>" method="POST" class="tool-form">
+<form enctype="multipart/form-data" action="<?php echo url_for('student/emailAllPasswords') ?>" method="POST" class="tool-form">
   This will reset every students' passwords.  Emails will be sent out with their new ones.<br><br>
   <table>
     <tr>
@@ -29,6 +29,6 @@
 </form>
 
 <ul>
-<li class="tool"><?php echo link_to('Delete All Students', 'project/clearAllStudents') ?></li>
-<li class="tool"><?php echo link_to('Delete All Projects', 'project/clearAllProjects') ?></li>
+<li class="tool"><?php echo link_to('Delete All Students', 'student/clearAllStudents') ?></li>
+<li class="tool"><?php echo link_to('Delete All Projects', 'student/clearAllProjects') ?></li>
 </ul>
