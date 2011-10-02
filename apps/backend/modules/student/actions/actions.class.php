@@ -5,6 +5,7 @@ require_once dirname(__FILE__).'/../lib/studentGeneratorHelper.class.php';
 
 /**
  * student actions.
+ * This file also contains actions for the Tools page
  *
  * @package    PANS
  * @subpackage student
@@ -18,6 +19,7 @@ class studentActions extends autoStudentActions
   public function executeShow(sfWebRequest $request)
   {
   }
+  
   
   // The _real_ import students from file action
   // Manually handling the file upload and parsing
@@ -57,38 +59,22 @@ class studentActions extends autoStudentActions
     
     // Get database connection
     $conn = Doctrine_Manager::getInstance();
-    
     $student_user = Doctrine_Core::getTable('StudentUser');
     $guard_user = Doctrine_Core::getTable('sfGuardUser');
-   
     $this->student_user_collection = new Doctrine_Collection('StudentUser');
-    $this->guard_user_collection = new Doctrine_Collection('sfGuardUser');
     
     // Add students
-    // TODO: Randomly generate a password for them too
     foreach ($students as $student) {
       $user = new StudentUser();
       $user->snum = $student['snum'];
       $user->first_name = $student['first_name'];
       $user->last_name = $student['last_name'];
-      
-      $auth_user = new sfGuardUser();
-      $auth_user->setEmailAddress('s' . $student['snum'] . '@griffithuni.edu.au');
-      $auth_user->setUsername($student['snum']);
-      $auth_user->setPassword($this->random_password());
-      $auth_user->setFirstName($student['first_name']);
-      $auth_user->setLastName($student['last_name']);
-      $auth_user->setIsActive(true);
-      $auth_user->setIsSuperAdmin(false);
-      
       $this->student_user_collection->add($user);
-      $this->guard_user_collection->add($auth_user);
     }
     
     // Commit the new students into database
     try {
       $this->student_user_collection->save();
-      $this->guard_user_collection->save();
     } catch (Doctrine_Connection_Mysql_Exception $e) {
       $this->getUser()->setFlash('error', 'Failed to import students: ' . $e->getMessage());
       $this->redirect('project/tool');
@@ -99,6 +85,79 @@ class studentActions extends autoStudentActions
     $this->redirect('project/tool');
   }
   
+  
+  // Resets one student's password and emails him/her the new password
+  // Deletes the old password.  Unfortunately even we don't know what your old password was.
+  protected function emailPassword($snum, $first_name, $last_name)
+  {
+    $conn = Doctrine_Manager::getInstance();
+    $guard_user = Doctrine_Core::getTable('sfGuardUser')->findOneBy('username', array($snum));
+    
+    if ($guard_user == null)
+      $guard_user = new sfGuardUser();
+
+    $password = $this->random_password();
+      
+    $guard_user->setEmailAddress('s' . $snum . '@griffithuni.edu.au');
+    $guard_user->setUsername($snum);
+    $guard_user->setPassword($password);
+    $guard_user->setFirstName($first_name);
+    $guard_user->setLastName($last_name);
+    $guard_user->setIsActive(true);
+    $guard_user->setIsSuperAdmin(false);
+    
+    $guard_user->save();
+    
+    $message = "Dear " . $guard_user->getFirstName() . "," . PHP_EOL . PHP_EOL . 
+               "Your account has been created for the project allocation and nomination system." . PHP_EOL . PHP_EOL .
+               "Username: " . $snum . PHP_EOL .
+               "Password: " . $password . PHP_EOL . PHP_EOL  .
+               "Please follow the links to fill in your project nomination form." . PHP_EOL . PHP_EOL .
+               "Auto-generated-message-sincerely-yours,\nProject Allocation and Nomination System (PANS)";
+    $headers = 'From: "PANS" <' . $this->getUser()->getGuardUser()->getEmailAddress() . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
+    $result = mail( $guard_user->getEmailAddress(),
+                    "3001ICT - Your password has been created for project nominations",
+                    $message,
+                    $headers);
+        
+    if ($result === false) {
+      $this->getUser()->setFlash('notice', 'Password reset.  Email failed to send.');
+    } else {
+      $this->getUser()->setFlash('notice', 'Password reset.  Email sent.');
+    }
+  }
+  
+  
+  // Mass email every student their resetted passwords
+  public function executeEmailAllPasswords()
+  {
+  // TODO: Actually email everyone not just me.
+    $this->emailPassword(2674674, 'Xavier', 'Ho');
+
+    $this->redirect('project/tool');
+  }
+  
+  // Delete all students and their login details in the database
+  public function executeClearAllStudents(sfWebRequest $request)
+  {
+    $conn = Doctrine_Manager::getInstance();
+    $students = Doctrine_Core::getTable('StudentUser')->findAll();
+    $students->delete();
+    
+    $this->getUser()->setFlash('notice', 'Students deleted.');
+    $this->redirect('project/tool');
+  }
+  
+  // Delete all projects in the database
+  public function executeClearAllProjects(sfWebRequest $request)
+  {
+    $conn = Doctrine_Manager::getInstance();
+    $projects = Doctrine_Core::getTable('Project')->findAll();
+    $projects->delete();
+    
+    $this->getUser()->setFlash('notice', 'Projects deleted.');
+    $this->redirect('project/tool');
+  }
   
   // File error handling from
   // http://www.php.net/manual/en/features.file-upload.errors.php
@@ -128,7 +187,7 @@ class studentActions extends autoStudentActions
   // http://www.lost-in-code.com/programming/php-code/php-random-string-with-numbers-and-letters/
   protected function random_password() 
   {
-    $length = 16;
+    $length = 8;
     $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()[]{}<>?/\\';
     $string = '';    
     for ($p = 0; $p < $length; $p++) {
