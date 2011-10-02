@@ -16,13 +16,7 @@
   This will reset every students' passwords.  Emails will be sent out with their new ones.<br><br>
   <table>
     <tr>
-      <td>Sender</td><td><input type="text" name="subject" value="<?php echo $email; ?>" /></td>
-    </tr>
-    <tr>
       <td>Recipient Email domain</td><td><input type="text" name="subject" value="@griffithuni.edu.au" /></td>
-    </tr>
-    <tr>
-      <td>Subject</td><td><input type="text" name="subject" value="3001ICT - Your Password" /></td>
     </tr>
   </table>
   <input type="submit" value="Submit" />
