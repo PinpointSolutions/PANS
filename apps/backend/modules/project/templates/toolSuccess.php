@@ -4,6 +4,7 @@
 <?php endif; ?>
 <div class="flash_notice">Actions here cannot be undone. Proceed with caution.</div>
 
-<?php echo link_to('Delete All Students', 'project/clearAllStudents') ?>
-<br><br>
-<?php echo link_to('Delete All Projects', 'project/clearAllProjects') ?>
+<ul>
+<li class="tool"><?php echo link_to('Delete All Students', 'project/clearAllStudents') ?></li>
+<li class="tool"><?php echo link_to('Delete All Projects', 'project/clearAllProjects') ?></li>
+</ul>
