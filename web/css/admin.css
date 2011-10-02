@@ -8,10 +8,10 @@
   padding-left:5px;
 }
 
-/* Generated content title */
-h1 {
-  font-size: 24px;
-  margin-bottom: 15px;
+.tool-form {
+  padding: 10px;
+  border: 1px solid #C02424;
+  margin-bottom: 20px;
 }
 
 /* Admin view specific */

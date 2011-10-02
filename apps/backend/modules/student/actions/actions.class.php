@@ -29,7 +29,7 @@ class studentActions extends autoStudentActions
     if ($_FILES['studentFile']['error'] !== UPLOAD_ERR_OK) {
       $this->getUser()->setFlash('error', 
             $this->file_upload_error_message($_FILES['studentFile']['error']));
-      $this->redirect('student/index');
+      $this->redirect('project/tool');
     }
     
     // Reads the entire content
@@ -91,12 +91,12 @@ class studentActions extends autoStudentActions
       $this->guard_user_collection->save();
     } catch (Doctrine_Connection_Mysql_Exception $e) {
       $this->getUser()->setFlash('error', 'Failed to import students: ' . $e->getMessage());
-      $this->redirect('student/index');
+      $this->redirect('project/tool');
     }
 
     // "The task is done, m'lord."
     $this->getUser()->setFlash('notice', 'Students imported successfully.');
-    $this->redirect('student/index');
+    $this->redirect('project/tool');
   }
   
   
