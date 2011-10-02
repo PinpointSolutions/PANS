@@ -108,15 +108,17 @@ class studentActions extends autoStudentActions
     
     $guard_user->save();
     
-    $message = "Dear " . $guard_user->getFirstName() . ",\n\n" .
-               "Your account has been created for the project allocation and nomination system.\n\n" .
-               "Username: " . $snum . "\n" .
-               "Password: " . $password . "\n\n" .
-               "Please follow the links to fill in your project nomination form.\n\n" .
+    $message = "Dear " . $guard_user->getFirstName() . "," . PHP_EOL . PHP_EOL . 
+               "Your account has been created for the project allocation and nomination system." . PHP_EOL . PHP_EOL .
+               "Username: " . $snum . PHP_EOL .
+               "Password: " . $password . PHP_EOL . PHP_EOL  .
+               "Please follow the links to fill in your project nomination form." . PHP_EOL . PHP_EOL .
                "Auto-generated-message-sincerely-yours,\nProject Allocation and Nomination System (PANS)";
-    $result = mail( $guard_user->getEmailAddress(),
+    $headers = 'From: "' . /*$this->getUser()->getName()*/ 'Xavier Ho' . '" <' . /*$this->getUser()->getGuardUser()->getEmailAddress()*/ 'example@email.com' . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
+    $result = mail( /*$guard_user->getEmailAddress()*/ 'spaxe85@gmail.com',
                     "3001ICT - Your password has been created for project nominations",
-                    $message);
+                    $message,
+                    $headers);
         
     if ($result === false) {
       $this->getUser()->setFlash('notice', 'Password reset.  Email failed to send.');
