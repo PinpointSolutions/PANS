@@ -11,6 +11,13 @@
   <input type="submit" value="Import" />
 </form>
 
+<h2>Reset and Email All Students Passwords</h2>
+<form enctype="multipart/form-data" action="<?php echo url_for('@importStudents') ?>" method="POST" class="tool-form">
+  This will reset every students' passwords.  Emails will be sent out with their new ones.<br>
+  <input
+  <input type="submit" value="Submit" />
+</form>
+
 <ul>
 <li class="tool"><?php echo link_to('Delete All Students', 'project/clearAllStudents') ?></li>
 <li class="tool"><?php echo link_to('Delete All Projects', 'project/clearAllProjects') ?></li>

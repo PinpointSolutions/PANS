@@ -95,7 +95,7 @@ class studentActions extends autoStudentActions
     }
 
     // "The task is done, m'lord."
-    $this->getUser()->setFlash('notice', 'Students imported successfully.');
+    $this->getUser()->setFlash('notice', 'Students imported successfully.  Please email their passwords.');
     $this->redirect('project/tool');
   }
   
