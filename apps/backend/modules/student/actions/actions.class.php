@@ -13,13 +13,16 @@ require_once dirname(__FILE__).'/../lib/studentGeneratorHelper.class.php';
  */
 class studentActions extends autoStudentActions
 {
-  // Import Student From File in disguise
+  // Import Students From File in disguise
   // Do not rename, remove, or modify this method
   public function executeShow(sfWebRequest $request)
   {
   }
   
+  // The _real_ import students from file action
   // Manually handling the file upload and parsing
+  // We have two tables, one for student forms and one for login. We have to
+  // create a record in both tables.
   public function executeImportStudents(sfWebRequest $request)
   {
     // Ensure the file is uploaded okay
@@ -54,31 +57,53 @@ class studentActions extends autoStudentActions
     
     // Get database connection
     $conn = Doctrine_Manager::getInstance();
+    
     $student_user = Doctrine_Core::getTable('StudentUser');
-    $this->collection = new Doctrine_Collection('StudentUser');
+    $guard_user = Doctrine_Core::getTable('sfGuardUser');
+   
+    $this->student_user_collection = new Doctrine_Collection('StudentUser');
+    $this->guard_user_collection = new Doctrine_Collection('sfGuardUser');
     
     // Add students
+    // TODO: Randomly generate a password for them too
     foreach ($students as $student) {
       $user = new StudentUser();
       $user->snum = $student['snum'];
       $user->first_name = $student['first_name'];
       $user->last_name = $student['last_name'];
-      $this->collection->add($user);
+      
+      $auth_user = new sfGuardUser();
+      $auth_user->setEmailAddress('s' . $student['snum'] . '@griffithuni.edu.au');
+      $auth_user->setUsername($student['snum']);
+      $auth_user->setPassword($this->random_password());
+      $auth_user->setFirstName($student['first_name']);
+      $auth_user->setLastName($student['last_name']);
+      $auth_user->setIsActive(true);
+      $auth_user->setIsSuperAdmin(false);
+      
+      $this->student_user_collection->add($user);
+      $this->guard_user_collection->add($auth_user);
     }
+    
+    // Commit the new students into database
     try {
-      $this->collection->save();
+      $this->student_user_collection->save();
+      $this->guard_user_collection->save();
     } catch (Doctrine_Connection_Mysql_Exception $e) {
       $this->getUser()->setFlash('error', 'Failed to import students: ' . $e->getMessage());
       $this->redirect('student/index');
     }
 
+    // "The task is done, m'lord."
     $this->getUser()->setFlash('notice', 'Students imported successfully.');
     $this->redirect('student/index');
   }
   
+  
   // File error handling from
   // http://www.php.net/manual/en/features.file-upload.errors.php
-  protected function file_upload_error_message($error_code) {
+  protected function file_upload_error_message($error_code) 
+  {
     switch ($error_code) { 
       case UPLOAD_ERR_INI_SIZE: 
         return 'The uploaded file exceeds the upload_max_filesize directive in php.ini'; 
@@ -98,4 +123,17 @@ class studentActions extends autoStudentActions
         return 'Unknown upload error'; 
     } 
   } 
+  
+  // Random password generation, good for one-time login
+  // http://www.lost-in-code.com/programming/php-code/php-random-string-with-numbers-and-letters/
+  protected function random_password() 
+  {
+    $length = 16;
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()[]{}<>?/\\';
+    $string = '';    
+    for ($p = 0; $p < $length; $p++) {
+        $string .= $characters[mt_rand(0, strlen($characters))];
+    }
+    return $string;
+  }
 }
