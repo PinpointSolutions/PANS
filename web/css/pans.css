@@ -7,11 +7,13 @@ body {
   background: url("../images/background_top_horizontal_red.png") repeat-x;
 }
 
+/* Wrapper tag */
 #wrapper {
   margin: 0 auto;
   width: 930px;
 }
 
+/* All hyperlinks */
 a {
   color: #C02424;
   text-decoration: none;
@@ -25,6 +27,7 @@ a {
   /* background-color: #C02424; */
 }
 
+/* the banner image */
 #logo {
   position: relative;
   float: left;
@@ -62,6 +65,7 @@ a {
   width: 100px;
   height: 100px;
   background: #CCCCCC;
+  
 }
 
 
@@ -94,13 +98,6 @@ th, td {
   
 }
 
-form table {
-  line-height: 18px;
-}
-
-form th {
-  vertical-align: top;
-}
 
 p {
   line-height: 18px;
@@ -154,6 +151,31 @@ p {
   width: 100px;
 }
 
+
+/*** Form Styles ***/
+
+form table {
+  line-height: 18px;
+}
+
+/* Required field indicaters */
+form span.req {
+  color:red;
+  font-size:12px;
+ }
+
+/* Inline instructions */
+form p.instr {
+	margin-top:20px;
+	font-style:italic;
+}
+
+
+form th {
+  vertical-align: top;
+}
+
+/* Every form class object */
 .form {
   font-size: 14px;
 }
@@ -163,6 +185,7 @@ p {
   height: 200px;
 }
 
+/* The notifications called from action.class.php */
 .flash_notice {
   padding: 10px 50px;
   width: 820px;
