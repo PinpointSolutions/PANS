@@ -136,7 +136,7 @@ class studentActions extends sfActions
     if ($form->isValid())
     {
       $student_user = $form->save();
-      $this->getUser()->setFlash('notice', 'Thanks!');
+      $this->getUser()->setFlash('notice', 'Successfully Saved!');
       $this->redirect('student/edit');
     }
   }

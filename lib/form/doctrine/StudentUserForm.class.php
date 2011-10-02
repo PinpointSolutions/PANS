@@ -7,6 +7,7 @@
  * @subpackage form
  * @author     Pinpoint Solutions
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
+
  */
 class StudentUserForm extends BaseStudentUserForm
 {
@@ -23,14 +24,21 @@ class StudentUserForm extends BaseStudentUserForm
     /* $snum_widget = new sfWidgetFormInputHidden();
     $snum_widget->setLabel('Student Number'); */
 	
+	/* 
+	For required fields we embed html tags that use css to display correct indicaters 
+	
+	 This is as the student nomination form is entirely generated. The only other way 
+	 to affect the html itself than embedding would require a truly inordinate amount 
+	 of coding, new templates and what have you.
+	*/
     $first_name_widget = new sfWidgetFormInputText();
-    $first_name_widget->setLabel('First Name (Required)');
+    $first_name_widget->setLabel('First Name <span class="req" id="">*</span>');
     
     $last_name_widget = new sfWidgetFormInputText();
-    $last_name_widget->setLabel('Last Name (Required)');
+    $last_name_widget->setLabel('Last Name <span class="req" id="">*</span>');
     
     $pass_fail_widget = new sfWidgetFormInputCheckbox();
-    $pass_fail_widget->setLabel('Please check this box if you passed Project Management: (Required)');
+    $pass_fail_widget->setLabel('Please check this box if you passed Project Management: <span class="req" id="">*</span>');
     
     // TODO: Fix saving majors
     // Also, Skill Sets
@@ -41,20 +49,20 @@ class StudentUserForm extends BaseStudentUserForm
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Degree')));
-    $degrees_widget->setLabel('Please indicate your Degree(s) (Required)');	
+    $degrees_widget->setLabel('Please indicate your Degree(s) <span class="req" id="degrees">*</span>');	
     
     $majors_widget = new sfWidgetFormDoctrineChoice(
       array(
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Major')));
-    $majors_widget->setLabel('Please indicate your Major(s) (Required)');	
+    $majors_widget->setLabel('Please indicate your Major(s) <span class="req" id="majors">*</span>');	
     
     $gpa_widget = new sfWidgetFormInputText();
-    $gpa_widget->setLabel('Please indicate your current GPA (Required)');	
+    $gpa_widget->setLabel('Please indicate your current GPA <span class="req" id="gpa">*</span>');	
     
     $proj1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
-    $proj1_widget->setLabel('Nominate your first project preference (Required)');	
+    $proj1_widget->setLabel('Nominate your first project preference <span class="req" id="degrees">*</span>');	
     
     $proj2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
     $proj2_widget->setLabel('Nominate your second project preference');	
@@ -73,7 +81,7 @@ class StudentUserForm extends BaseStudentUserForm
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('SkillSet')));
-    $skills_widget->setLabel('What are your strengths? (Required)');	
+    $skills_widget->setLabel('What are your strengths? <span class="req" id="">*</span>');	
     
     // TODO: Make sure students can't pick themselves.
     // Possible solution is to do the checking in PHP upon save.
@@ -83,7 +91,7 @@ class StudentUserForm extends BaseStudentUserForm
       'renderer_options'  => array('url'   => $this->getOption('url'),
                                    'model' => $this->getRelatedModelName('StudentUser'))
       )); 
-    $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with. (Required)');	
+    $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with.');	
     
     $ystupref2_widget = new sfWidgetFormChoice(array(
       'choices'           => array(),
@@ -158,7 +166,7 @@ class StudentUserForm extends BaseStudentUserForm
     $nstupref5_widget->setLabel(' ');
     
     $proj_just1_widget = new sfWidgetFormTextarea();
-    $proj_just1_widget->setLabel('Please provide a justification. (Required)<br> Why should you be selected for this project?<br>You must provide one for your first preference.');
+    $proj_just1_widget->setLabel('Please provide a justification. <span class="req" id="justification">*</span><p class="instr">Why should you be selected for this project?<br>You must provide one for your first preference.</p>');
 
     $proj_just2_widget = new sfWidgetFormTextarea();
     $proj_just2_widget->setLabel('Please provide a justification.');

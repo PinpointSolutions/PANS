@@ -24,5 +24,5 @@
     <div class="action"><?php echo link_to('Delete', 'student/delete?snum='.$form->getObject()->getSnum(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></div>
   <?php endif; ?>
   */ ?>
-  <input class="centered" type="submit" value="Save"/>
+  <label for="submit"><span class="req">(*) Required Field </span></label><input class="centered" name="submit" type="submit" value="Save"/>
 </form>
