@@ -14,7 +14,8 @@ default:
 
   stylesheets:    [reset.css, pans.css]
 
-  javascripts:    [jquery-1.6.3.min.js]
+# A non-limited licence (MIT license) js script (getElementsByClass...) was used to ensure cross, and backwards, compatability with IE and other browsers.
+  javascripts:    [jquery-1.6.3.min.js, studentForm_Instructions.js, getElementsByClassName-1.0.1.js]
 
   has_layout:     true
   layout:         layout

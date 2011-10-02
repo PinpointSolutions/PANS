@@ -30,15 +30,20 @@ class StudentUserForm extends BaseStudentUserForm
 	 This is as the student nomination form is entirely generated. The only other way 
 	 to affect the html itself than embedding would require a truly inordinate amount 
 	 of coding, new templates and what have you.
+	 
+	 The help feature is created using javascript which finds the .help #id and 
+	 applies the relevant help string upon rollover. The #id must match with the string 
+	 var defined in studentForm_Instructions - for which a link is created using the 
+	 options defined in view.yml.
 	*/
     $first_name_widget = new sfWidgetFormInputText();
-    $first_name_widget->setLabel('First Name <span class="req" id="">*</span>');
+    $first_name_widget->setLabel('<span class="req">*</span>First Name <a class="help" id="name">?</a>');
     
     $last_name_widget = new sfWidgetFormInputText();
-    $last_name_widget->setLabel('Last Name <span class="req" id="">*</span>');
+    $last_name_widget->setLabel('<span class="req" id="">*</span>Last Name ');
     
     $pass_fail_widget = new sfWidgetFormInputCheckbox();
-    $pass_fail_widget->setLabel('Please check this box if you passed Project Management: <span class="req" id="">*</span>');
+    $pass_fail_widget->setLabel('<span class="req" id="">*</span>Please check this box if you passed Project Management: ');
     
     // TODO: Fix saving majors
     // Also, Skill Sets
@@ -49,20 +54,20 @@ class StudentUserForm extends BaseStudentUserForm
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Degree')));
-    $degrees_widget->setLabel('Please indicate your Degree(s) <span class="req" id="degrees">*</span>');	
+    $degrees_widget->setLabel('<span class="req" id="degrees">*</span>Please indicate your Degree(s) ');	
     
     $majors_widget = new sfWidgetFormDoctrineChoice(
       array(
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Major')));
-    $majors_widget->setLabel('Please indicate your Major(s) <span class="req" id="majors">*</span>');	
+    $majors_widget->setLabel('<span class="req" id="majors">*</span>Please indicate your Major(s) ');	
     
     $gpa_widget = new sfWidgetFormInputText();
-    $gpa_widget->setLabel('Please indicate your current GPA <span class="req" id="gpa">*</span>');	
+    $gpa_widget->setLabel('<span class="req" id="gpa">*</span>Please indicate your current GPA ');	
     
     $proj1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
-    $proj1_widget->setLabel('Nominate your first project preference <span class="req" id="degrees">*</span>');	
+    $proj1_widget->setLabel('<span class="req" id="degrees">*</span>Nominate your first project preference ');	
     
     $proj2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
     $proj2_widget->setLabel('Nominate your second project preference');	
@@ -81,7 +86,7 @@ class StudentUserForm extends BaseStudentUserForm
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('SkillSet')));
-    $skills_widget->setLabel('What are your strengths? <span class="req" id="">*</span>');	
+    $skills_widget->setLabel('<span class="req" id="">*</span>What are your strengths? ');	
     
     // TODO: Make sure students can't pick themselves.
     // Possible solution is to do the checking in PHP upon save.

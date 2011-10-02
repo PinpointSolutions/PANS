@@ -170,6 +170,17 @@ form p.instr {
 	font-style:italic;
 }
 
+/* Help Link, used within the forms */
+form a.help{
+  padding:1px 4px;
+  
+  color:#0066FF;
+}
+
+form a.help:hover{
+  color:#0000FF;
+  cursor:pointer;
+}
 
 form th {
   vertical-align: top;
