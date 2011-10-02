@@ -114,8 +114,8 @@ class studentActions extends autoStudentActions
                "Password: " . $password . PHP_EOL . PHP_EOL  .
                "Please follow the links to fill in your project nomination form." . PHP_EOL . PHP_EOL .
                "Auto-generated-message-sincerely-yours,\nProject Allocation and Nomination System (PANS)";
-    $headers = 'From: "' . /*$this->getUser()->getName()*/ 'Xavier Ho' . '" <' . /*$this->getUser()->getGuardUser()->getEmailAddress()*/ 'example@email.com' . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
-    $result = mail( /*$guard_user->getEmailAddress()*/ 'spaxe85@gmail.com',
+    $headers = 'From: "PANS" <' . $this->getUser()->getGuardUser()->getEmailAddress() . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
+    $result = mail( $guard_user->getEmailAddress(),
                     "3001ICT - Your password has been created for project nominations",
                     $message,
                     $headers);
