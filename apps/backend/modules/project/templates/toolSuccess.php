@@ -13,7 +13,7 @@
 
 <h2>Reset and Email All Students Passwords</h2>
 <form enctype="multipart/form-data" action="<?php echo url_for('student/emailAllPasswords') ?>" method="POST" class="tool-form">
-  This will reset every students' passwords.  Emails will be sent out with their new ones.<br><br>
+  This will reset every students' passwords.  Emails will be sent out with their new ones.  (Dev: This doesn't work on your local machine.)<br><br>
   <table>
     <tr>
       <td>Recipient Email domain</td><td><input type="text" name="subject" value="@griffithuni.edu.au" /></td>

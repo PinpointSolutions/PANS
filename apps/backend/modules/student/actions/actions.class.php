@@ -123,9 +123,8 @@ class studentActions extends autoStudentActions
     if ($result === false) {
       $this->getUser()->setFlash('notice', 'Password reset.  Email failed to send.');
     } else {
-      $this->getUser()->setFlash('notice', 'Password reset.');
+      $this->getUser()->setFlash('notice', 'Password reset.  Email sent.');
     }
-    $this->redirect('project/tool');
   }
   
   
@@ -134,8 +133,7 @@ class studentActions extends autoStudentActions
   {
   // TODO: Actually email everyone not just me.
     $this->emailPassword(2674674, 'Xavier', 'Ho');
-  
-    $this->getUser()->setFlash('notice', 'All Passwords have been reset and emailed.  Just joking.');
+
     $this->redirect('project/tool');
   }
   
