@@ -77,15 +77,22 @@ a {
   padding-top: 25px;
   text-align: left;
   width: 930px;
+}
+
+/* Specific stripe that differentiates the Admin Login */
+#content h1{
   /* change the background from the ugly colour here! */
-  /*background: #cccccc; */
+  /*background: #eee; */
   background: url("../images/stripe.png") top left;
+  padding-top:2px;
+  padding-bottom:2px;
+  padding-left:5px;
 }
 
 /* Generated content title */
 h1 {
   font-size: 24px;
-  padding-bottom: 15px;
+  margin-bottom: 15px; /* margin not padding for the stripe*/
 }
 
 th, td {
