@@ -11,12 +11,12 @@
   
   <body> <!-- This layout.php is for the Admin View. -->
     <div id="wrapper">
-      <div id="header">
+      <div id="header" class="admin-header">
         <a href="<?php echo url_for('@homepage') ?>"><div id="logo"></div></a>
         <div id="title">Project Allocation and Nomination System</div>
       </div>
       
-      <div id="navbar">
+      <div id="navbar" class="admin-navbar">
         <?php if ($sf_user->isAuthenticated()): ?>
         
           <div class="alignleft">
@@ -54,11 +54,11 @@
         <?php endif; ?>
       </div>
       
-      <div id="content">
+      <div id="content" class="admin-content">
         <?php echo $sf_content ?>
       </div>
       
-      <div id="footer">
+      <div id="footer" class="admin-footer">
         Developed by Pinpoint Solutions
       </div>
     </div>
