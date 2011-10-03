@@ -15,7 +15,14 @@
       <tr>
         <td>Suitable Major(s)</td>
         <td>
-          <div class="projectMajors">(Majors)</div>
+          <div class="projectMajors">
+            <?php $majorIds=explode(' ', $project->getMajorIds()); ?>
+            <?php $majors=array(); ?>
+            <?php foreach ($majorIds as $id): ?>
+              <?php array_push($majors, $majorName[$id]); ?>
+            <?php endforeach; ?>
+            <?php echo implode(', ', $majors);?>
+          </div>
         </td>
       </tr>
       <tr>
