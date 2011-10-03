@@ -37,54 +37,39 @@ ProjectAllocation:
   connection: doctrine
   tableName: project_allocations
   columns:
+    id:
+      type: integer(4)
+      fixed: false
+      unsigned: false
+      unsigned: false
+      primary: true
+      autoincrement: true
     project_id:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       autoincrement: false
-    snum1:
+    snum:
       type: integer(4)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
-    snum2:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    snum3:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    snum4:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    snum5:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    snum6:
-      type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
+  relations:
+    Project:
+      onDelete: CASCADE
+      local: project_id
+      type: one
+      foreignType: many
+      foreign: id
+    StudentUser:
+      onDelete: CASCADE
+      local: snum
+      type: one
+      foreignType: many
+      foreign: snum
 Project:
   connection: doctrine
   tableName: projects
@@ -405,3 +390,10 @@ StudentUser:
       type: many
       foreignType: many
       foreign: id
+NominationRound:
+  connection: doctrine
+  tableName: nominationRound
+  columns:
+    deadline:
+      type: timestamp
+      primary: true

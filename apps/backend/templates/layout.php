@@ -44,7 +44,7 @@
           </div>
           
           <div class="alignleft action">
-            <?php echo link_to('Groups', 'group/index') ?>
+            <?php echo link_to('Groups', 'project/group') ?>
           </div>
 
           <div class="alignleft action">

@@ -19,4 +19,12 @@ class projectActions extends autoProjectActions
   {
     $this->email = $this->getUser()->getGuardUser()->getEmailAddress();
   }
+  
+  // Admin View for the Group Page
+  public function executeGroup(sfWebRequest $request)
+  {
+    $this->groups = Doctrine_Core::getTable('ProjectAllocation')
+      ->createQuery('a')
+      ->execute();
+  }
 }

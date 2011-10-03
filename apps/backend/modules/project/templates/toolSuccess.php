@@ -22,7 +22,10 @@
   <input type="submit" value="Submit" />
 </form>
 
+<h2>Delete Data</h2>
+<div class="tool-form">
 <ul>
 <li class="tool"><?php echo link_to('Delete All Students', 'student/clearAllStudents') ?></li>
 <li class="tool"><?php echo link_to('Delete All Projects', 'student/clearAllProjects') ?></li>
 </ul>
+</div>
