@@ -18,7 +18,15 @@ class projectActions extends sfActions
     $this->projects = Doctrine_Core::getTable('Project')
       ->createQuery('a')
       ->execute();
-  }
+      
+    $this->majors = Doctrine_Core::getTable('Major')
+      ->createQuery('a')
+      ->execute();
+    $this->majorName = array();
+    foreach($this->majors as $m){
+      $this->majorName[$m->getId()] = $m->getMajor();
+    }
+    }
   
   /**
    * Displays one project
