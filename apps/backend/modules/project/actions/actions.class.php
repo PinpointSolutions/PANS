@@ -18,6 +18,10 @@ class projectActions extends autoProjectActions
   public function executeTool(sfWebRequest $request)
   {
     $this->email = $this->getUser()->getGuardUser()->getEmailAddress();
+    $this->deadline = Doctrine_Core::getTable('NominationRound')
+      ->createQuery('a')
+      ->fetchOne()
+      ->getDeadline();
   }
   
   // Admin View for the Group Page
@@ -164,6 +168,16 @@ class projectActions extends autoProjectActions
     
     $this->getUser()->setFlash('notice', 'Projects deleted.');
     $this->redirect('project/tool');
+  }
+  
+  // Change the deadline of the nomination round
+  public function executeChangeDeadline(sfWebRequest $request)
+  {
+    /*
+    $conn = Doctrine_Manager::getInstance();
+    $students = Doctrine_Core::getTable('NominationRound')->findAll();
+    $students->delete();
+    */
   }
   
   // File error handling from
