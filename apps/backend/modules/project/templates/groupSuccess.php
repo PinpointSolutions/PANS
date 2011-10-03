@@ -2,6 +2,7 @@
 
 <?php foreach ($groups as $group): ?>
 
+  
   <?php echo $group->getId(); ?>: <?php echo $group->getProjectId(); ?> - <?php echo $group->getSnum(); ?>
   <br>
 
