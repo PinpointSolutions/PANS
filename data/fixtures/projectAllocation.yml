@@ -1,0 +1,13 @@
+ProjectAllocation:
+    group_1:
+        id: 1
+        project_id: 1
+        snum: 2222222
+    group_2:
+        id: 2
+        project_id: 1
+        snum: 3333333
+    group_3:
+        id: 3
+        project_id: 2
+        snum: 11111
