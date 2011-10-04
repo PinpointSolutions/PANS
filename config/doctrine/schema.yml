@@ -392,8 +392,8 @@ StudentUser:
       foreign: id
 NominationRound:
   connection: doctrine
-  tableName: nominationRound
+  tableName: nomination_round
   columns:
     deadline:
-      type: timestamp
+      type: date
       primary: true

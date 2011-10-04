@@ -1,6 +1,6 @@
 CREATE TABLE degrees (id INT AUTO_INCREMENT, degree TEXT NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE majors (id INT AUTO_INCREMENT, major TEXT NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE nominationRound (deadline DATETIME, PRIMARY KEY(deadline)) ENGINE = INNODB;
+CREATE TABLE nomination_round (deadline DATE, PRIMARY KEY(deadline)) ENGINE = INNODB;
 CREATE TABLE projects (id INT AUTO_INCREMENT, title TEXT, organisation TEXT, description TEXT, has_additional_info TINYINT(1), has_gpa_cutoff TINYINT(1), major_ids VARCHAR(64), skill_set_ids VARCHAR(64), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE project_allocations (id INT AUTO_INCREMENT, project_id INT, snum INT, INDEX project_id_idx (project_id), INDEX snum_idx (snum), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE skill_sets (id INT AUTO_INCREMENT, skill TEXT NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;

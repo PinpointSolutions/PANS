@@ -1,7 +1,3 @@
-Degree:
-  informationTechnology:
-    degree: Information Technology
-  multimedia:
-    degree: Multimedia
-  softwareEngineering:
-    degree: Software Engineering
+NominationRound:
+  deadline1:
+    deadline: '2011-12-01'
