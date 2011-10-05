@@ -8,50 +8,68 @@
 	shown in the Student Form. These are clearly labelled as to which 
 	section they apply to.
 
-AM LOOKING AT A JQUERY SCRIPT TO DISPLAY THIS, but trialed the basic concept already
-
 */
 
 
-/*	------ Instruction Strings ------  */
-var name, projMangement, degrees, majors, skills, gpa, projectList, projectPref, desiredTeam, undesiredTeam;
+/*	---------------------- Instruction Strings ----------------------  */
 
-name = "This name is used for the 'team preferrances' section at the bottom. Preferrably this should also be the name on your student card.";
+/*
+  This takes a set of Sstrings and attatches them as instructions to the relevant section of the student form
+  
+  These Strings use variable names that match the suffix of the tag#id's they relate to,
+      ie. 'name' refers to '#instructions_name' tag in the student form
+	  
+*/
 
-function displayMsg(tag, msg)
+//declare the list of instruction Strings as an array
+var list = { 
+	//set the actual text used here
+	'name' 			: "This name is used for the 'team preferrances' section at the bottom. Preferrably this should also be the name on your student card.",
+	'pass_fail'		: "..." ,
+	'degrees' 		: ".."  ,
+	'majors' 		: "..."  ,
+	'skills' 		: ".."  ,
+	'gpa' 			: "gpa stuff"  ,
+	'projPref' 		: "project preferance"  ,
+	'projectJust'	: "..."  ,
+	'desiredStud' 	: ".."  ,
+	'undesiredStud'	: "..."  ,
+};
+
+
+
+//call to the function that goes through the list
+//attachInstructions();
+
+
+
+/*	
+	There is a placeholder which the user hovers over to display the instructions
+	The actual instructions are contained within the title attribute of the <a> tag
+	
+	So we have to find the relevant tag then attach the desired code
+*/
+
+function attachInstructions()
 {
+	//draw trace window
+	document.write('<div style="clear:both;display:block;height:auto;background-color:#eee;">')
+	document.write('test = ' + document.getElementById('header') + '<br>');
+	var suffix; 	// this retains the suffix of the desired tag
+	var target;		// this is the target DOM element
+	var targetStr;	// this is the string #id of the DOM element
 	
-}
-
-
-
-
-
-
-
-/**	I started creating this script (2min work) when came accross issues i remember regarding 
-	cross-compatability, so went and found a free to use script online that 
-	addressed these
-	
-
-function addContent()
-{
-	//so we find a list of all relevant tags 
-	
-	//now we know they are in a form
-	var containers = document.getElementsByTagName(form);
-	
-	var tags = new Array();
-	var x = 0; //x is the index of any new object
-	for(i=0;i<containers.length;i++)
+	for(obj in list)
 	{
+		suffix = obj;
+		targetStr = "instructions_"+suffix;
+		target = document.getElementById(targetStr);
 		
-		//then make a list of all <a> tags within the form/s, as we know thier all <a>
-		var tags = document.getElementsByTagName(a);
-	
-	var 
-	
-	 document.getElementById("
+		document.write(suffix + ' = ' + list[obj] + ' <br> DOM: targetStr = ' + targetStr + ', target = ' + target + '<br>');
+		document.write();
 	}
+	document.write('</div>');
 }
-*/
+
+
+

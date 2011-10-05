@@ -162,6 +162,7 @@ form table {
 form span.req {
   color:red;
   font-size:12px;
+  margin-right:2px;
  }
 
 /* Inline instructions */
