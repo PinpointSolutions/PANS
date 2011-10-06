@@ -18,10 +18,20 @@ class projectActions extends autoProjectActions
   public function executeTool(sfWebRequest $request)
   {
     $this->email = $this->getUser()->getGuardUser()->getEmailAddress();
-    $this->deadline = Doctrine_Core::getTable('NominationRound')
-      ->createQuery('a')
-      ->fetchOne()
-      ->getDeadline();
+
+    try {
+      $this->deadline = Doctrine_Core::getTable('NominationRound')
+        ->createQuery('a')
+        ->fetchOne();
+    } catch (Exception $e) {
+      $this->deadline = null;
+    }
+
+    if (!$this->deadline) {
+      $this->deadline = 'YYYY-MM-DD';
+    } else {
+      $this->deadline = $this->deadline->getDeadline();
+    }
   }
   
   // Admin View for the Group Page
@@ -82,11 +92,27 @@ class projectActions extends autoProjectActions
   // Change the deadline of the nomination round
   public function executeChangeDeadline(sfWebRequest $request)
   {
-    $conn = Doctrine_Manager::getInstance();
-    $students = Doctrine_Core::getTable('NominationRound')->findAll();
-    //$students->delete();
+    try {
+      // PHP Erro handling is really, really horrible
+      $deadline = DateTime::createFromFormat('Y-m-d', $request->getPostParameter('deadline'));
+      if ($deadline == false)
+        throw new Exception();
+    } catch (Exception $e) {
+      $this->getUser()->setFlash('error', 'Invalid date. Please use YYYY-MM-DD.');
+      $this->redirect('project/tool');
+    }
 
-    $this->getUser()->setFlash('error', 'Invalid date format. Please use YYYY-MM-DD.');
+    $conn = Doctrine_Manager::getInstance();
+    $round = Doctrine_Core::getTable('NominationRound')->findAll();
+    try {
+      $round->delete();
+    } catch (Exception $e) {}
+    
+    $round = new NominationRound();
+    $round->setDeadline($deadline->format('Y-m-d'));
+    $round->save();
+
+    $this->getUser()->setFlash('notice', 'New date applied.');
     $this->redirect('project/tool');
   }
 }

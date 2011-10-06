@@ -4,12 +4,12 @@
 <?php elseif ($sf_user->hasFlash('error')): ?>
   <div class="flash_error"><?php echo $sf_user->getFlash('error') ?></div>
 <?php endif; ?>
-<div class="flash_notice flash_caution"><a></a>Actions here cannot be undone. Proceed with caution.<a></a></div>
+<div class="flash_caution"><a></a>Actions here cannot be undone. Proceed with caution.<a></a></div>
 
 <h2>Project Nomination From Deadline</h2>
 <form enctype="multipart/form-data" action="<?php echo url_for('project/changeDeadline') ?>" method="POST" class="tool-form">
 After the deadline, the project nomination forms will be read-only for students.<br><br>
-Deadline: <input class=".date-picker" name="deadline" type="text" value="<?php echo $deadline; ?>" /><br><br>
+Deadline: <input class="date-picker" name="deadline" type="text" value="<?php echo $deadline; ?>" /><br><br>
 <input type="submit" value="Change Date" />
 </form>
 

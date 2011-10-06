@@ -230,11 +230,10 @@ form th {
 .flash_caution
 {
   font-size:15px;
-  padding-left:40px;
-  width:450px;
-  background-color:#fff;
+  padding: 0 0 0 250px;
+  width: 820px;
+  margin: 0 auto 20px auto;
   border:none;
-  margin-top:-25px;
 }
 
 /* Affect some placeholder <a> to display relevant images */
