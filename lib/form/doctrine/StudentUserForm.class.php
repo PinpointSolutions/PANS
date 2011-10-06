@@ -46,7 +46,7 @@ class StudentUserForm extends BaseStudentUserForm
 		'skills' 		=> ""  ,
 		'gpa' 			=> "Cumulative Total, Not your last term total"  ,
 		'projPref' 		=> "Select from the Dropdown Box"  ,
-		'projJust'		=> "Input justification here"  ,
+		'projJust'		=> "Why should you be selected for this project? You must provide one for your first preference."  ,
 		'desiredStud' 	=> "Start typing the students first name"  ,
 		'undesiredStud'	=> "Start typing the students first name"  ,
 	);
@@ -97,7 +97,7 @@ class StudentUserForm extends BaseStudentUserForm
 	
     // PROJECT PREF's
     $proj1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
-    $proj1_widget->setLabel('<span class="req" id="degrees">*</span>Nominate your first project preference <a id="instructions_projPref"></a>');	
+    $proj1_widget->setLabel('<span class="req" id="degrees">*</span>Nominate your first project preference <a id="instructions_projPref" class="help"  title="' . $instr['projPref'] . '">?</a>');	
 	$proj1_widget->setAttribute('title', $instr['projPref']);
 
 	
@@ -232,7 +232,7 @@ class StudentUserForm extends BaseStudentUserForm
 	
 	// PROJECT JUSTIFICATIONS 
     $proj_just1_widget = new sfWidgetFormTextarea();
-    $proj_just1_widget->setLabel('<span class="req">*</span>Please provide a justification.  <a id="instructions_projJust"></a> <p class="instr">Why should you be selected for this project?<br>You must provide one for your first preference.</p>');
+    $proj_just1_widget->setLabel('<span class="req">*</span>Please provide a justification.  <a id="instructions_projJust "class="help"  title="' . $instr['projJust'] . '">?</a>');
 	$proj_just1_widget->setAttribute('title', $instr['projJust']); 
  
 
