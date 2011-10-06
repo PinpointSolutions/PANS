@@ -51,8 +51,7 @@ student_user:
     module:               student
     prefix_path:          /student
     column:               snum
-# sfAdminGenerator hack
-#    with_wildcard_routes: true
+    with_wildcard_routes: true
 
 project:
   class: sfDoctrineRouteCollection
