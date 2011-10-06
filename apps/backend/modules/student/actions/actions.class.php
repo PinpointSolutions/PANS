@@ -107,14 +107,17 @@ class studentActions extends autoStudentActions
     $guard_user->setIsSuperAdmin(false);
     
     $guard_user->save();
-    
+
     $message = "Dear " . $guard_user->getFirstName() . "," . PHP_EOL . PHP_EOL . 
                "Your account has been created for the project allocation and nomination system." . PHP_EOL . PHP_EOL .
                "Username: " . $snum . PHP_EOL .
                "Password: " . $password . PHP_EOL . PHP_EOL  .
-               "Please follow the links to fill in your project nomination form." . PHP_EOL . PHP_EOL .
+               "Please follow the links to fill in your project nomination form:" . PHP_EOL .
+               "http://" . $this->getRequest()->getHost() . PHP_EOL . PHP_EOL .
                "Auto-generated-message-sincerely-yours,\nProject Allocation and Nomination System (PANS)";
+
     $headers = 'From: "PANS" <' . $this->getUser()->getGuardUser()->getEmailAddress() . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
+    
     $result = mail( $guard_user->getEmailAddress(),
                     "3001ICT - Your password has been created for project nominations",
                     $message,
@@ -145,17 +148,6 @@ class studentActions extends autoStudentActions
     $students->delete();
     
     $this->getUser()->setFlash('notice', 'Students deleted.');
-    $this->redirect('project/tool');
-  }
-  
-  // Delete all projects in the database
-  public function executeClearAllProjects(sfWebRequest $request)
-  {
-    $conn = Doctrine_Manager::getInstance();
-    $projects = Doctrine_Core::getTable('Project')->findAll();
-    $projects->delete();
-    
-    $this->getUser()->setFlash('notice', 'Projects deleted.');
     $this->redirect('project/tool');
   }
   
