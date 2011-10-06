@@ -14,12 +14,8 @@ default:
 
   stylesheets:    [reset.css, pans.css, admin.css]
 
-  javascripts:    [scripts.js]
+  javascripts:    [jquery-1.6.3.min.js, jquery.datePicker.js, scripts.js]
 
   has_layout:     off
   layout:         layout
-  
-# exportSuccess:
-    # has_layout: off
-    # http_metas:
-        # conent-type: application/msexcel
+

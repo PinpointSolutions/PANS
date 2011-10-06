@@ -65,6 +65,8 @@ class projectActions extends autoProjectActions
   
   }
   
+  
+  
   // The _real_ import students from file action
   // Manually handling the file upload and parsing
   // We have two tables, one for student forms and one for login. We have to
@@ -126,7 +128,7 @@ class projectActions extends autoProjectActions
 
     // "The task is done, m'lord."
     $this->getUser()->setFlash('notice', 'Students imported successfully.  Please email their passwords.');
-    $this->redirect('project/tool');
+    $this->redirect('student/index');
   }
   
   

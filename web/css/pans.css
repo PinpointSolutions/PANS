@@ -129,6 +129,9 @@ p {
   padding: 2px
 }
 
+
+
+
 .action {
   padding: 0px 50px 20px 0px;
   display: inline;
@@ -212,8 +215,34 @@ form th {
   padding: 10px 50px;
   width: 820px;
   margin: 0 auto 20px auto;
-  background: #FFEEAA;
+  background-color: #FFEEAA;
   border: 1px solid #DDCC99;
+}
+
+/* specific icons for some notifications, most of these handled by the lib/vendor/data/../admin/web folder */
+.flash_caution
+{
+  font-size:15px;
+  padding-left:40px;
+  width:450px;
+  background-color:#fff;
+  border:none;
+  margin-top:-25px;
+
+}
+
+/* Affect some placeholder <a> to display relevant images */
+.flash_caution a
+{
+	padding:20px;
+	background-image:url("../images/stop_50.png");
+  	background-repeat:no-repeat;
+  	background-position:-40px center;
+}
+
+.flash_caution:hover a
+{
+  	background-position:0px center;
 }
 
 /**************************************************************/

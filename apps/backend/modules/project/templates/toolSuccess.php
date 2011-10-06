@@ -2,17 +2,17 @@
 <?php if ($sf_user->hasFlash('notice')): ?>
   <div class="flash_notice"><?php echo $sf_user->getFlash('notice') ?></div>
 <?php endif; ?>
-<div class="flash_notice">Actions here cannot be undone. Proceed with caution.</div>
+<div class="flash_notice flash_caution"><a></a>Actions here cannot be undone. Proceed with caution.<a></a></div>
 
 <h2>Project Nomination From Deadline</h2>
 <form enctype="multipart/form-data" action="<?php echo url_for('student/changeDeadline') ?>" method="POST" class="tool-form">
 After the deadline, the project nomination forms will be read-only for students.<br><br>
-Deadline: <input name="deadline" type="text" value="<?php echo $deadline; ?>" /><br><br>
+Deadline: <input class=".date-picker" name="deadline" type="text" value="<?php echo $deadline; ?>" /><br><br>
 <input type="submit" value="Change Date" />
 </form>
 
 <h2>Import Students From File</h2>
-<form enctype="multipart/form-data" action="<?php echo url_for('student/importStudents') ?>" method="POST" class="tool-form">
+<form enctype="multipart/form-data" action="<?php echo url_for('project/importStudents') ?>" method="POST" class="tool-form">
   <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
   Select a CSV File.  (max. file size: 1MB) <br><br><input name="studentFile" type="file" /><br><br>
   <input type="submit" value="Import" />
