@@ -51,15 +51,15 @@ class projectActions extends autoProjectActions
       echo $r['has_additional_info'] . "\n";
       echo $r['has_gpa_cutoff'] . "\n";
       echo $r['major_ids'] . "\n";
-      echo $r['skill_set_ids'] . "\n \n";	 	 	 	
+      echo $r['skill_set_ids'] . "\n \n";           
     }
 
-  	$this->setlayout('csv');
+    $this->setlayout('csv');
 
-  	$this->getResponse()->clearHttpHeaders();
-  	$this->getResponse()->setHttpHeader('Content-Type', 'application/vnd.ms-excel');
+    $this->getResponse()->clearHttpHeaders();
+    $this->getResponse()->setHttpHeader('Content-Type', 'application/vnd.ms-excel');
     //maybe add timestamp to the filename
-  	$this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename=PANS_projectList.csv');
+    $this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename=PANS_projectList.csv');
 
     // Redirecting seems to break the download.  In this case, probably no 
     // flash is better.
