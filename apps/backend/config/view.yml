@@ -16,5 +16,10 @@ default:
 
   javascripts:    [scripts.js]
 
-  has_layout:     true
+  has_layout:     off
   layout:         layout
+  
+# exportSuccess:
+    # has_layout: off
+    # http_metas:
+        # conent-type: application/msexcel

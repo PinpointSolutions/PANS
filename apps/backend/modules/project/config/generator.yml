@@ -18,9 +18,12 @@ generator:
         title:   Projects
         display: [=id, title, organisation]
         batch_actions: {}
+        actions: 
+          _new: ~
       # Stops Symfony from displaying the filter in the admin view
       filter:
         class: false
+        display: [name, _csv];
       form:    ~
       edit:    ~
       new:     ~

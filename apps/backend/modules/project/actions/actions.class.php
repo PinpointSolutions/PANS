@@ -32,6 +32,39 @@ class projectActions extends autoProjectActions
       ->execute();
   }
   
+  public function executeExportProjects(sfWebRequest $request)
+  {
+      # We need some code here that calls information from the database.
+      # get connection
+      # go to projects table
+      # then 'recall' information or some such thing.
+    $conn = Doctrine_Manager::getInstance();
+    $projects = Doctrine_Core::getTable('Project')->findAll();
+ //   echo $projects;
+   
+    foreach($projects as $r){
+    //update formatting to be easier to treat, for example escapeSlashes to stop injection
+    echo $r['id'] . "\n";
+    echo $r['title'] . "\n";
+    echo $r['organisation'] . "\n";
+    echo $r['description'] . "\n";
+    echo $r['has_additional_info'] . "\n";
+    echo $r['has_gpa_cutoff'] . "\n";
+    echo $r['major_ids'] . "\n";
+    echo $r['skill_set_ids'] . "\n \n";	 	 	 	
+    }
+
+	$this->setlayout('csv');
+
+	$this->getResponse()->clearHttpHeaders();
+	$this->getResponse()->setHttpHeader('Content-Type', 'application/vnd.ms-excel');
+	$this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename=PANS_projectList.csv');//maybe add timestamp to the filename
+
+    
+    $this->getUser()->setFlash('notice', 'Projects exported.');
+  
+  }
+  
   // The _real_ import students from file action
   // Manually handling the file upload and parsing
   // We have two tables, one for student forms and one for login. We have to

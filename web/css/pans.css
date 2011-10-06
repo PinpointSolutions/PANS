@@ -1,4 +1,14 @@
 /**************************************************************/
+
+/* dev rules */
+.showMe{
+    color:red;
+    background-color:#eee;
+    position:absolute;
+    font-size:15px;
+ }
+
+
 /* Top-level CSS rules: primitive HTML tags */
 body {
   font-family: Arial, serif;
