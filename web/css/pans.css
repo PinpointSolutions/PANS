@@ -207,13 +207,20 @@ form th {
   height: 200px;
 }
 
-/* The notifications called from action.class.php */
 .flash_notice {
   padding: 10px 50px;
   width: 820px;
   margin: 0 auto 20px auto;
   background: #FFEEAA;
   border: 1px solid #DDCC99;
+}
+
+.flash_error {
+  padding: 10px 50px;
+  width: 820px;
+  margin: 0 auto 20px auto;
+  background: #FFAAAA;
+  border: 1px solid #DD9999;
 }
 
 /**************************************************************/
