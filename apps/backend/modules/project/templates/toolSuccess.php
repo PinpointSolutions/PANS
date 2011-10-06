@@ -18,11 +18,11 @@ Deadline: <input name="deadline" type="text" value="<?php echo $deadline; ?>" />
   <input type="submit" value="Import" />
 </form>
 
-<h2>Export information</h2>
+<h2>Export Database Information</h2>
 <form enctype="multipart/form-data" action="<?php echo url_for('project/exportProjects') ?>" method="POST" class="tool-form">
-  <p>Export various types of information to CSV files. </p>
+  <p>Export to CSV files. </p>
   <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-   <label>Export project list:  </label> <input type="submit" value="Export" />
+   <label>Export Project List:  </label> <input type="submit" value="Export" />
 </form>
 
 <h2>Reset and Email All Students Passwords</h2>

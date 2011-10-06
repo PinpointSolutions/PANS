@@ -180,7 +180,8 @@ class studentActions extends autoStudentActions
   protected function random_password() 
   {
     $length = 8;
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()[]{}<>?/\\';
+    // 0 and O, l and 1 are all removed to prevent silly people who can't read to make mistakes.
+    $characters = '23456789abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ';
     $string = '';    
     for ($p = 0; $p < $length; $p++) {
         $string .= $characters[mt_rand(0, strlen($characters))];
