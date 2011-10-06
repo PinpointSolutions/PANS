@@ -43,3 +43,7 @@
 #sf_fieldset_none textarea {
   min-height: 200px;
 }
+
+.firstLeft {
+  margin-left: 50px;
+}
