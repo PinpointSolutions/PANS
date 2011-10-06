@@ -34,35 +34,35 @@ class projectActions extends autoProjectActions
   
   public function executeExportProjects(sfWebRequest $request)
   {
-      # We need some code here that calls information from the database.
-      # get connection
-      # go to projects table
-      # then 'recall' information or some such thing.
+    // We need some code here that calls information from the database.
+    // get connection
+    // go to projects table
+    // then 'recall' information or some such thing.
     $conn = Doctrine_Manager::getInstance();
     $projects = Doctrine_Core::getTable('Project')->findAll();
- //   echo $projects;
    
-    foreach($projects as $r){
-    //update formatting to be easier to treat, for example escapeSlashes to stop injection
-    echo $r['id'] . "\n";
-    echo $r['title'] . "\n";
-    echo $r['organisation'] . "\n";
-    echo $r['description'] . "\n";
-    echo $r['has_additional_info'] . "\n";
-    echo $r['has_gpa_cutoff'] . "\n";
-    echo $r['major_ids'] . "\n";
-    echo $r['skill_set_ids'] . "\n \n";	 	 	 	
+    foreach($projects as $r) {
+      //update formatting to be easier to treat, for example escapeSlashes to stop injection
+      echo $r['id'] . "\n";
+      echo $r['title'] . "\n";
+      echo $r['organisation'] . "\n";
+      echo $r['description'] . "\n";
+      echo $r['has_additional_info'] . "\n";
+      echo $r['has_gpa_cutoff'] . "\n";
+      echo $r['major_ids'] . "\n";
+      echo $r['skill_set_ids'] . "\n \n";	 	 	 	
     }
 
-	$this->setlayout('csv');
+  	$this->setlayout('csv');
 
-	$this->getResponse()->clearHttpHeaders();
-	$this->getResponse()->setHttpHeader('Content-Type', 'application/vnd.ms-excel');
-	$this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename=PANS_projectList.csv');//maybe add timestamp to the filename
+  	$this->getResponse()->clearHttpHeaders();
+  	$this->getResponse()->setHttpHeader('Content-Type', 'application/vnd.ms-excel');
+    //maybe add timestamp to the filename
+  	$this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename=PANS_projectList.csv');
 
-    
+    // A redirect is needed to show the flash
     $this->getUser()->setFlash('notice', 'Projects exported.');
-  
+    $this->redirect('project/tool');
   }
   
   // The _real_ import students from file action
