@@ -1,4 +1,14 @@
 /**************************************************************/
+
+/* dev rules */
+.showMe{
+    color:red;
+    background-color:#eee;
+    position:absolute;
+    font-size:15px;
+ }
+
+
 /* Top-level CSS rules: primitive HTML tags */
 body {
   font-family: Arial, serif;
@@ -162,6 +172,7 @@ form table {
 form span.req {
   color:red;
   font-size:12px;
+  margin-right:2px;
  }
 
 /* Inline instructions */
@@ -170,6 +181,17 @@ form p.instr {
 	font-style:italic;
 }
 
+/* Help Link, used within the forms */
+form a.help{
+  padding:1px 4px;
+  
+  color:#0066FF;
+}
+
+form a.help:hover{
+  color:#0000FF;
+  cursor:pointer;
+}
 
 form th {
   vertical-align: top;

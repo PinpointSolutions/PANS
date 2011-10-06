@@ -1,3 +1,10 @@
+
+# Export routing rule  - NOT IN USE
+#export_excel:
+#    url:    /export.csv
+#    param: {module: project, action: export}
+    
+    
 project_allocation:
   class: sfDoctrineRouteCollection
   options:
