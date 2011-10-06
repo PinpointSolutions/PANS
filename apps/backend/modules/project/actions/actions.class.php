@@ -60,7 +60,9 @@ class projectActions extends autoProjectActions
     //maybe add timestamp to the filename
   	$this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename=PANS_projectList.csv');
 
+    // A redirect is needed to show the flash
     $this->getUser()->setFlash('notice', 'Projects exported.');
+    $this->redirect('project/tool');
   }
   
   // The _real_ import students from file action
