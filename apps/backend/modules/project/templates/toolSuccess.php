@@ -28,7 +28,7 @@ Deadline: <input class="date-picker" name="deadline" type="text" value="<?php ec
 </form>
 
 <h2>Reset and Email All Students Passwords</h2>
-<form enctype="multipart/form-data" action="<?php echo url_for('student/emailAllPasswords') ?>" method="POST" class="tool-form">
+<form enctype="multipart/form-data" action="<?php echo url_for('project/emailAllPasswords') ?>" method="POST" class="tool-form">
   This will reset every students' passwords.  Emails will be sent out with their new ones.  (Dev: This doesn't work on your local machine.)<br><br>
   <table>
     <tr>
@@ -41,7 +41,7 @@ Deadline: <input class="date-picker" name="deadline" type="text" value="<?php ec
 <h2>Delete Data</h2>
 <div class="tool-form">
 <ul>
-<li class="tool"><?php echo link_to('Delete All Students', 'student/clearAllStudents') ?></li>
+<li class="tool"><?php echo link_to('Delete All Students', 'project/clearAllStudents') ?></li>
 <li class="tool"><?php echo link_to('Delete All Projects', 'project/clearAllProjects') ?></li>
 </ul>
 </div>
