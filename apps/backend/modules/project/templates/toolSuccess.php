@@ -39,7 +39,7 @@ Deadline: <input class=".date-picker" name="deadline" type="text" value="<?php e
 <h2>Delete Data</h2>
 <div class="tool-form">
 <ul>
-<li class="tool"><?php echo link_to('Delete All Students', 'project/clearAllStudents') ?></li>
+<li class="tool"><?php echo link_to('Delete All Students', 'student/clearAllStudents') ?></li>
 <li class="tool"><?php echo link_to('Delete All Projects', 'project/clearAllProjects') ?></li>
 </ul>
 </div>
