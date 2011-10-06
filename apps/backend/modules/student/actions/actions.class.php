@@ -133,6 +133,7 @@ class studentActions extends autoStudentActions
   {
   // TODO: Actually email everyone not just me.
     $this->emailPassword(2674674, 'Xavier', 'Ho');
+
     $this->redirect('project/tool');
   }
   
@@ -144,12 +145,15 @@ class studentActions extends autoStudentActions
     $students->delete();
     
     $this->getUser()->setFlash('notice', 'Students deleted.');
-$this->redirect('project/tool');   }
+    $this->redirect('project/tool');
+  }
   
-  // Delete all projects in the database   public function
-executeClearAllProjects(sfWebRequest $request)   {     $conn =
-Doctrine_Manager::getInstance();     $projects =
-Doctrine_Core::getTable('Project')->findAll();     $projects->delete();
+  // Delete all projects in the database
+  public function executeClearAllProjects(sfWebRequest $request)
+  {
+    $conn = Doctrine_Manager::getInstance();
+    $projects = Doctrine_Core::getTable('Project')->findAll();
+    $projects->delete();
     
     $this->getUser()->setFlash('notice', 'Projects deleted.');
     $this->redirect('project/tool');
