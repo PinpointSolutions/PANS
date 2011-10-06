@@ -39,16 +39,16 @@ class StudentUserForm extends BaseStudentUserForm
 	*/
 	$instr = array( 
 		//set the actual text used here
-		'name' 			=> "This name is used for the 'team preferrances' section at the bottom. Preferrably this should also be the name on your student card.",
-		'pass_fail'		=> "Why does someone believe you when you say there are four billion stars, but check when you say the paint is wet?" ,
-		'degrees' 		=> "Rainbows and puppy dogs"  ,
-		'majors' 		=> "01101000 01100101 01101100 01101100 01101111 00100000 01110111 01101111 01110010 01101100 01100100 "  ,
-		'skills' 		=> "Knowledge is knowing a tomato is a fruit; Wisdom is not putting it in a fruit salad. "  ,
-		'gpa' 			=> "The early bird might get the worm, but the second mouse gets the cheese"  ,
-		'projPref' 		=> "Evening news is where they begin with 'Good evening', and then proceed to tell you why it isn't."  ,
-		'projJust'		=> "Did you know that dolphins are so smart that within a few weeks of captivity, they can train people to stand on the very edge of the pool and throw them fish?"  ,
-		'desiredStud' 	=> "If a tree falls in a forest and no one is around, what colour is the sky?"  ,
-		'undesiredStud'	=> "If you think nobody cares if you're alive, try missing a couple of payments."  ,
+		'name' 			=> "This should also be the name on your student card., not nicknames etc",
+		'pass_fail'		=> "Have you passed Project Management? If you have not, you can't enrol for 3001ICT" ,
+		'degrees' 		=> ""  ,
+		'majors' 		=> ""  ,
+		'skills' 		=> ""  ,
+		'gpa' 			=> "Cumulative Total, Not your last term total"  ,
+		'projPref' 		=> "Select from the Dropdown Box"  ,
+		'projJust'		=> "Input justification here"  ,
+		'desiredStud' 	=> "Start typing the students first name"  ,
+		'undesiredStud'	=> "Start typing the students first name"  ,
 	);
 	
 	
@@ -92,7 +92,7 @@ class StudentUserForm extends BaseStudentUserForm
 
 	// GPA
     $gpa_widget = new sfWidgetFormInputText();
-    $gpa_widget->setLabel('<span class="req">*</span>Please indicate your current GPA <a class="help" id="instructions_gpa" title="' . $instr['gpa'] . '">?</a>');	
+    $gpa_widget->setLabel('<span class="req">*</span>Please indicate your current GPA <a id="instructions_gpa"class="help"  title="' . $instr['gpa'] . '">?</a>');	
 	$gpa_widget->setAttribute('title', $instr['gpa']);
 	
     // PROJECT PREF's
@@ -136,10 +136,10 @@ class StudentUserForm extends BaseStudentUserForm
       'renderer_options'  => array('url'   => $this->getOption('url'),
                                    'model' => $this->getRelatedModelName('StudentUser'))
       )); 
-    $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with. <a id="instructions_desiredStud"></a>');	
+    $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with. <a id="instructions_desiredStud" class="help"  title="' . $instr['desiredStud'] . '">?</a>');	
 	$ystupref1_widget->setAttribute('title', $instr['desiredStud']); 
 	
-	
+  
     $ystupref2_widget = new sfWidgetFormChoice(array(
       'choices'           => array(),
       'renderer_class'    => 'sfWidgetFormDoctrineJQueryAutocompleter',
@@ -188,8 +188,10 @@ class StudentUserForm extends BaseStudentUserForm
       'renderer_options'  => array('url'   => $this->getOption('url'),
                                    'model' => $this->getRelatedModelName('StudentUser'))
       )); 
-    $nstupref1_widget->setLabel('Please nominate five students that you would NOT like to work with. <a id="instructions_undesiredStud"></a>');	
+    $nstupref1_widget->setLabel('Please nominate five students that you would NOT like to work with. <a id="instructions_undesiredStud" class="help"  title="' . $instr['undesiredStud'] . '">?</a>');  
 	$nstupref1_widget->setAttribute('title', $instr['undesiredStud']); 
+  
+
 
     $nstupref2_widget = new sfWidgetFormChoice(array(
       'choices'           => array(),
