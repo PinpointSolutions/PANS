@@ -1,19 +1,18 @@
 <?php
 
 /**
- * StudentUser form.
+ * Project Nomination Form
  *
  * @package    PANS
  * @subpackage form
  * @author     Pinpoint Solutions
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
-
  */
 class StudentUserForm extends BaseStudentUserForm
 {
   public function configure()
   {  
-    // Prevent user from updating the timestamp fields
+    // Prevent user from updating the timestamp fields and such
     unset(
       $this['created_at'],
       $this['updated_at'],
@@ -21,86 +20,85 @@ class StudentUserForm extends BaseStudentUserForm
       $this['snum']
     );
   
-    /* $snum_widget = new sfWidgetFormInputHidden();
-    $snum_widget->setLabel('Student Number'); */
+
+    // Student Number is rendered at editSuccess.php
+    // $snum_widget = new sfWidgetFormInputHidden();
+    // $snum_widget->setLabel('Student Number');
   
-  /* 
-  For required fields we embed html tags that use css to display correct indicaters 
+    // For required fields we embed html tags that use css to display correct 
+    // indicaters.  This is as the student nomination form is entirely generated. 
+    // The only other way to affect the html itself than embedding would require a 
+    // truly inordinate amount of coding, new templates and what have you.
   
-   This is as the student nomination form is entirely generated. The only other way 
-   to affect the html itself than embedding would require a truly inordinate amount 
-   of coding, new templates and what have you.
-  */
-  
-  /* 
-    INSTRUCTIONS LIST 
-  This is an array containing the values used as the rollover instructions for the fields
-  
-  */
-  $instr = array( 
-    //set the actual text used here
-    'name'       => "This should also be the name on your student card., not nicknames etc",
-    'pass_fail'    => "Have you passed Project Management? If you have not, you can't enrol for 3001ICT" ,
-    'degrees'     => ""  ,
-    'majors'     => ""  ,
-    'skills'     => ""  ,
-    'gpa'       => "Cumulative Total, Not your last term total"  ,
-    'projPref'     => "Select from the Dropdown Box"  ,
-    'projJust'    => "Why should you be selected for this project? You must provide one for your first preference."  ,
-    'desiredStud'   => "Start typing the students first name"  ,
-    'undesiredStud'  => "Start typing the students first name"  ,
-  );
-  
-  
+    // INSTRUCTIONS LIST 
+    //   This is an array containing the values used as the rollover instructions 
+    //   for the fields
+    $instr = array( 
+      //set the actual text used here
+      'name'          => "This should be the name on your Student ID Card.",
+      'pass_fail'     => "Have you passed Project Management? If you have not, you can't enrol for 3001ICT.",
+      'degrees'       => "",
+      'majors'        => "",
+      'skills'        => "",
+      'gpa'           => "Cumulative Total, Not your last term total.",
+      'projPref'      => "Select from the Dropdown Box",
+      'projJust'      => "Why should you be selected for this project? You must provide one for your first preference.",
+      'desiredStud'   => "Start typing the students' first names",
+      'undesiredStud' => "Start typing the students' first names",
+    );
+
+
+    
+    // FIRST NAME
     $first_name_widget = new sfWidgetFormInputText();
-    $first_name_widget->setLabel('<span class="req">*</span>First Name 
-  <a class="help" id="instructions_name" title="' . $instr['name'] . '">?</a>
-  ');
-//  $first_name_widget->setAttribute('id', 'field_first_name');// adds the attribute to the widget itself, cannot make it affect the label. dont even try the formatted id methods, trust me. Stuck with embedding html to the label after 5 hours wasted effort :+
-    $first_name_widget->setAttribute('title', $instr['name']); 
-   
+    $first_name_widget->setLabel('First Name<span class="req">*</span> 
+      <a class="help" id="instructions_name" title="' . $instr['name'] . '">?</a>
+      ');
+
+
+    // LAST NAME
+    // adds the attribute to the widget itself, cannot make it affect the label. dont even try the formatted id methods, trust me. Stuck with embedding html to the label after 5 hours wasted effort :+
     $last_name_widget = new sfWidgetFormInputText();
-    $last_name_widget->setLabel('<span class="req">*</span>Last Name ');
+    $last_name_widget->setLabel('Last Name<span class="req">*</span>');
    
-  
+
+    // PASS PM?
     $pass_fail_widget = new sfWidgetFormInputCheckbox();
-    $pass_fail_widget->setLabel('<span class="req">*</span>Please check this box if you passed Project Management: <a class="help" id="instructions_pass_fail" title="' . $instr['pass_fail'] . '">?</a>');
-  $pass_fail_widget->setAttribute('title', $instr['pass_fail']);
-//  echo 'test = ' . ($pass_fail_widget->getIdFormat());
+    $pass_fail_widget->setLabel('Please check this box if you passed Project Management:<span class="req">*</span> <a class="help" id="instructions_pass_fail" title="' . $instr['pass_fail'] . '">?</a>');
+    $pass_fail_widget->setAttribute('title', $instr['pass_fail']);
   
-    // TODO: Fix saving majors
-    // Also, Skill Sets
-    // Possible solution:
-    // http://www.mail-archive.com/symfony-users@googlegroups.com/msg11237.html
+
+    // DEGREE
     $degrees_widget = new sfWidgetFormDoctrineChoice(
       array(
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Degree')));
-    $degrees_widget->setLabel('<a id="instructions_degrees" title="' . $instr['degrees'] . '"><span class="req">*</span>Please indicate your Degree(s) </a>');  
-  $degrees_widget->setAttribute('title', $instr['degrees']); 
+    $degrees_widget->setLabel('<a id="instructions_degrees" title="' . $instr['degrees'] . '"></a>Please indicate your Degree(s)<span class="req">*</span>');  
+    $degrees_widget->setAttribute('title', $instr['degrees']); 
    
    
-  // MAJORS
+    // MAJORS
     $majors_widget = new sfWidgetFormDoctrineChoice(
       array(
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Major')));
-    $majors_widget->setLabel('<a  title="' . $instr['majors'] . '" id="instructions_majors"><span class="req">*</span>Please indicate your Major(s) </a>');  
-  $majors_widget->setAttribute('title', $instr['majors']);
+    $majors_widget->setLabel('<a  title="' . $instr['majors'] . '" id="instructions_majors"></a>Please indicate your Major(s)<span class="req">*</span>');  
+    $majors_widget->setAttribute('title', $instr['majors']);
 
-  // GPA
+
+    // GPA
     $gpa_widget = new sfWidgetFormInputText();
-    $gpa_widget->setLabel('<span class="req">*</span>Please indicate your current GPA <a id="instructions_gpa"class="help"  title="' . $instr['gpa'] . '">?</a>');  
-  $gpa_widget->setAttribute('title', $instr['gpa']);
+    $gpa_widget->setLabel('Please indicate your current GPA<span class="req">*</span> <a id="instructions_gpa"class="help"  title="' . $instr['gpa'] . '">?</a>');  
+    $gpa_widget->setAttribute('title', $instr['gpa']);
   
+
     // PROJECT PREF's
     $proj1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
-    $proj1_widget->setLabel('<span class="req" id="degrees">*</span>Nominate your first project preference <a id="instructions_projPref" class="help"  title="' . $instr['projPref'] . '">?</a>');  
-  $proj1_widget->setAttribute('title', $instr['projPref']);
+    $proj1_widget->setLabel('Nominate your first project preference<span class="req" id="degrees">*</span> <a id="instructions_projPref" class="help"  title="' . $instr['projPref'] . '">?</a>');  
+    $proj1_widget->setAttribute('title', $instr['projPref']);
 
-  
     $proj2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
     $proj2_widget->setLabel('Nominate your second project preference');  
     $proj2_widget->setAttribute('title', $instr['projPref']);
@@ -116,19 +114,41 @@ class StudentUserForm extends BaseStudentUserForm
     $proj5_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
     $proj5_widget->setLabel('Nominate your fifth project preference');  
     $proj5_widget->setAttribute('title', $instr['projPref']);
+
+
+    // PROJECT JUSTIFICATIONS 
+    $proj_just1_widget = new sfWidgetFormTextarea();
+    $proj_just1_widget->setLabel('Please provide a justification.<span class="req">*</span>  <a id="instructions_projJust "class="help"  title="' . $instr['projJust'] . '">?</a>');
+    $proj_just1_widget->setAttribute('title', $instr['projJust']); 
+ 
+    $proj_just2_widget = new sfWidgetFormTextarea();
+    $proj_just2_widget->setLabel('Please provide a justification.');
+    $proj_just2_widget->setAttribute('title', $instr['projJust']);
+  
+    $proj_just3_widget = new sfWidgetFormTextarea();
+    $proj_just3_widget->setLabel('Please provide a justification.');
+    $proj_just3_widget->setAttribute('title', $instr['projJust']);
+  
+    $proj_just4_widget = new sfWidgetFormTextarea();
+    $proj_just4_widget->setLabel('Please provide a justification.');
+    $proj_just4_widget->setAttribute('title', $instr['projJust']);
+  
+    $proj_just5_widget = new sfWidgetFormTextarea();
+    $proj_just5_widget->setLabel('Please provide a justification.');
+    $proj_just5_widget->setAttribute('title', $instr['projJust']);
   
   
-  // SKILLS
+    // SKILLS
     $skills_widget = new sfWidgetFormDoctrineChoice(
       array(
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('SkillSet')));
-    $skills_widget->setLabel('<span class="req">*</span>What are your strengths? <a id="instructions_skills"></a>');  
-  $skills_widget->setAttribute('title', $instr['skills']); 
+    $skills_widget->setLabel('What are your strengths? <a id="instructions_skills"></a>');  
+    $skills_widget->setAttribute('title', $instr['skills']); 
 
-  // STUDENT PREFFERANCES
-   // TODO: Make sure students can't pick themselves.
+    // STUDENT PREFFERANCES
+    // TODO: Make sure students can't pick themselves.
     // Possible solution is to do the checking in PHP upon save.
     $ystupref1_widget = new sfWidgetFormChoice(array(
       'choices'           => array(),
@@ -137,7 +157,7 @@ class StudentUserForm extends BaseStudentUserForm
                                    'model' => $this->getRelatedModelName('StudentUser'))
       )); 
     $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with. <a id="instructions_desiredStud" class="help"  title="' . $instr['desiredStud'] . '">?</a>');  
-  $ystupref1_widget->setAttribute('title', $instr['desiredStud']); 
+    $ystupref1_widget->setAttribute('title', $instr['desiredStud']); 
   
   
     $ystupref2_widget = new sfWidgetFormChoice(array(
@@ -230,31 +250,7 @@ class StudentUserForm extends BaseStudentUserForm
     $nstupref5_widget->setAttribute('title', $instr['undesiredStud']); 
   
   
-  // PROJECT JUSTIFICATIONS 
-    $proj_just1_widget = new sfWidgetFormTextarea();
-    $proj_just1_widget->setLabel('<span class="req">*</span>Please provide a justification.  <a id="instructions_projJust "class="help"  title="' . $instr['projJust'] . '">?</a>');
-  $proj_just1_widget->setAttribute('title', $instr['projJust']); 
- 
 
-  
-  $proj_just2_widget = new sfWidgetFormTextarea();
-    $proj_just2_widget->setLabel('Please provide a justification.');
-    $proj_just2_widget->setAttribute('title', $instr['projJust']);
-  
-  
-    $proj_just3_widget = new sfWidgetFormTextarea();
-    $proj_just3_widget->setLabel('Please provide a justification.');
-    $proj_just3_widget->setAttribute('title', $instr['projJust']);
-  
-  
-    $proj_just4_widget = new sfWidgetFormTextarea();
-    $proj_just4_widget->setLabel('Please provide a justification.');
-    $proj_just4_widget->setAttribute('title', $instr['projJust']);
-  
-  
-    $proj_just5_widget = new sfWidgetFormTextarea();
-    $proj_just5_widget->setLabel('Please provide a justification.');
-    $proj_just5_widget->setAttribute('title', $instr['projJust']);
   
   
   
