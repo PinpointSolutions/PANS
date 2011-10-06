@@ -13,7 +13,7 @@ require_once dirname(__FILE__).'/../lib/projectGeneratorHelper.class.php';
  */
 class projectActions extends autoProjectActions
 {
-  // Admin tools
+  // Admin tools page
   // Do not modify or remove this function
   public function executeTool(sfWebRequest $request)
   {
@@ -32,6 +32,7 @@ class projectActions extends autoProjectActions
       ->execute();
   }
   
+  // Export Project table to CSV file
   public function executeExportProjects(sfWebRequest $request)
   {
     // We need some code here that calls information from the database.
@@ -50,15 +51,15 @@ class projectActions extends autoProjectActions
       echo $r['has_additional_info'] . "\n";
       echo $r['has_gpa_cutoff'] . "\n";
       echo $r['major_ids'] . "\n";
-      echo $r['skill_set_ids'] . "\n \n";	 	 	 	
+      echo $r['skill_set_ids'] . "\n \n";           
     }
 
-  	$this->setlayout('csv');
+    $this->setlayout('csv');
 
-  	$this->getResponse()->clearHttpHeaders();
-  	$this->getResponse()->setHttpHeader('Content-Type', 'application/vnd.ms-excel');
+    $this->getResponse()->clearHttpHeaders();
+    $this->getResponse()->setHttpHeader('Content-Type', 'application/vnd.ms-excel');
     //maybe add timestamp to the filename
-  	$this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename=PANS_projectList.csv');
+    $this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename=PANS_projectList.csv');
 
     // Redirecting seems to break the download.  In this case, probably no 
     // flash is better.
@@ -81,10 +82,11 @@ class projectActions extends autoProjectActions
   // Change the deadline of the nomination round
   public function executeChangeDeadline(sfWebRequest $request)
   {
-    /*
     $conn = Doctrine_Manager::getInstance();
     $students = Doctrine_Core::getTable('NominationRound')->findAll();
-    $students->delete();
-    */
+    //$students->delete();
+
+    $this->getUser()->setFlash('error', 'Invalid date format. Please use YYYY-MM-DD.');
+    $this->redirect('project/tool');
   }
 }
