@@ -24,7 +24,7 @@ Deadline: <input class="date-picker" name="deadline" type="text" value="<?php ec
 <form enctype="multipart/form-data" action="<?php echo url_for('project/exportProjects') ?>" method="POST" class="tool-form">
   <p>Export to CSV files. </p>
   <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-   <label>Export Project List:  </label> <input type="submit" value="Export" />
+   <label>Project List:  </label> <input type="submit" value="Export" />
 </form>
 
 <h2>Reset and Email All Students Passwords</h2>

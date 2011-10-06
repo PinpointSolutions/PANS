@@ -20,7 +20,7 @@
         <?php if ($sf_user->isAuthenticated()): ?>
         
           <div class="alignleft">
-            <?php echo $sf_user->getName() ?> (<?php echo link_to('Logout', '@sf_guard_signout') ?>)
+            <?php echo $sf_user->getName() ?>
           </div>
         
           <div class="alignleft action firstLeft">
@@ -49,6 +49,10 @@
 
           <div class="alignleft action">
             <?php echo link_to('Tools', 'project/tool') ?>
+          </div>
+
+          <div class="alignleft">
+            <?php echo link_to('Logout', '@sf_guard_signout') ?>
           </div>
 
         <?php endif; ?>
