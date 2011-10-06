@@ -43,3 +43,9 @@
 #sf_fieldset_none textarea {
   min-height: 200px;
 }
+#sf_admin_form textarea {
+  min-height: 200px;
+}
+#sf_admin_container a.help {
+display:none;
+}
