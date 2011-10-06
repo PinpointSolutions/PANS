@@ -17,12 +17,5 @@
       <?php echo $form ?>
     </tbody>
   </table>
-  
-<?php /*
-  <div class="action"><a href="<?php echo url_for('student/index') ?>">Back to Students</a></div>
-  <?php if (!$form->getObject()->isNew()): ?>
-    <div class="action"><?php echo link_to('Delete', 'student/delete?snum='.$form->getObject()->getSnum(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?></div>
-  <?php endif; ?>
-  */ ?>
   <label for="submit"><span class="req">(*) Required Field </span></label><input class="centered" name="submit" type="submit" value="Save"/>
 </form>

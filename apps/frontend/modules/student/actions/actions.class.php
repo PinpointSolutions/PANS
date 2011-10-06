@@ -10,12 +10,9 @@
  */
 class studentActions extends sfActions
 {
+  // By default, uses the Edit() function to show the form
   public function executeIndex(sfWebRequest $request)
   {
-    /* TODO: refactor this code to its own admin module */
-    /* Check if the user is an admin user. If it's an admin user, the system 
-       shows every student in one page. Otherwise, only show one student. 
-       TODO: Show the nomination form status to the student user. */
     $this->admin = $this->getUser()->isSuperAdmin();
     if ($this->admin == true) {
       $this->student_users = Doctrine_Core::getTable('StudentUser')
@@ -29,17 +26,17 @@ class studentActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->forward404();
+    $this->redirect404();
   }
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->forward404();
+    $this->redirect404();
   }
   
   public function executeCreate(sfWebRequest $request)
   {
-    $this->forward404();
+    $this->redirect404();
   }
 
   public function executeEdit(sfWebRequest $request)
@@ -48,23 +45,36 @@ class studentActions extends sfActions
     $this->username = $this->getUser()->getUsername();
     $this->student_user = Doctrine_Core::getTable('StudentUser')
                             ->find(array($this->username));
+    if (!$this->student_user)
+      $this->redirect404();
 
     // If you modify the following code, the system won't break.  It might
     // not display the form properly, though.
-    $this->student_user->setDegreeIds(
-                      explode(' ', $this->student_user->getDegreeIds()));
-    $this->student_user->setMajorIds(
-                      explode(' ', $this->student_user->getMajorIds()));
-    $this->student_user->setSkillSetIds(
-                      explode(' ', $this->student_user->getSkillSetIds()));
-    // From here on, you're out of the Danger Zone(TM).
+    $this->student_user
+         ->setDegreeIds(explode(' ', $this->student_user->getDegreeIds()));
+    $this->student_user
+         ->setMajorIds(explode(' ', $this->student_user->getMajorIds()));
+    $this->student_user
+         ->setSkillSetIds(explode(' ', $this->student_user->getSkillSetIds()));
+    // From here on, you're out of the Danger Zone (TM).
     
     // Create the form, and point the autocompletion to the ajax helper
     $this->form = new StudentUserForm($this->student_user,
        array('url' => $this->getController()->genUrl('student/ajax')));
     
-    // If the student number is invalid, redirect 404
-    $this->forward404Unless($this->student_user);
+    try {
+      $this->allowed = $this->checkDeadline();
+    } catch (Exception $e) {
+      $this->getUser()->setFlash('notice', 'No deadline has been set.');
+      return;
+    }
+
+    if (!$this->getUser()->hasFlash('error') && !$this->getUser()->hasFlash('notice')) {
+      if (!$this->allowed)
+        $this->getUser()->setFlash('notice', 'The deadline was on ' . $this->deadline->getDeadline() . '.  The form is now read-only.');
+      else
+        $this->getUser()->setFlash('notice', 'Remember, this form is due on ' . $this->deadline->getDeadline() . '.');
+    }
   }
 
   /* For Autocompletion, we retrieve a list of names as JSON. */
@@ -78,10 +88,16 @@ class studentActions extends sfActions
 
   public function executeUpdate(sfWebRequest $request)
   {
-    /* Check if the user is the correct one we're updating */
+    // Check if the user is the correct one we're updating
     $this->username = $this->getUser()->getUsername();
     if ($request->getParameter('snum') != $this->username) {
-      $this->forward404('Oops. Your username doesn\'t match with your login.');
+      $this->redirect404();
+    }
+
+    // Check for deadline
+    if (!$this->getUser()->isSuperAdmin() && !$this->checkDeadline()) {
+      $this->getUser()->setFlash('error', 'You cannot modify this form after ' . $this->deadline->getDeadline() . '.');
+      $this->redirect('student/edit');
     }
    
     // Redirect to 404 if the request came from strange places. 
@@ -139,5 +155,24 @@ class studentActions extends sfActions
       $this->getUser()->setFlash('notice', 'Successfully Saved!');
       $this->redirect('student/edit');
     }
+  }
+
+  // Check for deadline.  If it's past the date, return false
+  protected function checkDeadline()
+  {
+    try {
+      $this->deadline = Doctrine_Core::getTable('NominationRound')
+        ->createQuery('a')
+        ->fetchOne();
+    } catch (Exception $e) {
+      $this->deadline = null;
+    }
+    if (!$this->deadline) 
+      throw new Exception('No deadline has been set');
+    
+    $today = new DateTime();
+    $deadline = DateTime::createFromFormat('Y-m-d', $this->deadline->getDeadline());
+
+    return ($deadline > $today);
   }
 }

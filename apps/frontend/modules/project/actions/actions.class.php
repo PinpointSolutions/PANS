@@ -33,6 +33,6 @@ class projectActions extends sfActions
    */
   public function executeShow(sfWebRequest $request)
   {
-    $this->forward404(); 
+    $this->redirect404(); 
   }
 }
