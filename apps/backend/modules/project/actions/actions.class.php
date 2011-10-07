@@ -50,38 +50,107 @@ class projectActions extends autoProjectActions
   
   // Export Project table to CSV file
   public function executeExportProjects(sfWebRequest $request)
-  {
-    // We need some code here that calls information from the database.
-    // get connection
-    // go to projects table
-    // then 'recall' information or some such thing.
+  {	
+	//TODO:
+		//update formatting to be easier to treat, for example escapeSlashes to stop injection
+		//  QUESTION- do we want this easily readable in itself? 
+			//would not acutally be that much more work, just have to remember consistency is key if we want to import again
+			//we can always ignore our extra labels so long as we know where they would appear
+			// AND/OR... maybe an option for a formatted list, for printing purposes mainly but we could treat it to be importable
+				// very much optional requirement- but i love the idea
+  
+  
+	//echo $request->getPathInfo()  ;//echo $request->getHttpHeader()  ;//echo $request->getPostParameters() ;//echo $request->getPathInfoArray() ;
+	//echo $request->getRequestContext() ;//echo $request->getPostParameters() ;
+
+    // Setup the connection
     $conn = Doctrine_Manager::getInstance();
-    $projects = Doctrine_Core::getTable('Project')->findAll();
-   
-    foreach($projects as $r) {
-      //update formatting to be easier to treat, for example escapeSlashes to stop injection
-      echo $r['id'] . "\n";
-      echo $r['title'] . "\n";
-      echo $r['organisation'] . "\n";
-      echo $r['description'] . "\n";
-      echo $r['has_additional_info'] . "\n";
-      echo $r['has_gpa_cutoff'] . "\n";
-      echo $r['major_ids'] . "\n";
-      echo $r['skill_set_ids'] . "\n \n";           
-    }
-
+	
+	// Setup a variable to catch our data to export
+	$info = '';
+	
+	// Then we grab the value of the drop down box
+    $opt = $request->getPostParameter('infoType');
+	
+	// And we use this to decide which info to export
+	if($opt=='projects')
+	{
+		$rows = Doctrine_Core::getTable('Project')->findAll();
+	    foreach($rows as $r) {
+	    
+	      $info .=  $r['id'] . "\n";
+	      $info .=  $r['title'] . "\n";
+	      $info .=  $r['organisation'] . "\n";
+	      $info .=  $r['description'] . "\n";
+	      $info .=  $r['has_additional_info'] . "\n";
+	      $info .=  $r['has_gpa_cutoff'] . "\n";
+	      $info .=  $r['major_ids'] . "\n";
+	      $info .=  $r['skill_set_ids'] . "\n \n";// dont really want another /n here           
+	    }
+	
+	}
+	else if($opt=='students')
+	{
+		$rows = Doctrine_Core::getTable('StudentUser')->findAll();
+	    foreach($rows as $r) {
+			$info .=  $r['snum'] . "\n";
+		    $info .=  $r['first_name'] . "\n";
+			$info .=  $r['last_name'] . "\n";
+			$info .=  $r['pass_fail_pm'] . "\n";
+			$info .=  $r['degree_ids'] . "\n";
+			$info .=  $r['major_ids'] . "\n";
+			$info .=  $r['skill_set_ids'] . "\n";
+			$info .=  $r['gpa'] . "\n";
+			$info .=  $r['proj_pref1'] . "\n";
+			$info .=  $r['proj_just1'] . "\n";
+			$info .=  $r['proj_pref2'] . "\n";
+			$info .=  $r['proj_just2'] . "\n";
+			$info .=  $r['proj_pref3'] . "\n";
+			$info .=  $r['proj_just3'] . "\n";
+			$info .=  $r['proj_pref4'] . "\n";
+			$info .=  $r['proj_just4'] . "\n";
+			$info .=  $r['proj_pref5'] . "\n";
+			$info .=  $r['proj_just5'] . "\n";
+			$info .=  $r['y_stu_pref1'] . "\n";
+			$info .=  $r['y_stu_pref2'] . "\n";
+			$info .=  $r['y_stu_pref3'] . "\n";
+			$info .=  $r['y_stu_pref4'] . "\n";
+			$info .=  $r['y_stu_pref5'] . "\n";
+			$info .=  $r['n_stu_pref1'] . "\n";
+			$info .=  $r['n_stu_pref2'] . "\n";
+			$info .=  $r['n_stu_pref3'] . "\n";
+			$info .=  $r['n_stu_pref4'] . "\n";
+			$info .=  $r['n_stu_pref5'] . "\n \n";
+		}
+	}
+	else if($opt=='groups')
+	{
+		$rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
+	    foreach($rows as $r) {
+			$info .=  $r['id'] . "\n";
+		    $info .=  $r['project_id'] . "\n";
+			$info .=  $r['snum'] . "\n \n";
+		}
+	}
+	// This tells it to use the csv.php template file
+	// note- all content is still contained within $sf_content
+	// see templates/csv.php to see how to treat $sf_content
     $this->setlayout('csv');
-
+	
+	// print out the results to this new page layout
+	echo $info;
+	
+	
+	// set up the httpHeaders to properly treat the page
     $this->getResponse()->clearHttpHeaders();
     $this->getResponse()->setHttpHeader('Content-Type', 'application/vnd.ms-excel');
-    //maybe add timestamp to the filename
-    $this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename=PANS_projectList.csv');
+    $this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename=PANS_'.$opt.'List_'.date("Ymd").'.csv');
 
     // Redirecting seems to break the download.  In this case, probably no 
     // flash is better.
     // A redirect is needed to show the flash
-    // $this->getUser()->setFlash('notice', 'Projects exported.');
-    // $this->redirect('project/tool');
+	//  $this->getUser()->setFlash('notice', 'Projects exported.');
+	// $this->redirect('project/tool');
   }
 
   // Change the deadline of the nomination round

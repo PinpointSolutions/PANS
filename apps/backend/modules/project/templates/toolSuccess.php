@@ -75,9 +75,23 @@ echo $datePicker.'<br/><br/>';
 
 <h2>Export Database Information</h2>
 <form enctype="multipart/form-data" action="<?php echo url_for('project/exportProjects') ?>" method="POST" class="tool-form">
-  <p>Export to CSV files. </p>
-  <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
-   <label>Project List:  </label> <input type="submit" value="Export" />
+  <p>Export to CSV files... </p>
+  <br/>
+  <p style="margin-left:20px;">
+	  <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+	   <select name="infoType">
+		<option value="projects">
+			Project List
+		</option>
+		<option value="students">
+			Student List
+		</option>
+		<option value="groups">
+			Group List
+		</option>
+		</select>
+	   <input type="submit" value="Export"/>
+  </p>
 </form>
 
 <h2>Reset and Email All Students Passwords</h2>
