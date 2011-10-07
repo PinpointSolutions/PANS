@@ -248,7 +248,7 @@ form th {
   background-position:-40px center;
 }
 
-.flash_caution a:hover
+.flash_caution:hover a
 {
   background-position:0px center;
 }
