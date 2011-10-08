@@ -74,7 +74,7 @@ echo $datePicker.'<br/><br/>';
 </form>
 
 <h2>Export Database Information</h2>
-<form enctype="multipart/form-data" action="<?php echo url_for('project/exportProjects') ?>" method="POST" class="tool-form">
+<form enctype="multipart/form-data" action="<?php echo url_for('project/exportTables') ?>" method="POST" class="tool-form">
   <p>Export to CSV files... </p>
   <br/>
   <p style="margin-left:20px;">

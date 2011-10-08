@@ -1,0 +1,1 @@
+<?php //no need for content as this is all handled within the actions.class.php file. Still need this file though for symfony to recognise the action ?>

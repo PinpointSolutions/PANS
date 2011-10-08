@@ -237,6 +237,7 @@ form th {
   width: 820px;
   margin: 0 auto 20px auto;
   border:none;
+  cursor:default;
 }
 
 /* Affect some placeholder <a> to display relevant images */

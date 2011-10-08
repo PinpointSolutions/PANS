@@ -48,8 +48,12 @@ class projectActions extends autoProjectActions
   ////////////////////////////////////////////////////////////////////////
   // Scripts 
   
-  // Export Project table to CSV file
-  public function executeExportProjects(sfWebRequest $request)
+	/*
+	Export  database tables to CSV files
+	This currently treats 3 different tables- the projects, students and the allocations
+	The actual treated data depends on a $_POST variable captured from a dropdown <select>
+	*/
+  public function executeExportTables(sfWebRequest $request)
   {	
 	//TODO:
 		//update formatting to be easier to treat, for example escapeSlashes to stop injection
@@ -78,14 +82,14 @@ class projectActions extends autoProjectActions
 		$rows = Doctrine_Core::getTable('Project')->findAll();
 	    foreach($rows as $r) {
 	    
-	      $info .=  $r['id'] . "\n";
-	      $info .=  $r['title'] . "\n";
-	      $info .=  $r['organisation'] . "\n";
-	      $info .=  $r['description'] . "\n";
-	      $info .=  $r['has_additional_info'] . "\n";
-	      $info .=  $r['has_gpa_cutoff'] . "\n";
-	      $info .=  $r['major_ids'] . "\n";
-	      $info .=  $r['skill_set_ids'] . "\n \n";// dont really want another /n here           
+	      $info .=  addslashes($r['id']) . ",";
+	      $info .=  addslashes($r['title']) . ",";
+	      $info .=  addslashes($r['organisation']) . ",";
+	      $info .=  addslashes($r['description']) . ",";
+	      $info .=  addslashes($r['has_additional_info']) . ",";
+	      $info .=  addslashes($r['has_gpa_cutoff']) . ",";
+	      $info .=  addslashes($r['major_ids']) . ",";
+	      $info .=  addslashes($r['skill_set_ids']) . "\n";           
 	    }
 	
 	}
@@ -93,43 +97,45 @@ class projectActions extends autoProjectActions
 	{
 		$rows = Doctrine_Core::getTable('StudentUser')->findAll();
 	    foreach($rows as $r) {
-			$info .=  $r['snum'] . "\n";
-		    $info .=  $r['first_name'] . "\n";
-			$info .=  $r['last_name'] . "\n";
-			$info .=  $r['pass_fail_pm'] . "\n";
-			$info .=  $r['degree_ids'] . "\n";
-			$info .=  $r['major_ids'] . "\n";
-			$info .=  $r['skill_set_ids'] . "\n";
-			$info .=  $r['gpa'] . "\n";
-			$info .=  $r['proj_pref1'] . "\n";
-			$info .=  $r['proj_just1'] . "\n";
-			$info .=  $r['proj_pref2'] . "\n";
-			$info .=  $r['proj_just2'] . "\n";
-			$info .=  $r['proj_pref3'] . "\n";
-			$info .=  $r['proj_just3'] . "\n";
-			$info .=  $r['proj_pref4'] . "\n";
-			$info .=  $r['proj_just4'] . "\n";
-			$info .=  $r['proj_pref5'] . "\n";
-			$info .=  $r['proj_just5'] . "\n";
-			$info .=  $r['y_stu_pref1'] . "\n";
-			$info .=  $r['y_stu_pref2'] . "\n";
-			$info .=  $r['y_stu_pref3'] . "\n";
-			$info .=  $r['y_stu_pref4'] . "\n";
-			$info .=  $r['y_stu_pref5'] . "\n";
-			$info .=  $r['n_stu_pref1'] . "\n";
-			$info .=  $r['n_stu_pref2'] . "\n";
-			$info .=  $r['n_stu_pref3'] . "\n";
-			$info .=  $r['n_stu_pref4'] . "\n";
-			$info .=  $r['n_stu_pref5'] . "\n \n";
+			$info .=  addslashes($r['snum']) . ",";
+		    $info .=   addslashes($r['first_name']) . ",";
+			$info .=   addslashes($r['last_name']) . ",";
+			$info .=   addslashes($r['pass_fail_pm']) . ",";
+			$info .=   addslashes($r['degree_ids']) . ",";
+			$info .=   addslashes($r['major_ids']) . ",";
+			$info .=   addslashes($r['skill_set_ids']) . ",";
+			$info .=   addslashes($r['gpa']) . ",";
+			$info .=   addslashes($r['proj_pref1']) . ",";
+			$info .=   addslashes($r['proj_just1']) . ",";
+			$info .=   addslashes($r['proj_pref2']) . ",";
+			$info .=   addslashes($r['proj_just2']) . ",";
+			$info .=   addslashes($r['proj_pref3']) . ",";
+			$info .=   addslashes($r['proj_just3']) . ",";
+			$info .=   addslashes($r['proj_pref4']) . ",";
+			$info .=   addslashes($r['proj_just4']) . ",";
+			$info .=   addslashes($r['proj_pref5']) . ",";
+			$info .=   addslashes($r['proj_just5']) . ",";
+			$info .=   addslashes($r['y_stu_pref1']) . ",";
+			$info .=   addslashes($r['y_stu_pref2']) . ",";
+			$info .=   addslashes($r['y_stu_pref3']) . ",";
+			$info .=   addslashes($r['y_stu_pref4']) . ",";
+			$info .=   addslashes($r['y_stu_pref5']) . ",";
+			$info .=   addslashes($r['n_stu_pref1']) . ",";
+			$info .=   addslashes($r['n_stu_pref2']) . ",";
+			$info .=   addslashes($r['n_stu_pref3']) . ",";
+			$info .=   addslashes($r['n_stu_pref4']) . ",";
+			$info .=   addslashes($r['n_stu_pref5']) . "\n";
 		}
 	}
 	else if($opt=='groups')
 	{
 		$rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
 	    foreach($rows as $r) {
-			$info .=  $r['id'] . "\n";
-		    $info .=  $r['project_id'] . "\n";
-			$info .=  $r['snum'] . "\n \n";
+		//	$info.=', \''.addslashes($r).'\'';
+		//	$info=substr($info,2);
+			$info .=  addslashes($r['id']) . ", ";
+		    $info .=  addslashes($r['project_id'] ). ", ";
+			$info .=  addslashes($r['snum'] ). "\n";
 		}
 	}
 	// This tells it to use the csv.php template file
