@@ -4,7 +4,7 @@ require_once dirname(__FILE__).'/../lib/groupGeneratorConfiguration.class.php';
 require_once dirname(__FILE__).'/../lib/groupGeneratorHelper.class.php';
 
 /**
- * group actions.
+ * Sorting student into groups.
  *
  * @package    PANS
  * @subpackage group
@@ -13,4 +13,15 @@ require_once dirname(__FILE__).'/../lib/groupGeneratorHelper.class.php';
  */
 class groupActions extends autoGroupActions
 {
+  public function executeSort(sfWebRequest $request)
+  {
+    // Load all the necessary data
+    $this->students = Doctrine_Core::getTable('StudentUser')
+      ->createQuery('a')
+      ->execute();
+
+    $this->students = Doctrine_Core::getTable('Project')
+      ->createQuery('a')
+      ->execute();
+  }
 }
