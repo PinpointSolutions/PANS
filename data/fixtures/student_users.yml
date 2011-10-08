@@ -1,13 +1,205 @@
 StudentUser:
-  user_1:
-    snum: 11111
-    first_name: Cave
-    last_name: Johnson
-  user_2:
+  user_test:
     snum: 2222222
-    first_name: Caroline
-    last_name: Unknown
+    first_name: Test
+    last_name: Student
+  user_0:
+    snum: 2000000
+  user_1:
+    snum: 2000001
+  user_2:
+    snum: 2000002
   user_3:
-    snum: 3333333
-    first_name: Rat
-    last_name: Man
+    snum: 2000003
+  user_4:
+    snum: 2000004
+  user_5:
+    snum: 2000005
+  user_6:
+    snum: 2000006
+  user_7:
+    snum: 2000007
+  user_8:
+    snum: 2000008
+  user_9:
+    snum: 2000009
+  user_10:
+    snum: 2000010
+  user_11:
+    snum: 2000011
+  user_12:
+    snum: 2000012
+  user_13:
+    snum: 2000013
+  user_14:
+    snum: 2000014
+  user_15:
+    snum: 2000015
+  user_16:
+    snum: 2000016
+  user_17:
+    snum: 2000017
+  user_18:
+    snum: 2000018
+  user_19:
+    snum: 2000019
+  user_20:
+    snum: 2000020
+  user_21:
+    snum: 2000021
+  user_22:
+    snum: 2000022
+  user_23:
+    snum: 2000023
+  user_24:
+    snum: 2000024
+  user_25:
+    snum: 2000025
+  user_26:
+    snum: 2000026
+  user_27:
+    snum: 2000027
+  user_28:
+    snum: 2000028
+  user_29:
+    snum: 2000029
+  user_30:
+    snum: 2000030
+  user_31:
+    snum: 2000031
+  user_32:
+    snum: 2000032
+  user_33:
+    snum: 2000033
+  user_34:
+    snum: 2000034
+  user_35:
+    snum: 2000035
+  user_36:
+    snum: 2000036
+  user_37:
+    snum: 2000037
+  user_38:
+    snum: 2000038
+  user_39:
+    snum: 2000039
+  user_40:
+    snum: 2000040
+  user_41:
+    snum: 2000041
+  user_42:
+    snum: 2000042
+  user_43:
+    snum: 2000043
+  user_44:
+    snum: 2000044
+  user_45:
+    snum: 2000045
+  user_46:
+    snum: 2000046
+  user_47:
+    snum: 2000047
+  user_48:
+    snum: 2000048
+  user_49:
+    snum: 2000049
+  user_50:
+    snum: 2000050
+  user_51:
+    snum: 2000051
+  user_52:
+    snum: 2000052
+  user_53:
+    snum: 2000053
+  user_54:
+    snum: 2000054
+  user_55:
+    snum: 2000055
+  user_56:
+    snum: 2000056
+  user_57:
+    snum: 2000057
+  user_58:
+    snum: 2000058
+  user_59:
+    snum: 2000059
+  user_60:
+    snum: 2000060
+  user_61:
+    snum: 2000061
+  user_62:
+    snum: 2000062
+  user_63:
+    snum: 2000063
+  user_64:
+    snum: 2000064
+  user_65:
+    snum: 2000065
+  user_66:
+    snum: 2000066
+  user_67:
+    snum: 2000067
+  user_68:
+    snum: 2000068
+  user_69:
+    snum: 2000069
+  user_70:
+    snum: 2000070
+  user_71:
+    snum: 2000071
+  user_72:
+    snum: 2000072
+  user_73:
+    snum: 2000073
+  user_74:
+    snum: 2000074
+  user_75:
+    snum: 2000075
+  user_76:
+    snum: 2000076
+  user_77:
+    snum: 2000077
+  user_78:
+    snum: 2000078
+  user_79:
+    snum: 2000079
+  user_80:
+    snum: 2000080
+  user_81:
+    snum: 2000081
+  user_82:
+    snum: 2000082
+  user_83:
+    snum: 2000083
+  user_84:
+    snum: 2000084
+  user_85:
+    snum: 2000085
+  user_86:
+    snum: 2000086
+  user_87:
+    snum: 2000087
+  user_88:
+    snum: 2000088
+  user_89:
+    snum: 2000089
+  user_90:
+    snum: 2000090
+  user_91:
+    snum: 2000091
+  user_92:
+    snum: 2000092
+  user_93:
+    snum: 2000093
+  user_94:
+    snum: 2000094
+  user_95:
+    snum: 2000095
+  user_96:
+    snum: 2000096
+  user_97:
+    snum: 2000097
+  user_98:
+    snum: 2000098
+  user_99:
+    snum: 2000099

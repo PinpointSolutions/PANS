@@ -9,7 +9,7 @@ sfGuardUser:
     Groups:         [Group_admin]
   User_test:
     first_name:     Test
-    last_name:      Subject
+    last_name:      Student
     email_address:  testsubject@pans.dev
     username:       2222222
     password:       test

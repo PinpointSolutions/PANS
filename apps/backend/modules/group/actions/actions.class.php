@@ -16,20 +16,32 @@ class groupActions extends autoGroupActions
   public function executeAllocate(sfWebRequest $request)
   {
     // Load all the necessary data
-    $this->students = Doctrine_Core::getTable('StudentUser')
+    $students = Doctrine_Core::getTable('StudentUser')
       ->createQuery('a')
       ->execute();
     
-    $this->projects = Doctrine_Core::getTable('Project')
+    $projects = Doctrine_Core::getTable('Project')
       ->createQuery('a')
       ->execute();
     
-    // Array of groups.  We first find existing groups
-    $groups = array();
+    $this->result = '';
+
+    // Grab student information for desired and undesired student ids
+    $desires = array();
+    $undesires = array();
     foreach ($students as $student) {
-      print_r($student . '<br>');
+      $desires[$student->getSnum()] = array($student->getYStuPref1(),
+                                            $student->getYStuPref2(),
+                                            $student->getYStuPref3(),
+                                            $student->getYStuPref4(),
+                                            $student->getYStuPref5());
+      $undesires[$student->getSnum()] = array($student->getNStuPref1(),
+                                              $student->getNStuPref2(),
+                                              $student->getNStuPref3(),
+                                              $student->getNStuPref4(),
+                                              $student->getNStuPref5());
     }
-    
-    $this->redirect('project/group');
+    $this->result = print_r($desires, true);
+    $this->result .= print_r($undesires, true);
   }
 }

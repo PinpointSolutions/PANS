@@ -115,6 +115,13 @@ Project:
       primary: false
       notnull: false
       autoincrement: false
+    degree_ids:
+      type: string(64)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     major_ids:
       type: string(64)
       fixed: false
@@ -197,6 +204,13 @@ StudentUser:
       primary: false
       notnull: false
       autoincrement: false
+    skill_set_ids:
+      type: string(32)
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
     gpa:
       type: float(18)
       fixed: false
@@ -234,13 +248,6 @@ StudentUser:
       autoincrement: false
     proj_pref5:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      primary: false
-      notnull: false
-      autoincrement: false
-    skill_set_ids:
-      type: string(32)
       fixed: false
       unsigned: false
       primary: false
@@ -370,14 +377,84 @@ StudentUser:
     Project:
       onDelete: CASCADE
       local: proj_pref1
-      type: one
-      foreignType: many
+      class: Project
       foreign: id
-    StudentUser:
+      type: one
+      foreignType: one
+    Project1:
+      onDelete: CASCADE
+      local: proj_pref1
+      class: Project
+      foreign: id
+    Project2:
+      onDelete: CASCADE
+      local: proj_pref2
+      class: Project
+      foreign: id
+    Project3:
+      onDelete: CASCADE
+      local: proj_pref3
+      class: Project
+      foreign: id
+    Project4:
+      onDelete: CASCADE
+      local: proj_pref4
+      class: Project
+      foreign: id
+    Project5:
+      onDelete: CASCADE
+      local: proj_pref5
+      class: Project
+      foreign: id
+    yStudentUser1:
       onDelete: CASCADE
       local: y_stu_pref1
-      type: one
-      foreignType: many
+      class: StudentUser
+      foreign: snum
+    yStudentUser2:
+      onDelete: CASCADE
+      local: y_stu_pref2
+      class: StudentUser
+      foreign: snum
+    yStudentUser3:
+      onDelete: CASCADE
+      local: y_stu_pref3
+      class: StudentUser
+      foreign: snum
+    yStudentUser4:
+      onDelete: CASCADE
+      local: y_stu_pref4
+      class: StudentUser
+      foreign: snum
+    yStudentUser5:
+      onDelete: CASCADE
+      local: y_stu_pref5
+      class: StudentUser
+      foreign: snum
+    nStudentUser1:
+      onDelete: CASCADE
+      local: n_stu_pref1
+      class: StudentUser
+      foreign: snum
+    nStudentUser2:
+      onDelete: CASCADE
+      local: n_stu_pref2
+      class: StudentUser
+      foreign: snum
+    nStudentUser3:
+      onDelete: CASCADE
+      local: n_stu_pref3
+      class: StudentUser
+      foreign: snum
+    nStudentUser4:
+      onDelete: CASCADE
+      local: n_stu_pref4
+      class: StudentUser
+      foreign: snum
+    nStudentUser5:
+      onDelete: CASCADE
+      local: n_stu_pref5
+      class: StudentUser
       foreign: snum
     Degree:
       onDelete: CASCADE
