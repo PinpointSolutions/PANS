@@ -74,7 +74,7 @@ echo $datePicker.'<br/><br/>';
 </form>
 
 <h2>Export Database Information</h2>
-<form enctype="multipart/form-data" action="<?php echo url_for('project/exportTables') ?>" method="POST" class="tool-form">
+<form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')" action="<?php echo url_for('project/exportTables') ?>" method="POST" class="tool-form">
   <p>Export to CSV files... </p>
   <br/>
   <p style="margin-left:20px;">
@@ -95,7 +95,7 @@ echo $datePicker.'<br/><br/>';
 </form>
 
 <h2>Reset and Email All Students Passwords</h2>
-<form enctype="multipart/form-data" action="<?php echo url_for('project/emailAllPasswords') ?>" method="POST" class="tool-form">
+<form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')" action="<?php echo url_for('project/emailAllPasswords') ?>" method="POST" class="tool-form">
   This will reset every students' passwords.  Emails will be sent out with their new ones.  (Dev: This doesn't work on your local machine.)<br><br>
   <table>
     <tr>
@@ -108,7 +108,7 @@ echo $datePicker.'<br/><br/>';
 <h2>Delete Data</h2>
 <div class="tool-form">
 <ul>
-<li class="tool"><?php echo link_to('Delete All Students', 'project/clearAllStudents') ?></li>
-<li class="tool"><?php echo link_to('Delete All Projects', 'project/clearAllProjects') ?></li>
+<li class="tool" ><?php echo link_to('Delete All Students', 'project/clearAllStudents', 'confirm=Delete All Students?') ?></li>
+<li class="tool"><?php echo link_to('Delete All Projects', 'project/clearAllProjects', 'confirm=Delete All Projects?') ?></li>
 </ul>
 </div>
