@@ -92,35 +92,38 @@ class projectActions extends autoProjectActions
 	else if($opt=='students')
 	{
 		$rows = Doctrine_Core::getTable('StudentUser')->findAll();
+    //have first row descriptions outside of loop, use a "," for a new column
+      $info .= "S Number," . "First Name," . "Last Name," . "Pass/Fail PM," . "Degree," . "Major," . "Skills," . "GPA," . "Proj Pref 1," . "Proj Just 1," . "Proj Pref 2," . "Proj Just 2," . "Proj Pref 3," . "Proj Just 3," . "Proj Pref 4," . "Proj Just 4," . "Proj Pref 5," . "Proj Just 5," . "Pref Stud 1," . "Pref Stud 2, " . "Pref Stud 3." . "Pref Stud 4," . "Pref Stud 5," . "Not Pref 1," . "Not Pref 2," . "Not Pref 3," . "Not Pref 4," . "Not Pref 5," . "\n";
+      
 	    foreach($rows as $r) {
-			$info .=  $r['snum'] . "\n";
-		    $info .=  $r['first_name'] . "\n";
-			$info .=  $r['last_name'] . "\n";
-			$info .=  $r['pass_fail_pm'] . "\n";
-			$info .=  $r['degree_ids'] . "\n";
-			$info .=  $r['major_ids'] . "\n";
-			$info .=  $r['skill_set_ids'] . "\n";
-			$info .=  $r['gpa'] . "\n";
-			$info .=  $r['proj_pref1'] . "\n";
-			$info .=  $r['proj_just1'] . "\n";
-			$info .=  $r['proj_pref2'] . "\n";
-			$info .=  $r['proj_just2'] . "\n";
-			$info .=  $r['proj_pref3'] . "\n";
-			$info .=  $r['proj_just3'] . "\n";
-			$info .=  $r['proj_pref4'] . "\n";
-			$info .=  $r['proj_just4'] . "\n";
-			$info .=  $r['proj_pref5'] . "\n";
-			$info .=  $r['proj_just5'] . "\n";
-			$info .=  $r['y_stu_pref1'] . "\n";
-			$info .=  $r['y_stu_pref2'] . "\n";
-			$info .=  $r['y_stu_pref3'] . "\n";
-			$info .=  $r['y_stu_pref4'] . "\n";
-			$info .=  $r['y_stu_pref5'] . "\n";
-			$info .=  $r['n_stu_pref1'] . "\n";
-			$info .=  $r['n_stu_pref2'] . "\n";
-			$info .=  $r['n_stu_pref3'] . "\n";
-			$info .=  $r['n_stu_pref4'] . "\n";
-			$info .=  $r['n_stu_pref5'] . "\n \n";
+			$info .=  $r['snum'] . ",";
+		  $info .=  $r['first_name'] . ",";
+			$info .=  $r['last_name'] . ",";
+			$info .=  $r['pass_fail_pm'] . ",";
+			$info .=  $r['degree_ids'] . ",";
+		  $info .=  $r['major_ids'] . ",";
+			$info .=  $r['skill_set_ids'] . ",";
+			$info .=  $r['gpa'] . ",";
+			$info .=  $r['proj_pref1'] . ",";
+			$info .=  $r['proj_just1'] . ",";
+			$info .=  $r['proj_pref2'] . ",";
+			$info .=  $r['proj_just2'] . ",";
+			$info .=  $r['proj_pref3'] . ",";
+			$info .=  $r['proj_just3'] . ",";
+			$info .=  $r['proj_pref4'] . ",";
+			$info .=  $r['proj_just4'] . ",";
+			$info .=  $r['proj_pref5'] . ",";
+			$info .=  $r['proj_just5'] . ",";
+			$info .=  $r['y_stu_pref1'] . ",";
+			$info .=  $r['y_stu_pref2'] . ",";
+			$info .=  $r['y_stu_pref3'] . ",";
+			$info .=  $r['y_stu_pref4'] . ",";
+			$info .=  $r['y_stu_pref5'] . ",";
+			$info .=  $r['n_stu_pref1'] . ",";
+			$info .=  $r['n_stu_pref2'] . ",";
+			$info .=  $r['n_stu_pref3'] . ",";
+			$info .=  $r['n_stu_pref4'] . ",";
+			$info .=  $r['n_stu_pref5'] . ", \n";
 		}
 	}
 	else if($opt=='groups')
