@@ -359,6 +359,13 @@ StudentUser:
       fixed: false
       unsigned: false
       primary: false
+    flag:
+      type: string()
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
   relations:
     Project:
       onDelete: CASCADE
