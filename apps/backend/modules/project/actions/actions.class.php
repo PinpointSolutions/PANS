@@ -76,23 +76,24 @@ class projectActions extends autoProjectActions
 	if($opt=='projects')
 	{
 		$rows = Doctrine_Core::getTable('Project')->findAll();
+    //have first row descriptions outside of loop, use a "," for a new column
+    $info .= "ID," . "Title," . "Organisation," . "Description," . "More Info," . "GPA Cutoff," . "Major ID's," . "Skill Set ID's" . "\n";
 	    foreach($rows as $r) {
 	    
-	      $info .=  $r['id'] . "\n";
-	      $info .=  $r['title'] . "\n";
-	      $info .=  $r['organisation'] . "\n";
-	      $info .=  $r['description'] . "\n";
-	      $info .=  $r['has_additional_info'] . "\n";
-	      $info .=  $r['has_gpa_cutoff'] . "\n";
-	      $info .=  $r['major_ids'] . "\n";
-	      $info .=  $r['skill_set_ids'] . "\n \n";// dont really want another /n here           
+	      $info .=  $r['id'] . ",";
+	      $info .=  $r['title'] . ",";
+	      $info .=  $r['organisation'] . ",";
+	      $info .=  $r['description'] . ",";
+	      $info .=  $r['has_additional_info'] . ",";
+	      $info .=  $r['has_gpa_cutoff'] . ",";
+	      $info .=  $r['major_ids'] . ",";
+	      $info .=  $r['skill_set_ids'] . ", \n";           
 	    }
 	
 	}
 	else if($opt=='students')
 	{
 		$rows = Doctrine_Core::getTable('StudentUser')->findAll();
-    //have first row descriptions outside of loop, use a "," for a new column
       $info .= "S Number," . "First Name," . "Last Name," . "Pass/Fail PM," . "Degree," . "Major," . "Skills," . "GPA," . "Proj Pref 1," . "Proj Just 1," . "Proj Pref 2," . "Proj Just 2," . "Proj Pref 3," . "Proj Just 3," . "Proj Pref 4," . "Proj Just 4," . "Proj Pref 5," . "Proj Just 5," . "Pref Stud 1," . "Pref Stud 2, " . "Pref Stud 3." . "Pref Stud 4," . "Pref Stud 5," . "Not Pref 1," . "Not Pref 2," . "Not Pref 3," . "Not Pref 4," . "Not Pref 5," . "\n";
       
 	    foreach($rows as $r) {
@@ -126,13 +127,15 @@ class projectActions extends autoProjectActions
 			$info .=  $r['n_stu_pref5'] . ", \n";
 		}
 	}
+  //Not sure if this is right
 	else if($opt=='groups')
 	{
 		$rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
+      $info .= "Group ID," . "Proj ID," . "Stud No's," . "\n";
 	    foreach($rows as $r) {
-			$info .=  $r['id'] . "\n";
-		    $info .=  $r['project_id'] . "\n";
-			$info .=  $r['snum'] . "\n \n";
+			$info .=  $r['id'] . ",";
+		  $info .=  $r['project_id'] . ",";
+			$info .=  $r['snum'] . ", \n";
 		}
 	}
 	// This tells it to use the csv.php template file
