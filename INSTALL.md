@@ -65,11 +65,11 @@ If the first test passes, it's all good. Make sure the mandatory requirement for
 
 For example:
 
-    php symfony configure:database "mysql:host=mysql.ict.griffith.edu.au;dbname=pinpoint_db" pinpoint somepasswordyoullneverguess --env=production
+    php symfony configure:database "mysql:host=mysql.ict.griffith.edu.au;dbname=pinpoint_db" pinpoint somepasswordyoullneverguess
 
 Load up the database with tables.
 
-    php symfony doctrine:build --all --and-load --env=production
+    php symfony doctrine:build --all --and-load
 
 Finally, clear the webpage cache, and set up permissions.
 
@@ -96,7 +96,7 @@ For example:
 
 Finally, run some automated tasks to speed up the website a little:
 
-    php symfony project:optimize frontend production
-    php symfony project:optimize backend production
+    php symfony project:optimize frontend
+    php symfony project:optimize backend
 
 And we're done!  Congratulations. 
