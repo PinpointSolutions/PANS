@@ -374,10 +374,18 @@ StudentUser:
       notnull: false
       autoincrement: false
   relations:
+    Project:
+      onDelete: CASCADE
+      local: proj_pref1
+      class: Project
+      foreign: id
+      type: one
+      foreignType: one
     Project1:
       onDelete: CASCADE
       local: proj_pref1
       class: Project
+      foreign: id
     Project2:
       onDelete: CASCADE
       local: proj_pref2
