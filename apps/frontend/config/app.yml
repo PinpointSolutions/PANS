@@ -7,4 +7,4 @@ all:
     routes_register: true
     allow_login_with_email: false
     success_signin_url:  project/index
-    success_signout_url: /
+    success_signout_url: project/index
