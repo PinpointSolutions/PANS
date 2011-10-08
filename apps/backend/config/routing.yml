@@ -11,7 +11,7 @@ project_allocation:
     model:                ProjectAllocation
     module:               group
     prefix_path:          /group
-    column:               project_id
+    column:               id
     with_wildcard_routes: true
 
 skill_set:
