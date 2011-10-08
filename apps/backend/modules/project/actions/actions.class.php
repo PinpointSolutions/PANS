@@ -81,9 +81,8 @@ class projectActions extends autoProjectActions
 	{
 		$rows = Doctrine_Core::getTable('Project')->findAll();
     //have first row descriptions outside of loop, use a "," for a new column
-    $info .= "ID," . "Title," . "Organisation," . "Description," . "More Info," . "GPA Cutoff," . "Major ID's," . "Skill Set ID's" . "\n";
+    $info .= 'Project id#'."," . 'Title'."," . 'Organisation'."," . 'Description'."," . 'More Info'."," . 'GPA Cutoff'."," . 'Major ID\'s'."," . 'Skill Set ID\'s'."," . "\n";
 	    foreach($rows as $r) {
-	    
 	      $info .=  addslashes($r['id']) . ",";
 	      $info .=  addslashes($r['title']) . ",";
 	      $info .=  addslashes($r['organisation']) . ",";
@@ -98,7 +97,35 @@ class projectActions extends autoProjectActions
 	else if($opt=='students')
 	{
 		$rows = Doctrine_Core::getTable('StudentUser')->findAll();
-      $info .= "S Number," . "First Name," . "Last Name," . "Pass/Fail PM," . "Degree," . "Major," . "Skills," . "GPA," . "Proj Pref 1," . "Proj Just 1," . "Proj Pref 2," . "Proj Just 2," . "Proj Pref 3," . "Proj Just 3," . "Proj Pref 4," . "Proj Just 4," . "Proj Pref 5," . "Proj Just 5," . "Pref Stud 1," . "Pref Stud 2, " . "Pref Stud 3." . "Pref Stud 4," . "Pref Stud 5," . "Not Pref 1," . "Not Pref 2," . "Not Pref 3," . "Not Pref 4," . "Not Pref 5," . "\n";
+        $info .= 'S Number'."," 
+		. 'First Name'."," 
+		. 'Last Name'."," 
+		. 'Pass/Fail PM'.","
+		. 'Degree'.","
+		. 'Major'.","
+		. 'Skills'.","
+		. 'GPA'.","
+		. 'Proj Pref 1'.","
+		. 'Proj Just 1'.","
+		. 'Proj Pref 2'.","
+		. 'Proj Just 2'.","
+		. 'Proj Pref 3'.","
+		. 'Proj Just 3'.","
+		. 'Proj Pref 4'.","
+		. 'Proj Just 4'.","
+		. 'Proj Pref 5'.","
+		. 'Proj Just 5'.","
+		. 'Pref Stud 1'.","
+		. 'Pref Stud 2'.","
+		. 'Pref Stud 3'.","
+		. 'Pref Stud 4'.","
+		. 'Pref Stud 5'.","
+		. 'Not Pref 1'.","
+		. 'Not Pref 2'.","
+		. 'Not Pref 3'.","
+		. 'Not Pref 4'.","
+		. 'Not Pref 5'.","
+		. "\n";
       
 	    foreach($rows as $r) {
 			$info .=  addslashes($r['snum']) . ",";
@@ -135,7 +162,7 @@ class projectActions extends autoProjectActions
 	else if($opt=='groups')
 	{
 		$rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
-      $info .= "Group ID," . "Proj ID," . "Stud No's," . "\n";
+		$info .= 'Group ID'."," . 'Proj ID'."," . 'Stud No\'s'."," . "\n";
 	    foreach($rows as $r) {
 		//	$info.=', \''.addslashes($r).'\'';
 		//	$info=substr($info,2);
