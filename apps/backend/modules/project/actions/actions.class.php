@@ -56,17 +56,8 @@ class projectActions extends autoProjectActions
   public function executeExportTables(sfWebRequest $request)
   {	
 	//TODO:
-		//update formatting to be easier to treat, for example escapeSlashes to stop injection
-		//  QUESTION- do we want this easily readable in itself? 
-			//would not acutally be that much more work, just have to remember consistency is key if we want to import again
-			//we can always ignore our extra labels so long as we know where they would appear
-			// AND/OR... maybe an option for a formatted list, for printing purposes mainly but we could treat it to be importable
-				// very much optional requirement- but i love the idea
+		// test thoroughly, mostly to see if all special character types are escaped
   
-  
-	//echo $request->getPathInfo()  ;//echo $request->getHttpHeader()  ;//echo $request->getPostParameters() ;//echo $request->getPathInfoArray() ;
-	//echo $request->getRequestContext() ;//echo $request->getPostParameters() ;
-
     // Setup the connection
     $conn = Doctrine_Manager::getInstance();
 	
@@ -84,13 +75,13 @@ class projectActions extends autoProjectActions
     $info .= 'Project id#'."," . 'Title'."," . 'Organisation'."," . 'Description'."," . 'More Info'."," . 'GPA Cutoff'."," . 'Major ID\'s'."," . 'Skill Set ID\'s'."," . "\n";
 	    foreach($rows as $r) {
 	      $info .=  addslashes($r['id']) . ",";
-	      $info .=  addslashes($r['title']) . ",";
-	      $info .=  addslashes($r['organisation']) . ",";
-	      $info .=  addslashes($r['description']) . ",";
+	      $info .=  '"'.addslashes($r['title']).'"' . ",";
+	      $info .=  '"'.addslashes($r['organisation']).'"' . ",";
+	      $info .=  '"'.addslashes($r['description']).'"' . ",";
 	      $info .=  addslashes($r['has_additional_info']) . ",";
 	      $info .=  addslashes($r['has_gpa_cutoff']) . ",";
 	      $info .=  addslashes($r['major_ids']) . ",";
-	      $info .=  addslashes($r['skill_set_ids']) . "\n";           
+	      $info .=  addslashes($r['skill_set_ids']) . "\n"; 
 	    }
 	
 	}
@@ -129,23 +120,23 @@ class projectActions extends autoProjectActions
       
 	    foreach($rows as $r) {
 			$info .=  addslashes($r['snum']) . ",";
-		    $info .=   addslashes($r['first_name']) . ",";
-			$info .=   addslashes($r['last_name']) . ",";
+	        $info .=  '"'.addslashes($r['first_name']).'"' . ",";
+	        $info .=  '"'.addslashes($r['last_name']).'"' . ",";
 			$info .=   addslashes($r['pass_fail_pm']) . ",";
 			$info .=   addslashes($r['degree_ids']) . ",";
 			$info .=   addslashes($r['major_ids']) . ",";
 			$info .=   addslashes($r['skill_set_ids']) . ",";
 			$info .=   addslashes($r['gpa']) . ",";
 			$info .=   addslashes($r['proj_pref1']) . ",";
-			$info .=   addslashes($r['proj_just1']) . ",";
+	        $info .=  '"'.addslashes($r['proj_just1']).'"' . ",";
 			$info .=   addslashes($r['proj_pref2']) . ",";
-			$info .=   addslashes($r['proj_just2']) . ",";
+	        $info .=  '"'.addslashes($r['proj_just2']).'"' . ",";
 			$info .=   addslashes($r['proj_pref3']) . ",";
-			$info .=   addslashes($r['proj_just3']) . ",";
+	        $info .=  '"'.addslashes($r['proj_just3']).'"' . ",";
 			$info .=   addslashes($r['proj_pref4']) . ",";
-			$info .=   addslashes($r['proj_just4']) . ",";
+	        $info .=  '"'.addslashes($r['proj_just4']).'"' . ",";
 			$info .=   addslashes($r['proj_pref5']) . ",";
-			$info .=   addslashes($r['proj_just5']) . ",";
+	        $info .=  '"'.addslashes($r['proj_just5']).'"' . ",";
 			$info .=   addslashes($r['y_stu_pref1']) . ",";
 			$info .=   addslashes($r['y_stu_pref2']) . ",";
 			$info .=   addslashes($r['y_stu_pref3']) . ",";
