@@ -60,104 +60,96 @@ class projectActions extends autoProjectActions
     // Setup the connection
     $conn = Doctrine_Manager::getInstance();
   
-  // Setup a variable to catch our data to export
-  $info;
-  $rows = Doctrine_Core::getTable('StudentUser')->findAll();
+    // Setup a variable to catch our data to export
+    $info;
+    $rows;
 
 
-  // Then we grab the value of the drop down box
+    // Then we grab the value of the drop down box
     $opt = $request->getPostParameter('infoType');
-  
-  if($opt=='students')
-  {
-   
-    $info = array(
-      'S Number', //any changes to this first cell MUST be reflected in importStudents()
-      'First Name', 
-      'Last Name', 
-      'Pass/Fail PM',
-      'Degree',
-      'Major',
-      'Skills',
-      'GPA',
-      'Proj Pref 1',
-      'Proj Pref 2',
-      'Proj Pref 3',
-      'Proj Pref 4',
-      'Proj Pref 5',
-      'Pref Stud 1',
-      'Pref Stud 2',
-      'Pref Stud 3',
-      'Pref Stud 4',
-      'Pref Stud 5',
-      'Not Pref 1',
-      'Not Pref 2',
-      'Not Pref 3',
-      'Not Pref 4',
-      'Not Pref 5',
-      'Proj Just 1',
-      'Proj Just 2',
-      'Proj Just 3',
-      'Proj Just 4',
-      'Proj Just 5',
-      'Form Completed',
-      'Flags',
-      'created_at',
-      'updated_at'
-    );
-   /*   
-      $y = 1;
-      foreach($rows as $r) {
-//      foreach($r as $v){echo $v;}echo '<br/>';
-        $info[$y] = array();
-        $x = -1;//for ++ auto increments
-        foreach($r as $v)
-        {
-          $info[$y][$x++] = $v;
-        }
-          
-      }
-    */
-  }
-  
-  
-  //escape standard special characters, the '"'. above escapes unwanted commas
-// addslashes($info);//seems to work
-  
-
-
-  // Setup the file pointer
-  $fpath = 'downloads/PANS_'.$opt.'List_'.date("Y-m-d").'.csv';
-
-  //open the file
-  $fp = fopen($fpath, 'w+');
-
-  //write the first row using the headers
-  fputcsv($fp, $info);
-
-  //create an array to better work with $rows
-  $data = array();
-
-
-  foreach($rows as $r)
-  {
-   // echo $r;
-   $x = -1;
-    foreach($r as $v)
+    
+    if($opt=='students')
     {
-   
-      $data[$x++] = $v;
-      //   echo $v.'   ';
+      //ask symfony to return the data from one of our tables
+      $rows = Doctrine_Core::getTable('StudentUser')->findAll();
+      $info = array(
+        'S Number', //any changes to this first cell MUST be reflected in importStudents()
+        'First Name', 
+        'Last Name', 
+        'Pass/Fail PM',
+        'Degree',
+        'Major',
+        'Skills',
+        'GPA',
+        'Proj Pref 1',
+        'Proj Pref 2',
+        'Proj Pref 3',
+        'Proj Pref 4',
+        'Proj Pref 5',
+        'Desired Snum 1',
+        'Desired Snum 2',
+        'Desired Snum 3',
+        'Desired Snum 4',
+        'Desired Snum 5',
+        'Undesired Snum 1',
+        'Undesired Snum 2',
+        'Undesired Snum 3',
+        'Undesired Snum 4',
+        'Undesired Snum 5',
+        'Proj Just 1',
+        'Proj Just 2',
+        'Proj Just 3',
+        'Proj Just 4',
+        'Proj Just 5',
+        'Form Completed',
+        'Flags',
+        'created_at',
+        'updated_at');
     }
-  //  echo '<br />';
-  fputcsv($fp, $data);
-  }
+    elseif($opt=='projects')
+    {
+      //ask symfony to return the data from one of our tables
+      $rows = Doctrine_Core::getTable('Project')->findAll();
+      $info = array('Project id#', 'Title', 'Organisation', 'Description', 'More Info?', 'GPA Cutoff', 'Major ID\'s', 'Skill Set ID\'s');
+    }
+    elseif($opt=='groups')
+    {
+      //ask symfony to return the data from one of our tables
+      $rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
+      $info = array('Group ID','Proj ID','S Number');
+    }
 
-  
-  fclose($fp);
+    // Setup the file pointer
+    $fpath = 'downloads/PANS_'.$opt.'List_'.date("Y-m-d").'.csv';
 
-  $this->getUser()->setFlash('notice', 'File successfully saved to "'. $fpath .'"');
-  $this->redirect('project/tool');
+    //open the file
+    $fp = fopen($fpath, 'w+');
+
+    //write the first row using the headers
+    fputcsv($fp, $info);
+
+    //create an array to better work with symfony's data array return
+    $data = array();
+
+    //so iterate through and convert to normal array
+    foreach($rows as $r)
+    {
+     $x = -1;
+      foreach($r as $v)
+      {
+        $data[$x++] = $v;//adds value and increments $x
+      }
+      //this method parses the array and treats all special char
+      fputcsv($fp, $data);
+    }
+
+    //close the file as we are done now
+    fclose($fp);
+
+    //notify the user of the status and location of the file
+    $this->getUser()->setFlash('notice', 'File successfully saved to "'. $fpath .'"');
+    //redirect to the tool page
+    $this->redirect('project/tool');
 }
 
 
@@ -183,13 +175,17 @@ class projectActions extends autoProjectActions
   */
   public function executeImportStudents(sfWebRequest $request)
   {
+    $t = 0;
+
+    echo $t++;
+
     // Ensure the file is uploaded okay
     if ($_FILES['studentFile']['error'] !== UPLOAD_ERR_OK) {
       $this->getUser()->setFlash('error', 
             $this->file_upload_error_message($_FILES['studentFile']['error']));
       $this->redirect('project/tool');
     }
-    
+    echo $t++;
     // Reads the entire content
     $raw_data = file_get_contents($_FILES['studentFile']['tmp_name']);
     $raw_data = explode("\n", $raw_data); 
@@ -202,11 +198,12 @@ class projectActions extends autoProjectActions
     $i = 0;
   
   //now check the header to determine how to handle
-  
+  echo $t++;
   // FIXME: This is really hacky. I'm not a fan but whatever.
   // We should employ error checking and not ... checking for an unused field.
   if($firstLine[0]=='N')//this is always the first cell generated by learning@griffith
   {
+    echo $t++.'LG';
     //LEARNING@GRIFFITH LAYOUT
     // Assume index 2 is ID, and index 3 is name. Store them as such.
     foreach ($raw_data as $line) {
@@ -225,7 +222,8 @@ class projectActions extends autoProjectActions
   }
   elseif($firstLine[0]=='S')//this must match with the first cell as set in exportTables()
   {
-    //LEARNING@GRIFFITH LAYOUT
+    echo $t++.'PANS';
+    //PANS LAYOUT
     // Assume index 0 is ID, and each field follows as in the database. Store them as such.
     foreach ($raw_data as $line) {
         $items = str_getcsv($line);
@@ -277,7 +275,8 @@ class projectActions extends autoProjectActions
     $this->student_user_collection = new Doctrine_Collection('StudentUser');
     
     // Add students
-    foreach ($students as $student) {
+    foreach ($students as $student) 
+    {
       $user = new StudentUser();
       $user->snum = $student['snum'];
       $user->first_name = $student['first_name'];
@@ -336,6 +335,7 @@ class projectActions extends autoProjectActions
     // letting students know.  Unless you get her agreement on this, I will be against this idea.
 
     $this->redirect('project/tool');
+    echo 'done';
   }
 
 
