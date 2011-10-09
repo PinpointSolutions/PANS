@@ -58,4 +58,52 @@ Project:
       Nope.
     has_additional_info: false
     major_ids: 2 3
- 
+  proj_8:
+    title: Dummy Project 3
+    organisation: Very Dummy, Inc.
+    description: |
+      I'm out of ideas.
+    has_additional_info: false
+    major_ids: 2
+  proj_9:
+    title: Fire Project 1
+    organisation: Fire, Inc.
+    description: |
+      Ho ho ho.
+    has_additional_info: true
+    major_ids: 1
+  proj_10:
+    title: Fire Project 2
+    organisation: Not So Fire, Inc.
+    description: |
+      Nope.
+    has_additional_info: false
+    major_ids: 2 3
+  proj_11:
+    title: Fire Project 3
+    organisation: Very Fire, Inc.
+    description: |
+      I'm out of ideas.
+    has_additional_info: false
+    major_ids: 2
+  proj_12:
+    title: Ice Project 1
+    organisation: Ice, Inc.
+    description: |
+      Ho ho ho.
+    has_additional_info: true
+    major_ids: 1
+  proj_13:
+    title: Ice Project 2
+    organisation: Not So Ice, Inc.
+    description: |
+      Nope.
+    has_additional_info: false
+    major_ids: 2 3
+  proj_14:
+    title: Ice Project 3
+    organisation: Very Ice, Inc.
+    description: |
+      I'm out of ideas.
+    has_additional_info: false
+    major_ids: 2
