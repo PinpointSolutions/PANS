@@ -48,7 +48,7 @@ class projectActions extends autoProjectActions
   ////////////////////////////////////////////////////////////////////////
   // Scripts 
   
-  /*
+  /*------------------------------------------------------------------
   Export  database tables to CSV files
   This currently treats 3 different tables- the projects, students and the allocations
   The actual treated data depends on a $_POST variable captured from a dropdown <select>
@@ -116,7 +116,7 @@ class projectActions extends autoProjectActions
     . 'Not Pref 3'.","
     . 'Not Pref 4'.","
     . 'Not Pref 5'.","
-    . "";
+    . "\n";
       
       foreach($rows as $x) {
         $r = $x;
@@ -133,22 +133,22 @@ class projectActions extends autoProjectActions
          $r['proj_pref2'] . ",".
 
         // '"'.$r['proj_just2'].'"' . ",".
-        // $r['proj_pref3'] . ",".
+        $r['proj_pref3'] . ",".
         // '"'.$r['proj_just3'].'"' . ",".
-        // $r['proj_pref4'] . ",".
+       //$r['proj_pref4'] . ",".
         // '"'.$r['proj_just4'].'"' . ",".
         // $r['proj_pref5'] . ",".
         // '"'.$r['proj_just5'].'"' . ",".
-        // $r['y_stu_pref1'] . ",".
-        // $r['y_stu_pref2'] . ",".
-        // $r['y_stu_pref3'] . ",".
-        // $r['y_stu_pref4'] . ",".
-        // $r['y_stu_pref5'] . ",".
-        //$r['n_stu_pref1'] . ",".
-        ///$r['n_stu_pref2'] . ",".
-        // $r['n_stu_pref3'] . ",".
-        // $r['n_stu_pref4'] . ",".
-        // $r['n_stu_pref5'].
+         $r['y_stu_pref1'] . ",".
+         $r['y_stu_pref2'] . ",".
+         $r['y_stu_pref3'] . ",".
+         $r['y_stu_pref4'] . ",".
+         $r['y_stu_pref5'] . ",".
+         $r['n_stu_pref1'] . ",".
+         $r['n_stu_pref2'] . ",".
+         $r['n_stu_pref3'] . ",".
+         $r['n_stu_pref4'] . ",".
+         $r['n_stu_pref5'].
         "\n";
         
     }
@@ -218,7 +218,12 @@ class projectActions extends autoProjectActions
   }
 
 
- /*
+
+
+
+
+
+ /* ------------------------------------------------------------------
    Manually handling the file upload and parsing
    We have two tables, one for student forms and one for login. 
    We have to create a record in both tables.
@@ -343,7 +348,7 @@ class projectActions extends autoProjectActions
         $user->proj_pref2= $student['proj_pref2'];
         $user->proj_pref3= $student['proj_pref3'];
         $user->proj_pref4= $student['proj_pref4'];
-        $user->proj_pref5= $student[''];
+        $user->proj_pref5= $student['proj_pref5'];
         $user->skill_set_ids= $student['skill_set_ids'];   
         $user->y_stu_pref1= $student['y_stu_pref1'];
         $user->y_stu_pref2= $student['y_stu_pref2'];
@@ -387,10 +392,16 @@ class projectActions extends autoProjectActions
     $this->redirect('project/tool');
   }
 
+
+
+
+
   ////////////////////////////////////////////////////////////////////////
   // Delete-related functions
   
-  // Delete all projects in the database
+  /*------------------------------------------------------------------
+      Delete all projects in the database
+  */
   public function executeClearAllProjects(sfWebRequest $request)
   {
     $conn = Doctrine_Manager::getInstance();
@@ -415,8 +426,10 @@ class projectActions extends autoProjectActions
   ////////////////////////////////////////////////////////////////////////
   // Helpler functions
   
-  // Resets one student's password and emails him/her the new password
-  // Deletes the old password.  Unfortunately even we don't know what your old password was.
+  /*------------------------------------------------------------------
+    Resets one student's password and emails him/her the new password
+    Deletes the old password.  Unfortunately even we don't know what your old password was.
+  */
   protected function emailPassword($snum, $first_name, $last_name)
   {
     $conn = Doctrine_Manager::getInstance();
@@ -460,7 +473,9 @@ class projectActions extends autoProjectActions
   }
   
   
-  // Mass email every student their resetted passwords
+  /*------------------------------------------------------------------
+   Mass email every student their resetted passwords
+  */
   public function executeEmailAllPasswords()
   {
   // TODO: Actually email everyone not just me.
@@ -469,8 +484,10 @@ class projectActions extends autoProjectActions
     $this->redirect('project/tool');
   }
 
-  // File error handling from
-  // http://www.php.net/manual/en/features.file-upload.errors.php
+  /*------------------------------------------------------------------
+   File error handling from
+   http://www.php.net/manual/en/features.file-upload.errors.php
+  */
   protected function file_upload_error_message($error_code) 
   {
     switch ($error_code) { 
