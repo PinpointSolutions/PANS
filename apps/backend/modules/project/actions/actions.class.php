@@ -122,10 +122,13 @@ class projectActions extends autoProjectActions
     // Setup the file pointer
     $fpath = 'downloads/PANS_'.$opt.'List_'.date("Y-m-d").'.csv';
     
+    //we first check if the file exists. If it does we move on, if not...
     if(!file_exists(dirname($fpath)))
     {
+      //we then make it and check if this was successful, if not...
       if(!mkdir(dirname($fpath)))
       { 
+        //we provide feedback and redirect the user
         $this->getUser()->setFlash('error', 'Could not create directory. Please ensure you have folder privilages for "'.dirname($fpath).'"');
         $this->redirect('project/tool');
       }
@@ -133,32 +136,37 @@ class projectActions extends autoProjectActions
 
     //open the file
     $fp = fopen($fpath, 'w+');//or 'c'?
+
+    //we then check if the fopen was successful, if not...
     if(!$fp) 
     {
+      //we provide feedback and redirect the user
       $this->getUser()->setFlash('error', 'Could not open file. Please ensure that if the file already exists it is not in use.');
       $this->redirect('project/tool');
     }
     
-      //write the first row using the headers
-      fputcsv($fp, $info);
+    //so if we got through with no errors
 
-      //create an array to better work with symfony's data array return
-      $data = array();
+    //we write the first row using the headers
+    fputcsv($fp, $info);
 
-      //so iterate through and convert to normal array
-      foreach($rows as $r)
+    //create an array to better work with symfony's data array return
+    $data = array();
+
+    //so iterate through and convert to normal array
+    foreach($rows as $r)
+    {
+     $x = -1;
+      foreach($r as $v)
       {
-       $x = -1;
-        foreach($r as $v)
-        {
-          $data[$x++] = $v;//adds value and increments $x
-        }
-        //this method parses the array and treats all special char
-        fputcsv($fp, $data);
+        $data[$x++] = $v;//adds value and increments $x
       }
+      //this method parses the array and treats all special char
+      fputcsv($fp, $data);
+    }
 
-      //close the file as we are done now
-      fclose($fp);
+    //close the file as we are done now
+    fclose($fp);
 
     //notify the user of the status and location of the file
     $this->getUser()->setFlash('notice', 'File successfully saved to "'. $fpath .'"');
