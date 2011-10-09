@@ -1,4 +1,4 @@
-<?
+<?php
 // this is a free script from  http://snipplr.com/view.php?codeview&id=3440 that has been slightly customised
 
 // generates date selector form elements and retains this as a String $datePicker for use wherever desired
