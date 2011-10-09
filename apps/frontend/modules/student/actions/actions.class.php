@@ -132,10 +132,11 @@ class studentActions extends sfActions
     $params['degree_ids'] = implode(' ', $params['degree_ids']);
     $params['major_ids'] = implode(' ', $params['major_ids']);
     $params['skill_set_ids'] = implode(' ', $params['skill_set_ids']);
+    $params['form_completed'] = true;
     $request->setParameter($this->form->getName(), $params);
     // END SQL DATABASE HACK.  CONGRATULATIONS.  YOU LIVE.  FOR NOW.
     
-    // Process the form, and redirect back to the edit page. 
+    // Process the form, and redirect back to the edit page.
     $this->processForm($request, $this->form);
     $this->setTemplate('edit');
     $this->redirect('student/edit');
@@ -146,14 +147,19 @@ class studentActions extends sfActions
     throw new sfError404Exception();
   }
 
+
+// This is only marginally working. It will tell the user that the form is imcomplete, however, it doesn't tell them specifically what they have done incorrectly.
   protected function processForm(sfWebRequest $request, sfForm $form)
-  {
+  {    
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
       $student_user = $form->save();
       $this->getUser()->setFlash('notice', 'Successfully Saved!');
       $this->redirect('student/edit');
+    } else {
+        $this->getUser()->setFlash('notice', 'Please check to make sure all required fields are filled in.');
+        $this->redirect('student/edit');
     }
   }
 

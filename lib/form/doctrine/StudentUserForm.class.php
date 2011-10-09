@@ -12,12 +12,14 @@ class StudentUserForm extends BaseStudentUserForm
 {
   public function configure()
   {  
+    parent::configure();
     // Prevent user from updating the timestamp fields and such
     unset(
       $this['created_at'],
       $this['updated_at'],
-      $this['form_completed'],
-      $this['snum']
+      //$this['form_completed'],
+      $this['snum'],
+      $this['flag']
     );
   
 
@@ -285,17 +287,40 @@ class StudentUserForm extends BaseStudentUserForm
       'n_stu_pref5' => $nstupref5_widget,
     ));
     
-    $this->widgetSchema->setNameFormat('student_user[%s]');
-    // $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-    $this->setupInheritance();
-  
- /*   $this->setValidators(array(
+    $this->setValidators(array(
       'first_name'     => new sfValidatorString(array('max_length' => 64, 'required' => true)),
       'last_name'      => new sfValidatorString(array('max_length' => 64, 'required' => true)),
       'pass_fail_pm'   => new sfValidatorBoolean(array('required' => true)),
+      'major_ids'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Major'), 'required' => true)),
+      'degree_ids'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Degree'), 'required' => true)),
+      'skill_set_ids'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('SkillSet'), 'required' => false)),
+      'gpa'            => new sfValidatorNumber(array('min' => 0, 'max' => 7, 'required' => true)), // Have to set this up as a required field.
+      'proj_pref1'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'required' => true)),
+      'proj_pref2'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project2'), 'required' => false)),
+      'proj_pref3'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project3'), 'required' => false)),
+      'proj_pref4'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project4'), 'required' => false)),
+      'proj_pref5'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project5'), 'required' => false)),
+      'y_stu_pref1'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('yStudentUser1'), 'required' => false)),
+      'y_stu_pref2'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('yStudentUser2'), 'required' => false)),
+      'y_stu_pref3'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('yStudentUser3'), 'required' => false)),
+      'y_stu_pref4'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('yStudentUser4'), 'required' => false)),
+      'y_stu_pref5'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('yStudentUser5'), 'required' => false)),
+      'n_stu_pref1'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('nStudentUser1'), 'required' => false)),
+      'n_stu_pref2'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('nStudentUser2'), 'required' => false)),
+      'n_stu_pref3'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('nStudentUser3'), 'required' => false)),
+      'n_stu_pref4'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('nStudentUser4'), 'required' => false)),
+      'n_stu_pref5'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('nStudentUser5'), 'required' => false)),
       'proj_just1'     => new sfValidatorString(array('required' => true)),
-      ));
-    */
+      'proj_just2'     => new sfValidatorString(array('required' => false)),
+      'proj_just3'     => new sfValidatorString(array('required' => false)),
+      'proj_just4'     => new sfValidatorString(array('required' => false)),
+      'proj_just5'     => new sfValidatorString(array('required' => false)),
+      'form_completed' => new sfValidatorBoolean(array('required' => false)),
+    ));
+    
+    $this->widgetSchema->setNameFormat('student_user[%s]');
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    $this->setupInheritance();
   }  
   
 }
