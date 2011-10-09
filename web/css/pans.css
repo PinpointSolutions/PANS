@@ -46,7 +46,7 @@ a {
   background: url("../images/griffith_logo.png") no-repeat top left;
 }
 
-#title {
+div#title {
   position: relative;
   float: left;
   left: 100px;

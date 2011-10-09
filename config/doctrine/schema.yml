@@ -81,14 +81,14 @@ Project:
       primary: true
       autoincrement: true
     title:
-      type: string(256)
+      type: string(120)
       fixed: false
       unsigned: false
       primary: false
       notnull: false
       autoincrement: false
     organisation:
-      type: string(256)
+      type: string(120)
       fixed: false
       unsigned: false
       primary: false
