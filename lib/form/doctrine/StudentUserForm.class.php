@@ -17,7 +17,7 @@ class StudentUserForm extends BaseStudentUserForm
     unset(
       $this['created_at'],
       $this['updated_at'],
-      $this['form_completed'],
+      //$this['form_completed'],
       $this['snum'],
       $this['flag']
     );
@@ -294,7 +294,7 @@ class StudentUserForm extends BaseStudentUserForm
       'major_ids'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Major'), 'required' => true)),
       'degree_ids'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Degree'), 'required' => true)),
       'skill_set_ids'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('SkillSet'), 'required' => false)),
-      'gpa'            => new sfValidatorNumber(), // Have to set this up as a required field.
+      'gpa'            => new sfValidatorNumber(array('min' => 0, 'max' => 7, 'required' => true)), // Have to set this up as a required field.
       'proj_pref1'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'required' => true)),
       'proj_pref2'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project2'), 'required' => false)),
       'proj_pref3'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project3'), 'required' => false)),
@@ -315,6 +315,7 @@ class StudentUserForm extends BaseStudentUserForm
       'proj_just3'     => new sfValidatorString(array('required' => false)),
       'proj_just4'     => new sfValidatorString(array('required' => false)),
       'proj_just5'     => new sfValidatorString(array('required' => false)),
+      'form_completed' => new sfValidatorBoolean(array('required' => false)),
     ));
     
     $this->widgetSchema->setNameFormat('student_user[%s]');

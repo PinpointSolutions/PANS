@@ -132,10 +132,11 @@ class studentActions extends sfActions
     $params['degree_ids'] = implode(' ', $params['degree_ids']);
     $params['major_ids'] = implode(' ', $params['major_ids']);
     $params['skill_set_ids'] = implode(' ', $params['skill_set_ids']);
+    $params['form_completed'] = true;
     $request->setParameter($this->form->getName(), $params);
     // END SQL DATABASE HACK.  CONGRATULATIONS.  YOU LIVE.  FOR NOW.
     
-    // Process the form, and redirect back to the edit page. 
+    // Process the form, and redirect back to the edit page.
     $this->processForm($request, $this->form);
     $this->setTemplate('edit');
     $this->redirect('student/edit');

@@ -187,6 +187,12 @@ form p.instr {
   font-style:italic;
 }
 
+/* Small inline instruction */
+.smlInstruction {
+  font-size:12px;
+  margin-left:5px;
+}
+
 /* Help Link, used within the forms */
 form a.help{
   padding:1px 4px;

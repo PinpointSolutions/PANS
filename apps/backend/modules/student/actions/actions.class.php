@@ -15,4 +15,13 @@ class studentActions extends autoStudentActions
 {
   // This action confuses symfony's routing.  All student actions are now in project.
   // Two strikes against symfony's parsing. =|
+  
+  //This function stops student users from logging into the backend.
+   public function executeIndex(sfWebRequest $request) {
+        parent::executeIndex($request);
+        $this->admin = $this->getUser()->isSuperAdmin();
+        if ($this->admin == false) {
+            $this->redirect('/logout');
+        }
+   }
 }
