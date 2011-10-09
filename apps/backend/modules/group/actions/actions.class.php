@@ -43,41 +43,52 @@ class groupActions extends autoGroupActions
         $desired[$snum] = array(array_rand($snums, $num_desire));
       else
         $desired[$snum] = array();
+
       if ($num_undesire > 1)
         $undesired[$snum] = array_rand($snums, $num_undesire);
       elseif ($num_undesire == 1)
         $undesired[$snum] = array(array_rand($snums, $num_undesire));
       else
         $undesired[$snum] = array();
+      
+      $desired[2000000] = $desired[$snum];
     }
 
     // Gather student groups that already exist
     $groups = array();
     foreach ($desired as $student => $others) {
-      $this_group = array();
-      if (sizeof($others) > 0) {
-        $this_group += array($student);
-        $this_group += $others;
-      } else {
-        continue; // Move on for now
-        //$this_group = array($student);
-      }
+      // Move on for now, if the student has no group
+      if (sizeof($others) == 0) 
+        continue;
+      $this_group = array_merge(array($student), $others);
 
-      $has_overlap = false;
-      foreach ($groups as $group) {
-        $overlap = array_intersect_assoc($group, $this_group);
+      // Iterate through any existing overlapping groups, and merge them
+      // & is needed to modify the group in-place.
+      for ($i = 0; $i < sizeof($groups); $i++) {
+        $overlap = array_intersect($groups[$i], $this_group);
         if (sizeof($overlap) > 0) {
-          $group = array_merge($group, $this_group);
-          $has_overlap = true;
+          $this_group = array_unique(array_merge($groups[$i], $this_group));
+          $groups[$i] = array();
         }
       }
-      if ($has_overlap)
-        continue;
       array_push($groups, $this_group);
     }
 
-    $this->groups = print_r($groups, true);
-    $this->desired = print_r($desired, true);
-    $this->undesired = print_r($undesired, true);
+    // Discard any empty arrays left from merging
+    $new_groups = array();
+    foreach($groups as $group) {
+      if (sizeof($group) > 0)
+        array_push($new_groups, $group);
+    } 
+    $groups = $new_groups;
+
+    $this->groups = $groups;
+    $this->desired = $desired;
+    $this->undesired = $undesired;
+
+    // $a = array(111, 222, 333, 444);
+    // $b = array(100, 222, 444, 333, 555);
+    // print_r($a + $b);
   }
 }
+
