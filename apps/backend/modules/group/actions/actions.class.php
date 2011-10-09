@@ -23,25 +23,61 @@ class groupActions extends autoGroupActions
     $projects = Doctrine_Core::getTable('Project')
       ->createQuery('a')
       ->execute();
-    
-    $this->result = '';
 
-    // Grab student information for desired and undesired student ids
-    $desires = array();
-    $undesires = array();
-    foreach ($students as $student) {
-      $desires[$student->getSnum()] = array($student->getYStuPref1(),
-                                            $student->getYStuPref2(),
-                                            $student->getYStuPref3(),
-                                            $student->getYStuPref4(),
-                                            $student->getYStuPref5());
-      $undesires[$student->getSnum()] = array($student->getNStuPref1(),
-                                              $student->getNStuPref2(),
-                                              $student->getNStuPref3(),
-                                              $student->getNStuPref4(),
-                                              $student->getNStuPref5());
+    // Grab student information for desired and undesired and student ids
+    $desired = array();
+    $undesired = array();
+    $snums = array();
+    foreach ($students as $student)
+      $snums[$student->getSnum()] = $student;
+
+    // Add dummy data for sorting testing
+    for ($i = 0; $i < 5; $i++) {
+      $num_desire = mt_rand(0, 5);
+      $num_undesire = mt_rand(0, 5);
+      $snum = array_rand($snums, 1);
+
+      if ($num_desire > 1)
+        $desired[$snum] = array_rand($snums, $num_desire);
+      elseif ($num_desire == 1)
+        $desired[$snum] = array(array_rand($snums, $num_desire));
+      else
+        $desired[$snum] = array();
+      if ($num_undesire > 1)
+        $undesired[$snum] = array_rand($snums, $num_undesire);
+      elseif ($num_undesire == 1)
+        $undesired[$snum] = array(array_rand($snums, $num_undesire));
+      else
+        $undesired[$snum] = array();
     }
-    $this->result = print_r($desires, true);
-    $this->result .= print_r($undesires, true);
+
+    // Gather student groups that already exist
+    $groups = array();
+    foreach ($desired as $student => $others) {
+      $this_group = array();
+      if (sizeof($others) > 0) {
+        $this_group += array($student);
+        $this_group += $others;
+      } else {
+        continue; // Move on for now
+        //$this_group = array($student);
+      }
+
+      $has_overlap = false;
+      foreach ($groups as $group) {
+        $overlap = array_intersect_assoc($group, $this_group);
+        if (sizeof($overlap) > 0) {
+          $group = array_merge($group, $this_group);
+          $has_overlap = true;
+        }
+      }
+      if ($has_overlap)
+        continue;
+      array_push($groups, $this_group);
+    }
+
+    $this->groups = print_r($groups, true);
+    $this->desired = print_r($desired, true);
+    $this->undesired = print_r($undesired, true);
   }
 }
