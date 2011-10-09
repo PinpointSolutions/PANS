@@ -1,4 +1,3 @@
-
 <h1>Allocations</h1>
 <?php 
 foreach ($allocations as $project => $group) {
@@ -6,6 +5,15 @@ foreach ($allocations as $project => $group) {
     foreach ($group as $student) {
         echo $student . ' | ';
     }
+    echo '<br>';
+} 
+?>
+<h1>Groups</h1>
+<?php 
+foreach ($groups as $group) {
+    echo '| ';
+    foreach ($group as $student)
+        echo $student . ' | ';
     echo '<br>';
 } 
 ?>

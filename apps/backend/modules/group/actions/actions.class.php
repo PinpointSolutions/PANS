@@ -56,8 +56,10 @@ class groupActions extends autoGroupActions
 
     // Add dummy data for sorting testing
     for ($i = 0; $i < 50; $i++) {
-      $num_desire = mt_rand(0, 5);
-      $num_undesire = mt_rand(0, 2);
+      $n = mt_rand(0, 5);
+      $m = mt_rand(0, 2);
+      $num_desire = mt_rand(0, $n);
+      $num_undesire = mt_rand(0, $m);
       
       $snum = array_rand($students, 1);
       $pref = array_rand($projects, 4);
@@ -85,7 +87,7 @@ class groupActions extends autoGroupActions
 
     // Figure out the big groups
     $groups = $this->combineDesiredStudents($desired);
-    //print_r($groups);
+    $this->groups = $groups;
 
     // Shave off groups that are too big
     $groups_tmp = array();
@@ -101,6 +103,7 @@ class groupActions extends autoGroupActions
       $finished = array_merge($finished, $group);
     }
 
+    
     $this->prefs = $prefs;
     $this->allocations = $allocations;
     $this->desired = $desired;
@@ -134,14 +137,13 @@ class groupActions extends autoGroupActions
       if ($pref5 != -1)
         $pref_count[$pref5] += 3.0;
     }
-    asort($pref_count);
-    $pref_count = array_reverse($pref_count);
+    arsort($pref_count);
 
     // Allocate the group
-    foreach ($pref_count as $p) {
-      if (in_array($p, $allocations))
+    foreach ($pref_count as $pref => $p) {
+      if (in_array($pref, $allocations))
         continue;
-      $allocations[$p] = $group;
+      $allocations[$pref] = $group;
       return $allocations;
     }
   }
@@ -227,27 +229,27 @@ class groupActions extends autoGroupActions
     }
     
     // Group is too big.  Let's look at project preferences.
-    // $student_prefs = array();
-    // foreach ($group as $student) {
-    //   $pref = $prefs[$student][0];
-    //   if ($pref == -1)
-    //     continue;
-    //   if (in_array($pref, $student_prefs))
-    //     $student_prefs[$pref] = array_push($student_prefs[$pref], $student);
-    //   else
-    //     $student_prefs[$pref] = array($student);
-    // }
-    // if (sizeof($student_prefs) > 1) {
-    //   $max = 0;
-    //   $max_index = -1;
-    //   foreach ($student_prefs as $project => $snums) {
-    //     if (sizeof($snums) > $max)
-    //       $max = sizeof($snums);
-    //       $max_index = $project;
-    //   }
-    //   if ($max_index != -1)
-    //     return $student_prefs[$project];
-    // }
+    $student_prefs = array();
+    foreach ($group as $student) {
+      $pref = $prefs[$student][0];
+      if ($pref == -1)
+        continue;
+      if (in_array($pref, $student_prefs))
+        $student_prefs[$pref] = array_push($student_prefs[$pref], $student);
+      else
+        $student_prefs[$pref] = array($student);
+    }
+    if (sizeof($student_prefs) > 1) {
+      $max = 0;
+      $max_index = -1;
+      foreach ($student_prefs as $project => $snums) {
+        if (sizeof($snums) > $max)
+          $max = sizeof($snums);
+          $max_index = $project;
+      }
+      if ($max_index != -1)
+        return $student_prefs[$project];
+    }
 
     // Okay, everyone has the same first preference.  Let's look at their GPA.
     $gpas = array();
@@ -257,10 +259,7 @@ class groupActions extends autoGroupActions
         $gpa = 0.0;
       $gpas[$student] = $gpa;
     }
-    asort($gpas);
-    $gpas = array_reverse($gpas); 
-    echo 'GPA:';
-    print_r($gpas);
+    arsort($gpas);
     return array_slice($gpas, 0, 6);
   }
 }
