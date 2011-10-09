@@ -51,3 +51,22 @@
 .firstLeft {
   margin-left: 50px;
 }
+
+.sf_admin_form_field_pass_fail_pm {
+	min-height: 100px;	
+}
+
+/*
+.sf_admin_form_row div label {
+	background-color: red;
+}
+
+
+.student_user_degree_ids_2 {
+	left 10000px;
+}
+*/
+
+#sf_admin_container label {
+	float: none;	
+}

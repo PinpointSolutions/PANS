@@ -146,14 +146,19 @@ class studentActions extends sfActions
     throw new sfError404Exception();
   }
 
+
+// This is only marginally working. It will tell the user that the form is imcomplete, however, it doesn't tell them specifically what they have done incorrectly.
   protected function processForm(sfWebRequest $request, sfForm $form)
-  {
+  {    
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
     if ($form->isValid())
     {
       $student_user = $form->save();
       $this->getUser()->setFlash('notice', 'Successfully Saved!');
       $this->redirect('student/edit');
+    } else {
+        $this->getUser()->setFlash('notice', 'Please check to make sure all required fields are filled in.');
+        $this->redirect('student/edit');
     }
   }
 
