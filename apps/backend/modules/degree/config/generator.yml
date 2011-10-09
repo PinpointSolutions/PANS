@@ -16,7 +16,7 @@ generator:
       fields:  ~
       list:    
         title:   Degrees
-        display: [=degree]
+        display: [id, =degree]
         batch_actions: {}
       # Stops Symfony from displaying the filter in the admin view
       filter:

@@ -82,9 +82,9 @@ class groupActions extends autoGroupActions
     } 
     $groups = $new_groups;
 
-    $this->groups = print_r($groups, true);
-    $this->desired = print_r($desired, true);
-    $this->undesired = print_r($undesired, true);
+    $this->groups = $groups;
+    $this->desired = $desired;
+    $this->undesired = $undesired;
 
     // $a = array(111, 222, 333, 444);
     // $b = array(100, 222, 444, 333, 555);
