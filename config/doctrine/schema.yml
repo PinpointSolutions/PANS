@@ -9,7 +9,7 @@ Major:
       primary: true
       autoincrement: true
     major:
-      type: string(256)
+      type: string(120)
       fixed: false
       unsigned: false
       primary: false
@@ -27,7 +27,7 @@ Degree:
       primary: true
       autoincrement: true
     degree:
-      type: string(256)
+      type: string(120)
       fixed: false
       unsigned: false
       primary: false
@@ -147,7 +147,7 @@ SkillSet:
       primary: true
       autoincrement: true
     skill:
-      type: string(256)
+      type: string(120)
       fixed: false
       unsigned: false
       primary: false

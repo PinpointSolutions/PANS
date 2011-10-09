@@ -36,9 +36,9 @@ class ProjectForm extends BaseProjectForm
       'has_additional_info' => new sfWidgetFormInputCheckbox(),
       'has_gpa_cutoff'      => new sfWidgetFormInputCheckbox(array(),array('title'=>'This assumes a 5.0 cutoff')),
       'instructions'        => $instructions_widget,
-      'degree_ids'          => new sfWidgetFormInputText(array(),array('title'=>'This should be a list of the degree ID\'s seperated by spaces')),
-      'major_ids'           => new sfWidgetFormInputText(array(),array('title'=>'This is the project title')),
-      'skill_set_ids'       => new sfWidgetFormInputText(array(),array('title'=>'This is the project title')),
+      'degree_ids'          => new sfWidgetFormInputText(),
+      'major_ids'           => new sfWidgetFormInputText(),
+      'skill_set_ids'       => new sfWidgetFormInputText(),
     ));
   }
 }

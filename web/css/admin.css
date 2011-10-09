@@ -67,9 +67,12 @@
 }
 */
 
+/* dont use such a broad rule- look at project/edit for an example of how to work around 
 #sf_admin_container label {
 	float: none;	
 }
+*/
+
 
 /* this is a particular rule for the placeholder sfSchema widgets */
 #sf_admin_container div.sf_admin_form_row.sf_admin_form_field_instructions
@@ -87,9 +90,10 @@
   width:95%;
   font-size:100%;
   font-weight:bold !important;
+  float:none;
 }
 
-/* specific <span> within the <label> tags of these special dividers */
+/* specific <tags> within the <label> tags of these special dividers */
 #sf_admin_container div.sf_admin_form_row.sf_admin_form_field_instructions label span.smaller
 {
   margin-top:15px;
@@ -97,4 +101,16 @@
   display:block;
   font-size:85%;
   font-weight:normal !important;
+}
+
+/* specific <tags> within the admin forms */
+#sf_admin_container .sf_admin_form_row label
+{
+  vertical-align:text-top;
+ 
+}
+#sf_admin_container .sf_admin_form_row .content
+{
+  padding-left:5px;
+ 
 }
