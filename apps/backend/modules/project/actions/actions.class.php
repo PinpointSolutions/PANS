@@ -74,16 +74,16 @@ class projectActions extends autoProjectActions
     //have first row descriptions outside of loop, use a "," for a new column
     $info .= 'Project id#'."," . 'Title'."," . 'Organisation'."," . 'Description'."," . 'More Info'."," . 'GPA Cutoff'."," . 'Major ID\'s'."," . 'Skill Set ID\'s'."," . "\n";
       foreach($rows as $r) {
-        $info .=  addslashes($r['id']) . ",";
-        $info .=  '"'.addslashes($r['title']).'"' . ",";
-        $info .=  '"'.addslashes($r['organisation']).'"' . ",";
-        $info .=  '"'.addslashes($r['description']).'"' . ",";
-        $info .=  addslashes($r['has_additional_info']) . ",";
-        $info .=  addslashes($r['has_gpa_cutoff']) . ",";
-        $info .=  addslashes($r['major_ids']) . ",";
-        $info .=  addslashes($r['skill_set_ids']) . "\n"; 
+        $info .=  $r['id']. ",";
+        $info .=  '"'.$r['title'].'"' . ",";
+        $info .=  '"'.$r['organisation'].'"' . ",";
+        $info .=  '"'.$r['description'].'"' . ",";
+        $info .=  $r['has_additional_info']. ",";
+        $info .=  $r['has_gpa_cutoff']. ",";
+        $info .=  $r['major_ids']. ",";
+        $info .=  $r['skill_set_ids']. "\n"; 
       }
-  
+        
   }
   else if($opt=='students')
   {
@@ -116,64 +116,71 @@ class projectActions extends autoProjectActions
     . 'Not Pref 3'.","
     . 'Not Pref 4'.","
     . 'Not Pref 5'.","
-    . "\n";
+    . "";
       
-      foreach($rows as $r) {
-      $info .=  addslashes($r['snum']) . ",";
-          $info .=  '"'.addslashes($r['first_name']).'"' . ",";
-          $info .=  '"'.addslashes($r['last_name']).'"' . ",";
-      $info .=   addslashes($r['pass_fail_pm']) . ",";
-      $info .=   addslashes($r['degree_ids']) . ",";
-      $info .=   addslashes($r['major_ids']) . ",";
-      $info .=   addslashes($r['skill_set_ids']) . ",";
-      $info .=   addslashes($r['gpa']) . ",";
-      $info .=   addslashes($r['proj_pref1']) . ",";
-          $info .=  '"'.addslashes($r['proj_just1']).'"' . ",";
-      $info .=   addslashes($r['proj_pref2']) . ",";
-          $info .=  '"'.addslashes($r['proj_just2']).'"' . ",";
-      $info .=   addslashes($r['proj_pref3']) . ",";
-          $info .=  '"'.addslashes($r['proj_just3']).'"' . ",";
-      $info .=   addslashes($r['proj_pref4']) . ",";
-          $info .=  '"'.addslashes($r['proj_just4']).'"' . ",";
-      $info .=   addslashes($r['proj_pref5']) . ",";
-          $info .=  '"'.addslashes($r['proj_just5']).'"' . ",";
-      $info .=   addslashes($r['y_stu_pref1']) . ",";
-      $info .=   addslashes($r['y_stu_pref2']) . ",";
-      $info .=   addslashes($r['y_stu_pref3']) . ",";
-      $info .=   addslashes($r['y_stu_pref4']) . ",";
-      $info .=   addslashes($r['y_stu_pref5']) . ",";
-      $info .=   addslashes($r['n_stu_pref1']) . ",";
-      $info .=   addslashes($r['n_stu_pref2']) . ",";
-      $info .=   addslashes($r['n_stu_pref3']) . ",";
-      $info .=   addslashes($r['n_stu_pref4']) . ",";
-      $info .=   addslashes($r['n_stu_pref5']) . "\n";
+      foreach($rows as $x) {
+        $r = $x;
+      $info .=  $r['snum'] . ",".
+      '"'.$r['first_name'].'"' . ",".
+      '"'.$r['last_name'].'"' . ",".
+         $r['pass_fail_pm'] . ",".
+         $r['degree_ids'] . ",".
+         $r['major_ids'] . ",".
+         $r['skill_set_ids'] . ",".
+         $r['gpa'] . ",".
+          $r['proj_pref1'] . ",".
+        $r['proj_just1'] . ",".
+         $r['proj_pref2'] . ",".
+
+        // '"'.$r['proj_just2'].'"' . ",".
+        // $r['proj_pref3'] . ",".
+        // '"'.$r['proj_just3'].'"' . ",".
+        // $r['proj_pref4'] . ",".
+        // '"'.$r['proj_just4'].'"' . ",".
+        // $r['proj_pref5'] . ",".
+        // '"'.$r['proj_just5'].'"' . ",".
+        // $r['y_stu_pref1'] . ",".
+        // $r['y_stu_pref2'] . ",".
+        // $r['y_stu_pref3'] . ",".
+        // $r['y_stu_pref4'] . ",".
+        // $r['y_stu_pref5'] . ",".
+        //$r['n_stu_pref1'] . ",".
+        ///$r['n_stu_pref2'] . ",".
+        // $r['n_stu_pref3'] . ",".
+        // $r['n_stu_pref4'] . ",".
+        // $r['n_stu_pref5'].
+        "\n";
+        
     }
+   // htmlspecialchars_decode($info);
+    
   }
-  //Not sure if this is right
   else if($opt=='groups')
   {
     $rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
     $info .= 'Group ID'."," . 'Proj ID'."," . 'Stud No\'s'."," . "\n";
       foreach($rows as $r) {
-    //  $info.=', \''.addslashes($r).'\'';
-    //  $info=substr($info,2);
-      $info .=  addslashes($r['id']) . ", ";
-        $info .=  addslashes($r['project_id'] ). ", ";
-      $info .=  addslashes($r['snum'] ). "\n";
+      $info .=  $r['id'] . ", ";
+        $info .=  $r['project_id'] . ", ";
+      $info .=  $r['snum'] . "\n";
     }
   }
+  
+  //escape standard special characters, the '"'. above escapes unwanted commas
+  addslashes($info);//seems to work
+  
   // This tells it to use the csv.php template file
   // note- all content is still contained within $sf_content
   // see templates/csv.php to see how to treat $sf_content
-    $this->setlayout('csv');
+  $this->setlayout('csv');
   
   // print out the results to this new page layout
-  echo $info;
+  print($info);
   
   
   // set up the httpHeaders to properly treat the page
     $this->getResponse()->clearHttpHeaders();
-    $this->getResponse()->setHttpHeader('Content-Type', 'application/vnd.ms-excel');
+    $this->getResponse()->setHttpHeader('Content-Type', 'application/vnd.ms-excel');//Content-Type: text/comma-separated-values
     $this->getResponse()->setHttpHeader('Content-Disposition', 'attachment; filename=PANS_'.$opt.'List_'.date("Ymd").'.csv');
 
     // Redirecting seems to break the download.  In this case, probably no 

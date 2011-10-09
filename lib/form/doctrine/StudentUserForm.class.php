@@ -286,10 +286,16 @@ class StudentUserForm extends BaseStudentUserForm
     ));
     
     $this->widgetSchema->setNameFormat('student_user[%s]');
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    // $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
     $this->setupInheritance();
   
-
+ /*   $this->setValidators(array(
+      'first_name'     => new sfValidatorString(array('max_length' => 64, 'required' => true)),
+      'last_name'      => new sfValidatorString(array('max_length' => 64, 'required' => true)),
+      'pass_fail_pm'   => new sfValidatorBoolean(array('required' => true)),
+      'proj_just1'     => new sfValidatorString(array('required' => true)),
+      ));
+    */
   }  
   
 }

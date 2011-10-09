@@ -59,7 +59,7 @@ Deadline:
 
 <?php 
 // datePicker echo command -just for display purposes right now
-echo $datePicker.'<br/><br/>'; 
+//echo $datePicker.'<br/><br/>'; 
 ?>
 
 
@@ -68,7 +68,7 @@ echo $datePicker.'<br/><br/>';
 
 <h2>Import Students From File</h2>
 <form enctype="multipart/form-data" action="<?php echo url_for('project/importStudents') ?>" method="POST" class="tool-form">
-  <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+  <!-- <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />  -->
   Select a CSV File.  (max. file size: 1MB) <br><br><input name="studentFile" type="file" /><br><br>
   <input type="submit" value="Import" />
 </form>
@@ -78,12 +78,12 @@ echo $datePicker.'<br/><br/>';
   <p>Export to CSV files... </p>
   <br/>
   <p style="margin-left:20px;">
-	  <input type="hidden" name="MAX_FILE_SIZE" value="1000000" />
+	  <!-- <input type="hidden" name="MAX_FILE_SIZE" value="1000000" /> -->
 	   <select name="infoType">
 		<option value="projects">
 			Project List
 		</option>
-		<option value="students">
+		<option value="students" selected="true">
 			Student List
 		</option>
 		<option value="groups">
