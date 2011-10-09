@@ -1,14 +1,15 @@
-<h1>Result</h1>
+
+<h1>Allocations</h1>
 <?php 
-foreach ($groups as $group) {
-    echo '| ';
+foreach ($allocations as $project => $group) {
+    echo 'Project #'. $project . ' || ';
     foreach ($group as $student) {
         echo $student . ' | ';
     }
     echo '<br>';
 } 
 ?>
-<h1>Desired</h1>
+<h1>Input: Desired</h1>
 <?php 
 foreach ($desired as $student => $others) {
     echo $student . ' || ';
@@ -19,7 +20,18 @@ foreach ($desired as $student => $others) {
 } 
 ?>
 <br>
-<h1>Undesired</h1>
+<h1>Input: Project Preferences</h1>
+<?php 
+foreach ($prefs as $student => $projects) {
+    echo $student . ' || ';
+    foreach ($projects as $p) {
+        echo $p . ' | ';
+    }
+    echo '<br>';
+} 
+?>
+<br>
+<h1>Input: Undesired</h1>
 <?php 
 foreach ($undesired as $student => $others) {
     echo $student . ' || ';

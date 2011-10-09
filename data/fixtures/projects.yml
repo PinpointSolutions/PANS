@@ -43,5 +43,19 @@ Project:
     description: |
       We are requiring a data-base to be constructed to track our AusAID project students.  We have a 7 year AusAID project where we have brought over nursing students from Kiribati. They are here for approx 4.5 years and undertake English, Diploma of Nursing through TAFE and then the B.Nursing at Logan. We currently have 80 students on campus. It is getting increasingly hard to track where they are staying, what they are enrolled in, progress, completion etc. Also we need to track various 'extra curricula' components as well such as health cover, pregnancies, who has their family here on-shore.  This information is currently stored in a range of spreadsheets and documents.  It would streamline our business to have this information stored in a central database.
     has_additional_info: true
-    major_ids: 1 3
+    major_ids: 1 3  
+  proj_6:
+    title: Dummy Project 1
+    organisation: Dummy, Inc.
+    description: |
+      Ho ho ho.
+    has_additional_info: true
+    major_ids: 1
+  proj_7:
+    title: Dummy Project 2
+    organisation: Not So Dummy, Inc.
+    description: |
+      Nope.
+    has_additional_info: false
+    major_ids: 2 3
  
