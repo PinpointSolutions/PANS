@@ -170,10 +170,14 @@ class groupActions extends autoGroupActions
 
     // Allocate the group
     foreach ($pref_count as $pref => $p) {
-      if (array_key_exists($pref, $allocations))
-        continue;
+      if (array_key_exists($pref, $allocations)) {
+        $group1 = $this->rateGroup($allocations[$pref], $students, $prefs);
+        $group2 = $this->rateGroup($group, $students, $prefs);
+        if ($group1 >= $group2)
+          continue;
+      }
       $allocations[$pref] = $group;
-      return $allocations;
+      break;
     }
     return $allocations;
   }
