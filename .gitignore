@@ -1,7 +1,10 @@
 # This file will tell git to ignore the following files.
 # Please _do not delete or modify this file unless you know what you're doing!_
-cache/*
-log/*
+cache/frontend/dev/*
+cache/frontend/prod/*
+cache/backend/dev/*
+cache/backend/prod/*
+cache/*.cache
 web/uploads/*
 # config/databases.yml
 config/propel.ini
@@ -15,3 +18,4 @@ lib/model/doctrine/sfDoctrineGuardPlugin/base/*
 lib/model/om/*
 lib/model/map/*
 *.swp
+*.sublime-*
