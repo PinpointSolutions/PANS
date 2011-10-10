@@ -143,9 +143,33 @@ class groupActions extends autoGroupActions
     }
     $this->conflict_free_allocation = $allocations;
 
-
     // Single-student handling.  After this point, allocations should be append-only
-    // Handles students with conflicts first, since they are likely to have preferences
+    // First we gotta figure out who hasn't been allocated yet...
+    $unallocated_students = array();
+    foreach ($students as $snum => $_) {
+      foreach ($allocations as $_ => $group) {
+        if (in_array($snum, $group))
+          continue 2;
+      }
+      $unallocated_students[] = $snum;
+    }
+    $this->unallocated_students = $unallocated_students;
+    // Then, for each unallocated students, try to assign them
+    foreach ($unallocated_students as $us) {
+      $new_allocations = $this->tryAssignOne($us, $allocations, $projects, $prefs, $undesired);
+      if (!$new_allocations) {
+        continue;
+      } else {
+        $allocations = $new_allocations;
+        $unallocated_students = array_diff($unallocated_students, array($us));
+      }
+    }
+    $this->filled_allocation = $allocations;
+    $this->no_choice_students = $unallocated_students;
+
+    // Okay, we have people who have no preferences what-so-ever.  Go through the groups
+    // and put them into open spots, with smaller groups first
+
 
 
     // Output to debug dump
@@ -235,6 +259,19 @@ class groupActions extends autoGroupActions
     // If we get to this point, it means no project could be assigned to the student's
     // preference. Too bad.
     return null;
+  }
+
+
+  // Similar to the function above, but does a best-fit algorithm instead.  Smaller groups
+  // have higher preferences in this section.
+  protected function tryAssignNoPreference($student, $allocations, $projects, $undesired)
+  {
+    foreach ($allocations as $project => $group) {
+      // Skip groups with no openings
+      if ($projects[$project]->getMaxGroupSize() <= sizeof($group))
+        continue;
+      
+    }
   }
 
 

@@ -21,7 +21,7 @@ foreach ($groups as $group) {
 } 
 echo '<br>';
 ?>
-<h1>Step 2: Split the graph (max group size: 6) using common project preferences</h1>
+<h1>Step 2: Split the graph (up to 6 for each group) using project preferences</h1>
 <?php 
 foreach ($shaved_groups as $group) {
     echo '|----> ';
@@ -39,7 +39,10 @@ foreach ($conflict_free_groups as $group) {
         echo $student . '-->';
     echo '<br>';
 } 
-echo '<br>';
+echo 'Conflicted students (For Step 5): | ';
+foreach ($singles as $s)
+    echo $s . ' | ';
+echo '<br><br>';
 ?>
 <h1>Step 4: Initial group-based project allocation by group preference</h1>
 <?php 
@@ -54,10 +57,6 @@ echo '<br>';
 ?>
 <h1>Step 5: Allocate conflicted students in pre-formed groups</h1>
 <?php 
-echo 'Conflicted students: | ';
-foreach ($singles as $s)
-    echo $s . ' | ';
-echo '<br>';
 foreach ($conflict_free_allocation as $project => $group) {
     printf('Project %02d ====>', $project);
     foreach ($group as $student) {
@@ -66,7 +65,25 @@ foreach ($conflict_free_allocation as $project => $group) {
     echo '<br>';
 } 
 echo '<br>';
-
+?>
+<h1>Step 6: Allocate single students with project preferences</h1>
+<?php 
+echo 'Unallocated students: <br> ';
+foreach ($unallocated_students as $s)
+    echo $s . ' | ';
+echo '<br><br>';
+foreach ($filled_allocation as $project => $group) {
+    printf('Project %02d ====>', $project);
+    foreach ($group as $student) {
+        echo $student . '-->';
+    }
+    echo '<br>';
+} 
+echo '<br>';
+echo 'Rewmaining unallocated students with either no preference or conflicts or no spots: <br>';
+foreach ($no_choice_students as $s)
+    echo $s . ' | ';
+echo '<br><br>';
 ?>
 <h1>Input: Desired</h1>
 <?php 
