@@ -120,6 +120,7 @@ class groupActions extends autoGroupActions
     $singles = $conflict[1];
     $groups = $conflict[0];
     $this->conflict_free_groups = $groups;
+    $this->singles = $singles;
 
     // Assign groups to projects
     foreach ($groups as $group) {
@@ -130,6 +131,17 @@ class groupActions extends autoGroupActions
     $this->initial_allocation = $allocations;
 
     // Handles conflicted students due to undesired list
+    $singles_tmp = $singles;
+    foreach ($singles_tmp as $single) {
+      $new_allocations = $this->tryAssignOne($single, $allocations, $projects, $prefs, $undesired);
+      if (!$new_allocations) {
+        continue;
+      } else {
+        $allocations = $new_allocations;
+        $singles = array_diff($singles, array($single));
+      }
+    }
+    $this->conflict_free_allocation = $allocations;
 
 
     // Single-student handling.  After this point, allocations should be append-only
@@ -141,7 +153,6 @@ class groupActions extends autoGroupActions
     $this->allocations = $allocations;
     $this->desired = $desired;
     $this->undesired = $undesired;
-    $this->singles = $singles;
   }
 
 
@@ -149,8 +160,8 @@ class groupActions extends autoGroupActions
   protected function assignGroup($group, $allocations, $students, $projects, $prefs)
   {
     $pref_count = array();
-    for ($i = 1; $i <= sizeof($projects); $i++)
-      $pref_count[$i] = 0.0;
+    foreach ($projects as $id => $project)
+      $pref_count[$id] = 0.0;
 
     // Calculate the most desired projects in order
     foreach ($group as $student) {
@@ -175,7 +186,9 @@ class groupActions extends autoGroupActions
     arsort($pref_count);
 
     // Allocate the group
-    foreach ($pref_count as $pref => $p) {
+    foreach ($pref_count as $pref => $_) {
+      if ($projects[$pref]->getMaxGroupSize() < sizeof($group))
+        continue;
       if (array_key_exists($pref, $allocations)) {
         $group1 = $this->rateGroup($allocations[$pref], $students, $prefs);
         $group2 = $this->rateGroup($group, $students, $prefs);
@@ -196,18 +209,32 @@ class groupActions extends autoGroupActions
   // Desired students are not used here because it is very unlikely that the
   // person would be allocated there, since he/she was probably kicked out.
   // Returns the new allocation if success.  If not, returns null.
-  protected function tryAssignOne($student, $allocations, $prefs, $undesired)
+  protected function tryAssignOne($student, $allocations, $projects, $prefs, $undesired)
   {
     // Go through each one of the student's project preferences
     foreach ($prefs[$student] as $pref) {
+      if ($pref == -1)
+        continue;
+      // If the group doesn't exist yet, and the student wants this project,
+      // let's start one!
       if (!array_key_exists($pref, $allocations)) { 
         $allocations[$pref] = array($student);
         return $allocations;
-      } else {
-        // A group exists in the student's preference. Check for conflicts
-        if (sizeof($allocations[$pref])
       }
+      // A group exists in the student's preference. Check for an open spot.
+      if (sizeof($allocations[$pref]) >= $projects[$pref]->getMaxGroupSize())
+        continue;
+      // Check for conflicts
+      foreach ($allocations[$pref] as $allocated_student) 
+        if (in_array($student, $undesired[$allocated_student]))
+          continue 2;
+      // Okay, security scan passed. You can now enter the terminal and board your group.
+      $allocations[$pref] = array_merge($allocations[$pref], array($student));
+        return $allocations;
     }
+    // If we get to this point, it means no project could be assigned to the student's
+    // preference. Too bad.
+    return null;
   }
 
 

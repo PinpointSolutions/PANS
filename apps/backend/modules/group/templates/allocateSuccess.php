@@ -52,13 +52,20 @@ foreach ($initial_allocation as $project => $group) {
 } 
 echo '<br>';
 ?>
-<h1>Step 5: Allocate students in undesired list conflict in pre-formed groups</h1>
+<h1>Step 5: Allocate conflicted students in pre-formed groups</h1>
 <?php 
-$singles_array = array();
-foreach ($singles as $s) {
-    $singles_array[] = $s;
-}
-echo 'Conflicted students: ', implode(', ', $singles_array), '<br><br>Allocating...';
+echo 'Conflicted students: | ';
+foreach ($singles as $s)
+    echo $s . ' | ';
+echo '<br>';
+foreach ($conflict_free_allocation as $project => $group) {
+    printf('Project %02d ====>', $project);
+    foreach ($group as $student) {
+        echo $student . '-->';
+    }
+    echo '<br>';
+} 
+echo '<br>';
 
 ?>
 <h1>Input: Desired</h1>

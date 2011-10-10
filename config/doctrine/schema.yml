@@ -85,7 +85,7 @@ Project:
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      notnull: true
       autoincrement: false
     organisation:
       type: string(120)
@@ -127,7 +127,7 @@ Project:
       fixed: false
       unsigned: false
       primary: false
-      notnull: false
+      default: 6
       autoincrement: false
     degree_ids:
       type: string(64)
