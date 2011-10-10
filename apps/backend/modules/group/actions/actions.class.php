@@ -74,7 +74,7 @@ class groupActions extends autoGroupActions
     
     // DELETEME: Add dummy data for sorting testing
     for ($i = 0; $i < 66; $i++) {
-      $n = mt_rand(0, 5);
+      $n = mt_rand(0, 3);
       $m = mt_rand(0, 5);
       $num_desire = mt_rand(0, $n);
       $num_undesire = mt_rand(0, $m);
@@ -141,6 +141,7 @@ class groupActions extends autoGroupActions
         $singles = array_diff($singles, array($single));
       }
     }
+    ksort($allocations);
     $this->conflict_free_allocation = $allocations;
 
     // Single-student handling.  After this point, allocations should be append-only
@@ -153,6 +154,7 @@ class groupActions extends autoGroupActions
       }
       $unallocated_students[] = $snum;
     }
+    shuffle($unallocated_students);
     $this->unallocated_students = $unallocated_students;
     // Then, for each unallocated students, try to assign them
     foreach ($unallocated_students as $us) {
@@ -164,15 +166,28 @@ class groupActions extends autoGroupActions
         $unallocated_students = array_diff($unallocated_students, array($us));
       }
     }
+    ksort($allocations);
     $this->filled_allocation = $allocations;
     $this->no_choice_students = $unallocated_students;
 
     // Okay, we have people who have no preferences what-so-ever.  Go through the groups
     // and put them into open spots, with smaller groups first
-
-
+    shuffle($unallocated_students);
+    foreach ($unallocated_students as $us) {
+      $new_allocations = $this->tryAssignNoPreference($us, $allocations, $projects, $undesired);
+      if (!$new_allocations) {
+        continue;
+      } else {
+        $allocations = $new_allocations;
+        $unallocated_students = array_diff($unallocated_students, array($us));
+      }
+    }
+    ksort($allocations);
+    $this->no_pref_allocation = $allocations;
+    $this->doomed_students = $unallocated_students;
 
     // Output to debug dump
+    ksort($allocations);
     $this->prefs = $prefs;
     $this->allocations = $allocations;
     $this->desired = $desired;
@@ -180,8 +195,8 @@ class groupActions extends autoGroupActions
   }
 
 
-  // Assigns group to project.  Returns a new allocation.
-  protected function assignGroup($group, $allocations, $students, $projects, $prefs)
+  // Returns a list of preferred projects by the group with most desired as the first one
+  protected function getGroupPreference($group, $projects, $prefs)
   {
     $pref_count = array();
     foreach ($projects as $id => $project)
@@ -208,8 +223,15 @@ class groupActions extends autoGroupActions
         $pref_count[$pref5] += 3.0;
     }
     arsort($pref_count);
+    return $pref_count;
+  }
 
-    // Allocate the group
+
+  // Assigns group to project.  Returns a new allocation.
+  protected function assignGroup($group, $allocations, $students, $projects, $prefs)
+  {
+    $pref_count = $this->getGroupPreference($group, $projects, $prefs);
+    // Allocate the group by the preferences
     foreach ($pref_count as $pref => $_) {
       if ($projects[$pref]->getMaxGroupSize() < sizeof($group))
         continue;
@@ -266,12 +288,25 @@ class groupActions extends autoGroupActions
   // have higher preferences in this section.
   protected function tryAssignNoPreference($student, $allocations, $projects, $undesired)
   {
+    // Sort the allocations by group size, with smallest group first
+    uasort($allocations, function ($a, $b) {
+      return sizeof($a) - sizeof($b);
+    });
     foreach ($allocations as $project => $group) {
       // Skip groups with no openings
       if ($projects[$project]->getMaxGroupSize() <= sizeof($group))
         continue;
-      
+      // Skip if this student is undesired by at least one person in the group
+      foreach ($group as $allocated_student)
+        if (in_array($student, $undesired[$allocated_student]))
+          continue 2;
+      // Okay, you can probably join us.
+      $allocations[$project] = array_merge($allocations[$project], array($student));
+      return $allocations;
     }
+    // Not very likely to happen, but if all groups are either filled or hate this person,
+    // derp-de-derp.
+    return null;
   }
 
 

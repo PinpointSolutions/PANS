@@ -85,6 +85,21 @@ foreach ($no_choice_students as $s)
     echo $s . ' | ';
 echo '<br><br>';
 ?>
+<h1>Step 7: Allocate single students with no preferences, smallest group first</h1>
+<?php 
+foreach ($no_pref_allocation as $project => $group) {
+    printf('Project %02d ====>', $project);
+    foreach ($group as $student) {
+        echo $student . '-->';
+    }
+    echo '<br>';
+} 
+echo '<br>';
+echo 'Rewmaining unallocated students with conflicts or no spots: <br>';
+foreach ($doomed_students as $s)
+    echo $s . ' | ';
+echo '<br><br>';
+?>
 <h1>Input: Desired</h1>
 <?php 
 foreach ($desired as $student => $others) {

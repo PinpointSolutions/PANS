@@ -17,6 +17,7 @@ Project:
     has_additional_info: true
     major_ids: 1
     skill_set_ids: 4 5
+    max_group_size: 4
   proj_3:
     title: Recruitment System and integrated web site
     organisation: Connect Recruitment
