@@ -1,5 +1,7 @@
 <h1>Groups</h1>
 
+<?php echo link_to('Edit Allocation', 'group/index') ?><br><br>
+
 <?php echo link_to('Test Sorting', 'group/allocate') ?><br><br>
 
 <?php 
