@@ -388,7 +388,16 @@ class projectActions extends autoProjectActions
     $this->getUser()->setFlash('notice', 'Students deleted.');
     $this->redirect('project/tool');
   }
- 
+    // Delete all groups after they have been sorted, justin did this yayy!!
+   public function executeClearAllGroups(sfWebRequest $request)
+  {
+    $conn = Doctrine_Manager::getInstance();
+    $groups = Doctrine_Core::getTable('ProjectAllocation')->findAll();
+    $groups->delete();
+    
+    $this->getUser()->setFlash('notice', 'Groups deleted.');
+    $this->redirect('project/tool');
+  }
   ////////////////////////////////////////////////////////////////////////
   // Helpler functions
   
@@ -490,3 +499,5 @@ class projectActions extends autoProjectActions
     return $string;
   }
 }
+
+

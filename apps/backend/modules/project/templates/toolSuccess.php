@@ -111,5 +111,6 @@ Deadline:
 <ul>
 <li class="tool" ><?php echo link_to('Delete All Students', 'project/clearAllStudents', 'confirm=Delete All Students?') ?></li>
 <li class="tool"><?php echo link_to('Delete All Projects', 'project/clearAllProjects', 'confirm=Delete All Projects?') ?></li>
+<li class="tool"><?php echo link_to('Delete All Groups', 'project/clearAllGroups', 'confirm=Delete All Groups') ?></li>
 </ul>
 </div>
