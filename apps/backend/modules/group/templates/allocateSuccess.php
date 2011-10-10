@@ -1,4 +1,6 @@
-<h1>Allocations</h1>
+<h1>Project Allocation Debug Dump</h1>
+
+<h1>Final Allocation</h1>
 <?php 
 foreach ($allocations as $project => $group) {
     echo 'Project #'. $project . ' || ';
@@ -7,24 +9,37 @@ foreach ($allocations as $project => $group) {
     }
     echo '<br>';
 } 
+echo '<br>';
 ?>
-<h1>Initial Groups</h1>
+<h1>Step 1: Connected graph of all students with desired students</h1>
 <?php 
 foreach ($groups as $group) {
-    echo '| ';
+    echo '|---->';
     foreach ($group as $student)
-        echo $student . ' | ';
+        echo $student . '-->';
     echo '<br>';
 } 
+echo '<br>';
 ?>
-<h1>Shaved Groups</h1>
+<h1>Step 2: Split the graph using common project preferences</h1>
 <?php 
 foreach ($shaved_groups as $group) {
+    echo '|----> ';
+    foreach ($group as $student)
+        echo $student . '-->';
+    echo '<br>';
+} 
+echo '<br>';
+?>
+<h1>Step 3: Remove students by undesired students using group balance</h1>
+<?php 
+foreach ($conflict_free_groups as $group) {
     echo '| ';
     foreach ($group as $student)
         echo $student . ' | ';
     echo '<br>';
 } 
+echo '<br>';
 ?>
 <h1>Input: Desired</h1>
 <?php 
@@ -35,6 +50,7 @@ foreach ($desired as $student => $others) {
     }
     echo '<br>';
 } 
+echo '<br>';
 ?>
 <br>
 <h1>Input: Project Preferences</h1>
@@ -46,6 +62,7 @@ foreach ($prefs as $student => $projects) {
     }
     echo '<br>';
 } 
+echo '<br>';
 ?>
 <br>
 <h1>Input: Undesired</h1>
@@ -57,4 +74,5 @@ foreach ($undesired as $student => $others) {
     }
     echo '<br>';
 } 
+echo '<br>';
 ?>

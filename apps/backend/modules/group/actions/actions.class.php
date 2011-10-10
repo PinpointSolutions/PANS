@@ -15,9 +15,6 @@ class groupActions extends autoGroupActions
 {
   public function executeAllocate(sfWebRequest $request)
   {
-    $allocations = array();
-    $finished = array();
-
     // Load all the necessary data
     $ss = Doctrine_Core::getTable('StudentUser')
       ->createQuery('a')
@@ -27,19 +24,41 @@ class groupActions extends autoGroupActions
       ->createQuery('a')
       ->execute();
 
-    // Grab student information for desired and undesired and student ids
+    // Internal data initialisation
+    $allocations = array();
+    $finished = array();
+    $projects = array();
     $desired = array();
     $undesired = array();
     $prefs = array();
     $students = array();
+    $singles = array();
+    foreach ($ps as $project)
+      $projects[$project->getId()] = $project;
+
+    // Grab student information for desired and undesired and student ids
     foreach ($ss as $student) {
+      // FIXME: Discount any students whose forms are not completed.
+      // if ($student->getFormCompleted == 0)
+      //   continue;
       $students[$student->getSnum()] = $student;
       $desired[$student->getSnum()] = array_unique(array($student->getYStuPref1(),
                                                          $student->getYStuPref2(),
                                                          $student->getYStuPref3(),
                                                          $student->getYStuPref4(),
                                                          $student->getYStuPref5()));
-      $desired[$student->getSnum()] = array_diff($desired[$student->getSnum()], array(null));
+      $desired[$student->getSnum()] = array_diff(
+                                        $desired[$student->getSnum()], array(null));
+      
+      $undesired[$student->getSnum()] = array_unique(array($student->getNStuPref1(),
+                                                           $student->getNStuPref2(),
+                                                           $student->getNStuPref3(),
+                                                           $student->getNStuPref4(),
+                                                           $student->getNStuPref5()));
+      $undesired[$student->getSnum()] = array_diff(
+                                          $undesired[$student->getSnum()], array(null));
+
+      // Buffer for student preferences.  For null fields, we use -1 throughout.
       $prefs[$student->getSnum()] = array($student->getProjPref1(),
                                           $student->getProjPref2(),
                                           $student->getProjPref3(),
@@ -50,11 +69,8 @@ class groupActions extends autoGroupActions
           $prefs[$student->getSnum()][$i] = -1;
       }
     }
-    $projects = array();
-    foreach ($ps as $project)
-      $projects[$project->getId()] = $project;
-
-    // Add dummy data for sorting testing
+    
+    // DELETEME: Add dummy data for sorting testing
     for ($i = 0; $i < 96; $i++) {
       $n = mt_rand(0, 3);
       $m = mt_rand(0, 2);
@@ -84,6 +100,7 @@ class groupActions extends autoGroupActions
       $prefs[$snum][3] = $pref[3];
       $students[$snum]->setGpa(mt_rand(0, 70) / 10.0);
     }
+    // END_DELETEME
 
     // Figure out the big groups
     $groups = $this->combineDesiredStudents($desired);
@@ -94,16 +111,25 @@ class groupActions extends autoGroupActions
     $groups = $this->shaveMultipleGroups($groups, $students, $prefs);
     $this->shaved_groups = $groups;
 
-    // Assign big groups to projects
+    // Check for initial group conflicts
+    $conflict = $this->resolveUndesiredStudents($groups, $undesired, $students, $prefs);
+    $singles = $conflict[1];
+    $groups = $conflict[0];
+    $this->conflict_free_groups = $groups;
+
+    // Assign groups to projects
     foreach ($groups as $group) {
       $allocations = $this->assignGroup($group, $allocations, $students, $projects, $prefs);
       $finished = array_merge($finished, $group);
     }
 
+    ksort($allocations);
+    // Output to debug dump
     $this->prefs = $prefs;
     $this->allocations = $allocations;
     $this->desired = $desired;
     $this->undesired = $undesired;
+    $this->singles = $singles;
   }
 
 
@@ -122,6 +148,7 @@ class groupActions extends autoGroupActions
       $pref4 = $prefs[$student][3];
       $pref5 = $prefs[$student][4];
 
+      // These ratings are arbitrary, but shouldn't change too much of the results.
       if ($pref1 != -1)
         $pref_count[$pref1] += 5.0;
       if ($pref2 != -1)
@@ -182,9 +209,47 @@ class groupActions extends autoGroupActions
 
 
   // Remove students with conflicts based on group ratings
-  protected function resolveUndesiredStudents($groups, $undesired)
+  // Returns an array of two arrays:
+  //  array( [0] => Conflict-free groups,
+  //         [1] => Kicked-out students =[ )
+  protected function resolveUndesiredStudents($groups, $undesired, $students, $prefs)
   {
+    $output = array(array(), array());
+    foreach ($groups as $group) {
+      $black_sheep = $this->checkGroup($group, $undesired, $students, $prefs);
+      $new_group = $group;
+      while ($black_sheep != null) {
+        $new_group = array_diff($new_group, array($black_sheep));
+        $output[1][] = $black_sheep;
+        $black_sheep = $this->checkGroup($new_group, $undesired, $students, $prefs);
+      }
+      $output[0][] = $new_group;
+    }
+    return $output;
+  }
 
+
+  // For one group, check for an undesired student inside the same group.
+  // If we have one, kick one out and check the group dynamics.  Kick the other
+  // out and check again.
+  // This function returns the student to be removed, or null if the group is 
+  // conflict-free.
+  protected function checkGroup($group, $undesired, $students, $prefs)
+  {
+    foreach ($group as $student) {
+      foreach ($undesired[$student] as $us) {
+        if (in_array($us, $group)) {
+          $option1 = array_diff($group, array($student));
+          $option2 = array_diff($group, array($us));
+          if ($this->rateGroup($option1, $students, $prefs) 
+              >= $this->rateGroup($option2, $students, $prefs))
+            return $us;
+          else
+            return $student;
+        }
+      }
+    }
+    return null;
   }
 
 
@@ -192,7 +257,7 @@ class groupActions extends autoGroupActions
   //   Group GPA average
   //   Balance of degrees
   //   Similarity of project preferences
-  protected function rateGroup($group, $project, $students, $projects, $prefs)
+  protected function rateGroup($group, $students, $prefs)
   {
     $gpa_score = 0.0;
     foreach ($group as $student)
@@ -201,15 +266,16 @@ class groupActions extends autoGroupActions
 
     $degrees = array();
     foreach ($group as $student)
-      $degrees = array_merge($degrees, explode(' ', $students[$student]->getDegreeIds()));
+      $degrees = array_merge($degrees, 
+                    explode(' ', $students[$student]->getDegreeIds()));
     $degrees = array_unique($degrees);
     $degree_score = sizeof($degrees);
 
     $student_prefs = array();
     foreach ($group as $student) {
-      if ($prefs[0] == -1)
+      if ($prefs[$student][0] == -1)
         continue;
-      $student_prefs[] = $prefs[0];
+      $student_prefs[] = $prefs[$student][0];
     }
     $student_prefs = array_unique($prefs);
     $prefs_score = 5.0 / sizeof($student_prefs);
@@ -226,6 +292,8 @@ class groupActions extends autoGroupActions
     }
     
     // Group is too big.  Let's look at project preferences.
+    // This step is skipped as long as one person has a different 1st project
+    // preference at the moment, however it's easy to expand this further
     $student_prefs = array();
     foreach ($group as $student) {
       $pref = $prefs[$student][0];
