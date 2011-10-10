@@ -354,16 +354,46 @@ class groupActions extends autoGroupActions
     }
 
     // For degree balance, try to sort the unallocated students into their own degrees
-    // Then we interleave them for balance.
+    // Then we interleave them for balance.  This code assumes a similar number of 
+    // students in each degree.
     $degrees = array();
     foreach ($unallocated as $student) {
       $degree_id = $students[$student]->getDegreeIds();
+      if ($degree_id == null)
+        continue;
       if (array_key_exists($degree_id, $degrees))
         $degrees[$degree_id][] = $student;
       else
         $degrees[$degree_id] = array($student);
     }
-    print_r($degrees);
+    $interleaved = array();
+    while (sizeof($degrees, 1) - sizeof($degrees) != 0) {
+      for ($i = 1; $i <= sizeof($degrees); $i++) {
+        if (sizeof($degrees[$i]) == 0)
+          continue;
+        $s = array_pop($degrees[$i]);
+        $interleaved[] = $s;
+      }
+    }
+
+    // Insert these people into the projects randomly, pretty much. 
+    $empty_projects = array();
+    foreach (array_keys($allocations) as $project)
+      if (sizeof($allocations[$project]) == 0)
+        $empty_projects[] = $project;
+
+    shuffle($empty_projects);
+    foreach ($empty_projects as $project) {
+      if (sizeof($interleaved) == 0)
+        break;
+      $this_group = array();
+      for ($i = 0; $i < $projects[$project]->getMaxGroupSize(); $i++) {
+        if (sizeof($interleaved) == 0)
+          break;
+        $this_group[] = array_pop($interleaved);
+      }
+      $allocations[$project] = $this_group;
+    }
     return $allocations;
   }
 
