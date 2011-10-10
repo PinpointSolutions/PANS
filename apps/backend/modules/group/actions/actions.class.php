@@ -238,8 +238,13 @@ class groupActions extends autoGroupActions
       if (array_key_exists($pref, $allocations)) {
         $group1 = $this->rateGroup($allocations[$pref], $students, $prefs);
         $group2 = $this->rateGroup($group, $students, $prefs);
-        if ($group1 >= $group2)
+        if ($group1 >= $group2) {
           continue;
+        } else {
+          // If we find a group with better match, swap and reassign the first.
+          $allocations[$pref] = $group;
+          return $this->assignGroup($allocations[$pref], $allocations, $students, $projects, $prefs);
+        }
       }
       $allocations[$pref] = $group;
       break;
