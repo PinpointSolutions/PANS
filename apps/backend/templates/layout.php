@@ -46,6 +46,10 @@
           <div class="alignleft action">
             <?php echo link_to('Groups', 'project/group') ?>
           </div>
+          
+          <div class="alignleft action">
+            <?php echo link_to('Users', 'sfGuardUser/index') ?>
+          </div>
 
           <div class="alignleft action">
             <?php echo link_to('Tools', 'project/tool') ?>
