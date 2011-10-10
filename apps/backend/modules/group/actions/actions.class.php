@@ -73,12 +73,13 @@ class groupActions extends autoGroupActions
     // DELETEME: Add dummy data for sorting testing
     for ($i = 0; $i < 96; $i++) {
       $n = mt_rand(0, 3);
-      $m = mt_rand(0, 2);
+      $m = mt_rand(0, 3);
       $num_desire = mt_rand(0, $n);
       $num_undesire = mt_rand(0, $m);
       
       $snum = 2000000 + $i;
-      $pref = array_rand($projects, 4);
+      $pref = array_rand($projects, 5);
+      shuffle($pref);
 
       if ($num_desire > 1)
         $desired[$snum] = array_rand($students, $num_desire);
@@ -98,6 +99,7 @@ class groupActions extends autoGroupActions
       $prefs[$snum][1] = $pref[1];
       $prefs[$snum][2] = $pref[2];
       $prefs[$snum][3] = $pref[3];
+      $prefs[$snum][4] = $pref[4];
       $students[$snum]->setGpa(mt_rand(0, 70) / 10.0);
     }
     // END_DELETEME
@@ -122,8 +124,10 @@ class groupActions extends autoGroupActions
       $allocations = $this->assignGroup($group, $allocations, $students, $projects, $prefs);
       $finished = array_merge($finished, $group);
     }
-
     ksort($allocations);
+    $this->initial_allocation = $allocations;
+
+
     // Output to debug dump
     $this->prefs = $prefs;
     $this->allocations = $allocations;
@@ -232,13 +236,15 @@ class groupActions extends autoGroupActions
   // For one group, check for an undesired student inside the same group.
   // If we have one, kick one out and check the group dynamics.  Kick the other
   // out and check again.
+  // If the student puts in himself/herself here, bad things will happen.  For example,
+  // we will totally disregard such craziness.
   // This function returns the student to be removed, or null if the group is 
   // conflict-free.
   protected function checkGroup($group, $undesired, $students, $prefs)
   {
     foreach ($group as $student) {
       foreach ($undesired[$student] as $us) {
-        if (in_array($us, $group)) {
+        if (in_array($us, $group) && $student != $us) {
           $option1 = array_diff($group, array($student));
           $option2 = array_diff($group, array($us));
           if ($this->rateGroup($option1, $students, $prefs) 
@@ -332,7 +338,7 @@ class groupActions extends autoGroupActions
   // Split big groups into multiple groups
   protected function shaveMultipleGroups($groups, $students, $prefs)
   {
-    $limit = sizeof($groups) / 6.0 + 1;
+    $limit = sizeof($groups);
     $groups_tmp = array();
     while ($this->hasTooMuchLeftover($groups) && $limit > 0) {
       $leftovers = array();

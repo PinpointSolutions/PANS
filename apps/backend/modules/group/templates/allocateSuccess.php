@@ -1,11 +1,11 @@
 <h1>Project Allocation Debug Dump</h1>
 
-<h1>Final Allocation</h1>
+<h1>Final Allocation :D</h1>
 <?php 
 foreach ($allocations as $project => $group) {
-    echo 'Project #'. $project . ' || ';
+    printf('Project %02d ====>', $project);
     foreach ($group as $student) {
-        echo $student . ' | ';
+        echo $student . '-->';
     }
     echo '<br>';
 } 
@@ -34,9 +34,20 @@ echo '<br>';
 <h1>Step 3: Remove students by undesired students using group balance</h1>
 <?php 
 foreach ($conflict_free_groups as $group) {
-    echo '| ';
+    echo '|----> ';
     foreach ($group as $student)
-        echo $student . ' | ';
+        echo $student . '-->';
+    echo '<br>';
+} 
+echo '<br>';
+?>
+<h1>Step 4: Initial group-based project allocation by group preference</h1>
+<?php 
+foreach ($initial_allocation as $project => $group) {
+    printf('Project %02d ====>', $project);
+    foreach ($group as $student) {
+        echo $student . '-->';
+    }
     echo '<br>';
 } 
 echo '<br>';
