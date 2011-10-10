@@ -109,10 +109,12 @@ foreach ($final_allocation as $project => $group) {
     }
     echo '<br>';
 } 
-echo '<br>';
-echo 'Remaining unallocated students with conflicts or no spots: <br>';
+echo '<br><br>';
+?>
+<h1>Step 9: Optionally, if there are student still unallocated, it's because there's just no spot and everywhere is a conflict or something. Please assign these students manually.</h1>
+<?php 
 foreach ($alone_students as $s)
-    echo $s . ' | ';
+    echo $s . ' ';
 echo '<br><br>';
 ?>
 <h1>Done. Sanity check - if it's empty, it's good.</h1>

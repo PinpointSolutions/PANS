@@ -189,7 +189,8 @@ class groupActions extends autoGroupActions
     $allocations = $this->tryAssignNewGroup($unallocated_students, $allocations, $students, $projects, $undesired);
     ksort($allocations);
     $this->final_allocation = $allocations;
-    $this->alone_students = $this->findAllUnallocatedStudents($allocations, $students);
+    $unallocated_students = $this->findAllUnallocatedStudents($allocations, $students);
+    $this->alone_students = $unallocated_students;
 
     // It's done, but just to be sure ...
     // Sanity checks
@@ -198,17 +199,19 @@ class groupActions extends autoGroupActions
     // Sanity check - ensure the remaining doomed students with no groups is the same people
     // that we can examine and count and find out
     $real_unallocated_students = $this->findAllUnallocatedStudents($allocations, $students);
-    sort($unallocated_students);
-    sort($real_unallocated_students);
-    if ($unallocated_students != $real_unallocated_students) {
-      $this->error[] = 'ERROR: Unallocated student(s) missed by the system: ' .
-        print_r(array_diff($real_unallocated_students, $unallocated_students), true); 
+    if (sizeof($real_unallocated_students) > 0) {
+      sort($unallocated_students);
+      sort($real_unallocated_students);
+      if ($unallocated_students != $real_unallocated_students) {
+        $this->error[] = 'ERROR: Unallocated student(s) missed by the system: ' .
+          print_r(array_diff($real_unallocated_students, $unallocated_students), true); 
+      }
     }
 
     // Sanity check - total number of allocated students is the same as the number of
     // students we had to begin with
-    if (sizeof($real_unallocated_students) == 0 
-        && sizeof($students) != sizeof($allocations, 1) - sizeof($allocations)) {
+    if (sizeof($real_unallocated_students) == 0 && 
+        sizeof($students) != sizeof($allocations, 1) - sizeof($allocations)) {
       $this->error[] = 'ERROR: No leftovers but allocated students and total number of students do not match: Actual number: ' . sizeof($students) . ' Allocated total: ' . (sizeof($allocations, 1) - sizeof($allocations));
     }
 
