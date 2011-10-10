@@ -73,8 +73,8 @@ class groupActions extends autoGroupActions
     }
     
     // DELETEME: Add dummy data for sorting testing
-    for ($i = 0; $i < 66; $i++) {
-      $n = mt_rand(0, 3);
+    for ($i = 0; $i < 16; $i++) {
+      $n = mt_rand(0, 2);
       $m = mt_rand(0, 5);
       $num_desire = mt_rand(0, $n);
       $num_undesire = mt_rand(0, $m);
@@ -178,6 +178,11 @@ class groupActions extends autoGroupActions
     $this->no_pref_allocation = $allocations;
     $this->doomed_students = $unallocated_students;
 
+    // If there are _still_ students left, it's because the majority had no
+    // real preference, or if the majority had preference but they all want
+    // the same project.  In this case, preferences don't work anymore, and
+    // we fallback to group balance and rating.
+
     // It's done, but just to be sure ...
     // Sanity checks
     $this->error = array();
@@ -185,6 +190,8 @@ class groupActions extends autoGroupActions
     // Sanity check - ensure the remaining doomed students with no groups is the same people
     // that we can examine and count and find out
     $real_unallocated_students = $this->findAllUnallocatedStudents($allocations, $students);
+    sort($unallocated_students);
+    sort($real_unallocated_students);
     if ($unallocated_students != $real_unallocated_students) {
       $this->error[] = 'ERROR: Unallocated student(s) missed by the system: ' .
         print_r(array_diff($real_unallocated_students, $unallocated_students), true); 
@@ -323,6 +330,16 @@ class groupActions extends autoGroupActions
     // Not very likely to happen, but if all groups are either filled or hate this person,
     // derp-de-derp.
     return null;
+  }
+
+
+  // Similar to the function above, but looks for a good grouop balance instead.
+  // Takes a list of unallocated students instead of just one student, and we also
+  // only look at empty projects, since that's where the only real spots left.
+  // Return the new allocation.
+  protected function tryAssignNoPreference($unallocated, $allocations, $students, $projects, $undesired)
+  {
+
   }
 
 

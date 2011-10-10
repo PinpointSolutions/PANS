@@ -80,7 +80,7 @@ foreach ($filled_allocation as $project => $group) {
     echo '<br>';
 } 
 echo '<br>';
-echo 'Rewmaining unallocated students with either no preference or conflicts or no spots: <br>';
+echo 'Remaining unallocated students with either no preference or conflicts or no spots: <br>';
 foreach ($no_choice_students as $s)
     echo $s . ' | ';
 echo '<br><br>';
@@ -95,8 +95,23 @@ foreach ($no_pref_allocation as $project => $group) {
     echo '<br>';
 } 
 echo '<br>';
-echo 'Rewmaining unallocated students with conflicts or no spots: <br>';
+echo 'Remaining unallocated students with conflicts or no spots: <br>';
 foreach ($doomed_students as $s)
+    echo $s . ' | ';
+echo '<br><br>';
+?>
+<h1>Step 8: If there are still students left, assign them to brand new empty projects.</h1>
+<?php 
+foreach ($final_allocation as $project => $group) {
+    printf('Project %02d ====>', $project);
+    foreach ($group as $student) {
+        echo $student . '-->';
+    }
+    echo '<br>';
+} 
+echo '<br>';
+echo 'Remaining unallocated students with conflicts or no spots: <br>';
+foreach ($alone_students as $s)
     echo $s . ' | ';
 echo '<br><br>';
 ?>
