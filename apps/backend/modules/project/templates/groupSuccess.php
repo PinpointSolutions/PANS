@@ -1,8 +1,7 @@
 <h1>Groups</h1>
+<?php echo link_to('Generate New Project Allocations', 'group/allocate', 'confirm=Erase existing allocation and regenerate new ones?') ?><br><br>
 
 <?php echo link_to('Edit Allocation', 'group/index') ?><br><br>
-
-<?php echo link_to('Generate New Project Allocations', 'group/allocate') ?><br><br>
 
 <?php 
 $allocs = array();

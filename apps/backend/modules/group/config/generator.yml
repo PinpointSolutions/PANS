@@ -15,9 +15,10 @@ generator:
       actions: ~
       fields:  ~            
       list:
-        title:   Groups
+        title: Projet Groups
         hide: [id]
         batch_actions: {}
+        max_per_page: 99999
       # Stops Symfony from displaying the filter in the admin view
       filter:
         class: false

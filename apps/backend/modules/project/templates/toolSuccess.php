@@ -14,12 +14,6 @@ Deadline:
 <span class="smlInstruction">[YYYY-MM-DD]</span>
 <br><br>
 
-<?php 
-// datePicker echo command -just for display purposes right now
-// echo $datePicker.'<br/><br/>'; 
-?>
-
-
 <input type="submit" value="Change Date" />
 </form>
 
@@ -67,6 +61,6 @@ Deadline:
 <ul>
 <li class="tool" ><?php echo link_to('Delete All Students', 'project/clearAllStudents', 'confirm=Delete All Students?') ?></li>
 <li class="tool"><?php echo link_to('Delete All Projects', 'project/clearAllProjects', 'confirm=Delete All Projects?') ?></li>
-<li class="tool"><?php echo link_to('Delete All Groups', 'project/clearAllGroups', 'confirm=Delete All Groups') ?></li>
+<li class="tool"><?php echo link_to('Delete All Groups', 'project/clearAllGroups', 'confirm=Delete All Groups?') ?></li>
 </ul>
 </div>

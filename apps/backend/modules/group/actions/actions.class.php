@@ -222,7 +222,11 @@ class groupActions extends autoGroupActions
     $this->desired = $desired;
     $this->undesired = $undesired;
 
-    // Write to database
+    // Rewrite to database
+    $conn = Doctrine_Manager::getInstance();
+    $groups = Doctrine_Core::getTable('ProjectAllocation')->findAll();
+    $groups->delete();
+
     $this->allocation_collection = new Doctrine_Collection('ProjectAllocation');
     foreach ($allocations as $project => $group) {
       foreach ($group as $student) {
