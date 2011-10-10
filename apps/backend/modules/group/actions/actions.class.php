@@ -221,6 +221,18 @@ class groupActions extends autoGroupActions
     $this->allocations = $allocations;
     $this->desired = $desired;
     $this->undesired = $undesired;
+
+    // Write to database
+    $this->allocation_collection = new Doctrine_Collection('ProjectAllocation');
+    foreach ($allocations as $project => $group) {
+      foreach ($group as $student) {
+        $item = new ProjectAllocation();
+        $item->setProjectId($project);
+        $item->setSnum($student);
+        $this->allocation_collection->add($item);
+      }
+    }
+    $this->allocation_collection->save();
   }
 
 

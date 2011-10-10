@@ -174,15 +174,6 @@ class projectActions extends autoProjectActions
     $this->redirect('project/tool');
 }
 
-
-
-
-
-
-
-
-
-
  /* ------------------------------------------------------------------
    Manually handling the file upload and parsing
    We have two tables, one for student forms and one for login. 
