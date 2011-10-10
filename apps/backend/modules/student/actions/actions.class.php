@@ -21,7 +21,7 @@ class studentActions extends autoStudentActions
         parent::executeIndex($request);
         $this->admin = $this->getUser()->isSuperAdmin();
         if ($this->admin == false) {
-            $this->redirect404();
+            $this->redirect('/logout');
         }
    }
 }
