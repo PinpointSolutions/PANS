@@ -145,15 +145,7 @@ class groupActions extends autoGroupActions
     $this->conflict_free_allocation = $allocations;
 
     // Single-student handling.  After this point, allocations should be append-only
-    // First we gotta figure out who hasn't been allocated yet...
-    $unallocated_students = array();
-    foreach ($students as $snum => $_) {
-      foreach ($allocations as $_ => $group) {
-        if (in_array($snum, $group))
-          continue 2;
-      }
-      $unallocated_students[] = $snum;
-    }
+    $unallocated_students = $this->findAllUnallocatedStudents($allocations, $students);
     shuffle($unallocated_students);
     $this->unallocated_students = $unallocated_students;
     // Then, for each unallocated students, try to assign them
@@ -182,9 +174,28 @@ class groupActions extends autoGroupActions
         $unallocated_students = array_diff($unallocated_students, array($us));
       }
     }
-    ksort($allocations);
+    //ksort($allocations);
     $this->no_pref_allocation = $allocations;
     $this->doomed_students = $unallocated_students;
+
+    // It's done, but just to be sure ...
+    // Sanity checks
+    $this->error = array();
+
+    // Sanity check - ensure the remaining doomed students with no groups is the same people
+    // that we can examine and count and find out
+    $real_unallocated_students = $this->findAllUnallocatedStudents($allocations, $students);
+    if ($unallocated_students != $real_unallocated_students) {
+      $this->error[] = 'ERROR: Unallocated student(s) missed by the system: ' .
+        print_r(array_diff($real_unallocated_students, $unallocated_students), true); 
+    }
+
+    // Sanity check - total number of allocated students is the same as the number of
+    // students we had to begin with
+    if (sizeof($real_unallocated_students) == 0 
+        && sizeof($students) != sizeof($allocations, 1) - sizeof($allocations)) {
+      $this->error[] = 'ERROR: No leftovers but allocated students and total number of students do not match: Actual number: ' . sizeof($students) . ' Allocated total: ' . (sizeof($allocations, 1) - sizeof($allocations));
+    }
 
     // Output to debug dump
     ksort($allocations);
@@ -235,7 +246,7 @@ class groupActions extends autoGroupActions
     foreach ($pref_count as $pref => $_) {
       if ($projects[$pref]->getMaxGroupSize() < sizeof($group))
         continue;
-      if (array_key_exists($pref, $allocations)) {
+      if (array_key_exists($pref, $allocations) && $allocations[$pref] != $group) {
         $group1 = $this->rateGroup($allocations[$pref], $students, $prefs);
         $group2 = $this->rateGroup($group, $students, $prefs);
         if ($group1 >= $group2) {
@@ -325,7 +336,7 @@ class groupActions extends autoGroupActions
       if (sizeof($others) == 0) {
         $this_group = array($student);
       } else {
-        $this_group = array_merge(array($student), $others);
+        $this_group = array_unique(array_merge(array($student), $others));
       }
 
       // Iterate through any existing overlapping groups, and merge them
@@ -368,6 +379,21 @@ class groupActions extends autoGroupActions
       $output[0][] = $new_group;
     }
     return $output;
+  }
+
+
+  // We gotta figure out who hasn't been allocated yet.
+  protected function findAllUnallocatedStudents($allocations, $students) 
+  {
+    $unallocated_students = array();
+    foreach ($students as $snum => $_) {
+      foreach ($allocations as $_ => $group) {
+        if (in_array($snum, $group))
+          continue 2;
+      }
+      $unallocated_students[] = $snum;
+    }
+    return $unallocated_students;
   }
 
 

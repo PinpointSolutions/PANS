@@ -100,6 +100,13 @@ foreach ($doomed_students as $s)
     echo $s . ' | ';
 echo '<br><br>';
 ?>
+<h1>Sanity check - if it's empty, it's good.</h1>
+<?php 
+foreach ($error as $e) {
+    echo $e;
+    echo '<br>';
+}
+echo '<br><br>'; ?>
 <h1>Input: Desired</h1>
 <?php 
 foreach ($desired as $student => $others) {
