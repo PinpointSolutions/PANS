@@ -115,7 +115,7 @@ foreach ($alone_students as $s)
     echo $s . ' | ';
 echo '<br><br>';
 ?>
-<h1>Sanity check - if it's empty, it's good.</h1>
+<h1>Done. Sanity check - if it's empty, it's good.</h1>
 <?php 
 foreach ($error as $e) {
     echo $e;

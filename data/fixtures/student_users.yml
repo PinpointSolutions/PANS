@@ -391,6 +391,10 @@ StudentUser:
     snum: 2000096
     first_name: Dale
     last_name: Wood
+  user_97:
+    snum: 2000097
+    first_name: Black
+    last_name: Sheep
   user_98:
     snum: 2000098
     first_name: Alex

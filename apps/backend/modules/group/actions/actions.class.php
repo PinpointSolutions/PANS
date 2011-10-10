@@ -102,7 +102,11 @@ class groupActions extends autoGroupActions
       $prefs[$snum][2] = $pref[2];
       $prefs[$snum][3] = $pref[3];
       $prefs[$snum][4] = $pref[4];
-      $students[$snum]->setGpa(mt_rand(40, 70) / 10.0);
+    }
+    for ($i = 0; $i < 100; $i++) {
+      $snum = 2000000 + $i;
+      $students[$snum]->setGpa(mt_rand(10, 70) / 10.0);
+      $students[$snum]->setDegreeIds(mt_rand(1, 3));
     }
     // END_DELETEME
 
@@ -182,6 +186,10 @@ class groupActions extends autoGroupActions
     // real preference, or if the majority had preference but they all want
     // the same project.  In this case, preferences don't work anymore, and
     // we fallback to group balance and rating.
+    $allocations = $this->tryAssignNewGroup($unallocated_students, $allocations, $students, $projects, $undesired);
+    ksort($allocations);
+    $this->final_allocation = $allocations;
+    $this->alone_students = $this->findAllUnallocatedStudents($allocations, $students);
 
     // It's done, but just to be sure ...
     // Sanity checks
@@ -337,9 +345,26 @@ class groupActions extends autoGroupActions
   // Takes a list of unallocated students instead of just one student, and we also
   // only look at empty projects, since that's where the only real spots left.
   // Return the new allocation.
-  protected function tryAssignNoPreference($unallocated, $allocations, $students, $projects, $undesired)
+  protected function tryAssignNewGroup($unallocated, $allocations, $students, $projects, $undesired)
   {
+    // Open up projects with no one at all
+    foreach ($projects as $project => $_) {
+      if (!array_key_exists($project, $allocations))
+        $allocations[$project] = array();
+    }
 
+    // For degree balance, try to sort the unallocated students into their own degrees
+    // Then we interleave them for balance.
+    $degrees = array();
+    foreach ($unallocated as $student) {
+      $degree_id = $students[$student]->getDegreeIds();
+      if (array_key_exists($degree_id, $degrees))
+        $degrees[$degree_id][] = $student;
+      else
+        $degrees[$degree_id] = array($student);
+    }
+    print_r($degrees);
+    return $allocations;
   }
 
 
