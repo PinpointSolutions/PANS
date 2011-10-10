@@ -56,7 +56,7 @@ class groupActions extends autoGroupActions
 
     // Add dummy data for sorting testing
     for ($i = 0; $i < 96; $i++) {
-      $n = mt_rand(0, 5);
+      $n = mt_rand(0, 3);
       $m = mt_rand(0, 2);
       $num_desire = mt_rand(0, $n);
       $num_undesire = mt_rand(0, $m);
@@ -90,12 +90,8 @@ class groupActions extends autoGroupActions
     $this->groups = $groups;
 
     // Shave off groups that are too big
-    $groups_tmp = array();
-    for ($i = 0; $i < sizeof($groups); $i++) {
-      $shaved = $this->shaveGroup($groups[$i], $students, $prefs);
-      $groups_tmp[] = $shaved;
-    }
-    $groups = $groups_tmp;
+    // Split really big groups.
+    $groups = $this->shaveMultipleGroups($groups, $students, $prefs);
 
     // Assign big groups to projects
     foreach ($groups as $group) {
@@ -260,6 +256,34 @@ class groupActions extends autoGroupActions
     }
     arsort($gpas);
     return array_keys(array_slice($gpas, 0, 6, true));
+  }
+
+
+  // Split big groups into multiple groups
+  protected function shaveMultipleGroups($groups, $students, $prefs)
+  {
+    $groups_tmp = array();
+    $leftovers = $groups;
+    while ($this->hasTooMuchLeftover($leftovers)) {
+      for ($i = 0; $i < sizeof($groups); $i++) {
+        $shaved = $this->shaveGroup($groups[$i], $students, $prefs);
+        $groups_tmp[] = $shaved;
+        $leftovers[] = array_diff($groups[$i], $shaved);
+      }
+      $leftovers = array_merge($leftovers, $groups_tmp);
+    }
+    return $leftovers;
+  }
+
+
+  // Helper function for shaveMultipleGroups
+  protected function hasTooMuchLeftover($leftovers)
+  {
+    foreach ($leftovers as $leftover) {
+      if (sizeof($leftover) > 6)
+        return true;
+    }
+    return false;
   }
 }
 
