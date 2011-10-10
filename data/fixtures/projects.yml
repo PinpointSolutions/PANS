@@ -7,6 +7,7 @@ Project:
     has_additional_info: false
     major_ids: 1 2 
     skill_set_ids: 1 2 5
+    max_group_size: 4
   proj_2:
     title: Systems Integration Project
     organisation: Business Advisor Network Ltd
