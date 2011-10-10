@@ -33,6 +33,7 @@ class groupActions extends autoGroupActions
     $prefs = array();
     $students = array();
     $singles = array();
+    $flags = array();
     foreach ($ps as $project)
       $projects[$project->getId()] = $project;
 
@@ -41,6 +42,7 @@ class groupActions extends autoGroupActions
       // FIXME: Discount any students whose forms are not completed.
       // if ($student->getFormCompleted == 0)
       //   continue;
+      $flags[$student->getSnum()] = null;
       $students[$student->getSnum()] = $student;
       $desired[$student->getSnum()] = array_unique(array($student->getYStuPref1(),
                                                          $student->getYStuPref2(),
@@ -71,9 +73,9 @@ class groupActions extends autoGroupActions
     }
     
     // DELETEME: Add dummy data for sorting testing
-    for ($i = 0; $i < 96; $i++) {
-      $n = mt_rand(0, 3);
-      $m = mt_rand(0, 3);
+    for ($i = 0; $i < 66; $i++) {
+      $n = mt_rand(0, 5);
+      $m = mt_rand(0, 5);
       $num_desire = mt_rand(0, $n);
       $num_undesire = mt_rand(0, $m);
       
@@ -303,8 +305,8 @@ class groupActions extends autoGroupActions
     $student_prefs = array();
     foreach ($group as $student) {
       $pref = $prefs[$student][0];
-      if ($pref == -1)
-        continue;
+      // if ($pref == -1)
+      //   continue;
       if (array_key_exists($pref, $student_prefs))
         $student_prefs[$pref][] = $student;
       else
@@ -338,13 +340,16 @@ class groupActions extends autoGroupActions
   // Split big groups into multiple groups
   protected function shaveMultipleGroups($groups, $students, $prefs)
   {
-    $limit = sizeof($groups);
-    $groups_tmp = array();
+    if (!$this->hasTooMuchLeftover($groups))
+      return $groups;
+
+    $limit = sizeof($groups, 1);
+    $new_groups = array();
     while ($this->hasTooMuchLeftover($groups) && $limit > 0) {
       $leftovers = array();
       foreach ($groups as $group) {
         $shaved = $this->shaveGroup($group, $students, $prefs);
-        $groups_tmp[] = $shaved;
+        $new_groups[] = $shaved;
         $leftover = array_diff($group, $shaved);
         if (sizeof($leftover) > 0)
           $leftovers[] = $leftover;
@@ -352,7 +357,7 @@ class groupActions extends autoGroupActions
       $groups = $leftovers;
       $limit--;
     }
-    return $groups_tmp;
+    return $new_groups;
   }
 
 
