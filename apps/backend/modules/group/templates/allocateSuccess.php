@@ -21,7 +21,7 @@ foreach ($groups as $group) {
 } 
 echo '<br>';
 ?>
-<h1>Step 2: Split the graph using common project preferences</h1>
+<h1>Step 2: Split the graph (max group size: 6) using common project preferences</h1>
 <?php 
 foreach ($shaved_groups as $group) {
     echo '|----> ';
@@ -51,6 +51,15 @@ foreach ($initial_allocation as $project => $group) {
     echo '<br>';
 } 
 echo '<br>';
+?>
+<h1>Step 5: Allocate students in undesired list conflict in pre-formed groups</h1>
+<?php 
+$singles_array = array();
+foreach ($singles as $s) {
+    $singles_array[] = $s;
+}
+echo 'Conflicted students: ', implode(', ', $singles_array), '<br><br>Allocating...';
+
 ?>
 <h1>Input: Desired</h1>
 <?php 

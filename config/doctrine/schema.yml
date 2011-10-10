@@ -104,7 +104,7 @@ Project:
     extended_description:
        type: string()
        fixed: false
-       unsigned: falso
+       unsigned: false
        primary: false
        notnull: false
        autoincrement: false
@@ -117,6 +117,13 @@ Project:
       autoincrement: false
     has_gpa_cutoff:
       type: boolean
+      fixed: false
+      unsigned: false
+      primary: false
+      notnull: false
+      autoincrement: false
+    max_group_size:
+      type: integer(4)
       fixed: false
       unsigned: false
       primary: false

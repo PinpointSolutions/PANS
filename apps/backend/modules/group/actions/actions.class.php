@@ -102,7 +102,7 @@ class groupActions extends autoGroupActions
       $prefs[$snum][2] = $pref[2];
       $prefs[$snum][3] = $pref[3];
       $prefs[$snum][4] = $pref[4];
-      $students[$snum]->setGpa(mt_rand(0, 70) / 10.0);
+      $students[$snum]->setGpa(mt_rand(40, 70) / 10.0);
     }
     // END_DELETEME
 
@@ -128,6 +128,12 @@ class groupActions extends autoGroupActions
     }
     ksort($allocations);
     $this->initial_allocation = $allocations;
+
+    // Handles conflicted students due to undesired list
+
+
+    // Single-student handling.  After this point, allocations should be append-only
+    // Handles students with conflicts first, since they are likely to have preferences
 
 
     // Output to debug dump
@@ -180,6 +186,28 @@ class groupActions extends autoGroupActions
       break;
     }
     return $allocations;
+  }
+
+
+  // Attempts to assign a single student (assuming unallocated) to a group by:
+  //    Project preference
+  //    Having no other people undesiring him/her
+  //    Group has open spot
+  // Desired students are not used here because it is very unlikely that the
+  // person would be allocated there, since he/she was probably kicked out.
+  // Returns the new allocation if success.  If not, returns null.
+  protected function tryAssignOne($student, $allocations, $prefs, $undesired)
+  {
+    // Go through each one of the student's project preferences
+    foreach ($prefs[$student] as $pref) {
+      if (!array_key_exists($pref, $allocations)) { 
+        $allocations[$pref] = array($student);
+        return $allocations;
+      } else {
+        // A group exists in the student's preference. Check for conflicts
+        if (sizeof($allocations[$pref])
+      }
+    }
   }
 
 
@@ -281,7 +309,7 @@ class groupActions extends autoGroupActions
       $degrees = array_merge($degrees, 
                     explode(' ', $students[$student]->getDegreeIds()));
     $degrees = array_unique($degrees);
-    $degree_score = sizeof($degrees);
+    $degree_score = sizeof($degrees) * 7.0 / 3.0;
 
     $student_prefs = array();
     foreach ($group as $student) {
@@ -290,7 +318,7 @@ class groupActions extends autoGroupActions
       $student_prefs[] = $prefs[$student][0];
     }
     $student_prefs = array_unique($prefs);
-    $prefs_score = 5.0 / sizeof($student_prefs);
+    $prefs_score = 7.0 / sizeof($student_prefs);
 
     return $gpa_score + $degree_score + $prefs_score;
   }
