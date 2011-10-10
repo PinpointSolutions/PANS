@@ -92,6 +92,7 @@ class groupActions extends autoGroupActions
     // Shave off groups that are too big
     // Split really big groups.
     $groups = $this->shaveMultipleGroups($groups, $students, $prefs);
+    $this->shaved_groups = $groups;
 
     // Assign big groups to projects
     foreach ($groups as $group) {
@@ -141,6 +142,7 @@ class groupActions extends autoGroupActions
       $allocations[$pref] = $group;
       return $allocations;
     }
+    return $allocations;
   }
 
 
@@ -262,17 +264,21 @@ class groupActions extends autoGroupActions
   // Split big groups into multiple groups
   protected function shaveMultipleGroups($groups, $students, $prefs)
   {
+    $limit = sizeof($groups) / 6.0 + 1;
     $groups_tmp = array();
-    $leftovers = $groups;
-    while ($this->hasTooMuchLeftover($leftovers)) {
-      for ($i = 0; $i < sizeof($groups); $i++) {
-        $shaved = $this->shaveGroup($groups[$i], $students, $prefs);
+    while ($this->hasTooMuchLeftover($groups) && $limit > 0) {
+      $leftovers = array();
+      foreach ($groups as $group) {
+        $shaved = $this->shaveGroup($group, $students, $prefs);
         $groups_tmp[] = $shaved;
-        $leftovers[] = array_diff($groups[$i], $shaved);
+        $leftover = array_diff($group, $shaved);
+        if (sizeof($leftover) > 0)
+          $leftovers[] = $leftover;
       }
-      $leftovers = array_merge($leftovers, $groups_tmp);
+      $groups = $leftovers;
+      $limit--;
     }
-    return $leftovers;
+    return $groups_tmp;
   }
 
 

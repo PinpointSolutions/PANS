@@ -8,9 +8,18 @@ foreach ($allocations as $project => $group) {
     echo '<br>';
 } 
 ?>
-<h1>Groups</h1>
+<h1>Initial Groups</h1>
 <?php 
 foreach ($groups as $group) {
+    echo '| ';
+    foreach ($group as $student)
+        echo $student . ' | ';
+    echo '<br>';
+} 
+?>
+<h1>Shaved Groups</h1>
+<?php 
+foreach ($shaved_groups as $group) {
     echo '| ';
     foreach ($group as $student)
         echo $student . ' | ';
