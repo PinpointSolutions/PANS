@@ -370,6 +370,32 @@ class projectActions extends autoProjectActions
     $this->redirect('project/tool');
   }
     
+  public function executeChangeDeadline(sfWebRequest $request)
+  {
+    try {
+      // PHP Erro handling is really, really horrible
+      $deadline = DateTime::createFromFormat('Y-m-d', $request->getPostParameter('deadline'));
+      if ($deadline == false)
+        throw new Exception();
+    } catch (Exception $e) {
+      $this->getUser()->setFlash('error', 'Invalid date. Please use YYYY-MM-DD.');
+      $this->redirect('project/tool');
+    }
+
+    $conn = Doctrine_Manager::getInstance();
+    $round = Doctrine_Core::getTable('NominationRound')->findAll();
+    try {
+      $round->delete();
+    } catch (Exception $e) {}
+    
+    $round = new NominationRound();
+    $round->setDeadline($deadline->format('Y-m-d'));
+    $round->save();
+
+    $this->getUser()->setFlash('notice', 'New date applied.');
+    $this->redirect('project/tool');
+  }  
+    
   // Delete all students and their login details in the database
   public function executeClearAllStudents(sfWebRequest $request)
   {
