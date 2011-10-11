@@ -45,9 +45,9 @@ Deadline:
   </p>
 </form>
 
-<h2>Reset and Email All Students Passwords</h2>
-<form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')" action="<?php echo url_for('project/emailAllPasswords') ?>" method="POST" class="tool-form">
-  This will reset every students' passwords.  Emails will be sent out with their new ones.  (Dev: This doesn't work on your local machine.)<br><br>
+<h2>Reset and Email All Passwords</h2>
+<form enctype="multipart/form-data" onSubmit="return confirm('This will erase all existing student passwords and generate whole new ones. Are You Sure?')" action="<?php echo url_for('project/emailAllPasswords') ?>" method="POST" class="tool-form">
+  This will reset every students' passwords.  Emails will be sent out with their new ones.<br><br>
   <table>
     <tr>
       <td>Recipient Email domain</td><td><input type="text" name="subject" value="@griffithuni.edu.au" /></td>
