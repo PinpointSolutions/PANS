@@ -120,7 +120,7 @@ class projectActions extends autoProjectActions
     }
 
     // Setup the file pointer
-    $fpath = 'downloads/PANS_'.$opt.'List_'.date("Y-m-d").'.csv';
+    $fpath = '/downloads/PANS_'.$opt.'List_'.date("Y-m-d").'.csv';
     
     //we first check if the file exists. If it does we move on, if not...
     if(!file_exists(dirname($fpath)))
@@ -141,7 +141,7 @@ class projectActions extends autoProjectActions
     if(!$fp) 
     {
       //we provide feedback and redirect the user
-      $this->getUser()->setFlash('error', 'Could not open file. Please ensure that if the file already exists it is not in use.');
+      $this->getUser()->setFlash('error', 'Could not create file "'.$fpath.'" Please ensure that if the file already exists it is not in use.');
       $this->redirect('project/tool');
     }
     
@@ -169,8 +169,10 @@ class projectActions extends autoProjectActions
     fclose($fp);
 
     //notify the user of the status and location of the file
-   // $this->getUser()->setFlash('notice', 'File successfully saved to "<a href="'. $fpath .'">'. $fpath .'</a>"');//if we use more absolute filepaths we can use this
-    $this->getUser()->setFlash('notice', 'File successfully saved to '. $fpath .'');
+    $this->getUser()->setFlash('notice', 
+    'Successfully saved, <a href="http://' . $this->getRequest()->getHost() . $fpath .'"> Click to download.</a>');
+  
+    //$this->getUser()->setFlash('notice', 'File successfully saved to '. $fpath .'');
     //redirect to the tool page
     $this->redirect('project/tool');
 }
