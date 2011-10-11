@@ -14,6 +14,13 @@
   margin-bottom: 20px;
 }
 
+.action {
+  padding: 0px 40px 20px 0px;
+  display: inline;
+  position: relative;
+  float: left;
+}
+
 .tool-form li {
   margin: 10px;
 }
