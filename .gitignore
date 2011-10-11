@@ -4,6 +4,10 @@ cache/frontend/dev/*
 cache/frontend/prod/*
 cache/backend/dev/*
 cache/backend/prod/*
+!cache/frontend/dev/*.txt
+!cache/frontend/prod/*.txt
+!cache/backend/dev/*.txt
+!cache/backend/prod/*.txt
 cache/*.cache
 web/uploads/*
 # config/databases.yml
