@@ -449,12 +449,14 @@ class projectActions extends autoProjectActions
     $guard_user->save();
 
     $message = "Dear " . $guard_user->getFirstName() . "," . PHP_EOL . PHP_EOL . 
-               "Your account has been created for the project allocation and nomination system." . PHP_EOL . PHP_EOL .
+               "Your account has been created for the Project Allocation and Nomination System." . PHP_EOL . PHP_EOL .
                "Username: " . $snum . PHP_EOL .
                "Password: " . $password . PHP_EOL . PHP_EOL  .
                "Please follow the links to fill in your project nomination form:" . PHP_EOL .
                "http://" . $this->getRequest()->getHost() . PHP_EOL . PHP_EOL .
-               "Thanks,\nProject Allocation and Nomination System (PANS)";
+               "Thanks,\nProject Allocation and Nomination System (PANS)" . PHP_EOL . PHP_EOL .
+               "If you are not enrolled in 3001ICT Third Year Project but received this email, please contact " .
+               $guard_user->getEmailAddress() . "." ;
 
     $headers = 'From: "PANS" <' . $this->getUser()->getGuardUser()->getEmailAddress() . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
     
@@ -476,9 +478,10 @@ class projectActions extends autoProjectActions
   */
   public function executeEmailAllPasswords()
   {
-  // TODO: Actually email everyone not just me.
-    $this->emailPassword(2674674, 'Xavier', 'Ho');
-
+    $students = Doctrine_Core::getTable('StudentUser')->findAll();
+    foreach ($students as $student) {
+      $this->emailPassword($student->getSnum(), $student->getFirstName(), $student->getLastName());
+    }
     $this->redirect('project/tool');
   }
 
