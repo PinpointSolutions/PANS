@@ -38,7 +38,10 @@ class studentActions extends autoStudentActions
   {
     $this->student_user = $this->getRoute()->getObject();
 
-    $this->student_user->setDegreeIds(implode(' ', $this->student_user->getDegreeIds()));
+    $this->student_user->setFirstName("1 2 3");
+
+
+    $this->student_user->setDegreeIds("1 2 3");
     $this->student_user->setMajorIds(implode(' ', $this->student_user->getMajorIds()));
     $this->student_user->setSkillSetIds(implode(' ', $this->student_user->getSkillSetIds()));
 
