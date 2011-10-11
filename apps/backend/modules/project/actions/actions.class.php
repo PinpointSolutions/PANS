@@ -462,7 +462,7 @@ class projectActions extends autoProjectActions
                "http://" . $this->getRequest()->getHost() . PHP_EOL . PHP_EOL .
                "Thanks,\nProject Allocation and Nomination System (PANS)" . PHP_EOL . PHP_EOL .
                "If you are not enrolled in 3001ICT Third Year Project but received this email, please contact " .
-               $guard_user->getEmailAddress() . "." ;
+               $this->getUser()->getGuardUser()->getEmailAddress() . "." ;
 
     $headers = 'From: "PANS" <' . $this->getUser()->getGuardUser()->getEmailAddress() . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
     
@@ -471,11 +471,10 @@ class projectActions extends autoProjectActions
                     $message,
                     $headers);
         
-    if ($result === false) {
-      $this->getUser()->setFlash('notice', 'Password reset.  Email failed to send.');
-    } else {
-      $this->getUser()->setFlash('notice', 'Password reset.  Email sent.');
-    }
+    if ($result === false) 
+      return $snum;
+    else 
+      return null;
   }
   
   
@@ -484,10 +483,17 @@ class projectActions extends autoProjectActions
   */
   public function executeEmailAllPasswords()
   {
+    $failed_emails = array();
     $students = Doctrine_Core::getTable('StudentUser')->findAll();
     foreach ($students as $student) {
-      $this->emailPassword($student->getSnum(), $student->getFirstName(), $student->getLastName());
+      $r = $this->emailPassword($student->getSnum(), $student->getFirstName(), $student->getLastName());
+      if ($r != null)
+        $failed_emails[] = $r;
     }
+    if (count($failed_emails) == 0)
+      $this->getUser()->setFlash('notice', 'Passwords have been reset.  Emails sent.');
+    else
+      $this->getUser()->setFlash('error', 'Passwords have been reset.  Some emails sent.  The following students did not receieve the email: ' . implode(", ", $failed_emails) . '.');
     $this->redirect('project/tool');
   }
 
