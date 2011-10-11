@@ -282,13 +282,24 @@ class projectActions extends autoProjectActions
     
     // Get database connection
     $conn = Doctrine_Manager::getInstance();
-    $student_user = Doctrine_Core::getTable('StudentUser');
-    $guard_user = Doctrine_Core::getTable('sfGuardUser');
+    $this->guard_user_collection = new Doctrine_Collection('sfGuardUser');
     $this->student_user_collection = new Doctrine_Collection('StudentUser');
     
     // Add students
     foreach ($students as $student) 
     {
+      $guard_user = new sfGuardUser();
+      $password = $this->random_password();
+      
+      $guard_user->setEmailAddress('s' . $student['snum'] . '@griffithuni.edu.au');
+      $guard_user->setUsername($student['snum']);
+      $guard_user->setPassword($password); 
+      $guard_user->setFirstName($student['first_name']);
+      $guard_user->setLastName($student['last_name']);
+      $guard_user->setIsActive(true);
+      $guard_user->setIsSuperAdmin(false);
+      $this->guard_user_collection->add($guard_user);
+
       $user = new StudentUser();
       $user->snum = $student['snum'];
       $user->first_name = $student['first_name'];
@@ -332,19 +343,14 @@ class projectActions extends autoProjectActions
     // Commit the new students into database
     try {
       $this->student_user_collection->save();
+      $this->guard_user_collection->save();
     } catch (Doctrine_Connection_Mysql_Exception $e) {
-      $this->getUser()->setFlash('error', 'Failed to import students: ' . $e->getMessage());
+      $this->getUser()->setFlash('error', 'Failed to import students.  Please check for duplicated entries and try again.  Message: ' . $e->getMessage());
       $this->redirect('project/tool');
     }
 
     // "The task is done, m'lord."
     $this->getUser()->setFlash('notice', 'Students imported successfully.');
-
-    //for now just a placeholder - should use the return from the email function
-
-    //                    ^
-    // Xav: I'm against this.  LE might want to keep the database at initia state without 
-    // letting students know.  Unless you get her agreement on this, I will be against this idea.
 
     $this->redirect('project/tool');
     echo 'done';
