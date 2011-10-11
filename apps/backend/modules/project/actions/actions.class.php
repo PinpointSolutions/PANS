@@ -454,24 +454,26 @@ class projectActions extends autoProjectActions
     
     $guard_user->save();
 
+    // FIXME: Change the host link to the correct one
     $message = "Dear " . $guard_user->getFirstName() . "," . PHP_EOL . PHP_EOL . 
                "Your account has been created for the Project Allocation and Nomination System." . PHP_EOL . PHP_EOL .
                "Username: " . $snum . PHP_EOL .
                "Password: " . $password . PHP_EOL . PHP_EOL  .
-               "Please follow the links to fill in your project nomination form:" . PHP_EOL .
-               "http://" . $this->getRequest()->getHost() . PHP_EOL . PHP_EOL .
+               "Please follow the link to access the system." . PHP_EOL .
+               "http://" . $this->getRequest()->getHost() . 
+               $this->getRequest()->getRelativeUrlRoot() . PHP_EOL . PHP_EOL .
                "Thanks,\nProject Allocation and Nomination System (PANS)" . PHP_EOL . PHP_EOL .
                "If you are not enrolled in 3001ICT Third Year Project but received this email, please contact " .
                $this->getUser()->getGuardUser()->getEmailAddress() . "." ;
 
-    $headers = 'From: "PANS" <' . $this->getUser()->getGuardUser()->getEmailAddress() . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
+    $headers = 'From: ' . $this->getUser()->getGuardUser()->getName() . ' <' . $this->getUser()->getGuardUser()->getEmailAddress() . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
     
     $result = mail( $guard_user->getEmailAddress(),
                     "3001ICT - Your password has been created for project nominations",
                     $message,
                     $headers);
         
-    if ($result === false) 
+    if ($result == false) 
       return $snum;
     else 
       return null;
