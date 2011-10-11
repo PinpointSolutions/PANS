@@ -60,9 +60,12 @@
 }
 
 .sf_admin_form_field_pass_fail_pm {
-	min-height: 100px;	
+	min-height: 60px;	
 }
-
+/* This adds padding to the checkbox list so that they are not displaced by the label tag */
+ul.checkbox_list {
+    padding-top: 35px;
+}
 /*
 .sf_admin_form_row div label {
 	background-color: red;
@@ -114,10 +117,15 @@
 #sf_admin_container .sf_admin_form_row label
 {
   vertical-align:text-top;
- 
+  float: left;
 }
+
 #sf_admin_container .sf_admin_form_row .content
 {
   padding-left:5px;
- 
+  min-height: 40px;
+  /*Added top padding to stop the issue of the out of line check boxes, kind of moved everything down though so trying something else.
+  padding-top: 55px;
+  */
 }
+
