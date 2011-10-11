@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~            
       list:
-        title: Projet Groups
+        title: Project Groups
         hide: [id]
         batch_actions: {}
         max_per_page: 99999
