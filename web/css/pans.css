@@ -29,6 +29,13 @@ a {
   text-decoration: none;
 }
 
+/* custom rollover */
+ a:hover
+{
+    color:#FF2424;
+
+}
+
 /**************************************************************/
 /* Header division */
 #header {
