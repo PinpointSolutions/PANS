@@ -101,6 +101,13 @@ Project:
       primary: false
       notnull: false
       autoincrement: false
+    extended_description:
+       type: string()
+       fixed: false
+       unsigned: falso
+       primary: false
+       notnull: false
+       autoincrement: false
     has_additional_info:
       type: boolean
       fixed: false
