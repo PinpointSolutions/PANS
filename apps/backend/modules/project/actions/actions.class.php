@@ -408,6 +408,12 @@ class projectActions extends autoProjectActions
     $students = Doctrine_Core::getTable('StudentUser')->findAll();
     $students->delete();
     
+    $users = Doctrine_Core::getTable('sfGuardUser')->findAll();
+    foreach ($users as $user) {
+      if (!$user->getIsSuperAdmin())
+        $user->delete();
+    }
+
     $this->getUser()->setFlash('notice', 'Students deleted.');
     $this->redirect('project/tool');
   }
