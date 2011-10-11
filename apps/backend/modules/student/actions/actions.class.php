@@ -17,11 +17,35 @@ class studentActions extends autoStudentActions
   // Two strikes against symfony's parsing. =|
   
   //This function stops student users from logging into the backend.
-   public function executeIndex(sfWebRequest $request) {
-        parent::executeIndex($request);
-        $this->admin = $this->getUser()->isSuperAdmin();
-        if ($this->admin == false) {
-            $this->redirect('/logout');
-        }
-   }
+  public function executeIndex(sfWebRequest $request) {
+    parent::executeIndex($request);
+    $this->admin = $this->getUser()->isSuperAdmin();
+    if ($this->admin == false) {
+        $this->redirect('guard/logout');
+    }
+  }
+
+  public function executeEdit(sfWebRequest $request)
+  {
+    $this->student_user = $this->getRoute()->getObject();
+    $this->student_user->setDegreeIds(explode(' ', $this->student_user->getDegreeIds()));
+    $this->student_user->setMajorIds(explode(' ', $this->student_user->getMajorIds()));
+    $this->student_user->setSkillSetIds(explode(' ', $this->student_user->getSkillSetIds()));
+    $this->form = $this->configuration->getForm($this->student_user);
+  }
+
+  public function executeUpdate(sfWebRequest $request)
+  {
+    $this->student_user = $this->getRoute()->getObject();
+
+    $this->student_user->setDegreeIds(implode(' ', $this->student_user->getDegreeIds()));
+    $this->student_user->setMajorIds(implode(' ', $this->student_user->getMajorIds()));
+    $this->student_user->setSkillSetIds(implode(' ', $this->student_user->getSkillSetIds()));
+
+    $this->form = $this->configuration->getForm($this->student_user);
+
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('edit');
+  }
 }
