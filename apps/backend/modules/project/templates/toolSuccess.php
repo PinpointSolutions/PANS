@@ -55,6 +55,7 @@ $datePicker .= '</select></p>';
 After the deadline, the project nomination forms will be read-only for students.<br><br>
 Deadline: 
 <input id="date-picker" class="date-picker" name="deadline" type="text" value="<?php echo $deadline; ?>" />	
+<span class="smlInstruction">[YYYY-MM-DD]</span>
 <br><br>
 
 <?php 

@@ -46,7 +46,7 @@ a {
   background: url("../images/griffith_logo.png") no-repeat top left;
 }
 
-#title {
+div#title {
   position: relative;
   float: left;
   left: 100px;
@@ -185,6 +185,12 @@ form span.req {
 form p.instr {
   margin-top:20px;
   font-style:italic;
+}
+
+/* Small inline instruction */
+.smlInstruction {
+  font-size:12px;
+  margin-left:5px;
 }
 
 /* Help Link, used within the forms */

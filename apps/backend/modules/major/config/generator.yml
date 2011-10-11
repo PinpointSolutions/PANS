@@ -16,7 +16,7 @@ generator:
       fields:  ~
       list:   
         title:   Majors
-        display: [=major]
+        display: [id, =major]
         batch_actions: {}
       # Stops Symfony from displaying the filter in the admin view
       filter:
