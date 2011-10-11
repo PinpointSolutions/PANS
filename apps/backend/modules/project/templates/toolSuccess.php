@@ -47,6 +47,7 @@ Deadline:
 
 <h2>Reset and Email All Passwords</h2>
 <form enctype="multipart/form-data" onSubmit="return confirm('This will erase all existing student passwords and generate whole new ones. Are You Sure?')" action="<?php echo url_for('project/emailAllPasswords') ?>" method="POST" class="tool-form">
+  Note: To reset one user's password, edit them  <?php echo link_to("here", 'guard/users'); ?>  instead.<br><br>
   This will reset every students' passwords.  Emails will be sent out with their new ones.<br><br>
   <table>
     <tr>
