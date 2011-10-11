@@ -8,6 +8,8 @@ cache/backend/prod/*
 !cache/frontend/prod/*.txt
 !cache/backend/dev/*.txt
 !cache/backend/prod/*.txt
+log/*
+!log/*.txt
 cache/*.cache
 web/uploads/*
 # config/databases.yml
