@@ -110,7 +110,7 @@ class projectActions extends autoProjectActions
     {
       //ask symfony to return the data from one of our tables
       $rows = Doctrine_Core::getTable('Project')->findAll();
-      $info = array('Project id#', 'Title', 'Organisation', 'Description', 'More Info?', 'GPA Cutoff', 'Major ID\'s', 'Skill Set ID\'s');
+      $info = array('Project id#', 'Title', 'Organisation', 'Description', 'Has More Info?', 'Has GPA Cutoff?', 'Max Group Size?', 'Degree ID\'s', 'Major ID\'s', 'Skill Set ID\'s');
     }
     elseif($opt=='groups')
     {
@@ -169,7 +169,8 @@ class projectActions extends autoProjectActions
     fclose($fp);
 
     //notify the user of the status and location of the file
-    $this->getUser()->setFlash('notice', 'File successfully saved to "'. $fpath .'"');
+   // $this->getUser()->setFlash('notice', 'File successfully saved to "<a href="'. $fpath .'">'. $fpath .'</a>"');//if we use more absolute filepaths we can use this
+    $this->getUser()->setFlash('notice', 'File successfully saved to '. $fpath .'');
     //redirect to the tool page
     $this->redirect('project/tool');
 }

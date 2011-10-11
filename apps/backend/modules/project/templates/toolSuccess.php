@@ -1,6 +1,6 @@
 <h1>Tools</h1>
 <?php if ($sf_user->hasFlash('notice')): ?>
-  <div class="flash_notice"><?php echo $sf_user->getFlash('notice') ?></div>
+  <div class="flash_notice"><?php echo html_entity_decode($sf_user->getFlash('notice')) ?></div>
 <?php elseif ($sf_user->hasFlash('error')): ?>
   <div class="flash_error"><?php echo $sf_user->getFlash('error') ?></div>
 <?php endif; ?>
