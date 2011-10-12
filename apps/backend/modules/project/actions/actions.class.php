@@ -67,7 +67,7 @@ class projectActions extends autoProjectActions
 
     // Then we grab the value of the drop down box
     $opt = $request->getPostParameter('infoType');
-    
+   
     if($opt=='students')
     {
       //ask symfony to return the data from one of our tables
@@ -108,9 +108,11 @@ class projectActions extends autoProjectActions
     }
     elseif($opt=='projects')
     {
+        
       //ask symfony to return the data from one of our tables
       $rows = Doctrine_Core::getTable('Project')->findAll();
       $info = array('Project id#', 'Title', 'Organisation', 'Description', 'Has More Info?', 'Has GPA Cutoff?', 'Max Group Size?', 'Degree ID\'s', 'Major ID\'s', 'Skill Set ID\'s');
+      
     }
     elseif($opt=='groups')
     {
@@ -125,6 +127,7 @@ class projectActions extends autoProjectActions
     //we first check if the file exists. If it does we move on, if not...
     if(!file_exists(dirname($fpath)))
     {
+        
       //we then make it and check if this was successful, if not...
       if(!mkdir(dirname($fpath)))
       { 
@@ -164,7 +167,7 @@ class projectActions extends autoProjectActions
       //this method parses the array and treats all special char
       fputcsv($fp, $data);
     }
-
+    
     //close the file as we are done now
     fclose($fp);
 

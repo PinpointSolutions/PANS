@@ -30,7 +30,7 @@ class ProjectForm extends BaseProjectForm
       'has_additional_info' => new sfWidgetFormInputCheckbox(),
       'has_gpa_cutoff'      => new sfWidgetFormInputCheckbox(array(),array('title'=>'This assumes a 5.0 cutoff')),
       'max_group_size'       => new sfWidgetFormInputText(),
-      //'instructions'        => $instructions_widget,
+      'instructions'        => $instructions_widget,
       'degree_ids'          => new sfWidgetFormInputText(),
       'major_ids'           => new sfWidgetFormInputText(),
       'skill_set_ids'       => new sfWidgetFormInputText(),
