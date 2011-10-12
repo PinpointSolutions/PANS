@@ -121,62 +121,83 @@ class projectActions extends autoProjectActions
       $info = array('Group ID','Proj ID','S Number');
     }
 
-    // Setup the file pointer
-    $fpath = '/downloads/PANS_'.$opt.'List_'.date("Y-m-d").'.csv';
+    // Setup the file pointer. Notice no / at the start, this is needed for the link but has caused issues when added before the fopen was called
+    $fpath = 'downloads/PANS_'.$opt.'List_'.date("Y-m-d").'.csv';
+        //FIXME - ok, so the last problem i had with the download was that it did not correctly run fopen when the $fpath has a / at the start.
+        // as this / was needed for the link it was added there and this seemed to fix it. Bizare as the / was added to fix this seemingly SAME issue... kill me now
     
     //we first check if the file exists. If it does we move on, if not...
-    if(!file_exists(dirname($fpath)))
+    if(!file_exists(dirname($fpath)))//THIS LINE
     {
-        
+   
       //we then make it and check if this was successful, if not...
       if(!mkdir(dirname($fpath)))
       { 
+         sfLogger::debug(dirname($fpath));
         //we provide feedback and redirect the user
         $this->getUser()->setFlash('error', 'Could not create directory. Please ensure you have folder privilages for "'.dirname($fpath).'"');
         $this->redirect('project/tool');
       }
     }
+    //check if we can write to that file/directory
+    if(!is_writable($fpath))
+    {
+        $this->getUser()->setFlash('error', 'Cannot write to file. Please ensure you have folder privilages for "'.dirname($fpath).'"');
+        $this->redirect('project/tool');
+    }
 
     //open the file
-    $fp = fopen($fpath, 'w+');//or 'c'?
-
+    $fp = fopen($fpath, 'c');//or 'c'?  //FIXME - THIS LINE is the culprit so far as i can determine. That is to say, this line or its parameter values
+    
     //we then check if the fopen was successful, if not...
     if(!$fp) 
     {
+    
       //we provide feedback and redirect the user
-      $this->getUser()->setFlash('error', 'Could not create file "'.$fpath.'" Please ensure that if the file already exists it is not in use.');
+      $this->getUser()->setFlash('error', 'Could not create file "'.$fpath.'". Please ensure that if the file already exists it is not in use.');
       $this->redirect('project/tool');
     }
-    
-    //so if we got through with no errors
+    else //if $fp
+    {      
+        //so if we got through with no errors
 
-    //we write the first row using the headers
-    fputcsv($fp, $info);
-
-    //create an array to better work with symfony's data array return
-    $data = array();
-
-    //so iterate through and convert to normal array
-    foreach($rows as $r)
-    {
-     $x = -1;
-      foreach($r as $v)
-      {
-        $data[$x++] = $v;//adds value and increments $x
-      }
-      //this method parses the array and treats all special char
-      fputcsv($fp, $data);
+        //we write the first row using the headers
+        fputcsv($fp, $info);
+        
+        //create an array to better work with symfony's data array return
+        $data = array();
+        
+        //so iterate through and convert to normal array
+        foreach($rows as $r)
+        {
+         $x = 0;
+          foreach($r as $v)
+          {
+            $data[$x++] = $v;//adds value then increments $x
+          }
+          //this method parses the array and properly inputs it as csv format
+          fputcsv($fp, $data);
+        }
+        
+        //close the file as we are done now
+        if(!fclose($fp))
+        {
+            $this->getUser()->setFlash('error', 'Operation not successful. File "'.$fpath.'" not created.');
+            $this->redirect('project/tool');
+        }
+        else //fclose successful
+        {
+            //notify the user of the status and location of the file
+            $this->getUser()->setFlash('notice', 'Successfully saved, <a href="http://' .$this->getRequest()->getHost() .'/'.  $fpath .'"> Click to download.</a>');
+          
+            //redirect to the tool page
+            $this->redirect('project/tool');
+        }
+        
+       
     }
-    
-    //close the file as we are done now
-    fclose($fp);
-
-    //notify the user of the status and location of the file
-    $this->getUser()->setFlash('notice', 
-    'Successfully saved, <a href="http://' . $this->getRequest()->getHost() . $fpath .'"> Click to download.</a>');
-  
-    //$this->getUser()->setFlash('notice', 'File successfully saved to '. $fpath .'');
-    //redirect to the tool page
+    //this is a generic flash error, used for dev at one point and we should probably remove this if not needed 
+    $this->getUser()->setFlash('error', 'Issue encountered');// FIXME
     $this->redirect('project/tool');
 }
 
