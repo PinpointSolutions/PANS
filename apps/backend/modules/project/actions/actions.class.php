@@ -177,6 +177,56 @@ class projectActions extends autoProjectActions
     $this->redirect('project/tool');
 }
 
+
+
+ /* ------------------------------------------------------------------
+    
+    adds individual student
+    
+*/
+    public function executeAddStudent(sfWebRequest $request)
+    {
+        $formData =  $request->getPostParameters();
+        
+         // Get database connection
+        $conn = Doctrine_Manager::getInstance();
+        $this->guard_user_collection = new Doctrine_Collection('sfGuardUser');
+        $this->student_user_collection = new Doctrine_Collection('StudentUser');
+    
+      $guard_user = new sfGuardUser();
+      $password = $this->random_password();
+      
+      $guard_user->setEmailAddress('s' . $formData['snum'] . '@griffithuni.edu.au');//FIXME
+      $guard_user->setUsername($formData['snum']);
+      $guard_user->setPassword($password); 
+      $guard_user->setFirstName($formData['fName']);
+      $guard_user->setLastName($formData['lName']);
+      $guard_user->setIsActive(true);
+      $guard_user->setIsSuperAdmin(false);
+      $this->guard_user_collection->add($guard_user);
+
+      $user = new StudentUser();
+      $user->snum = $formData['snum'];
+      $user->first_name = $formData['fName'];
+      $user->last_name = $formData['lName'];
+      $this->student_user_collection->add($user);
+          // Commit the new student into database
+        try {
+          $this->student_user_collection->save();
+          $this->guard_user_collection->save();
+        } catch (Doctrine_Connection_Mysql_Exception $e) {
+          $this->getUser()->setFlash('error', 'Failed to import students.  Please check for duplicated entries and try again.  Message: ' . $e->getMessage());
+          $this->redirect('project/tool');
+        }
+
+        // "The task is done, m'lord."
+        $this->getUser()->setFlash('notice', 'Student "'.$formData['snum'].'" added successfully.');
+
+        $this->redirect('project/tool');
+    }
+
+
+
  /* ------------------------------------------------------------------
    Manually handling the file upload and parsing
    We have two tables, one for student forms and one for login. 
@@ -292,7 +342,7 @@ class projectActions extends autoProjectActions
       $guard_user = new sfGuardUser();
       $password = $this->random_password();
       
-      $guard_user->setEmailAddress('s' . $student['snum'] . '@griffithuni.edu.au');
+      $guard_user->setEmailAddress('s' . $student['snum'] . '@griffithuni.edu.au');//FIXME
       $guard_user->setUsername($student['snum']);
       $guard_user->setPassword($password); 
       $guard_user->setFirstName($student['first_name']);
@@ -354,7 +404,6 @@ class projectActions extends autoProjectActions
     $this->getUser()->setFlash('notice', 'Students imported successfully.');
 
     $this->redirect('project/tool');
-    echo 'done';
   }
 
 
@@ -403,6 +452,37 @@ class projectActions extends autoProjectActions
     $this->redirect('project/tool');
   }  
     
+    
+     public function executeDeleteStudent(sfWebRequest $request)
+    {
+    
+        $conn = Doctrine_Manager::getInstance();
+        $students = Doctrine_Core::getTable('StudentUser')->findAll();
+        $users = Doctrine_Core::getTable('sfGuardUser')->findAll();
+        
+        $dnum = $request->getPostParameter('snum');
+        foreach($students as $s)
+        {
+            if(strcasecmp($s['snum'], $dnum) == 0)
+            {
+                $s->delete();
+                break;
+            }
+        }
+           
+        foreach($users as $u)
+        {
+            if(strcasecmp($u['username'], $dnum) == 0)
+            {
+                $u->delete();
+                break;
+            }
+        } 
+          
+        $this->getUser()->setFlash('notice', 'Student "'.$dnum.'" deleted.');
+        $this->redirect('project/tool');
+    }
+
   // Delete all students and their login details in the database
   public function executeClearAllStudents(sfWebRequest $request)
   {
