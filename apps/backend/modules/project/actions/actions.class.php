@@ -147,7 +147,7 @@ class projectActions extends autoProjectActions
     }
 
     //open the file
-    $fp = fopen($fpath, 'c');//or 'c'?  //FIXME - THIS LINE is the culprit so far as i can determine. That is to say, this line or its parameter values
+    $fp = fopen($fpath, 'w+');//or 'c', doesnt really matter
     
     //we then check if the fopen was successful, if not...
     if(!$fp) 

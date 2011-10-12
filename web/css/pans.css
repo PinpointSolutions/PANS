@@ -36,6 +36,12 @@ a {
 
 }
 
+/* special rule to affect those placeholder <a> inside some forms */
+form table label a, form table label a:hover
+{ 
+  color:#000;
+}
+
 /**************************************************************/
 /* Header division */
 #header {

@@ -38,13 +38,13 @@ class StudentUserForm extends BaseStudentUserForm
     $instr = array( 
       //set the actual text used here
       'name'          => "This should be the name on your Student ID Card.",
-      'pass_fail'     => "Have you passed Project Management? If you have not, you can't enrol for 3001ICT.",
+      'pass_fail'     => "Have you passed Project Management? If you have not, please contact the Course Convenor.",
       'degrees'       => "",
       'majors'        => "",
       'skills'        => "",
       'gpa'           => "Cumulative Total, Not your last term total.",
-      'projPref'      => "Select from the Dropdown Box",
-      'projJust'      => "Why should you be selected for this project? You must provide one for your first preference.",
+      'projPref'      => "At least one preferance is required, simply select from the Dropdown Box",
+      'projJust'      => "Why should you be selected for this project? (You must provide one for your first preference)",
       'desiredStud'   => "Start typing the students' first names",
       'undesiredStud' => "Start typing the students' first names",
     );
@@ -53,7 +53,7 @@ class StudentUserForm extends BaseStudentUserForm
     
     // FIRST NAME
     $first_name_widget = new sfWidgetFormInputText();
-    $first_name_widget->setLabel('First Name<span class="req">*</span> 
+    $first_name_widget->setLabel('<a id="instructions_name" title="' . $instr['name'] . '">First Name </a><span class="req">*</span> 
       <a class="help" id="instructions_name" title="' . $instr['name'] . '">?</a>
       ');
 
@@ -61,12 +61,12 @@ class StudentUserForm extends BaseStudentUserForm
     // LAST NAME
     // adds the attribute to the widget itself, cannot make it affect the label. dont even try the formatted id methods, trust me. Stuck with embedding html to the label after 5 hours wasted effort :+
     $last_name_widget = new sfWidgetFormInputText();
-    $last_name_widget->setLabel('Last Name<span class="req">*</span>');
+    $last_name_widget->setLabel('<a id="instructions_name" title="' . $instr['name'] . '">Last Name </a><span class="req">*</span>');
    
 
     // PASS PM?
     $pass_fail_widget = new sfWidgetFormInputCheckbox();
-    $pass_fail_widget->setLabel('Please check this box if you passed Project Management:<span class="req">*</span> <a class="help" id="instructions_pass_fail" title="' . $instr['pass_fail'] . '">?</a>');
+    $pass_fail_widget->setLabel('<a title="' . $instr['pass_fail'] . '" id="instructions_pass_fail" >Please check this box if you passed Project Management: </a><span class="req">*</span> <a class="help" title="' . $instr['pass_fail'] . '">?</a>');
     $pass_fail_widget->setAttribute('title', $instr['pass_fail']);
   
 
@@ -76,7 +76,7 @@ class StudentUserForm extends BaseStudentUserForm
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Degree')));
-    $degrees_widget->setLabel('<a id="instructions_degrees" title="' . $instr['degrees'] . '"></a>Please indicate your Degree(s)<span class="req">*</span>');  
+    $degrees_widget->setLabel('<a title="' . $instr['degrees'] . '" id="instructions_degrees" >Please indicate your Degree(s) </a><span class="req">*</span>');  
     $degrees_widget->setAttribute('title', $instr['degrees']); 
    
    
@@ -86,19 +86,19 @@ class StudentUserForm extends BaseStudentUserForm
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('Major')));
-    $majors_widget->setLabel('<a  title="' . $instr['majors'] . '" id="instructions_majors"></a>Please indicate your Major(s)<span class="req">*</span>');  
+    $majors_widget->setLabel('<a  title="' . $instr['majors'] . '" id="instructions_majors">Please indicate your Major(s) </a>');  
     $majors_widget->setAttribute('title', $instr['majors']);
 
 
     // GPA
     $gpa_widget = new sfWidgetFormInputText();
-    $gpa_widget->setLabel('Please indicate your current GPA<span class="req">*</span> <a id="instructions_gpa"class="help"  title="' . $instr['gpa'] . '">?</a>');  
+    $gpa_widget->setLabel('<a title="' . $instr['gpa'] . '" id="instructions_gpa" >Please indicate your current GPA </a><span class="req">*</span> <a class="help"  title="' . $instr['gpa'] . '">?</a>');  
     $gpa_widget->setAttribute('title', $instr['gpa']);
   
 
     // PROJECT PREF's
     $proj1_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
-    $proj1_widget->setLabel('Nominate your first project preference<span class="req" id="degrees">*</span> <a id="instructions_projPref" class="help"  title="' . $instr['projPref'] . '">?</a>');  
+    $proj1_widget->setLabel('<a title="' . $instr['projPref'] . '" id="instructions_projPref" >Nominate your first project preference </a><span class="req">*</span> <a  class="help"  title="' . $instr['projPref'] . '">?</a>');  
     $proj1_widget->setAttribute('title', $instr['projPref']);
 
     $proj2_widget = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'add_empty' => true));
@@ -120,7 +120,7 @@ class StudentUserForm extends BaseStudentUserForm
 
     // PROJECT JUSTIFICATIONS 
     $proj_just1_widget = new sfWidgetFormTextarea();
-    $proj_just1_widget->setLabel('Please provide a justification.<span class="req">*</span>  <a id="instructions_projJust "class="help"  title="' . $instr['projJust'] . '">?</a>');
+    $proj_just1_widget->setLabel('<a title="' . $instr['projJust'] . '" id="instructions_projJust" >Please provide a justification. </a><span class="req">*</span>  <a class="help"  title="' . $instr['projJust'] . '">?</a>');
     $proj_just1_widget->setAttribute('title', $instr['projJust']); 
  
     $proj_just2_widget = new sfWidgetFormTextarea();
@@ -146,7 +146,7 @@ class StudentUserForm extends BaseStudentUserForm
         'multiple' => true,
         'expanded' => true,
         'model' => $this->getRelatedModelName('SkillSet')));
-    $skills_widget->setLabel('What are your strengths? <a id="instructions_skills"></a>');  
+    $skills_widget->setLabel('<a title="' . $instr['skills'] . '" id="instructions_skills">What are your strengths? </a>');  
     $skills_widget->setAttribute('title', $instr['skills']); 
 
     // STUDENT PREFFERANCES
@@ -158,7 +158,7 @@ class StudentUserForm extends BaseStudentUserForm
       'renderer_options'  => array('url'   => $this->getOption('url'),
                                    'model' => $this->getRelatedModelName('StudentUser'))
       )); 
-    $ystupref1_widget->setLabel('Please nominate up to five students you would like to work with. <a id="instructions_desiredStud" class="help"  title="' . $instr['desiredStud'] . '">?</a>');  
+    $ystupref1_widget->setLabel('<a title="' . $instr['desiredStud'] . '" id="instructions_desiredStud">Please nominate up to five students you would like to work with. </a><a class="help"  title="' . $instr['desiredStud'] . '">?</a>');  
     $ystupref1_widget->setAttribute('title', $instr['desiredStud']); 
   
   
@@ -210,7 +210,7 @@ class StudentUserForm extends BaseStudentUserForm
       'renderer_options'  => array('url'   => $this->getOption('url'),
                                    'model' => $this->getRelatedModelName('StudentUser'))
       )); 
-    $nstupref1_widget->setLabel('Please nominate five students that you would NOT like to work with. <a id="instructions_undesiredStud" class="help"  title="' . $instr['undesiredStud'] . '">?</a>');  
+    $nstupref1_widget->setLabel('<a title="' . $instr['undesiredStud'] . '" id="instructions_undesiredStud">Please nominate five students that you would NOT like to work with. </a><a class="help"  title="' . $instr['undesiredStud'] . '">?</a>');  
   $nstupref1_widget->setAttribute('title', $instr['undesiredStud']); 
   
 
@@ -291,8 +291,8 @@ class StudentUserForm extends BaseStudentUserForm
       'first_name'     => new sfValidatorString(array('max_length' => 64, 'required' => true)),
       'last_name'      => new sfValidatorString(array('max_length' => 64, 'required' => true)),
       'pass_fail_pm'   => new sfValidatorBoolean(array('required' => true)),
-      'major_ids'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Major'), 'required' => true)),
-      'degree_ids'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Degree'), 'required' => true)),
+      'major_ids'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Major'), 'required' => false)),
+      'degree_ids'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Degree'), 'required' => false)),
       'skill_set_ids'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('SkillSet'), 'required' => false)),
       'gpa'            => new sfValidatorNumber(array('min' => 0, 'max' => 7, 'required' => true)), // Have to set this up as a required field.
       'proj_pref1'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'required' => true)),
