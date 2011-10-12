@@ -6,7 +6,7 @@
 <?php endif; ?>
 <div class="flash_caution"><a></a>Actions here cannot be undone. Proceed with caution.<a></a></div>
 
-<h2>Project Nomination From Deadline</h2>
+<h2>Project Nomination Form Deadline</h2>
 <form enctype="multipart/form-data" action="<?php echo url_for('project/changeDeadline') ?>" method="POST" class="tool-form">
 After the deadline, the project nomination forms will be read-only for students.<br><br>
 Deadline: 
