@@ -67,6 +67,14 @@ Deadline:
   <input type="submit" value="Submit" />
 </form>
 
+<h2> Reset an individual student's password --Not working--</h2>
+<form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')"  action="<?php echo url_for('project/emailPassword') ?>" method="POST" class="tool-form formB">
+  <label for="snum">Snum:</label>S<input class="" name="snum" type="text" value="" />	<br>
+  This will reset a single student's password.  An email will be sent out with their new one.<br><br>
+  This can take a while, so please be patient. <br><br>
+  <input type="submit" value="Submit" />
+</form>
+
 <h2>Delete Data</h2>
 <div class="tool-form">
 <ul>
