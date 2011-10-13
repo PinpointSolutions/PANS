@@ -18,6 +18,7 @@ generator:
         title:   Skills
         display: [id, =skill]
         batch_actions: {}
+        max_per_page: 99999
       # Stops Symfony from displaying the filter in the admin view
       filter:
         class: false

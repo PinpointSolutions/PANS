@@ -17,6 +17,7 @@ generator:
       list:
         title:   User list
         display: [=username, created_at, updated_at, last_login]
+        max_per_page: 99999
 
       form:
         class: sfGuardUserAdminForm
