@@ -20,6 +20,7 @@ generator:
         batch_actions: {}
         object_actions:
           _edit: ~
+        max_per_page: 99999
 
       form:
         class: sfGuardUserAdminForm

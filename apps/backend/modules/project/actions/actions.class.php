@@ -661,8 +661,8 @@ at sfLogger->debug(array('2000000', 'Marcos', 'Ambrose', '', '', '', '', '0.00',
   }
 
   
-  /* E-mail an individual student user their password function ---- NOT WORKING!!!
-  public function executEmailPassword($snum)
+ /* E-mail an individual student user their password function ---- NOT WORKING!!! */
+  public function executEmailPassword()
   {
     $failed_emails = array();
     $students = Doctrine_Core::getTable('StudentUser')->findAll();
@@ -677,7 +677,7 @@ at sfLogger->debug(array('2000000', 'Marcos', 'Ambrose', '', '', '', '', '0.00',
       $this->getUser()->setFlash('error', 'No e-mails were sent, there was an issue.');
     $this->redirect('project/tool');
   }
-  */
+ 
    
   /*------------------------------------------------------------------
    File error handling from
