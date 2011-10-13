@@ -14,7 +14,7 @@ default:
 
   stylesheets:    [reset.css, pans.css, admin.css]
 
-  javascripts:    [jquery-1.6.3.min.js, jquery.datePicker.js, scripts.js]
+  javascripts:    []#jquery-1.6.3.min.js
 
   has_layout:     off
   layout:         layout

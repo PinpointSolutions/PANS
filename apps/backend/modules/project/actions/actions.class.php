@@ -37,7 +37,7 @@ class projectActions extends autoProjectActions
     }
   }
   
-  // Admin View for the Group Page
+  // Admin View for the Group Page, not affecting the 'manage/edit allocations' page
   public function executeGroup(sfWebRequest $request)
   {
     $this->groups = Doctrine_Core::getTable('ProjectAllocation')
@@ -405,7 +405,7 @@ class projectActions extends autoProjectActions
 
 
       // FIXME: Hackiness continued 
-      elseif(strcasecmp($firstLine[1],'S')==0)
+      if(strcasecmp($firstLine[1],'S')==0)
       {
 //FIXME - i still like this idea but i until i find a way to easily see which actual field each $er is referring to i cant fix it 
         /*
@@ -480,7 +480,7 @@ at sfLogger->debug(array('2000000', 'Marcos', 'Ambrose', '', '', '', '', '0.00',
     }
 
     // "The task is done, m'lord."
-    $this->getUser()->setFlash('notice', 'Students imported successfully.');
+    $this->getUser()->setFlash('notice', ''.$count.' Students imported successfully.');
 
     $this->redirect('project/tool');
   }

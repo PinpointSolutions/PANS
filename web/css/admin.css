@@ -136,3 +136,20 @@ ul.checkbox_list {
   */
 }
 
+
+/* Group Table - mostly dev tool
+this is the table generated in groupSuccess.php */
+#groupTable{
+  margin-left:20px;
+}
+
+#groupTable tr th{
+  min-width:40px;
+  padding-right:20px;
+  text-align:right;
+ 
+}
+
+#groupTable tr:hover{
+  background-color:#eee;
+}
