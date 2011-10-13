@@ -605,6 +605,25 @@ class projectActions extends autoProjectActions
     $this->redirect('project/tool');
   }
 
+  
+  /* E-mail an individual student user their password function ---- NOT WORKING!!!
+  public function executEmailPassword($snum)
+  {
+    $failed_emails = array();
+    $students = Doctrine_Core::getTable('StudentUser')->findAll();
+    while ($students = $student) {
+      $r = $this->emailPassword($student->getSnum(), $student->getFirstName(), $student->getLastName());
+      if ($r != null)
+        $failed_emails[] = $r;
+    }
+    if (count($failed_emails) == 0)
+      $this->getUser()->setFlash('notice', 'Your password has been reset.  Email sent.');
+    else
+      $this->getUser()->setFlash('error', 'No e-mails were sent, there was an issue.');
+    $this->redirect('project/tool');
+  }
+  */
+   
   /*------------------------------------------------------------------
    File error handling from
    http://www.php.net/manual/en/features.file-upload.errors.php
