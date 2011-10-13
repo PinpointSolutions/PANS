@@ -113,6 +113,7 @@ ul.checkbox_list {
 #sf_admin_container div.sf_admin_form_row.sf_admin_form_field_instructions label span.smaller
 {
   margin-top:15px;
+  margin-bottom:-35px;
   clear:both;
   display:block;
   font-size:85%;
