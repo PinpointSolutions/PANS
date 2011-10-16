@@ -62,9 +62,6 @@ class studentActions extends sfActions
     $this->form = new StudentUserForm($this->student_user,
        array('url' => $this->getController()->genUrl('student/ajax')));
 
-    // If there are values filled in, load them into the form
-
-    
     try {
       $this->allowed = $this->checkDeadline();
     } catch (Exception $e) {
@@ -145,16 +142,15 @@ class studentActions extends sfActions
     // Process the form, and redirect back to the edit page.
     $this->processForm($request, $this->form);
     $this->setTemplate('edit');
-    //$this->redirect('student/edit');
   }
+
 
   public function executeDelete(sfWebRequest $request)
   {
-    throw new sfError404Exception();
+    $this->redirect404();
   }
 
 
-// This is only marginally working. It will tell the user that the form is imcomplete, however, it doesn't tell them specifically what they have done incorrectly.
   protected function processForm(sfWebRequest $request, sfForm $form)
   {    
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
@@ -163,9 +159,10 @@ class studentActions extends sfActions
       $student_user = $form->save();
       $this->getUser()->setFlash('notice', 'Successfully Saved!');
       $this->redirect('student/edit');
-    } 
+    }
     $this->getUser()->setFlash('notice', 'Please check to make sure all required fields are filled in.');
   }
+
 
   // Check for deadline.  If it's past the date, return false
   protected function checkDeadline()
