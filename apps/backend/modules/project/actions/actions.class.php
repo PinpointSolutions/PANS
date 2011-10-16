@@ -15,9 +15,8 @@ class projectActions extends autoProjectActions
 {
   ////////////////////////////////////////////////////////////////////////
   // Pages 
-  
+
   // Admin tools page
-  // Do not modify or remove this function
   public function executeTool(sfWebRequest $request)
   {
     $this->email = $this->getUser()->getGuardUser()->getEmailAddress();
@@ -47,93 +46,78 @@ class projectActions extends autoProjectActions
 
   ////////////////////////////////////////////////////////////////////////
   // Scripts 
-  
-  
 
   /*------------------------------------------------------------------
     Export function using the fputcsv approach
   */
-   public function executeExportTables(sfWebRequest $request)
+  public function executeExportTables(sfWebRequest $request)
   {  
-
-  
     // Setup the connection
     $conn = Doctrine_Manager::getInstance();
   
     // Setup a variable to catch our data to export
-    $info;
-    $rows;
-
+    $info = null;
+    $rows = null;
 
     // Then we grab the value of the drop down box
     $opt = $request->getPostParameter('infoType');
    
-    if($opt=='students')
+    if ($opt=='students')
     {
-      //ask symfony to return the data from one of our tables
       $rows = Doctrine_Core::getTable('StudentUser')->findAll();
       $info = array(
-        'S Number', //any changes to this first cell MUST be reflected in importStudents()
+        'Student Number', //any changes to this first cell MUST be reflected in importStudents()
         'First Name', 
         'Last Name', 
         'Pass/Fail PM',
-        'Degree',
-        'Major',
-        'Skills',
+        'Degree IDs',
+        'Major IDs',
+        'Skill IDs',
         'GPA',
-        'Proj Pref 1',
-        'Proj Pref 2',
-        'Proj Pref 3',
-        'Proj Pref 4',
-        'Proj Pref 5',
-        'Desired Snum 1',
-        'Desired Snum 2',
-        'Desired Snum 3',
-        'Desired Snum 4',
-        'Desired Snum 5',
-        'Undesired Snum 1',
-        'Undesired Snum 2',
-        'Undesired Snum 3',
-        'Undesired Snum 4',
-        'Undesired Snum 5',
-        'Proj Just 1',
-        'Proj Just 2',
-        'Proj Just 3',
-        'Proj Just 4',
-        'Proj Just 5',
+        '1st Project Preference',
+        '1st Project Justification',
+        '2nd Project Preference',
+        '2nd Project Justification',
+        '3rd Project Preference',
+        '3rd Project Justification',
+        '4th Project Preference',
+        '4th Project Justification',
+        '5th Project Preference',
+        '5th Project Justification',
+        'Desired Student 1',
+        'Desired Student 2',
+        'Desired Student 3',
+        'Desired Student 4',
+        'Desired Student 5',
+        'Undesired Student 1',
+        'Undesired Student 2',
+        'Undesired Student 3',
+        'Undesired Student 4',
+        'Undesired Student 5',
         'Form Completed',
-        'Flags',
-        'created_at',
-        'updated_at');
+        'Flags');
     }
     elseif($opt=='projects')
     {
-        
-      //ask symfony to return the data from one of our tables
       $rows = Doctrine_Core::getTable('Project')->findAll();
-      $info = array('Project id#', 'Title', 'Organisation', 'Description', 'Has More Info?', 'Has GPA Cutoff?', 'Max Group Size?', 'Degree ID\'s', 'Major ID\'s', 'Skill Set ID\'s');
-      
+      $info = array('Project ID', 'Title', 'Organisation', 'Description', 'Has More Info', 'Has GPA Cutoff', 'Max Group Size', 'Degree IDs', 'Major IDs', 'Skill IDs'); 
     }
     elseif($opt=='groups')
     {
-      //ask symfony to return the data from one of our tables
       $rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
-      $info = array('Group ID','Proj ID','S Number');
+      $info = array('Group ID','Project ID','Student Number');
     }
 
     // Setup the file pointer. Notice no / at the start, this is needed for the link but has caused issues when added before the fopen was called
     $fpath = 'downloads/PANS_'.$opt.'List_'.date("Y-m-d").'.csv';
-        //FIXME - ok, so the last problem i had with the download was that it did not correctly run fopen when the $fpath has a / at the start.
-        // as this / was needed for the link it was added there and this seemed to fix it. Bizare as the / was added to fix this seemingly SAME issue... kill me now
-    
+
     //we first check if the file exists. If it does we move on, if not...
-    if(!file_exists(dirname($fpath)))//THIS LINE
+    if(!file_exists(dirname($fpath)))
     {
-   
       //we then make it and check if this was successful, if not...
       if(!mkdir(dirname($fpath)))
       { 
-         sfLogger::debug(dirname($fpath));
+        //sfLogger::debug(dirname($fpath));
         //we provide feedback and redirect the user
         $this->getUser()->setFlash('error', 'Could not create directory. Please ensure you have folder privilages for "'.dirname($fpath).'"');
         $this->redirect('project/tool');
@@ -152,15 +136,13 @@ class projectActions extends autoProjectActions
     //we then check if the fopen was successful, if not...
     if(!$fp) 
     {
-    
       //we provide feedback and redirect the user
       $this->getUser()->setFlash('error', 'Could not create file "'.$fpath.'". Please ensure that if the file already exists it is not in use.');
       $this->redirect('project/tool');
     }
-    else //if $fp
+    else
     {      
         //so if we got through with no errors
-
         //we write the first row using the headers
         fputcsv($fp, $info);
         
@@ -170,10 +152,9 @@ class projectActions extends autoProjectActions
         //so iterate through and convert to normal array
         foreach($rows as $r)
         {
-         $x = 0;
           foreach($r as $v)
           {
-            $data[$x++] = $v;//adds value then increments $x
+            $data[] = $v;
           }
           //this method parses the array and properly inputs it as csv format
           fputcsv($fp, $data);
@@ -185,7 +166,7 @@ class projectActions extends autoProjectActions
             $this->getUser()->setFlash('error', 'Operation not successful. File "'.$fpath.'" not created.');
             $this->redirect('project/tool');
         }
-        else //fclose successful
+        else 
         {
             //notify the user of the status and location of the file
             $this->getUser()->setFlash('notice', 'Successfully saved, <a href="http://' .$this->getRequest()->getHost() .'/'.  $fpath .'"> Click to download.</a>');
@@ -193,8 +174,6 @@ class projectActions extends autoProjectActions
             //redirect to the tool page
             $this->redirect('project/tool');
         }
-        
-       
     }
     //this is a generic flash error, used for dev at one point and we should probably remove this if not needed 
     $this->getUser()->setFlash('error', 'Issue encountered');// FIXME
@@ -202,13 +181,10 @@ class projectActions extends autoProjectActions
 }
 
 
-
- /* ------------------------------------------------------------------
-    
+  /*------------------------------------------------------------------
     adds individual student
-    
-*/
-    public function executeAddStudent(sfWebRequest $request)
+  */
+  public function executeAddStudent(sfWebRequest $request)
   {
       $formData =  $request->getPostParameters();
       
@@ -266,77 +242,74 @@ class projectActions extends autoProjectActions
   */
   public function executeImportStudents(sfWebRequest $request)
   {
-    //sfLogger::debug($request);
-    
+    // Get database connection
+    $conn = Doctrine_Manager::getInstance();
+    $this->guard_user_collection = new Doctrine_Collection('sfGuardUser');
+    $this->student_user_collection = new Doctrine_Collection('StudentUser');
+
     // Ensure the file is uploaded okay
     if ($_FILES['studentFile']['error'] !== UPLOAD_ERR_OK) {
       $this->getUser()->setFlash('error', 
             $this->file_upload_error_message($_FILES['studentFile']['error']));
       $this->redirect('project/tool');
     }
-    // Reads the entire content
+    // Read the entire content
     $raw_data = file_get_contents($_FILES['studentFile']['tmp_name']);
     $raw_data = explode("\n", $raw_data); 
    
     // Grab the header and remove it from $raw_data
     $firstLine = array_shift($raw_data);
 
-    //setup some variables to help capture the data read
-    $students = array();
-    $count = 0;// used in both cases below to define student[index's]
-
-
-  //now check the header to determine how to handle
-
-  // FIXME: This is really hacky. I'm not a fan but whatever.
-  // We should employ error checking and not ... checking for an unused field.
-  if(strcasecmp($firstLine[0],'N')==0)//this is always the first cell generated by learning@griffith, notice the [0]
-  {
-    //LEARNING@GRIFFITH LAYOUT
-    // Assume index 2 is ID, and index 3 is name. Store them as such.
-    foreach ($raw_data as $line) {
-        $items = str_getcsv($line);
-        if (count($items) < 2)
-          continue;
-        $id = $items[2];
-        $name = explode(",", $items[3]);
-        $firstName = $name[1];
-        $lastName = $name[0];
-        $students[$count] = array('snum' => $id, 
-                              'first_name' => $firstName, 
-                              'last_name' => $lastName);
-        $count++;
-      }
-  }
-  elseif(strcasecmp($firstLine[1],'S')==0)//this must match with the first cell as set in exportTables(), notice the [1]
-  {  
-    //PANS LAYOUT
-    // Assume index 0 is ID, and each field follows as in the database. Store them as such.
-    foreach ($raw_data as $line) 
+    //now check the header to determine how to handle
+    // FIXME: This is really hacky. I'm not a fan but whatever.
+    // We should employ error checking and not ... checking for an unused field.
+    if (strcasecmp($firstLine[0],'N') == 0)
     {
-        $items = str_getcsv($line);
-        if (count($items) < 2)
-          continue;
-    //two possible approaches
-    //  1. to define exact structure
-    //  2. to treat it the same way it exports
-    // the second option makes more sense and, just 
-    // like the export- works irrespective to database 
-    // structure changes 
-
-    //FIXME - this was/is not actually continueing through to how the data is actually being entered into the database - check below sections of code
- /*
-        $x = 0;
-        $students[$count] = array();
-        foreach($items as $item)
-        {
-            $students[$count][$x++] = $item;
+      // LARNING@GRIFFITH LAYOUT
+      // Assume index 2 is ID, and index 3 is name. Store them as such.
+      foreach ($raw_data as $line) {
+          $items = str_getcsv($line);
+          if (count($items) < 2)
+            continue;
+          $id = $items[2];
+          $name = explode(",", $items[3]);
+          $firstName = $name[1];
+          $lastName = $name[0];
+          $students[$count] = array('snum' => $id, 
+                                'first_name' => $firstName, 
+                                'last_name' => $lastName);
+          $count++;
         }
-        $count++;
-         
-   FIXME  - no longer needed if working
- 
-       */
+    }
+    elseif (strcasecmp($firstLine[1],'S') == 0)
+    {  
+      // PANS LAYOUT
+      // Assume index 0 is ID, and each field follows as in the database. Store them as such.
+      foreach ($raw_data as $line) 
+      {
+          $items = str_getcsv($line);
+          if (count($items) < 2)
+            continue;
+      // two possible approaches
+      //  1. to define exact structure
+      //  2. to treat it the same way it exports
+      // the second option makes more sense and, just 
+      // like the export- works irrespective to database 
+      // structure changes 
+
+      //FIXME - this was/is not actually continueing through to how the data is actually being entered into the database - check below sections of code
+   /*
+          $x = 0;
+          $students[$count] = array();
+          foreach($items as $item)
+          {
+              $students[$count][$x++] = $item;
+          }
+          $count++;
+           
+     FIXME  - no longer needed if working
+   
+         */
         $x = 0;
         $students[$count++] = array(
           'snum'           =>     $items[$x++],
@@ -377,11 +350,7 @@ class projectActions extends autoProjectActions
     }
   }
     
-    
-    // Get database connection
-    $conn = Doctrine_Manager::getInstance();
-    $this->guard_user_collection = new Doctrine_Collection('sfGuardUser');
-    $this->student_user_collection = new Doctrine_Collection('StudentUser');
+
     
     // Add students
     foreach ($students as $student) 
