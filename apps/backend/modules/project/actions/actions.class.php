@@ -59,11 +59,8 @@ class projectActions extends autoProjectActions
     $fields = null;
     $rows = null;
 
-    // Then we grab the value of the drop down box
     $opt = $request->getPostParameter('infoType');
-   
-    if ($opt == 'students')
-    {
+    if ($opt == 'students') {
       $rows = Doctrine_Core::getTable('StudentUser')->findAll();
       $fields = array(
         'ID', //any changes to this first cell MUST be reflected in importStudents()
@@ -96,79 +93,49 @@ class projectActions extends autoProjectActions
         'Form Completed',
         'Flags');
     }
-    elseif($opt == 'projects')
-    {
+    elseif ($opt == 'projects') {
       $rows = Doctrine_Core::getTable('Project')->findAll();
       $fields = array('Project ID', 'Title', 'Organisation', 'Description', 'Has More Info', 'Has GPA Cutoff', 'Max Group Size', 'Degree IDs', 'Major IDs', 'Skill IDs'); 
     }
-    elseif($opt == 'groups')
-    {
+    elseif ($opt == 'groups') {
       $rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
       $fields = array('Group ID','Project ID','Student Number');
     }
 
     // Setup the file pointer. Notice no / at the start, this is needed for the link but has caused issues when added before the fopen was called
     $fpath = 'downloads/PANS_'.$opt.'List_'.date("Y-m-d").'.csv';
+    mkdir(dirname($fpath));
 
-    //we first check if the file exists. If it does we move on, if not...
-    if(!file_exists(dirname($fpath)))
-    {
-      //we then make it and check if this was successful, if not...
-      if(!mkdir(dirname($fpath)))
-      { 
-        $this->getUser()->setFlash('error', 'Could not create directory. Please ensure you have folder privilages for "'.dirname($fpath).'"');
-        $this->redirect('project/tool');
-      }
-    }
-
-    //open the file
+    // open the file
     $fp = fopen($fpath, 'w');
-    
-    //we then check if the fopen was successful, if not...
-    if(!$fp) 
-    {
-      //we provide feedback and redirect the user
+    if(!$fp) {
       $this->getUser()->setFlash('error', 'Could not create file "'.$fpath.'". Please ensure that if the file already exists it is not in use.');
       $this->redirect('project/tool');
+    }     
+
+    // we write the first row using the headers
+    fputcsv($fp, $fields);
+
+    // so iterate through and convert to normal array
+    foreach($rows as $r) {
+      $data = array();
+      $data[] = $r->getSnum();
+      $data[] = $r->getFirstName() . ' ' . $r->getLastName();
+      fputcsv($fp, $data);
     }
-    else
-    {      
-        //so if we got through with no errors
-        //we write the first row using the headers
-        fputcsv($fp, $fields);
-        
-        //create an array to better work with symfony's data array return
-        $data = array();
-        
-        //so iterate through and convert to normal array
-        foreach($rows as $r)
-        {
-          foreach($r as $v)
-          {
-            $data[] = $v;
-          }
-          //this method parses the array and properly inputs it as csv format
-          fputcsv($fp, $data);
-        }
-        
-        //close the file as we are done now
-        if(!fclose($fp))
-        {
-            $this->getUser()->setFlash('error', 'Operation not successful. File "'.$fpath.'" not created.');
-            $this->redirect('project/tool');
-        }
-        else 
-        {
-            //notify the user of the status and location of the file
-            $this->getUser()->setFlash('notice', 'Successfully saved, <a href="http://' .$this->getRequest()->getHost() .'/'.  $fpath .'"> Click to download.</a>');
-          
-            //redirect to the tool page
-            $this->redirect('project/tool');
-        }
+    
+    // close the file as we are done now
+    if(!fclose($fp))
+    {
+      $this->getUser()->setFlash('error', 'Operation not successful. File "'.$fpath.'" not created.');
+      $this->redirect('project/tool');
     }
-    //this is a generic flash error, used for dev at one point and we should probably remove this if not needed 
-    $this->getUser()->setFlash('error', 'Issue encountered');// FIXME
-    $this->redirect('project/tool');
+    else 
+    {
+      // notify the user of the status and location of the file
+      $this->getUser()->setFlash('notice', 'Successfully saved.  <a href="http://' .$this->getRequest()->getHost() .'/'.  $fpath .'"> Click to download.</a>');
+      $this->redirect('project/tool');
+    }
   }
 
 
