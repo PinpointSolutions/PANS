@@ -482,6 +482,7 @@ class projectActions extends autoProjectActions
   /*------------------------------------------------------------------
     Resets one student's password and emails him/her the new password
     Deletes the old password.  Unfortunately even we don't know what your old password was.
+    Return null on success.
   */
   protected function emailPassword($snum, $first_name, $last_name)
   {
@@ -532,7 +533,7 @@ class projectActions extends autoProjectActions
   /*------------------------------------------------------------------
    Mass email every student their resetted passwords
   */
-  public function executeEmailAllPasswords()
+  public function executeEmailAllPasswords(sfWebRequest $request)
   {
     $failed_emails = array();
     $students = Doctrine_Core::getTable('StudentUser')->findAll();
@@ -549,20 +550,21 @@ class projectActions extends autoProjectActions
   }
 
   
- /* E-mail an individual student user their password function ---- NOT WORKING!!! */
-  public function executEmailPassword()
+  /* E-mail an individual student user their password function */
+  public function executeEmailPassword(sfWebRequest $request)
   {
-    $failed_emails = array();
-    $students = Doctrine_Core::getTable('StudentUser')->findAll();
-    while ($students = $student) {
-      $r = $this->emailPassword($student->getSnum(), $student->getFirstName(), $student->getLastName());
-      if ($r != null)
-        $failed_emails[] = $r;
+    $snum = $request->getPostParameter('snum');
+    $student = Doctrine_Core::getTable('StudentUser')->find(array($snum));
+    if (!$student) {
+      $this->getUser()->setFlash('error', 'Invalid student number.');
+      $this->redirect('project/tool');
     }
-    if (count($failed_emails) == 0)
+
+    $r = $this->emailPassword($student->getSnum(), $student->getFirstName(), $student->getLastName());
+    if ($r == null)
       $this->getUser()->setFlash('notice', 'Your password has been reset.  Email sent.');
     else
-      $this->getUser()->setFlash('error', 'No e-mails were sent, there was an issue.');
+      $this->getUser()->setFlash('error', 'Oops.  An error occured.');
     $this->redirect('project/tool');
   }
  
@@ -599,7 +601,7 @@ class projectActions extends autoProjectActions
   {
     $length = 8;
     // 0 and O, l and 1 are all removed to prevent silly people who can't read to make mistakes.
-    $characters = '23456789abcdefghijkmnopqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ';
+    $characters = '23456789abcdefghijkmnpqrstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ';
     $string = '';    
     for ($p = 0; $p < $length; $p++) {
         $string .= $characters[mt_rand(0, strlen($characters))];
