@@ -120,12 +120,6 @@ class projectActions extends autoProjectActions
         $this->redirect('project/tool');
       }
     }
-    //check if we can write to that file/directory
-    // if(!is_writable($fpath))
-    // {
-    //     $this->getUser()->setFlash('error', 'Cannot write to file. Please ensure you have folder privilages for "'.dirname($fpath).'"');
-    //     $this->redirect('project/tool');
-    // }
 
     //open the file
     $fp = fopen($fpath, 'w');
