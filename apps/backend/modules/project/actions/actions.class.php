@@ -65,7 +65,7 @@ class projectActions extends autoProjectActions
     if(!$fp) {
       $this->getUser()->setFlash('error', 'Could not create file "'.$fpath.'". Please ensure that if the file already exists it is not in use.');
       $this->redirect('project/tool');
-    }     
+    } 
 
     if (strcasecmp($opt, 'students') == 0) {
       $rows = Doctrine_Core::getTable('StudentUser')->findAll();
@@ -152,7 +152,15 @@ class projectActions extends autoProjectActions
     }
     elseif (strcasecmp($opt, 'groups') == 0) {
       $rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
-      $fields = array('Group ID','Project ID','Student Number');
+      $fields = array('Project ID','Student Number');
+      fputcsv($fp, $fields);
+      foreach($rows as $r) {
+        $data = array(  // Order is very important here. Do not change them unless you also change the fields order above
+          $r->getProjectId(),
+          $r->getSnum()
+        );
+        fputcsv($fp, $data);
+      }
     }
 
     // close the file as we are done now
