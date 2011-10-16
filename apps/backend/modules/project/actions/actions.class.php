@@ -62,7 +62,7 @@ class projectActions extends autoProjectActions
     // Then we grab the value of the drop down box
     $opt = $request->getPostParameter('infoType');
    
-    if ($opt=='students')
+    if ($opt == 'students')
     {
       $rows = Doctrine_Core::getTable('StudentUser')->findAll();
       $info = array(
@@ -97,12 +97,12 @@ class projectActions extends autoProjectActions
         'Form Completed',
         'Flags');
     }
-    elseif($opt=='projects')
+    elseif($opt == 'projects')
     {
       $rows = Doctrine_Core::getTable('Project')->findAll();
       $info = array('Project ID', 'Title', 'Organisation', 'Description', 'Has More Info', 'Has GPA Cutoff', 'Max Group Size', 'Degree IDs', 'Major IDs', 'Skill IDs'); 
     }
-    elseif($opt=='groups')
+    elseif($opt == 'groups')
     {
       $rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
       $info = array('Group ID','Project ID','Student Number');
@@ -297,15 +297,15 @@ class projectActions extends autoProjectActions
     }
     
     // Add students
-    foreach ($row_data as $student) {
-      $data = explode(",", $student);
-
+    foreach ($raw_data as $student) {
+      $data = str_getcsv($student);
+      
       $user = new StudentUser();
       $user->setSnum($data[$columns['ID']]);
 
       // If the name contains a comma, last name comes first
       $name = $data[$columns['Name']];
-      if (in_array(",", $name)) {
+      if (strpos($name, ",") !== false) {
         $n = explode(",", $name);
         $user->setLastName($n[0]);
         $user->setFirstName($n[1]);
@@ -348,7 +348,8 @@ class projectActions extends autoProjectActions
       } catch (Exception $e) {
         // Well, too bad. You get what you get.
       }
-      $this->student_user_collection->add($user);
+      if ($user->getSnum() != 0)
+        $this->student_user_collection->add($user);
 
       // FIXME - allow more than just griffith default domain emails
       $guard_user = new sfGuardUser();
