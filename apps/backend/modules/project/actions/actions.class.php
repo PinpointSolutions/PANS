@@ -54,13 +54,20 @@ class projectActions extends autoProjectActions
   {  
     // Setup the connection
     $conn = Doctrine_Manager::getInstance();
-  
-    // Setup a variable to catch our data to export
-    $fields = null;
-    $rows = null;
-
     $opt = $request->getPostParameter('infoType');
-    if ($opt == 'students') {
+
+    // Setup the file pointer. Notice no / at the start, this is needed for the link but has caused issues when added before the fopen was called
+    $fpath = 'downloads/PANS_' . $opt . '_List_' . date("Y-m-d") . '.csv';
+    mkdir(dirname($fpath));
+
+    // open the file
+    $fp = fopen($fpath, 'w');
+    if(!$fp) {
+      $this->getUser()->setFlash('error', 'Could not create file "'.$fpath.'". Please ensure that if the file already exists it is not in use.');
+      $this->redirect('project/tool');
+    }     
+
+    if (strcasecmp($opt, 'students') == 0) {
       $rows = Doctrine_Core::getTable('StudentUser')->findAll();
       $fields = array(
         'ID', //any changes to this first cell MUST be reflected in importStudents()
@@ -91,39 +98,63 @@ class projectActions extends autoProjectActions
         'Undesired Student 4',
         'Undesired Student 5',
         'Form Completed',
-        'Flags');
+        'Flag');
+      fputcsv($fp, $fields);
+      foreach($rows as $r) {
+        $data = array(  // Order is very important here. Do not change them unless you also change the fields order above
+          $r->getSnum(),
+          $r->getFirstName() . ' ' . $r->getLastName(),
+          $r->getPassFailPm(),
+          $r->getDegreeIds(),
+          $r->getMajorIds(),
+          $r->getSkillSetIds(),
+          $r->getGpa(),
+          $r->getProjPref1(),
+          $r->getProjJust1(),
+          $r->getProjPref2(),
+          $r->getProjJust2(),
+          $r->getProjPref3(),
+          $r->getProjJust3(),
+          $r->getProjPref4(),
+          $r->getProjJust4(),
+          $r->getProjPref5(),
+          $r->getProjJust5(),
+          $r->getYStuPref1(),
+          $r->getYStuPref2(),
+          $r->getYStuPref3(),
+          $r->getYStuPref4(),
+          $r->getYStuPref5(),
+          $r->getFormCompleted(),
+          $r->getFlag(),
+          );
+        fputcsv($fp, $data);
+      }
     }
-    elseif ($opt == 'projects') {
+    elseif (strcasecmp($opt, 'projects') == 0) {
       $rows = Doctrine_Core::getTable('Project')->findAll();
-      $fields = array('Project ID', 'Title', 'Organisation', 'Description', 'Has More Info', 'Has GPA Cutoff', 'Max Group Size', 'Degree IDs', 'Major IDs', 'Skill IDs'); 
+      $fields = array('Title', 'Organisation', 'Description', 'Extended Description', 'Has More Info', 'Has GPA Cutoff', 'Max Group Size', 'Degree IDs', 'Major IDs', 'Skill IDs');
+      fputcsv($fp, $fields);
+      foreach($rows as $r) {
+        $data = array(  // Order is very important here. Do not change them unless you also change the fields order above
+          $r->getTitle(),
+          $r->getOrganisation(),
+          preg_replace("\n", "   ", $r->getDescription()),
+          preg_replace("\n", "   ", $r->getExtendedDescription()),
+          $r->getHasAdditionalInfo(),
+          $r->getHasGpaCutoff(),
+          $r->getMaxGroupSize(),
+          $r->getDegreeIds(),
+          $r->getMajorIds(),
+          $r->getSkillSetIds()
+        );
+        fputcsv($fp, $data);
+      }
     }
-    elseif ($opt == 'groups') {
+    elseif (strcasecmp($opt, 'groups') == 0) {
       $rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
       $fields = array('Group ID','Project ID','Student Number');
     }
 
-    // Setup the file pointer. Notice no / at the start, this is needed for the link but has caused issues when added before the fopen was called
-    $fpath = 'downloads/PANS_'.$opt.'List_'.date("Y-m-d").'.csv';
-    mkdir(dirname($fpath));
-
-    // open the file
-    $fp = fopen($fpath, 'w');
-    if(!$fp) {
-      $this->getUser()->setFlash('error', 'Could not create file "'.$fpath.'". Please ensure that if the file already exists it is not in use.');
-      $this->redirect('project/tool');
-    }     
-
-    // we write the first row using the headers
-    fputcsv($fp, $fields);
-
-    // so iterate through and convert to normal array
-    foreach($rows as $r) {
-      $data = array();
-      $data[] = $r->getSnum();
-      $data[] = $r->getFirstName() . ' ' . $r->getLastName();
-      fputcsv($fp, $data);
-    }
-    
     // close the file as we are done now
     if(!fclose($fp))
     {
