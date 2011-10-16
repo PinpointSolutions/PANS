@@ -39,9 +39,6 @@ class groupActions extends autoGroupActions
 
     // Grab student information for desired and undesired and student ids
     foreach ($ss as $student) {
-      // FIXME: Discount any students whose forms are not completed.
-      // if ($student->getFormCompleted == 0)
-      //   continue;
       $flags[$student->getSnum()] = null;
       $students[$student->getSnum()] = $student;
       $desired[$student->getSnum()] = array_unique(array($student->getYStuPref1(),
@@ -73,41 +70,41 @@ class groupActions extends autoGroupActions
     }
     
     // DELETEME: Add dummy data for sorting testing
-    for ($i = 0; $i < 16; $i++) {
-      $n = mt_rand(0, 2);
-      $m = mt_rand(0, 5);
-      $num_desire = mt_rand(0, $n);
-      $num_undesire = mt_rand(0, $m);
+    // for ($i = 0; $i < 16; $i++) {
+    //   $n = mt_rand(0, 2);
+    //   $m = mt_rand(0, 5);
+    //   $num_desire = mt_rand(0, $n);
+    //   $num_undesire = mt_rand(0, $m);
       
-      $snum = 2000000 + $i;
-      $pref = array_rand($projects, 5);
-      shuffle($pref);
+    //   $snum = 2000000 + $i;
+    //   $pref = array_rand($projects, 5);
+    //   shuffle($pref);
 
-      if ($num_desire > 1)
-        $desired[$snum] = array_rand($students, $num_desire);
-      elseif ($num_desire == 1)
-        $desired[$snum] = array(array_rand($students, $num_desire));
-      else
-        $desired[$snum] = array();
+    //   if ($num_desire > 1)
+    //     $desired[$snum] = array_rand($students, $num_desire);
+    //   elseif ($num_desire == 1)
+    //     $desired[$snum] = array(array_rand($students, $num_desire));
+    //   else
+    //     $desired[$snum] = array();
 
-      if ($num_undesire > 1)
-        $undesired[$snum] = array_rand($students, $num_undesire);
-      elseif ($num_undesire == 1)
-        $undesired[$snum] = array(array_rand($students, $num_undesire));
-      else
-        $undesired[$snum] = array();
+    //   if ($num_undesire > 1)
+    //     $undesired[$snum] = array_rand($students, $num_undesire);
+    //   elseif ($num_undesire == 1)
+    //     $undesired[$snum] = array(array_rand($students, $num_undesire));
+    //   else
+    //     $undesired[$snum] = array();
 
-      $prefs[$snum][0] = $pref[0];
-      $prefs[$snum][1] = $pref[1];
-      $prefs[$snum][2] = $pref[2];
-      $prefs[$snum][3] = $pref[3];
-      $prefs[$snum][4] = $pref[4];
-    }
-    for ($i = 0; $i < 100; $i++) {
-      $snum = 2000000 + $i;
-      $students[$snum]->setGpa(mt_rand(10, 70) / 10.0);
-      $students[$snum]->setDegreeIds(mt_rand(1, 3));
-    }
+    //   $prefs[$snum][0] = $pref[0];
+    //   $prefs[$snum][1] = $pref[1];
+    //   $prefs[$snum][2] = $pref[2];
+    //   $prefs[$snum][3] = $pref[3];
+    //   $prefs[$snum][4] = $pref[4];
+    // }
+    // for ($i = 0; $i < 100; $i++) {
+    //   $snum = 2000000 + $i;
+    //   $students[$snum]->setGpa(mt_rand(10, 70) / 10.0);
+    //   $students[$snum]->setDegreeIds(mt_rand(1, 3));
+    // }
     // END_DELETEME
 
     // Figure out the big groups
@@ -170,7 +167,7 @@ class groupActions extends autoGroupActions
     // and put them into open spots, with smaller groups first
     shuffle($unallocated_students);
     foreach ($unallocated_students as $us) {
-      $new_allocations = $this->tryAssignNoPreference($us, $allocations, $projects, $undesired);
+      $new_allocations = $this->tryAssignNoPreference($us, $allocations, $students, $projects, $undesired);
       if (!$new_allocations) {
         continue;
       } else {
@@ -336,7 +333,7 @@ class groupActions extends autoGroupActions
 
   // Similar to the function above, but does a best-fit algorithm instead.  Smaller groups
   // have higher preferences in this section.
-  protected function tryAssignNoPreference($student, $allocations, $projects, $undesired)
+  protected function tryAssignNoPreference($student, $allocations, $students, $projects, $undesired)
   {
     // Sort the allocations by group size, with smallest group first
     uasort($allocations, function ($a, $b) {
@@ -350,6 +347,9 @@ class groupActions extends autoGroupActions
       foreach ($group as $allocated_student)
         if (in_array($student, $undesired[$allocated_student]))
           continue 2;
+      // Skip if this student's form isn't completed.
+      if ($students[$student]->getFormCompleted() == false)
+        continue;
       // Okay, you can probably join us.
       $allocations[$project] = array_merge($allocations[$project], array($student));
       return $allocations;
@@ -379,7 +379,7 @@ class groupActions extends autoGroupActions
     foreach ($unallocated as $student) {
       $degree_id = $students[$student]->getDegreeIds();
       if ($degree_id == null)
-        continue;
+        $degree_id = 0;
       if (array_key_exists($degree_id, $degrees))
         $degrees[$degree_id][] = $student;
       else
@@ -387,8 +387,8 @@ class groupActions extends autoGroupActions
     }
     $interleaved = array();
     while (sizeof($degrees, 1) - sizeof($degrees) != 0) {
-      for ($i = 1; $i <= sizeof($degrees); $i++) {
-        if (sizeof($degrees[$i]) == 0)
+      for ($i = 0; $i < sizeof($degrees); $i++) {
+        if (!array_key_exists($i, $degrees) || sizeof($degrees[$i]) == 0)
           continue;
         $s = array_pop($degrees[$i]);
         $interleaved[] = $s;
