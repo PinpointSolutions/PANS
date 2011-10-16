@@ -13,6 +13,52 @@ require_once dirname(__FILE__).'/../lib/groupGeneratorHelper.class.php';
  */
 class groupActions extends autoGroupActions
 {
+  public function executeCreate(sfWebRequest $request)
+  {
+    $this->form = $this->configuration->getForm();
+    $this->project_allocation = $this->form->getObject();
+    $params = $request->getParameter($this->form->getName());
+    $this->setTemplate('new');
+
+    // Make sure the new allocation doesn't exceed the max group size
+    $p = Doctrine_Core::getTable('Project')
+      ->find(array($params['project_id']));
+
+    $size = Doctrine_Core::getTable('ProjectAllocation')
+      ->findBy('project_id', $params['project_id'])
+      ->count();
+
+    if ($p->getMaxGroupSize() >= $size) {
+      $this->getUser()->setFlash('error', 'Failed to save: this change will exceed the max group size of the project.');
+      return;
+    }
+
+    $this->processForm($request, $this->form);
+  }
+
+  public function executeUpdate(sfWebRequest $request)
+  {
+    $this->project_allocation = $this->getRoute()->getObject();
+    $this->form = $this->configuration->getForm($this->project_allocation);
+    $params = $request->getParameter($this->form->getName());
+    $this->setTemplate('new');
+
+    // Make sure the new allocation doesn't exceed the max group size
+    $p = Doctrine_Core::getTable('Project')
+      ->find(array($params['project_id']));
+
+    $size = Doctrine_Core::getTable('ProjectAllocation')
+      ->findBy('project_id', $params['project_id'])
+      ->count();
+
+    if ($p->getMaxGroupSize() <= $size) {
+      $this->getUser()->setFlash('error', 'Failed to save: this change will exceed the max group size of the project.');
+      return;
+    }
+
+    $this->processForm($request, $this->form);
+  }
+
   public function executeAllocate(sfWebRequest $request)
   {
     // Load all the necessary data
