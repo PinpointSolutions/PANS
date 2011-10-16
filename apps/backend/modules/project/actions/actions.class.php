@@ -185,7 +185,7 @@ class projectActions extends autoProjectActions
   {
       $formData =  $request->getPostParameters();
       
-       // Get database connection
+      // Get database connection
       $conn = Doctrine_Manager::getInstance();
       $this->guard_user_collection = new Doctrine_Collection('sfGuardUser');
       $this->student_user_collection = new Doctrine_Collection('StudentUser');
