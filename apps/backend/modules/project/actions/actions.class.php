@@ -357,7 +357,8 @@ class projectActions extends autoProjectActions
       $guard_user->setLastName($user->getLastName());
       $guard_user->setIsActive(true);
       $guard_user->setIsSuperAdmin(false);
-      $this->guard_user_collection->add($guard_user);
+      if ($user->getSnum() != 0)
+        $this->guard_user_collection->add($guard_user);
     }
 
     // Commit the new students into database
