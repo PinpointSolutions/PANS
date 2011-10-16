@@ -61,6 +61,9 @@ class studentActions extends sfActions
     // Create the form, and point the autocompletion to the ajax helper
     $this->form = new StudentUserForm($this->student_user,
        array('url' => $this->getController()->genUrl('student/ajax')));
+
+    // If there are values filled in, load them into the form
+
     
     try {
       $this->allowed = $this->checkDeadline();
@@ -129,9 +132,12 @@ class studentActions extends sfActions
     // Grab a copy of the requests and do some post-POST-processing, and then
     // Copy it back in before the form is saved.
     $params = $request->getParameter($this->form->getName());
-    $params['degree_ids'] = implode(' ', $params['degree_ids']);
-    $params['major_ids'] = implode(' ', $params['major_ids']);
-    $params['skill_set_ids'] = implode(' ', $params['skill_set_ids']);
+    if (array_key_exists('degree_ids', $params))
+      $params['degree_ids'] = implode(' ', $params['degree_ids']);
+    if (array_key_exists('major_ids', $params))
+      $params['major_ids'] = implode(' ', $params['major_ids']);
+    if (array_key_exists('skill_set_ids', $params))
+      $params['skill_set_ids'] = implode(' ', $params['skill_set_ids']);
     $params['form_completed'] = true;
     $request->setParameter($this->form->getName(), $params);
     // END SQL DATABASE HACK.  CONGRATULATIONS.  YOU LIVE.  FOR NOW.
@@ -139,7 +145,7 @@ class studentActions extends sfActions
     // Process the form, and redirect back to the edit page.
     $this->processForm($request, $this->form);
     $this->setTemplate('edit');
-    $this->redirect('student/edit');
+    //$this->redirect('student/edit');
   }
 
   public function executeDelete(sfWebRequest $request)
@@ -157,10 +163,8 @@ class studentActions extends sfActions
       $student_user = $form->save();
       $this->getUser()->setFlash('notice', 'Successfully Saved!');
       $this->redirect('student/edit');
-    } else {
-        $this->getUser()->setFlash('notice', 'Please check to make sure all required fields are filled in.');
-        $this->redirect('student/edit');
-    }
+    } 
+    $this->getUser()->setFlash('notice', 'Please check to make sure all required fields are filled in.');
   }
 
   // Check for deadline.  If it's past the date, return false
