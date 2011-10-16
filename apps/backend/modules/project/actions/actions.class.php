@@ -56,7 +56,7 @@ class projectActions extends autoProjectActions
     $conn = Doctrine_Manager::getInstance();
   
     // Setup a variable to catch our data to export
-    $info = null;
+    $fields = null;
     $rows = null;
 
     // Then we grab the value of the drop down box
@@ -65,10 +65,9 @@ class projectActions extends autoProjectActions
     if ($opt == 'students')
     {
       $rows = Doctrine_Core::getTable('StudentUser')->findAll();
-      $info = array(
+      $fields = array(
         'ID', //any changes to this first cell MUST be reflected in importStudents()
-        'First Name', 
-        'Last Name', 
+        'Name', 
         'Pass/Fail PM',
         'Degree IDs',
         'Major IDs',
@@ -100,12 +99,12 @@ class projectActions extends autoProjectActions
     elseif($opt == 'projects')
     {
       $rows = Doctrine_Core::getTable('Project')->findAll();
-      $info = array('Project ID', 'Title', 'Organisation', 'Description', 'Has More Info', 'Has GPA Cutoff', 'Max Group Size', 'Degree IDs', 'Major IDs', 'Skill IDs'); 
+      $fields = array('Project ID', 'Title', 'Organisation', 'Description', 'Has More Info', 'Has GPA Cutoff', 'Max Group Size', 'Degree IDs', 'Major IDs', 'Skill IDs'); 
     }
     elseif($opt == 'groups')
     {
       $rows = Doctrine_Core::getTable('ProjectAllocation')->findAll();
-      $info = array('Group ID','Project ID','Student Number');
+      $fields = array('Group ID','Project ID','Student Number');
     }
 
     // Setup the file pointer. Notice no / at the start, this is needed for the link but has caused issues when added before the fopen was called
@@ -117,21 +116,19 @@ class projectActions extends autoProjectActions
       //we then make it and check if this was successful, if not...
       if(!mkdir(dirname($fpath)))
       { 
-        //sfLogger::debug(dirname($fpath));
-        //we provide feedback and redirect the user
         $this->getUser()->setFlash('error', 'Could not create directory. Please ensure you have folder privilages for "'.dirname($fpath).'"');
         $this->redirect('project/tool');
       }
     }
     //check if we can write to that file/directory
-    if(!is_writable($fpath))
-    {
-        $this->getUser()->setFlash('error', 'Cannot write to file. Please ensure you have folder privilages for "'.dirname($fpath).'"');
-        $this->redirect('project/tool');
-    }
+    // if(!is_writable($fpath))
+    // {
+    //     $this->getUser()->setFlash('error', 'Cannot write to file. Please ensure you have folder privilages for "'.dirname($fpath).'"');
+    //     $this->redirect('project/tool');
+    // }
 
     //open the file
-    $fp = fopen($fpath, 'w+');//or 'c', doesnt really matter
+    $fp = fopen($fpath, 'w');
     
     //we then check if the fopen was successful, if not...
     if(!$fp) 
@@ -144,7 +141,7 @@ class projectActions extends autoProjectActions
     {      
         //so if we got through with no errors
         //we write the first row using the headers
-        fputcsv($fp, $info);
+        fputcsv($fp, $fields);
         
         //create an array to better work with symfony's data array return
         $data = array();
@@ -178,7 +175,7 @@ class projectActions extends autoProjectActions
     //this is a generic flash error, used for dev at one point and we should probably remove this if not needed 
     $this->getUser()->setFlash('error', 'Issue encountered');// FIXME
     $this->redirect('project/tool');
-}
+  }
 
 
   /*------------------------------------------------------------------
@@ -222,7 +219,6 @@ class projectActions extends autoProjectActions
 
       //notice including the added student number
       $this->getUser()->setFlash('notice', 'Student "'.$formData['snum'].'" added successfully.');
-
       $this->redirect('project/tool');
     }
 
@@ -421,35 +417,34 @@ class projectActions extends autoProjectActions
   }  
     
     
-     public function executeDeleteStudent(sfWebRequest $request)
-    {
+  public function executeDeleteStudent(sfWebRequest $request)
+  {
+    $conn = Doctrine_Manager::getInstance();
+    $students = Doctrine_Core::getTable('StudentUser')->findAll();
+    $users = Doctrine_Core::getTable('sfGuardUser')->findAll();
     
-        $conn = Doctrine_Manager::getInstance();
-        $students = Doctrine_Core::getTable('StudentUser')->findAll();
-        $users = Doctrine_Core::getTable('sfGuardUser')->findAll();
-        
-        $dnum = $request->getPostParameter('snum');
-        foreach($students as $s)
+    $dnum = $request->getPostParameter('snum');
+    foreach($students as $s)
+    {
+        if(strcasecmp($s['snum'], $dnum) == 0)
         {
-            if(strcasecmp($s['snum'], $dnum) == 0)
-            {
-                $s->delete();
-                break;
-            }
+            $s->delete();
+            break;
         }
-           
-        foreach($users as $u)
-        {
-            if(strcasecmp($u['username'], $dnum) == 0)
-            {
-                $u->delete();
-                break;
-            }
-        } 
-          
-        $this->getUser()->setFlash('notice', 'Student "'.$dnum.'" deleted.');
-        $this->redirect('project/tool');
     }
+       
+    foreach($users as $u)
+    {
+        if(strcasecmp($u['username'], $dnum) == 0)
+        {
+            $u->delete();
+            break;
+        }
+    } 
+      
+    $this->getUser()->setFlash('notice', 'Student "'.$dnum.'" deleted.');
+    $this->redirect('project/tool');
+  }
 
   // Delete all students and their login details in the database
   public function executeClearAllStudents(sfWebRequest $request)
@@ -467,8 +462,10 @@ class projectActions extends autoProjectActions
     $this->getUser()->setFlash('notice', 'Students deleted.');
     $this->redirect('project/tool');
   }
-    // Delete all groups after they have been sorted, justin did this yayy!!
-   public function executeClearAllGroups(sfWebRequest $request)
+
+
+  // Delete all groups after they have been sorted, justin did this yayy!!
+  public function executeClearAllGroups(sfWebRequest $request)
   {
     $conn = Doctrine_Manager::getInstance();
     $groups = Doctrine_Core::getTable('ProjectAllocation')->findAll();
@@ -477,6 +474,8 @@ class projectActions extends autoProjectActions
     $this->getUser()->setFlash('notice', 'Groups deleted.');
     $this->redirect('project/tool');
   }
+
+
   ////////////////////////////////////////////////////////////////////////
   // Helpler functions
   
