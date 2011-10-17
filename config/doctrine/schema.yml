@@ -495,9 +495,9 @@ NominationRound:
     deadline:
       type: date
       primary: true
-EmailDomain:
+Email:
   connection: doctrine
-  tableName: email_domain
+  tableName: email
   columns:
     domain:
       type: string(64)

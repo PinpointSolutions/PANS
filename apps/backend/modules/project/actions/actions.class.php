@@ -33,7 +33,7 @@ class projectActions extends autoProjectActions
       $this->deadline = 'YYYY-MM-DD';
 
     try {
-      $this->domain = Doctrine_Core::getTable('EmailDomain')
+      $this->domain = Doctrine_Core::getTable('Email')
         ->createQuery('a')
         ->fetchOne();
     } catch (Exception $e) {
@@ -91,7 +91,7 @@ class projectActions extends autoProjectActions
     }
 
     $conn = Doctrine_Manager::getInstance();
-    $current = Doctrine_Core::getTable('EmailDomain')->findAll();
+    $current = Doctrine_Core::getTable('Email')->findAll();
     try {
       $current->delete();
     } catch (Exception $e) {
@@ -99,7 +99,7 @@ class projectActions extends autoProjectActions
       $this->redirect('project/tool');     
     }
     
-    $current = new EmailDomain();
+    $current = new Email();
     $current->setDomain($domain);
     $current->save();
 
@@ -289,7 +289,7 @@ class projectActions extends autoProjectActions
 
       // fetch the first 'domain' from the table and set it to $domain
       try {
-        $domain = Doctrine_Core::getTable('EmailDomain')->createQuery('a')->fetchOne()->getDomain();
+        $domain = Doctrine_Core::getTable('Email')->createQuery('a')->fetchOne()->getDomain();
       } catch (Exception $e) {
         $this->getUser()->setFlash('error', 'Unable to find a domain record. Please check the email_domain table.');
         $this->redirect('project/tool');
@@ -355,7 +355,7 @@ class projectActions extends autoProjectActions
     $this->student_user_collection = new Doctrine_Collection('StudentUser');
 
     //fetch the first 'domain' from the table and set it to $domain
-    $domain = Doctrine_Core::getTable('EmailDomain')->createQuery('a')->fetchOne()->getDomain();
+    $domain = Doctrine_Core::getTable('Email')->createQuery('a')->fetchOne()->getDomain();
 
     // Ensure the file is uploaded okay
     if ($_FILES['studentFile']['error'] !== UPLOAD_ERR_OK) {
@@ -589,7 +589,7 @@ class projectActions extends autoProjectActions
     $guard_user = Doctrine_Core::getTable('sfGuardUser')->findOneBy('username', array($snum));
     
     //fetch the first 'domain' from the table and set it to $domain
-    $domain = Doctrine_Core::getTable('EmailDomain')->createQuery('a')->fetchOne()->getDomain();
+    $domain = Doctrine_Core::getTable('Email')->createQuery('a')->fetchOne()->getDomain();
 
     if ($guard_user == null)
       $guard_user = new sfGuardUser();//FIXME this step useful but only if used as part of the import/addStudents functions. As it is this is just unnecessary as is the following code which is repeated in all 3 functions
@@ -635,7 +635,7 @@ class projectActions extends autoProjectActions
   protected function emailReminder($snum, $first_name, $last_name)
   {
     $conn = Doctrine_Manager::getInstance();
-    $domain = Doctrine_Core::getTable('EmailDomain')->createQuery('a')->fetchOne()->getDomain();
+    $domain = Doctrine_Core::getTable('Email')->createQuery('a')->fetchOne()->getDomain();
     $email = 's' . $snum . '@'.$domain;
 
     $message = "Dear " . $first_name . "," . PHP_EOL . PHP_EOL . 
