@@ -19,9 +19,6 @@ class projectActions extends autoProjectActions
   // Admin tools page
   public function executeTool(sfWebRequest $request)
   {
-    //FIXME -im guessing this was put here for the emailPassword function/s where you also attach in the email body the current users email. But in that function you also use the right hand side of the below line, you dont actually call to $this->email so far as i can tell
-    //$this->email = $this->getUser()->getGuardUser()->getEmailAddress();
-
     try {
       $this->deadline = Doctrine_Core::getTable('NominationRound')
         ->createQuery('a')
@@ -47,7 +44,7 @@ class projectActions extends autoProjectActions
     if ($this->domain) {
       $this->domain = $this->domain->getDomain();
     } else {
-      $this->domain = 'SET ME';//default value if empty
+      $this->domain = 'YYYY-MM-DD';//default value if empty
     }
   }
   

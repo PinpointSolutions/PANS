@@ -20,7 +20,7 @@
 <h2>Set Email Domain</h2>
 <form onSubmit="return confirm('Are You Sure?')" enctype="multipart/form-data" action="<?php echo url_for('project/changeDomain') ?>" method="POST" class="tool-form">
   This domain is used to create the email addresses of all users.<br><br>
-  Deadline: 
+  Email domain: 
   @<input name="domain" type="text" value="<?php echo $domain; ?>" /> 
   <span class="smlInstruction"> ie. griffithuni.edu.au</span>
   <br><br>
