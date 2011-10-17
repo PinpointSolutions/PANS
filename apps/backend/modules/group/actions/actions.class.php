@@ -13,6 +13,7 @@ require_once dirname(__FILE__).'/../lib/groupGeneratorHelper.class.php';
  */
 class groupActions extends autoGroupActions
 {
+  // Creating a new group allocation
   public function executeCreate(sfWebRequest $request)
   {
     $this->form = $this->configuration->getForm();
@@ -36,6 +37,8 @@ class groupActions extends autoGroupActions
     $this->processForm($request, $this->form);
   }
 
+
+  // Saving a new group allocation
   public function executeUpdate(sfWebRequest $request)
   {
     $this->project_allocation = $this->getRoute()->getObject();
@@ -59,6 +62,8 @@ class groupActions extends autoGroupActions
     $this->processForm($request, $this->form);
   }
 
+
+  // Group Allocation Algorithm
   public function executeAllocate(sfWebRequest $request)
   {
     // Load all the necessary data
@@ -114,44 +119,6 @@ class groupActions extends autoGroupActions
           $prefs[$student->getSnum()][$i] = -1;
       }
     }
-    
-    // DELETEME: Add dummy data for sorting testing
-    // for ($i = 0; $i < 16; $i++) {
-    //   $n = mt_rand(0, 2);
-    //   $m = mt_rand(0, 5);
-    //   $num_desire = mt_rand(0, $n);
-    //   $num_undesire = mt_rand(0, $m);
-      
-    //   $snum = 2000000 + $i;
-    //   $pref = array_rand($projects, 5);
-    //   shuffle($pref);
-
-    //   if ($num_desire > 1)
-    //     $desired[$snum] = array_rand($students, $num_desire);
-    //   elseif ($num_desire == 1)
-    //     $desired[$snum] = array(array_rand($students, $num_desire));
-    //   else
-    //     $desired[$snum] = array();
-
-    //   if ($num_undesire > 1)
-    //     $undesired[$snum] = array_rand($students, $num_undesire);
-    //   elseif ($num_undesire == 1)
-    //     $undesired[$snum] = array(array_rand($students, $num_undesire));
-    //   else
-    //     $undesired[$snum] = array();
-
-    //   $prefs[$snum][0] = $pref[0];
-    //   $prefs[$snum][1] = $pref[1];
-    //   $prefs[$snum][2] = $pref[2];
-    //   $prefs[$snum][3] = $pref[3];
-    //   $prefs[$snum][4] = $pref[4];
-    // }
-    // for ($i = 0; $i < 100; $i++) {
-    //   $snum = 2000000 + $i;
-    //   $students[$snum]->setGpa(mt_rand(10, 70) / 10.0);
-    //   $students[$snum]->setDegreeIds(mt_rand(1, 3));
-    // }
-    // END_DELETEME
 
     // Figure out the big groups
     $groups = $this->combineDesiredStudents($desired);
