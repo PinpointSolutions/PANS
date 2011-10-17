@@ -13,6 +13,19 @@
         </td>
       </tr>
       <tr>
+        <td>Suitable Degree(s)</td>
+        <td>
+          <div class="projectDegrees">
+            <?php $degreeIds=explode(' ', $project->getDegreeIds()); ?>
+            <?php $degrees=array(); ?>
+            <?php foreach ($degreeIds as $id): ?>
+              <?php array_push($degrees, $degreeName[$id]); ?>
+            <?php endforeach; ?>
+            <?php echo implode(', ', $degrees);?>
+          </div>
+        </td>
+      </tr>
+      <tr>
         <td>Suitable Major(s)</td>
         <td>
           <div class="projectMajors">

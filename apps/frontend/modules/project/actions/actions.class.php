@@ -23,10 +23,18 @@ class projectActions extends sfActions
       ->createQuery('a')
       ->execute();
     $this->majorName = array();
-    foreach($this->majors as $m){
+    foreach($this->majors as $m) {
       $this->majorName[$m->getId()] = $m->getMajor();
     }
+
+    $this->degrees = Doctrine_Core::getTable('Degree')
+      ->createQuery('a')
+      ->execute();
+    $this->degreeName = array();
+    foreach($this->degrees as $d) {
+      $this->degreeName[$d->getId()] = $d->getDegree();
     }
+  }
   
   /**
    * Displays one project
