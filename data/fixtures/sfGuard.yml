@@ -2,19 +2,11 @@ sfGuardUser:
   User_admin:
     first_name:     Leigh-Ellen
     last_name:      Potter
-    email_address:  adminuser@pans.dev
+    email_address:  L.Potter@griffith.edu.au 
     username:       admin
-    password:       admin
+    password:       thisisalongpassword
     is_super_admin: true
     Groups:         [Group_admin]
-  User_test:
-    first_name:     Test
-    last_name:      Student
-    email_address:  testsubject@pans.dev
-    username:       2222222
-    password:       test
-    is_super_admin: false
-    Groups:         [Group_student]
 
 sfGuardGroup:
   Group_admin:

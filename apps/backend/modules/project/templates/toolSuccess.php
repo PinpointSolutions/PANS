@@ -61,6 +61,14 @@
   <input type="submit" value="Submit" />
 </form>
 
+<h2>Email Reminders</h2>
+<form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')" action="<?php echo url_for('project/emailReminders') ?>" method="POST" class="tool-form">
+  This will email every student in the system that hasn't completed the form with a reminder to complete their forms.<br><br>
+  This will not email them their passwords.<br><br>
+  <input type="submit" value="Submit" />
+</form>
+
+
 <h2>Add Individual Student</h2>
 <form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')"  action="<?php echo url_for('project/addStudent') ?>" method="POST" class="tool-form formB">
   The system will also email the student his or her generated password to log-in. <br>
@@ -82,7 +90,6 @@
 <form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')"  action="<?php echo url_for('project/emailPassword') ?>" method="POST" class="tool-form formB">
   <label for="snum">ID:</label>S <input class="" name="snum" type="text" value="" />	<br>
   This will reset a single student's password.  An email will be sent out with their new one.<br><br>
-  This can take a while, so please be patient. <br><br>
   <input type="submit" value="Submit" />
 </form>
 

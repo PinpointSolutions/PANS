@@ -474,7 +474,8 @@ class projectActions extends autoProjectActions
         $this->redirect('project/tool');
       }
 
-      //FIXME - are we actually emailing them in this version? if not remember to add functionality - and as i said above in addStudents, we seem to have all of the sfGuard code in email funciton anyway, why do we also have it in both of these functions?
+      // Q: Are we actually emailing them in this version? if not remember to add functionality - and as i said above in addStudents, we seem to have all of the sfGuard code in email funciton anyway, why do we also have it in both of these functions?
+      // A: No, probably not. The import can fail and it's better to email them later.
 
     // "The task is done, m'lord."
     $this->getUser()->setFlash('notice', 'Students imported successfully.');
@@ -575,9 +576,9 @@ class projectActions extends autoProjectActions
     if ($guard_user == null)
       $guard_user = new sfGuardUser();//FIXME this step useful but only if used as part of the import/addStudents functions. As it is this is just unnecessary as is the following code which is repeated in all 3 functions
 
+    $email = 's' . $snum . '@'.$domain;
+
     $password = $this->random_password();
-      //FIXME - is this redundant- see addStudent and importStudents
-    $guard_user->setEmailAddress('s' . $snum . '@'.$domain);
     $guard_user->setUsername($snum);
     $guard_user->setPassword($password);
     $guard_user->setFirstName($first_name);
@@ -587,7 +588,6 @@ class projectActions extends autoProjectActions
     
     $guard_user->save();
 
-    // FIXME: Change the host link to the correct one
     $message = "Dear " . $guard_user->getFirstName() . "," . PHP_EOL . PHP_EOL . 
                "Your account has been created for the Project Allocation and Nomination System." . PHP_EOL . PHP_EOL .
                "Username: " . $snum . PHP_EOL .
@@ -595,14 +595,42 @@ class projectActions extends autoProjectActions
                "Please follow the link to access the system." . PHP_EOL .
                "http://" . $this->getRequest()->getHost() . 
                $this->getRequest()->getRelativeUrlRoot() . PHP_EOL . PHP_EOL .
-               "Thanks,\nProject Allocation and Nomination System (PANS)" . PHP_EOL . PHP_EOL .
-               "If you are not enrolled in 3001ICT Third Year Project but received this email, please contact " .
-               $this->getUser()->getGuardUser()->getEmailAddress() . "." ;
+               "Thanks,\nProject Allocation and Nomination System (PANS)" . PHP_EOL . PHP_EOL;
 
-    $headers = 'From: ' . $this->getUser()->getGuardUser()->getName() . ' <' . $this->getUser()->getGuardUser()->getEmailAddress() . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
+    $headers = 'From: ' . $this->getUser()->getGuardUser()->getName() . ' <noreply@' . $domain . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
     
-    $result = mail( $guard_user->getEmailAddress(),
+    $result = mail( $email,
                     "3001ICT - Your password has been created for project nominations",
+                    $message,
+                    $headers);
+        
+    if ($result == false) 
+      return $snum;
+    else 
+      return null;
+  }
+
+
+  /*------------------------------------------------------------------
+    Send the student an email reminder about completing the form.
+  */
+  protected function emailReminder($snum, $first_name, $last_name)
+  {
+    $conn = Doctrine_Manager::getInstance();
+    $domain = Doctrine_Core::getTable('EmailDomain')->createQuery('a')->fetchOne()->getDomain();
+    $email = 's' . $snum . '@'.$domain;
+
+    $message = "Dear " . $first_name . "," . PHP_EOL . PHP_EOL . 
+               "I noticed you haven't completed the project nomination form.  Could you do me a favour and spare 5 minutes?  You should already have received your login details in a previous email I sent you." . PHP_EOL . PHP_EOL .
+               "Please follow the link to access the system." . PHP_EOL .
+               "http://" . $this->getRequest()->getHost() . 
+               $this->getRequest()->getRelativeUrlRoot() . PHP_EOL . PHP_EOL .
+               "Thanks,\nProject Allocation and Nomination System (PANS)" . PHP_EOL . PHP_EOL;
+
+    $headers = 'From: ' . $this->getUser()->getGuardUser()->getName() . ' <noreply@' . $domain . '>' . PHP_EOL . 'X-Mailer: PHP-' . phpversion() . PHP_EOL;
+    
+    $result = mail( $email,
+                    "3001ICT - You haven't completed the form yet",
                     $message,
                     $headers);
         
@@ -632,14 +660,35 @@ class projectActions extends autoProjectActions
     $this->redirect('project/tool');
   }
 
+
+  /*------------------------------------------------------------------
+   Mass email students who hasn't completed their forms yet
+  */
+  public function executeEmailReminders(sfWebRequest $request)
+  {
+    $failed_emails = array();
+    $students = Doctrine_Core::getTable('StudentUser')->findAll();
+    foreach ($students as $student) {
+      if (!$student->getFormCompleted()) {
+        $r = $this->emailReminder($student->getSnum(), $student->getFirstName(), $student->getLastName());
+        if ($r != null)
+          $failed_emails[] = $r;
+      }
+    }
+    if (count($failed_emails) == 0)
+      $this->getUser()->setFlash('notice', 'Emails sent.');
+    else
+      $this->getUser()->setFlash('error', 'Some emails failed to send.  The following students did not receieve the email: ' . implode(", ", $failed_emails) . '.');
+    $this->redirect('project/tool');
+  }
+
   
   /* E-mail an individual student user their password function */
   public function executeEmailPassword(sfWebRequest $request)
   {
-    $snum = $request->getPostParameter('snum');
-    $student = Doctrine_Core::getTable('StudentUser')->find(array($snum));
-    if (!$student) {
-      $this->getUser()->setFlash('error', 'Invalid student number.');
+    $students = Doctrine_Core::getTable('StudentUser')->findAll();
+    if (!$students) {
+      $this->getUser()->setFlash('error', 'No students are in the system.');
       $this->redirect('project/tool');
     }
 
