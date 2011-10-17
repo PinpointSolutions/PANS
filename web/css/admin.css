@@ -68,27 +68,11 @@
 .sf_admin_form_field_pass_fail_pm {
 	min-height: 60px;	
 }
+
 /* This adds padding to the checkbox list so that they are not displaced by the label tag */
 ul.checkbox_list {
     padding-top: 35px;
 }
-/*
-.sf_admin_form_row div label {
-	background-color: red;
-}
-
-
-.student_user_degree_ids_2 {
-	left 10000px;
-}
-*/
-
-/* dont use such a broad rule- look at project/edit for an example of how to work around 
-#sf_admin_container label {
-	float: none;	
-}
-*/
-
 
 /* this is a particular rule for the placeholder sfSchema widgets */
 #sf_admin_container div.sf_admin_form_row.sf_admin_form_field_instructions
@@ -131,25 +115,17 @@ ul.checkbox_list {
 {
   padding-left:5px;
   min-height: 40px;
-  /*Added top padding to stop the issue of the out of line check boxes, kind of moved everything down though so trying something else.
-  padding-top: 55px;
-  */
 }
 
-
-/* Group Table - mostly dev tool
-this is the table generated in groupSuccess.php */
-#groupTable{
-  margin-left:20px;
+#groups {
+  margin-bottom: 20px;
 }
 
-#groupTable tr th{
-  min-width:40px;
-  padding-right:20px;
-  text-align:right;
- 
+.group_project {
+  font-size: 18px;
+  background: #EFEFEF;
 }
 
-#groupTable tr:hover{
-  background-color:#eee;
+.group_student {
+  
 }

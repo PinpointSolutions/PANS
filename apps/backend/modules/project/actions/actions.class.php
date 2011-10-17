@@ -54,13 +54,23 @@ class projectActions extends autoProjectActions
       ->createQuery('a')
       ->execute();
 
-    $this->projects = Doctrine_Core::getTable('Project')
+    $this->p = Doctrine_Core::getTable('Project')
+      ->createQuery('a')
+      ->execute();
+    $this->s = Doctrine_Core::getTable('StudentUser')
       ->createQuery('a')
       ->execute();
 
-    $this->students = Doctrine_Core::getTable('StudnetUser')
-      ->createQuery('a')
-      ->execute();
+    $this->projects = array();
+    $this->students = array();
+
+    foreach ($this->p as $project) {
+      $this->projects[$project->getId()] = $project;
+    }
+
+    foreach ($this->s as $student) {
+      $this->students[$student->getSnum()] = $student;
+    }
   }
 
   ////////////////////////////////////////////////////////////////////////
