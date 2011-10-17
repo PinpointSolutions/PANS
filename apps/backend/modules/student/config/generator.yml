@@ -17,7 +17,7 @@ generator:
       list:
         title:   Students
         display: [snum, first_name, last_name, form_completed]
-        #batch_actions: {}
+        batch_actions: {}
         object_actions:
           _edit: ~
         actions: {}
