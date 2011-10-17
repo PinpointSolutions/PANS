@@ -81,10 +81,10 @@ sf_guard_signout:
   url:   /logout
   param: { module: sfGuardAuth, action: signout }
  
-sf_guard_password:
+sf_guard_forgot_password:
   url:   /request_password
   param: { module: sfGuardAuth, action: password }
-  
+
   
 default:
   url:   /:module/:action/*

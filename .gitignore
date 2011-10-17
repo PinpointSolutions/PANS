@@ -12,6 +12,7 @@ log/*
 !log/*.txt
 cache/*.cache
 web/uploads/*
+web/downloads/*
 # config/databases.yml
 config/propel.ini
 data/sql

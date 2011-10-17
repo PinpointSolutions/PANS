@@ -292,9 +292,9 @@ class StudentUserForm extends BaseStudentUserForm
       'last_name'      => new sfValidatorString(array('max_length' => 64, 'required' => true)),
       'pass_fail_pm'   => new sfValidatorBoolean(array('required' => true)),
       'major_ids'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Major'), 'required' => false)),
-      'degree_ids'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Degree'), 'required' => false)),
+      'degree_ids'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Degree'), 'required' => true)),
       'skill_set_ids'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('SkillSet'), 'required' => false)),
-      'gpa'            => new sfValidatorNumber(array('min' => 0, 'max' => 7, 'required' => true)), // Have to set this up as a required field.
+      'gpa'            => new sfValidatorNumber(array('min' => 0.01, 'max' => 7, 'required' => true)), // Have to set this up as a required field.
       'proj_pref1'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project'), 'required' => true)),
       'proj_pref2'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project2'), 'required' => false)),
       'proj_pref3'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Project3'), 'required' => false)),

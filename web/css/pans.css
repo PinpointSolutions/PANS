@@ -273,6 +273,10 @@ form th {
   background-position:0px center;
 }
 
+.error_list {
+  color: #C02424;
+}
+
 /**************************************************************/
 /* Module-specific division */
 .project {

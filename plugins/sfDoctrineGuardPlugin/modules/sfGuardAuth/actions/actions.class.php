@@ -19,4 +19,10 @@ require_once(dirname(__FILE__).'/../lib/BasesfGuardAuthActions.class.php');
  */
 class sfGuardAuthActions extends BasesfGuardAuthActions
 {
+  
+  public function executePassword($request)
+  {
+    $this->redirect('sfGuardForgotPassword/index');
+  }
+  
 }

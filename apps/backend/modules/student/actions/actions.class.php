@@ -21,7 +21,7 @@ class studentActions extends autoStudentActions
     parent::executeIndex($request);
     $this->admin = $this->getUser()->isSuperAdmin();
     if ($this->admin == false) {
-        $this->redirect('guard/logout');
+        $this->redirect('/logout');
     }
   }
 
@@ -37,18 +37,19 @@ class studentActions extends autoStudentActions
   public function executeUpdate(sfWebRequest $request)
   {
     $this->student_user = $this->getRoute()->getObject();
-
-    $this->student_user->setFirstName("1 2 3");
-
-
-    $this->student_user->setDegreeIds("1 2 3");
-    $this->student_user->setMajorIds(implode(' ', $this->student_user->getMajorIds()));
-    $this->student_user->setSkillSetIds(implode(' ', $this->student_user->getSkillSetIds()));
-
     $this->form = $this->configuration->getForm($this->student_user);
+    $this->setTemplate('edit');
+    
+    $params = $request->getParameter($this->form->getName());
+    if (array_key_exists('degree_ids', $params))
+      $params['degree_ids'] = implode(' ', $params['degree_ids']);
+    if (array_key_exists('major_ids', $params))
+      $params['major_ids'] = implode(' ', $params['major_ids']);
+    if (array_key_exists('skill_set_ids', $params))
+      $params['skill_set_ids'] = implode(' ', $params['skill_set_ids']);
+    $params['form_completed'] = true;
+    $request->setParameter($this->form->getName(), $params);
 
     $this->processForm($request, $this->form);
-
-    $this->setTemplate('edit');
   }
 }

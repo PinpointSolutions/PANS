@@ -1,20 +1,20 @@
-<h1>Tools</h1>
 <?php if ($sf_user->hasFlash('notice')): ?>
   <div class="flash_notice"><?php echo html_entity_decode($sf_user->getFlash('notice')) ?></div>
 <?php elseif ($sf_user->hasFlash('error')): ?>
   <div class="flash_error"><?php echo $sf_user->getFlash('error') ?></div>
 <?php endif; ?>
+
+<h1>Tools</h1>
 <div class="flash_caution"><a></a>Actions here cannot be undone. Proceed with caution.<a></a></div>
 
 <h2>Project Nomination Form Deadline</h2>
 <form enctype="multipart/form-data" action="<?php echo url_for('project/changeDeadline') ?>" method="POST" class="tool-form">
-After the deadline, the project nomination forms will be read-only for students.<br><br>
-Deadline: 
-<input id="date-picker" class="date-picker" name="deadline" type="text" value="<?php echo $deadline; ?>" />	
-<span class="smlInstruction">[YYYY-MM-DD]</span>
-<br><br>
-
-<input type="submit" value="Change Date" />
+  After the deadline, the project nomination forms will be read-only for students.<br><br>
+  Deadline: 
+  <input id="date-picker" class="date-picker" name="deadline" type="text" value="<?php echo $deadline; ?>" />	
+  <span class="smlInstruction">[YYYY-MM-DD]</span>
+  <br><br>
+  <input type="submit" value="Change Date" />
 </form>
 
 <h2>Import Students From File</h2>
@@ -23,39 +23,23 @@ Deadline:
   <input type="submit" value="Import" />
 </form>
 
-<h2>Add Individual Student</h2>
-<form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')"  action="<?php echo url_for('project/addStudent') ?>" method="POST" class="tool-form formB">
-  <label for="snum">Snum:</label>S<input class="" name="snum" type="text" value="" />	<br>
-  <label for="f_name">First Name:</label><input class="" name="fName" type="text" />	<br>
-  <label for="f_name">Last Name:</label><input class="" name="lName" type="text" />
-  <br><br>
-  <input type="submit" value="Add Student" />
-</form>
-
-<h2>Delete Student</h2>
-<form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')"  action="<?php echo url_for('project/deleteStudent') ?>" method="POST" class="tool-form formB">
-  <label for="snum">Snum:</label>S<input class="" name="snum" type="text" />	
-  <br><br>
-  <input type="submit" value="Delete Student" />
-</form>
-
 <h2>Export Database Information</h2>
 <form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')" action="<?php echo url_for('project/exportTables') ?>" method="POST" class="tool-form">
   <p>Export to CSV files... </p>
   <br/>
   <p style="margin-left:20px;">
-	   <select name="infoType">
-		<option value="projects">
-			Project List
-		</option>
-		<option value="students" selected="true">
-			Student List
-		</option>
-		<option value="groups">
-			Group List
-		</option>
-		</select>
-	   <input type="submit" value="Export"/>
+     <select name="infoType">
+    <option value="projects">
+      Project List
+    </option>
+    <option value="students" selected="true">
+      Student List
+    </option>
+    <option value="groups">
+      Group List
+    </option>
+    </select>
+     <input type="submit" value="Export"/>
   </p>
 </form>
 
@@ -67,9 +51,25 @@ Deadline:
   <input type="submit" value="Submit" />
 </form>
 
-<h2> Reset an individual student's password --Not working--</h2>
+<h2>Add Individual Student</h2>
+<form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')"  action="<?php echo url_for('project/addStudent') ?>" method="POST" class="tool-form formB">
+  <label for="snum">ID:</label>S<input class="" name="snum" type="text" value="" />	<br>
+  <label for="f_name">First Name:</label><input class="" name="fName" type="text" />	<br>
+  <label for="f_name">Last Name:</label><input class="" name="lName" type="text" />
+  <br><br>
+  <input type="submit" value="Add Student" />
+</form>
+
+<h2>Delete Student</h2>
+<form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')"  action="<?php echo url_for('project/deleteStudent') ?>" method="POST" class="tool-form formB">
+  <label for="snum">ID:</label>S<input class="" name="snum" type="text" />	
+  <br><br>
+  <input type="submit" value="Delete Student" />
+</form>
+
+<h2> Reset an individual student's password</h2>
 <form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')"  action="<?php echo url_for('project/emailPassword') ?>" method="POST" class="tool-form formB">
-  <label for="snum">Snum:</label>S <input class="" name="snum" type="text" value="" />	<br>
+  <label for="snum">ID:</label>S <input class="" name="snum" type="text" value="" />	<br>
   This will reset a single student's password.  An email will be sent out with their new one.<br><br>
   This can take a while, so please be patient. <br><br>
   <input type="submit" value="Submit" />
