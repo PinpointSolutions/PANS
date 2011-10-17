@@ -17,8 +17,18 @@
   <input type="submit" value="Change Date" />
 </form>
 
+<h2>Set Email Domain</h2>
+<form onSubmit="return confirm('Are You Sure?')" enctype="multipart/form-data" action="<?php echo url_for('project/changeDomain') ?>" method="POST" class="tool-form">
+  This domain is used to create the email addresses of all users.<br><br>
+  Deadline: 
+  @<input name="domain" type="text" value="<?php echo $domain; ?>" /> 
+  <span class="smlInstruction"> ie. griffithuni.edu.au</span>
+  <br><br>
+  <input type="submit" value="Change Domain" />
+</form>
+
 <h2>Import Students From File</h2>
-<form enctype="multipart/form-data" action="<?php echo url_for('project/importStudents') ?>" method="POST" class="tool-form">
+<form onSubmit="return confirm('Are You Sure?')" enctype="multipart/form-data" action="<?php echo url_for('project/importStudents') ?>" method="POST" class="tool-form">
   Select a CSV File.  (max. file size: 1MB) <br><br><input name="studentFile" type="file" /><br><br>
   <input type="submit" value="Import" />
 </form>

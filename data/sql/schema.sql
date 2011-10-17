@@ -1,4 +1,5 @@
 CREATE TABLE degrees (id INT AUTO_INCREMENT, degree VARCHAR(120) NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE email_domain (domain VARCHAR(64), PRIMARY KEY(domain)) ENGINE = INNODB;
 CREATE TABLE majors (id INT AUTO_INCREMENT, major VARCHAR(120) NOT NULL, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE nomination_round (deadline DATE, PRIMARY KEY(deadline)) ENGINE = INNODB;
 CREATE TABLE projects (id INT AUTO_INCREMENT, title VARCHAR(120) NOT NULL, organisation VARCHAR(120), description TEXT, extended_description TEXT, has_additional_info TINYINT(1), has_gpa_cutoff TINYINT(1), max_group_size INT DEFAULT 6, degree_ids VARCHAR(64), major_ids VARCHAR(64), skill_set_ids VARCHAR(64), PRIMARY KEY(id)) ENGINE = INNODB;
