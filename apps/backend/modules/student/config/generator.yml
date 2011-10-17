@@ -26,5 +26,8 @@ generator:
       filter:
         class: false
       form:    ~
-      edit:    ~
+      edit:
+        actions:
+          _list: ~
+          _save: ~
       new:     ~
