@@ -27,11 +27,10 @@ class projectActions extends autoProjectActions
       $this->deadline = null;
     }
 
-    if (!$this->deadline) {
-      $this->deadline = 'YYYY-MM-DD';
-    } else {
+    if ($this->deadline) 
       $this->deadline = $this->deadline->getDeadline();
-    }
+    else 
+      $this->deadline = 'YYYY-MM-DD';
 
     try {
       $this->domain = Doctrine_Core::getTable('EmailDomain')
@@ -41,13 +40,13 @@ class projectActions extends autoProjectActions
       $this->domain = null;
     }
 
-    if ($this->domain) {
+    if ($this->domain) 
       $this->domain = $this->domain->getDomain();
-    } else {
+    else 
       $this->domain = 'YYYY-MM-DD';//default value if empty
-    }
   }
-  
+
+
   // Admin View for the Group Page, not affecting the 'manage/edit allocations' page
   public function executeGroup(sfWebRequest $request)
   {
@@ -66,7 +65,7 @@ class projectActions extends autoProjectActions
   {
     try {
       $domain = $request->getPostParameter('domain');
-      if ($domain == false)
+      if (!$domain)
         throw new Exception();
     } catch (Exception $e) {
       $this->getUser()->setFlash('error', 'Invalid domain. Please verify.');
@@ -122,8 +121,7 @@ class projectActions extends autoProjectActions
     $this->getUser()->setFlash('notice', 'New date applied.');
     $this->redirect('project/tool');
   }  
-    
-    
+      
 
   /*------------------------------------------------------------------
     Export function using the fputcsv approach
@@ -271,13 +269,18 @@ class projectActions extends autoProjectActions
       $this->guard_user_collection = new Doctrine_Collection('sfGuardUser');
       $this->student_user_collection = new Doctrine_Collection('StudentUser');
 
-      //fetch the first 'domain' from the table and set it to $domain
-      $domain = Doctrine_Core::getTable('EmailDomain')->createQuery('a')->fetchOne()->getDomain();
+      // fetch the first 'domain' from the table and set it to $domain
+      try {
+        $domain = Doctrine_Core::getTable('EmailDomain')->createQuery('a')->fetchOne()->getDomain();
+      } catch (Exception $e) {
+        $this->getUser()->setFlash('error', 'Unable to find a domain record. Please check the email_domain table.');
+        $this->redirect('project/tool');
+      }
       
       $guard_user = new sfGuardUser();
       $password = $this->random_password();
       
-      $guard_user->setEmailAddress('s' . $formData['snum'] . '@'. $domain);//FIXME - why are we added an email field here? seems unused, we should really only call to the email function and other than that not touch EmailDomain
+      $guard_user->setEmailAddress('unused@email.address');
       $guard_user->setUsername($formData['snum']);
       $guard_user->setPassword($password); 
       $guard_user->setFirstName($formData['fName']);
@@ -292,7 +295,6 @@ class projectActions extends autoProjectActions
       $user->last_name = $formData['lName'];
       $this->student_user_collection->add($user);
       
-      
       // Commit the new student into database
       try {
         $this->student_user_collection->save();
@@ -303,17 +305,17 @@ class projectActions extends autoProjectActions
       }
       
       //call to the email 
-      $emailAttempt = $this -> emailPassword($user->snum, $user->first_name, $user->last_name);
+      $emailAttempt = $this->emailPassword($user->snum, $user->first_name, $user->last_name);
       if ($emailAttempt != null)//null is recieved if successful, $snum if not
       {
-        $this->getUser()->setFlash('error', 'Added Student Successfully. !! Email NOT successfuly sent to s' . $formData['snum'] . '@'. $domain.' !!');
+        $this->getUser()->setFlash('error', 'Added Student Successfully. Email NOT sent to s' . $formData['snum'] . '@'. $domain);
         $this->redirect('project/tool');
       }
       else 
       {
-          //notice including the added student number
-          $this->getUser()->setFlash('notice', 'Student "'.$formData['snum'].'" added successfully.');
-          $this->redirect('project/tool');
+        //notice including the added student number
+        $this->getUser()->setFlash('notice', 'Student "'.$formData['snum'].'" added successfully.');
+        $this->redirect('project/tool');
       }
     }
 

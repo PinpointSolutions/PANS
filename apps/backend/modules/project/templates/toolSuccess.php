@@ -63,6 +63,7 @@
 
 <h2>Add Individual Student</h2>
 <form enctype="multipart/form-data" onSubmit="return confirm('Are You Sure?')"  action="<?php echo url_for('project/addStudent') ?>" method="POST" class="tool-form formB">
+  The system will also email the student his or her generated password to log-in. <br>
   <label for="snum">ID:</label>S<input class="" name="snum" type="text" value="" />	<br>
   <label for="f_name">First Name:</label><input class="" name="fName" type="text" />	<br>
   <label for="f_name">Last Name:</label><input class="" name="lName" type="text" />
