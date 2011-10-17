@@ -53,6 +53,14 @@ class projectActions extends autoProjectActions
     $this->groups = Doctrine_Core::getTable('ProjectAllocation')
       ->createQuery('a')
       ->execute();
+
+    $this->projects = Doctrine_Core::getTable('Project')
+      ->createQuery('a')
+      ->execute();
+
+    $this->students = Doctrine_Core::getTable('StudnetUser')
+      ->createQuery('a')
+      ->execute();
   }
 
   ////////////////////////////////////////////////////////////////////////
