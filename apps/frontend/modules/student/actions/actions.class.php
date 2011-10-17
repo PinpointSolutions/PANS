@@ -107,7 +107,8 @@ class studentActions extends sfActions
     // Create the form object for processing
     $student_user = Doctrine_Core::getTable('StudentUser')
                                      ->find(array($this->username));
-    $this->form = new StudentUserForm($student_user);
+    $this->form = new StudentUserForm($student_user, 
+              array('url' => $this->getController()->genUrl('student/ajax')));
     
     // BEGIN SQL DATABASE HACK. DRAGONS ABOUND AND MONSTERS LEAP FROM THE DARK.
     //
