@@ -8,3 +8,8 @@ all:
     allow_login_with_email: false
     success_signin_url:   student/index
     success_signout_url:  student/index
+  # ssl:
+  #   strict: true
+  #   modules:
+  #     - { module: sfGuardAuth }
+  #     - { module: student }

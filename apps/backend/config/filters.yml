@@ -4,6 +4,9 @@
 rendering: ~
 security:  ~
 
+# sslFilter:
+#   class: sslFilter
+
 # insert your own filters here
 
 cache:     ~
