@@ -1,19 +1,17 @@
 Project Allocation and Nomination System
 ========================================
-3001ICT Third Year Project, [Griffith] University, Nathan Campus
+Put students into groups based on their preferences.  Project Allocation and
+Nomination System (PANS) runs on a MySQL database, and stores user accounts and
+passwords (SHA1 hashed), preferences, and project information.  It has a web
+frontend for students to view projects and fill in preferences.  It also
+provides a backend for administrators of the system to manage accounts and
+perform/edit group allocation. 
+
+This is a project of  3001ICT Third Year Project, [Griffith] University,
+Nathan Campus
 
 [Griffith]:   http://griffith.edu.au/
 
 Team Members
 ------------
 Daniel Brose, Xavier Ho, Matthew Russell, Justin Evans, Peter Deagon, Scott Mabey 
-
-Objective
----------
-This system is intended to replace the existing manual process of allocating
-students to projects based on their preference and justifications. The project
-is projected to complete in November 2011.
-
-License
--------
-(C) 2011 Pinpoint Solutions.
