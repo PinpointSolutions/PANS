@@ -9,7 +9,6 @@ The server should run some flavour of Unix (tested on Debian), and need the foll
  * Apache (or Nginx)
  * MySQL
  * PHP
- * SSH server
 
 Your client should have git installed to checkout the source code.  You will also need ssh to remotely login into the web server.
 
@@ -18,7 +17,7 @@ Administration
 As the server / database admin, you should have:
 
  * Public directory of the webpage (e.g. /export/project/pinpoint/public_html)
- * Permission of read-write-execute of that directory (duh)
+ * Permission of read-write-execute of that directory
  * Permission of MySQL database login
 
 Installation
@@ -29,7 +28,7 @@ Get the source code in your local machine.
 
 Configure server information for deployment.  Open `config/properties.ini` and add/modify:
 
-    [production]
+    [prod]
       host=<server ip here>
       port=22
       user=<username here>
@@ -37,7 +36,7 @@ Configure server information for deployment.  Open `config/properties.ini` and a
 
 For example:
 
-    [production]
+    [prod]
       host=dwarf.ict.griffith.edu.au
       port=22
       user=s2674674
@@ -73,8 +72,8 @@ Load up the database with tables.
 
 Finally, clear the webpage cache, and set up permissions.
 
-    mkdir log
     php symfony cc
+    cd cache; rm -rf *; cd ..
     php symfony project:permissions
 
 If your webhost uses a different folder other than `web`, you will have to change it to what it uses.  Usually, `public_html`:
@@ -93,10 +92,5 @@ You will also have to tell the system where that folder is.  Open `config/Projec
 For example:
 
     $this->setWebDir('/export/project/pinpoint/public_html');
-
-Finally, run some automated tasks to speed up the website a little:
-
-    php symfony project:optimize frontend
-    php symfony project:optimize backend
 
 And we're done!  Congratulations. 
