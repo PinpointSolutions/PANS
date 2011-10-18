@@ -18,11 +18,15 @@ require_once(dirname(__FILE__).'/../lib/BasesfGuardAuthActions.class.php');
  * @version    SVN: $Id: actions.class.php 23319 2009-10-25 12:22:23Z Kris.Wallsmith $
  */
 class sfGuardAuthActions extends BasesfGuardAuthActions
-{
-  
-  public function executePassword($request)
+{  
+  // public function executePassword($request)
+  // {
+  //   $this->redirect('sfGuardForgotPassword/index');
+  // }
+   
+  public function executeSignout($request)
   {
-    $this->redirect('sfGuardForgotPassword/index');
+    $this->getUser()->signOut();
+    $this->redirect('@homepage');
   }
-  
 }
