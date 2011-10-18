@@ -17,7 +17,9 @@ generator:
       list:
         title:   Students
         display: [snum, first_name, last_name, form_completed]
-        batch_actions: {}
+        #batch_actions: {}
+        object_actions:
+          _edit: ~
         actions: {}
         max_per_page: 99999
       # Stops Symfony from displaying the filter in the admin view

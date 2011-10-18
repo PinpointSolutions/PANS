@@ -172,7 +172,7 @@ class projectActions extends autoProjectActions
     else 
     {
       // notify the user of the status and location of the file
-      $this->getUser()->setFlash('notice', 'Successfully saved.  <a href="http://' .$this->getRequest()->getHost() .'/'.  $fpath .'"> Click to download.</a>');
+      $this->getUser()->setFlash('notice', 'Successfully saved.  <a href="http://' .$this->getRequest()->getHost() . $this->getRequest()->getRelativeUrlRoot() . '/' . $fpath .'"> Click to download.</a>');
       $this->redirect('project/tool');
     }
   }
