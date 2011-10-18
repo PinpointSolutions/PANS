@@ -30,4 +30,4 @@ generator:
         actions:
           _list: ~
           _save: ~
-      new:     ~
+      new:     {}
