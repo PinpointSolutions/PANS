@@ -29,7 +29,7 @@ class groupActions extends autoGroupActions
       ->findBy('project_id', $params['project_id'])
       ->count();
 
-    if ($p->getMaxGroupSize() >= $size) {
+    if ($p->getMaxGroupSize() <= $size) {
       $this->getUser()->setFlash('error', 'Failed to save: this change will exceed the max group size of the project.');
       return;
     }
