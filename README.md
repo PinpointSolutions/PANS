@@ -7,6 +7,8 @@ frontend for students to view projects and fill in preferences.  It also
 provides a backend for administrators of the system to manage accounts and
 perform/edit group allocation. 
 
+See INSTALL.md for installation a guide.
+
 This is a project of  3001ICT Third Year Project, [Griffith] University,
 Nathan Campus
 
@@ -15,3 +17,4 @@ Nathan Campus
 Team Members
 ------------
 Daniel Brose, Xavier Ho, Matthew Russell, Justin Evans, Peter Deagon, Scott Mabey 
+

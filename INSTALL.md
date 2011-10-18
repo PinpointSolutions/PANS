@@ -22,6 +22,9 @@ As the server / database admin, you should have:
 
 Installation
 ------------
+
+=== Step 1
+
 Get the source code in your local machine.
 
     git clone git://github.com/PinpointSolutions/PANS.git
@@ -46,11 +49,11 @@ Note that the directory must be the parent of the public directory, and not the 
 
 Make sure you save the file.  Then, in the main directory of PANS, run
 
-    php symfony project:deploy production --trace
+    php symfony project:deploy prod --trace
 
 This will do a dry run of the deployment.  If it looks good, initiate the actual synchronisation with the remote server.
 
-    php symfony project:deploy production --trace --go
+    php symfony project:deploy prod --trace --go
 
 You might get a warning and an exception thrown at the end of this process.  If rsync has already reported sending complete (it looks like `sent XX bytes  received YYY bytes  ZZZ bytes/sec`, it's a false alarm and you can ignore that.
 
