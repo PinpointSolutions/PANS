@@ -43,7 +43,7 @@ class projectActions extends autoProjectActions
     if ($this->domain) 
       $this->domain = $this->domain->getDomain();
     else 
-      $this->domain = 'YYYY-MM-DD';//default value if empty
+      $this->domain = 'somewhere.something';//default value if empty
   }
 
 
