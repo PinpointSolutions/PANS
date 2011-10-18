@@ -14,14 +14,16 @@ abstract class BasesfGuardForgotPasswordActions extends sfActions
   {
     if ($this->getUser()->isAuthenticated())
     {
+      sfLogger::debug('isAuthed');
       $this->redirect('@homepage');
     }
   }
 
   public function executeIndex($request)
   {
+   
     $this->form = new sfGuardRequestForgotPasswordForm();
-
+    sfLogger::debug($this-form);
     if ($request->isMethod('post'))
     {
       $this->form->bind($request->getParameter($this->form->getName()));
