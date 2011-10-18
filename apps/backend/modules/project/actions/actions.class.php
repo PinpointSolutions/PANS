@@ -634,12 +634,23 @@ class projectActions extends autoProjectActions
   */
   protected function emailReminder($snum, $first_name, $last_name)
   {
+    try {
+      $this->deadline = Doctrine_Core::getTable('NominationRound')
+        ->createQuery('a')
+        ->fetchOne();
+    } catch (Exception $e) {
+      $this->deadline = 'Undefined';
+    }
+    $this->deadline = $this->deadline->getDeadline();
+
     $conn = Doctrine_Manager::getInstance();
     $domain = Doctrine_Core::getTable('Email')->createQuery('a')->fetchOne()->getDomain();
     $email = 's' . $snum . '@'.$domain;
 
     $message = "Dear " . $first_name . "," . PHP_EOL . PHP_EOL . 
+               "This is an automatically generated message." . PHP_EOL . PHP_EOL .
                "I noticed you haven't completed the project nomination form.  Could you do me a favour and spare 5 minutes?  You should already have received your login details in a previous email I sent you." . PHP_EOL . PHP_EOL .
+               "The deadline to fill out the form is " . $this->deadline . "." . PHP_EOL . PHP_EOL .
                "Please follow the link to access the system." . PHP_EOL .
                "http://" . $this->getRequest()->getHost() . 
                $this->getRequest()->getRelativeUrlRoot() . PHP_EOL . PHP_EOL .
