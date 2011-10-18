@@ -704,15 +704,16 @@ class projectActions extends autoProjectActions
   /* E-mail an individual student user their password function */
   public function executeEmailPassword(sfWebRequest $request)
   {
-    $students = Doctrine_Core::getTable('StudentUser')->findAll();
-    if (!$students) {
-      $this->getUser()->setFlash('error', 'No students are in the system.');
+    $snum = $request->getPostParameter('snum');
+    $student = Doctrine_Core::getTable('StudentUser')->find(array($snum ));
+    if (!$student) {
+      $this->getUser()->setFlash('error', 'This student is not found in the system.');
       $this->redirect('project/tool');
     }
 
     $r = $this->emailPassword($student->getSnum(), $student->getFirstName(), $student->getLastName());
     if ($r == null)
-      $this->getUser()->setFlash('notice', 'Your password has been reset.  Email sent.');
+      $this->getUser()->setFlash('notice', 'The student\'s password has been reset.  Email sent.');
     else
       $this->getUser()->setFlash('error', 'Oops.  An error occured.');
     $this->redirect('project/tool');
