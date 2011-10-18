@@ -19,7 +19,7 @@ class projectActions extends autoProjectActions
   // Admin tools page
   public function executeTool(sfWebRequest $request)
   {
-    $this->email = $this->getUser()->getGuardUser()->getEmailAddress();
+    //$this->email = $this->getUser()->getGuardUser()->getEmailAddress();
 
     try {
       $this->deadline = Doctrine_Core::getTable('NominationRound')
@@ -208,6 +208,7 @@ class projectActions extends autoProjectActions
       $user->last_name = $formData['lName'];
       $this->student_user_collection->add($user);
       
+      
       // Commit the new student into database
       try {
         $this->student_user_collection->save();
@@ -216,10 +217,20 @@ class projectActions extends autoProjectActions
         $this->getUser()->setFlash('error', 'Failed to import students.  Please check for duplicated entries and try again.  Message: ' . $e->getMessage());
         $this->redirect('project/tool');
       }
-
-      //notice including the added student number
-      $this->getUser()->setFlash('notice', 'Student "'.$formData['snum'].'" added successfully.');
-      $this->redirect('project/tool');
+      
+      //call to the email 
+      $emailAttempt = $this -> emailPassword($user->snum, $user->first_name, $user->last_name);
+      if ($emailAttempt != null)
+      {
+        $this->getUser()->setFlash('notice', 'Imported Student Successfully. !! Email NOT successfuly sent !!');
+        $this->redirect('project/tool');
+      }
+      else 
+      {
+          //notice including the added student number
+          $this->getUser()->setFlash('notice', 'Student "'.$formData['snum'].'" added successfully.');
+          $this->redirect('project/tool');
+      }
     }
 
 
@@ -238,6 +249,7 @@ class projectActions extends autoProjectActions
     $conn = Doctrine_Manager::getInstance();
     $this->guard_user_collection = new Doctrine_Collection('sfGuardUser');
     $this->student_user_collection = new Doctrine_Collection('StudentUser');
+    //$this->email_domain_collection = new Doctrine_Collection('EmailDomain');//FIXME
 
     // Ensure the file is uploaded okay
     if ($_FILES['studentFile']['error'] !== UPLOAD_ERR_OK) {
@@ -350,7 +362,7 @@ class projectActions extends autoProjectActions
       // FIXME - allow more than just griffith default domain emails
       $guard_user = new sfGuardUser();
       $password = $this->random_password();
-      $guard_user->setEmailAddress('s' . $user->getSnum() . '@griffithuni.edu.au'); 
+      $guard_user->setEmailAddress('s' . $user->getSnum() . '@griffithuni.edu.au');//.$this->email_options_collection('suffix'); //FIXME
       $guard_user->setUsername($user->getSnum());
       $guard_user->setPassword($password); 
       $guard_user->setFirstName($user->getFirstName());
