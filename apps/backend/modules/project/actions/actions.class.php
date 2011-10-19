@@ -649,7 +649,7 @@ class projectActions extends autoProjectActions
 
     $message = "Dear " . $first_name . "," . PHP_EOL . PHP_EOL . 
                "This is an automatically generated message." . PHP_EOL . PHP_EOL .
-               "I noticed you haven't completed the project nomination form.  Could you do me a favour and spare 5 minutes?  You should already have received your login details in a previous email I sent you." . PHP_EOL . PHP_EOL .
+               "I have noticed that you haven't completed the project nomination form for the Industry Project. Please complete this using the login details provided previously as soon as possible so that I can allocate you to a project. If you do not complete the form then you will be allocated to a project on a random basis." . PHP_EOL . PHP_EOL .
                "The deadline to fill out the form is " . $this->deadline . "." . PHP_EOL . PHP_EOL .
                "Please follow the link to access the system." . PHP_EOL .
                "http://" . $this->getRequest()->getHost() . 
