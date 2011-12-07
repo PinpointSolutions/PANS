@@ -20,16 +20,14 @@ As the server / database admin, you should have:
  * Permission of read-write-execute of that directory
  * Permission of MySQL database login
 
-Getting the Source Code
------------------------
+Installation
+------------
+
+=== Step 1
 
 Get the source code in your local machine.
 
     git clone git://github.com/PinpointSolutions/PANS.git
-
-Deploying to Server
--------------------
-If you don't want to use rsycn / ssh over port 22 and want to manually create a tarball, skip this step.
 
 Configure server information for deployment.  Open `config/properties.ini` and add/modify:
 
@@ -59,37 +57,27 @@ This will do a dry run of the deployment.  If it looks good, initiate the actual
 
 You might get a warning and an exception thrown at the end of this process.  If rsync has already reported sending complete (it looks like `sent XX bytes  received YYY bytes  ZZZ bytes/sec`, it's a false alarm and you can ignore that.
 
-Manual Deployment
------------------
-If you followed the previous step and successfully copied files over to the target server, feel free to move to the next step.
-
-First, make a copy of the local repository without the source control.
-
-    git archive master | tar -x -C /somewhere/else/PANS
-
-Compress the copy into a tarball.
-
-    tar -zvcf PANS.tar.gz PANS
-
-Copy the tarball onto the server (with scp or FTP or whatever you feel comfortable) and extract it there.
-
-    tar -zvxf PANS.tar.gz PANS
-
-There are a few files you should delete, because they're for debugging only and shouldn't be there on the server.
-
-    rm -rf /cache/*
-    rm -rf /log/*
-    rm -rf /web/*_dev.php
-    rm -rf /web/uploads/*
-    rm -f SampleData.csv symfony.bat
-
-Setting Up
-----------
 Now, SSH into the remote server.  Go to the directory where you just installed PANS.  Verify your server's PHP installation and extra support:
 
     php check_configuration.php
 
-If the first test passes, it's all good. Make sure the mandatory requirement for Doctrine is installed as well.
+If the first test passes, it's all good. Make sure the mandatory requirement for Doctrine is installed as well.  We need to tell the system where the database is.  Run
+
+    php symfony configure:database "mysql:host=<your database IP>;dbname=<your database name>" <MySQL username> <MySQL password> --env=production
+
+For example:
+
+    php symfony configure:database "mysql:host=mysql.ict.griffith.edu.au;dbname=pinpoint_db" pinpoint somepasswordyoullneverguess
+
+Load up the database with tables.
+
+    php symfony doctrine:build --all --and-load
+
+Finally, clear the webpage cache, and set up permissions.
+
+    php symfony cc
+    cd cache; rm -rf *; cd ..
+    php symfony project:permissions
 
 If your webhost uses a different folder other than `web`, you will have to change it to what it uses.  Usually, `public_html`:
 
@@ -107,25 +95,5 @@ You will also have to tell the system where that folder is.  Open `config/Projec
 For example:
 
     $this->setWebDir('/export/project/pinpoint/public_html');
-
-We need to tell the system where the database is.  Run
-
-    php symfony configure:database "mysql:host=<your database IP>;dbname=<your database name>" <MySQL username> <MySQL password>
-
-For example:
-
-    php symfony configure:database "mysql:host=mysql.ict.griffith.edu.au;dbname=pinpoint_db" pinpoint somepasswordyoullneverguess
-
-Load up the database with tables and the default admin user account.
-
-    php symfony doctrine:build --all --and-load
-
-Finally, clear the webpage cache, and set up permissions.
-
-    php symfony cc
-    cd cache; rm -rf *; cd ..
-    php symfony project:permissions
-
-(If the last command spits out any errors, delete everything inside the cache folder again.)
 
 And we're done!  Congratulations. 
