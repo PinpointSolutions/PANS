@@ -33,7 +33,7 @@
           <?php endif; ?>
           
           <div class="alignleft action">
-            <?php echo link_to('Logout', '@sf_guard_signout') ?>
+            <?php echo link_to('Logout', 'index.php/logout') ?>
           </div>
           
 
